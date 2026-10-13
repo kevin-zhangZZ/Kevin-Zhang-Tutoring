@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{x^2-4x+3}{x^2-x-6}" />,
-    reason: <>Factorise top and bottom before saying anything about asymptotes.</>,
+    reason: <>Factorise top and bottom before saying anything about asymptotes: a shared factor gives a hole, while an unshared denominator factor gives a vertical asymptote.</>,
   },
   {
     working: <Katex display tex="= \frac{(x-1)(x-3)}{(x-3)(x+2)}" />,
@@ -23,19 +23,39 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{x-1}{x+2}, \qquad x\ne3" />,
-    reason: <>The common factor cancels, but <Katex tex="x=3" /> is still excluded from the domain — the function is undefined there even though the simplified form is not.</>,
+    reason: <>The common factor cancels, but <Katex tex="x=3" /> is still excluded: the original denominator is 0 there, so <Katex tex="f(3)" /> is undefined.</>,
   },
   {
     working: <Katex display tex="x = 3:\ \text{point of discontinuity (a hole)}" />,
-    reason: <>A cancelled factor leaves a single missing point, not a vertical asymptote.</>,
+    reason: <>Near <Katex tex="x=3" />, <Katex tex="f(x)" /> approaches <Katex tex="\tfrac{3-1}{3+2}=\tfrac25" />, a finite value: the graph just has the point <Katex tex="\left(3,\tfrac25\right)" /> missing.</>,
   },
   {
     working: <Katex display tex="x = -2:\ \text{vertical asymptote}" />,
-    reason: <>The factor that survives in the denominator is the one that blows up.</>,
+    reason: <>As <Katex tex="x\to-2" />, the numerator <Katex tex="x-1\to-3" /> while the denominator <Katex tex="x+2\to0" />, so <Katex tex="|f(x)|" /> grows without bound.</>,
+    more: (
+      <>
+        The report&apos;s form <Katex tex="f(x)=1-\tfrac{3(x-3)}{(x-3)(x+2)}=1-\tfrac{3}{x+2}" /> (for <Katex tex="x\ne3" />)
+        shows the same thing at a glance: a hyperbola with vertical asymptote <Katex tex="x=-2" />, horizontal
+        asymptote <Katex tex="y=1" />, and the point at <Katex tex="x=3" /> removed.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{\text{asymptote } x=-2, \text{ point of discontinuity at } x=3}" />,
-    reason: <>Matches option <b>D</b>. Option B (20%) treats both factors as asymptotes, missing the cancellation; option E swaps them. Options A and C put an asymptote at <Katex tex="x=1" />, which is where the graph crosses the <Katex tex="x" />-axis (the surviving factor is in the numerator), not an asymptote.</>,
+    working: (
+      <Katex
+        display
+        tex="\boxed{\begin{gathered}\text{asymptote at } x=-2, \\ \text{point of discontinuity at } x=3\end{gathered}}"
+      />
+    ),
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
+      <>
+        Option B, the most common wrong answer, sets the original denominator to zero and calls both roots asymptotes,
+        missing the cancellation. Option E swaps the two features. Options A and C put an asymptote at{' '}
+        <Katex tex="x=1" />, but <Katex tex="x-1" /> is in the numerator: <Katex tex="f(1)=0" />, so that is where the
+        graph crosses the <Katex tex="x" />-axis.
+      </>
+    ),
   },
 ]
 
@@ -50,9 +70,9 @@ export default function SpecialistQ3_2014() {
       }
       background={
         <p>
-          A factor common to numerator and denominator gives a <em>hole</em>; a factor left
-          over in the denominator gives a vertical <em>asymptote</em>. Telling them apart is
-          the whole question.
+          A vertical asymptote at <Katex tex="x=c" /> needs the denominator to approach 0 while the numerator does
+          not. If both are 0 at <Katex tex="x=c" />, they share the factor <Katex tex="(x-c)" />: cancel it, and the
+          graph usually just has one missing point there — a <em>point of discontinuity</em>, or hole.
         </p>
       }
       options={[

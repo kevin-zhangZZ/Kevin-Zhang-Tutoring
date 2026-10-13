@@ -20,7 +20,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="a = \frac{d}{dx}\!\left(\tfrac12v^2\right) = -4x" />,
-    reason: <>The question gives acceleration in terms of <em>displacement</em> and asks for speed at a displacement, so time never enters. This is the form of <Katex tex="a" /> to reach for.</>,
+    reason: <>Acceleration is given in terms of <Katex tex="x" /> and speed is wanted at a value of <Katex tex="x" />, so use this form of <Katex tex="a" />: time never enters.</>,
+    more: (
+      <>
+        Why this form works: by the chain rule,{' '}
+        <Katex tex="a=\dfrac{dv}{dt}=\dfrac{dv}{dx}\cdot\dfrac{dx}{dt}=v\dfrac{dv}{dx}=\dfrac{d}{dx}\!\left(\tfrac12v^2\right)" />.
+        The other forms, <Katex tex="\tfrac{dv}{dt}" /> or <Katex tex="\tfrac{d^2x}{dt^2}" />, would
+        need <Katex tex="a" /> as a function of <Katex tex="t" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\tfrac12v^2 = -2x^2+c" />,
@@ -28,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = 5,\ v = 0:\quad 0 = -50+c \implies c = 50" />,
-    reason: <>"At rest" fixes the constant.</>,
+    reason: <>"At rest where <Katex tex="x=5" />" means <Katex tex="v=0" /> when <Katex tex="x=5" />, which fixes the constant.</>,
   },
   {
     working: <Katex display tex="x = 3:\quad \tfrac12v^2 = -2(9)+50 = 32" />,
@@ -36,11 +44,25 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v^2 = 64" />,
-    reason: <>Doubling. Forgetting the <Katex tex="\tfrac12" /> gives <Katex tex="v^2=32" /> and option D, <Katex tex="4\sqrt2" />.</>,
+    reason: <>Double both sides to clear the <Katex tex="\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="\boxed{8\ \text{ms}^{-1}}" />,
-    reason: <>Matches option <b>A</b>. Sanity check: <Katex tex="v^2=4\left(25-x^2\right)" />, so the speed is 0 at <Katex tex="x=\pm5" /> and greatest, 10, at the origin — 8 at <Katex tex="x=3" /> sits sensibly between.</>,
+    reason: <>Matches option <b>A</b>; speed is the positive square root.</>,
+    more: (
+      <>
+        The distractors: D (17%, the most popular wrong answer), <Katex tex="4\sqrt2" />, forgets
+        the <Katex tex="\tfrac12" /> and takes <Katex tex="v^2=32" />. B, <Katex tex="8\sqrt2" />,
+        antidifferentiates <Katex tex="-4x" /> as <Katex tex="-4x^2" /> (no halving), giving{' '}
+        <Katex tex="\tfrac12v^2=-4x^2+100" /> and <Katex tex="v^2=128" />. E,{' '}
+        <Katex tex="2\sqrt{34}" />, loses the minus sign when substituting: <Katex tex="\tfrac12v^2=2(9)+50=68" />.
+        C, 12, matches no standard slip in the working; it is the size of the acceleration at{' '}
+        <Katex tex="x=3" />, <Katex tex="|-4(3)|" />, not a speed.
+        Sanity check: <Katex tex="v^2=4\left(25-x^2\right)" />, so the speed is 0 at{' '}
+        <Katex tex="x=\pm5" /> and greatest, 10, at the origin — 8 at <Katex tex="x=3" /> sits
+        sensibly between.
+      </>
+    ),
   },
 ]
 

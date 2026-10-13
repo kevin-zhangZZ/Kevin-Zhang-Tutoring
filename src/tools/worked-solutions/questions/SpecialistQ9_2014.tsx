@@ -21,30 +21,54 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="|z-3-2i| = 2:\ \text{centre } (3,2), \text{ radius } 2" />,
     reason: <>A line cuts a circle twice exactly when its distance from the centre is <em>less than</em> the radius.</>,
+    more: <>Equal to the radius means the line just touches (a tangent, one point); greater means it misses. So for each option, compare its distance from <Katex tex="(3,2)" /> with 2, or substitute the line into the circle and count solutions.</>,
   },
   {
     working: <Katex display tex="\text{B: } |z-3-2i| = |z-5|" />,
-    reason: <>The perpendicular bisector of the centre <Katex tex="(3,2)" /> and the point <Katex tex="(5,0)" />. Its distance from the centre is therefore exactly half the distance between those two points.</>,
+    reason: <>Points equidistant from <Katex tex="(3,2)" /> and <Katex tex="(5,0)" />: their perpendicular bisector. One of those points is the centre itself.</>,
   },
   {
-    working: <Katex display tex="\tfrac12\sqrt{(5-3)^2+(0-2)^2} = \tfrac12\sqrt8 = \sqrt2 \approx 1.41 < 2" />,
-    reason: <>Inside the radius, so two intersections ✓. No algebra needed — the bisector shortcut does it.</>,
+    working: <Katex display tex="d = \tfrac12\sqrt{(5-3)^2+(0-2)^2} = \tfrac12\sqrt8 = \sqrt2" />,
+    reason: <>The bisector meets the segment from the centre at right angles at its midpoint, so its distance from the centre is half the segment's length.</>,
   },
   {
-    working: <Katex display tex="\text{C: } |z-3-2i| = |z-10i| \implies d = \tfrac12\sqrt{9+64} = \tfrac{\sqrt{73}}2 \approx 4.27 > 2" />,
-    reason: <>Too far away — no intersection.</>,
+    working: <Katex display tex="\sqrt2 \approx 1.41 < 2 \implies \text{two intersections}" />,
+    reason: <>Closer than the radius, so the line passes through the inside of the circle.</>,
+    more: <>Check by algebra: <Katex tex="(x-3)^2+(y-2)^2=(x-5)^2+y^2" /> simplifies to <Katex tex="y=x-3" />. Substituting into <Katex tex="(x-3)^2+(y-2)^2=4" /> gives <Katex tex="x=3" /> or <Katex tex="x=5" />, i.e. the points <Katex tex="(3,0)" /> and <Katex tex="(5,2)" />.</>,
   },
   {
-    working: <Katex display tex="\text{A: } |z-i| = |z+1| \iff y = -x, \quad d = \frac{|3+2|}{\sqrt2} \approx 3.54 > 2" />,
-    reason: <>Also misses. This is the perpendicular bisector of <Katex tex="(0,1)" /> and <Katex tex="(-1,0)" />, neither of which is the centre, so the shortcut does not apply and the distance formula is needed.</>,
+    working: <Katex display tex="\text{C: } |z-3-2i| = |z-10i|" />,
+    reason: <>Again a perpendicular bisector with the centre as one end; the other point is <Katex tex="(0,10)" />.</>,
   },
   {
-    working: <Katex display tex="\text{D: } y = 0 \text{ and E: } x = 5 \text{ are both exactly } 2 \text{ from } (3,2)" />,
-    reason: <>Distance equal to the radius, so each touches once — tangents, not two intersections.</>,
+    working: <Katex display tex="d = \tfrac12\sqrt{3^2+8^2} = \tfrac{\sqrt{73}}2 \approx 4.27 > 2" />,
+    reason: <>Farther than the radius, so no intersection.</>,
+  },
+  {
+    working: <Katex display tex="\text{A: } |z-i| = |z+1| \iff y = -x" />,
+    reason: <>Equidistant from <Katex tex="(0,1)" /> and <Katex tex="(-1,0)" />; neither is the centre, so find the line and substitute it into the circle.</>,
+    more: <>The bisector of <Katex tex="(0,1)" /> and <Katex tex="(-1,0)" /> passes through their midpoint <Katex tex="(-\tfrac12,\tfrac12)" /> at right angles to the segment joining them (gradient 1), giving <Katex tex="y=-x" />. Or expand <Katex tex="x^2+(y-1)^2=(x+1)^2+y^2" />.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned} (x-3)^2+(-x-2)^2 &= 4 \\ 2x^2-2x+9 &= 0 \end{aligned}" />,
+    reason: <>Replace <Katex tex="y" /> by <Katex tex="-x" /> in the circle's Cartesian equation, <Katex tex="(x-3)^2+(y-2)^2=4" />, and expand.</>,
+  },
+  {
+    working: <Katex display tex="\Delta = (-2)^2-4(2)(9) = -68 < 0" />,
+    reason: <>No real solutions, so line A misses the circle.</>,
+  },
+  {
+    working: <Katex display tex="\text{D: } y = 0 \text{ touches at } (3,0)" />,
+    reason: <>The circle's lowest point is at <Katex tex="y=2-2=0" />, so the real axis just touches it: a tangent.</>,
+  },
+  {
+    working: <Katex display tex="\text{E: } x = 5 \text{ touches at } (5,2)" />,
+    reason: <>The circle's rightmost point is at <Katex tex="x=3+2=5" />, so this vertical line is also a tangent.</>,
   },
   {
     working: <Katex display tex="\boxed{|z-3-2i| = |z-5|}" />,
-    reason: <>Matches option <b>B</b>, the only line that gets inside the circle. Options A and C (17% each) miss it altogether; D and E only touch it.</>,
+    reason: <>Matches option <b>B</b>, the only line passing inside the circle.</>,
+    more: <>As the report says, A and C (17% each) do not intersect the circle at all, and D and E are tangents: each meets it once, not twice. Line B passes through exactly the two points where D and E touch, <Katex tex="(3,0)" /> and <Katex tex="(5,2)" />.</>,
   },
 ]
 

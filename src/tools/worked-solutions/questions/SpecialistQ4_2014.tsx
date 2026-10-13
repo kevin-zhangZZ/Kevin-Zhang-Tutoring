@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="-1 \le 2x-1 \le 1" />,
-    reason: <><Katex tex="\arcsin" /> only accepts inputs in <Katex tex="[-1,1]" />, so the expression inside must lie there.</>,
+    reason: <><Katex tex="\arcsin" /> only accepts inputs in <Katex tex="[-1,1]" />, so the domain is every <Katex tex="x" /> that puts <Katex tex="2x-1" /> there.</>,
   },
   {
     working: <Katex display tex="0 \le 2x \le 2" />,
@@ -22,7 +22,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{[0,1]}" />,
-    reason: <>Halving. Matches option <b>C</b>. Option A is the input range handed back unchanged; option D halves without first adding 1. Check: <Katex tex="x=0" /> gives <Katex tex="\arcsin(-1)" /> and <Katex tex="x=1" /> gives <Katex tex="\arcsin(1)" />, the two ends of arcsin's domain ✓.</>,
+    reason: <>Halving throughout. Matches option <b>C</b>.</>,
+    more: <>Check the endpoints: <Katex tex="x=0" /> gives <Katex tex="\arcsin(-1)" /> and <Katex tex="x=1" /> gives <Katex tex="\arcsin(1)" />, the two ends of arcsin's domain ✓. Option A is arcsin's own domain handed back unchanged; option B subtracts 1 instead of adding it; option D drops the <Katex tex="-1" /> altogether and solves <Katex tex="-1 \le 2x \le 1" />. Option E stops at <Katex tex="x=\tfrac12" />, but <Katex tex="x=1" /> gives <Katex tex="\arcsin(1)=\tfrac{\pi}{2}" />, which exists, so E is too narrow.</>,
   },
 ]
 

@@ -13,32 +13,35 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\mathrm{Arg}\!\left(\frac{z_1}{z_2}\right) = \mathrm{Arg}(z_1)-\mathrm{Arg}(z_2)" />,
-    reason: <>Dividing subtracts the arguments — no need to carry out the division itself.</>,
+    working: <Katex display tex="\mathrm{Arg}\!\left(\frac{z_1}{z_2}\right) = \mathrm{Arg}(z_1)-\mathrm{Arg}(z_2) \pm 2k\pi" />,
+    reason: <>Let <Katex tex="z_1=-3\sqrt2-\sqrt6\,i" /> (top) and <Katex tex="z_2=2+2i" /> (bottom). Dividing subtracts arguments; a multiple of <Katex tex="2\pi" /> may be needed to land in <Katex tex="(-\pi,\pi]" />.</>,
   },
   {
-    working: <Katex display tex="z_1 = -3\sqrt2-\sqrt6\,i:\quad \tan(\alpha) = \frac{\sqrt6}{3\sqrt2} = \frac{1}{\sqrt3}" />,
-    reason: <>The reference angle from the magnitudes of the components: <Katex tex="\tfrac{\sqrt6}{3\sqrt2}=\tfrac{\sqrt3}{3}" />.</>,
+    working: <Katex display tex="z_1:\ \tan(\alpha) = \frac{\sqrt6}{3\sqrt2} = \frac{1}{\sqrt3} \implies \alpha = \tfrac\pi6" />,
+    reason: <>Reference angle <Katex tex="\alpha" />: <Katex tex="\tan(\alpha)=\tfrac{|\mathrm{Im}|}{|\mathrm{Re}|}" />, ignoring signs (<Katex tex="\tfrac{\sqrt6}{3\sqrt2}=\tfrac{\sqrt3}{3}" />).</>,
   },
   {
-    working: <Katex display tex="\text{third quadrant} \implies \mathrm{Arg}(z_1) = -\pi+\tfrac\pi6 = -\tfrac{5\pi}{6}" />,
-    reason: <>Both components are negative. Measuring the principal argument clockwise keeps it in <Katex tex="(-\pi,\pi]" />.</>,
+    working: <Katex display tex="\mathrm{Arg}(z_1) = -\pi+\tfrac\pi6 = -\tfrac{5\pi}{6}" />,
+    reason: <>Both parts negative, so third quadrant: go clockwise by <Katex tex="\pi-\alpha" />, giving <Katex tex="\mathrm{Arg}(z_1)=-(\pi-\alpha)" />, which stays in <Katex tex="(-\pi,\pi]" />.</>,
+    more: <>Option B, <Katex tex="\tfrac{7\pi}{12}" />, comes from putting <Katex tex="z_1" /> in the second quadrant instead (<Katex tex="\tfrac{5\pi}{6}-\tfrac\pi4=\tfrac{7\pi}{12}" />). A quick sketch of <Katex tex="z_1" /> prevents it: real part negative and imaginary part negative means below-left of the origin.</>,
   },
   {
-    working: <Katex display tex="z_2 = 2+2i:\quad \mathrm{Arg}(z_2) = \tfrac\pi4" />,
-    reason: <>Equal positive components, so <Katex tex="45^\circ" /> in the first quadrant.</>,
+    working: <Katex display tex="\mathrm{Arg}(z_2) = \tfrac\pi4" />,
+    reason: <>Equal positive parts, so <Katex tex="45^\circ" /> in the first quadrant.</>,
   },
   {
     working: <Katex display tex="-\tfrac{5\pi}{6}-\tfrac\pi4 = \frac{-10\pi-3\pi}{12} = -\frac{13\pi}{12}" />,
-    reason: <>Which is outside <Katex tex="(-\pi,\pi]" /> — it is option A, the trap for stopping here.</>,
+    reason: <>Outside <Katex tex="(-\pi,\pi]" />, since <Katex tex="-\tfrac{13\pi}{12} < -\pi" />. Stopping here gives option A.</>,
   },
   {
     working: <Katex display tex="-\tfrac{13\pi}{12}+2\pi = \tfrac{11\pi}{12}" />,
-    reason: <>Adding a full turn brings it into the principal range.</>,
+    reason: <>Adding a full turn describes the same direction and brings it into the principal range.</>,
+    more: <>Check: <Katex tex="\tfrac{11\pi}{12}" /> is in the second quadrant. Multiplying top and bottom by <Katex tex="2-2i" />, the quotient is <Katex tex="\tfrac{(-6\sqrt2-2\sqrt6)+(6\sqrt2-2\sqrt6)i}{8}" />, which has a negative real part and a positive imaginary part (<Katex tex="6\sqrt2\approx8.5 > 2\sqrt6\approx4.9" />) ✓.</>,
   },
   {
     working: <Katex display tex="\boxed{\tfrac{11\pi}{12}}" />,
-    reason: <>Matches option <b>C</b>. Option A (4%) is the unadjusted <Katex tex="-\tfrac{13\pi}{12}" />; option E (11%) has the right size with the wrong sign. Check: <Katex tex="\tfrac{11\pi}{12}" /> is in the second quadrant, and the quotient <Katex tex="\tfrac{(-3\sqrt2-\sqrt6 i)(2-2i)}{8}" /> has a negative real part and a positive imaginary part ✓.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option A (4%) is the unadjusted <Katex tex="-\tfrac{13\pi}{12}" />. Option D (5%), <Katex tex="\tfrac{13\pi}{12}" />, is <Katex tex="\mathrm{Arg}(z_2)-\mathrm{Arg}(z_1)" />: the subtraction done the wrong way round, and also outside the range. Option E (11%), <Katex tex="-\tfrac{11\pi}{12}" />, is D brought into range: the argument of <Katex tex="\tfrac{z_2}{z_1}" />, not <Katex tex="\tfrac{z_1}{z_2}" />. Option B (10%) is the wrong-quadrant slip noted above.</>,
   },
 ]
 
@@ -53,10 +56,11 @@ export default function SpecialistQ8_2014() {
       }
       background={
         <p>
-          The principal argument must land in <Katex tex="(-\pi,\pi]" />. Subtracting two
-          arguments can easily fall outside that interval, and adding or subtracting{' '}
-          <Katex tex="2\pi" /> to bring it back is the step three of the five options are
-          designed to catch.
+          The principal argument, <Katex tex="\mathrm{Arg}" />, is the one argument in{' '}
+          <Katex tex="(-\pi,\pi]" />. Subtracting two principal arguments can land outside
+          that interval; adding or subtracting <Katex tex="2\pi" /> (a full turn, same
+          direction) brings it back. Two of the options, A and D, are not even in{' '}
+          <Katex tex="(-\pi,\pi]" />, so they can be crossed off at once.
         </p>
       }
       options={[

@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dQ}{dt} = \text{rate in} - \text{rate out}" />,
-    reason: <>Both rates are in kilograms of salt per minute.</>,
+    reason: <>The salt in the tank changes by what flows in minus what flows out, both measured in kilograms of salt per minute.</>,
   },
   {
     working: <Katex display tex="\text{rate in} = 2\ \tfrac{\text{kg}}{\text{L}}\times8\ \tfrac{\text{L}}{\text{min}} = 16\ \tfrac{\text{kg}}{\text{min}}" />,
@@ -38,7 +38,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dQ}{dt} = 16-\frac{5Q}{750-t}}" />,
-    reason: <>Matches option <b>A</b>. Option B (18%) has <Katex tex="750+t" />, which would be a tank filling up; option C adds the outflow instead of subtracting it; option E uses the flow rates in litres rather than kilograms of salt — 8 in instead of <Katex tex="2\times8=16" />, and the concentration alone out instead of 10 times it. Check at <Katex tex="t=0" />: the tank holds 100 kg in 1500 L, so salt leaves at <Katex tex="\tfrac{100}{1500}\times10\approx0.67" /> kg/min, and option A gives <Katex tex="\tfrac{5\times100}{750}\approx0.67" /> ✓.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Option B (chosen by 18%) has <Katex tex="750+t" />, i.e. a volume of <Katex tex="1500+2t" /> — a tank filling up. But 10 L/min leaves and only 8 L/min enters, so the volume <em>falls</em>. Option C adds the outflow instead of subtracting it. Option D has no inflow term at all (the 16 kg/min coming in is lost), and its <Katex tex="Q" /> term is positive with 100 in place of 5, so it treats the salt leaving as salt arriving. Option E uses the flow rates in litres rather than kilograms of salt — 8 in instead of <Katex tex="2\times8=16" />, and the concentration alone out instead of 10 times it. Check at <Katex tex="t=0" />: the tank holds 100 kg in 1500 L, so salt leaves at <Katex tex="\tfrac{100}{1500}\times10\approx0.67" /> kg/min, and option A gives <Katex tex="\tfrac{5\times100}{750}\approx0.67" /> ✓.</>,
   },
 ]
 
@@ -61,9 +62,9 @@ export default function SpecialistQ10_2014() {
       }
       background={
         <p>
-          The inflow and outflow rates differ, so the volume is a function of time. Writing{' '}
-          <Katex tex="V(t)" /> down before touching the outflow term is what keeps this
-          question straightforward.
+          Strategy for any mixing question: write down the volume <Katex tex="V(t)" /> before
+          touching the outflow term. The most common wrong answer here, B (18%), has the volume
+          growing when it is actually shrinking.
         </p>
       }
       options={[

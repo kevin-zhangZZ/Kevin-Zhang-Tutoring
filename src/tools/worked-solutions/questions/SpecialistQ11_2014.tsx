@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y_{n+1} = y_n + h\,f(x_n,y_n)" />,
-    reason: <>Euler's method: step along the tangent line at the current point.</>,
+    reason: <>Euler's method, where <Katex tex="f(x,y)" /> is the given <Katex tex="\tfrac{dy}{dx}=x^3-xy" />: step along the tangent line at the current point.</>,
   },
   {
     working: <Katex display tex="x_0 = 1,\quad y_0 = 2,\quad h = 0.1" />,
@@ -23,15 +23,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dy}{dx}\Big|_{(1,2)} = 1^3-(1)(2) = -1" />,
-    reason: <>The gradient at the starting point. It is <em>negative</em>, so the estimate must come out below 2 — which alone rules out option E.</>,
+    reason: <>The gradient <Katex tex="f(x_0,y_0)" /> at the starting point. It is <em>negative</em>, so the estimate must come out below 2.</>,
   },
   {
     working: <Katex display tex="y_1 = 2+0.1\times(-1)" />,
-    reason: <>One step.</>,
+    reason: <>One step of the formula: new <Katex tex="y" /> = old <Katex tex="y" /> + step size × gradient.</>,
   },
   {
     working: <Katex display tex="\boxed{y \approx 1.9}" />,
-    reason: <>Matches option <b>D</b>. Option E (2.1) has the sign of the gradient wrong; option C (1.1) is just the new <Katex tex="x" />-value; option A (0.9) steps from 1 instead of from <Katex tex="y_0=2" />.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Option C (1.1, the most common wrong answer) is <Katex tex="x_1" />, not <Katex tex="y_1" /> — the question asks for the value of <Katex tex="y" />. Option E (2.1) has the sign of the gradient wrong: <Katex tex="2+0.1\times1" />; with a negative gradient the estimate must be below 2. Option B (1.0) forgets to multiply by the step size: <Katex tex="2+(-1)" />. Option A (0.9) steps from <Katex tex="x_0=1" /> instead of from <Katex tex="y_0=2" />: <Katex tex="1+0.1\times(-1)" />.</>,
   },
 ]
 

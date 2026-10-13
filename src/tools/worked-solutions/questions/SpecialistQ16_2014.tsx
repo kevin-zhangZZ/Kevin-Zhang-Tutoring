@@ -28,7 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m = \sqrt{75} = 5\sqrt3" />,
-    reason: <>Positive, since <Katex tex="m\in R^+" /> — which rules out option C.</>,
+    reason: <>Positive, since <Katex tex="m\in R^+" />.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = 0:\quad 4(-2)+mn+(-3)(-1) = 0" />,
@@ -40,11 +40,24 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n = \frac{5}{5\sqrt3} = \frac{1}{\sqrt3} = \frac{\sqrt3}{3}" />,
-    reason: <>Rationalising. Option B gives <Katex tex="\sqrt3" />, which is the reciprocal.</>,
+    reason: <>Divide by <Katex tex="m" />, then rationalise the denominator to match the form of the options.</>,
   },
   {
     working: <Katex display tex="\boxed{m = 5\sqrt3,\quad n = \tfrac{\sqrt3}{3}}" />,
-    reason: <>Matches option <b>A</b>. Check: <Katex tex="16+75+9=100" /> ✓ and <Katex tex="-8+5\sqrt3\cdot\tfrac{1}{\sqrt3}+3=0" /> ✓.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: (
+      <>
+        Check both conditions: <Katex tex="16+75+9=100" /> ✓ and{' '}
+        <Katex tex="-8+5\sqrt3\cdot\tfrac{1}{\sqrt3}+3=0" /> ✓. The distractors: B (11%) has the
+        right <Katex tex="m" /> but <Katex tex="n=\sqrt3" />, the reciprocal of the correct{' '}
+        <Katex tex="\tfrac{1}{\sqrt3}" /> — an inversion slip when dividing. C takes the negative
+        root, which <Katex tex="m\in R^+" /> forbids, and also has B's reciprocal{' '}
+        <Katex tex="n" />, so <Katex tex="mn=-15
+e5" />. D comes from treating{' '}
+        <Katex tex="(-3)^2" /> as <Katex tex="-9" />, giving <Katex tex="m^2=93" />. E satisfies{' '}
+        <Katex tex="mn=5" /> but fails the magnitude: <Katex tex="16+25+9=50\ne100" />.
+      </>
+    ),
   },
 ]
 

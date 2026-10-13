@@ -14,31 +14,32 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = \sqrt3(1)+4(-4)+(-1)\sqrt3" />,
-    reason: <>Componentwise. The two <Katex tex="\sqrt3" /> terms cancel.</>,
+    reason: <>First find <Katex tex="\cos(\theta)" /> from the dot product: multiply matching components and add. The two <Katex tex="\sqrt3" /> terms cancel.</>,
   },
   {
     working: <Katex display tex="= -16" />,
     reason: <>Negative, so the angle is obtuse and <Katex tex="\cos(\theta)<0" />.</>,
   },
   {
-    working: <Katex display tex="\left|\underset{\sim}{a}\right| = \sqrt{3+16+1} = \sqrt{20}, \qquad \left|\underset{\sim}{b}\right| = \sqrt{1+16+3} = \sqrt{20}" />,
-    reason: <>Both magnitudes are the same, which keeps the arithmetic tidy.</>,
+    working: <Katex display tex="\begin{aligned} \left|\underset{\sim}{a}\right| &= \sqrt{3+16+1} = \sqrt{20} \\ \left|\underset{\sim}{b}\right| &= \sqrt{1+16+3} = \sqrt{20} \end{aligned}" />,
+    reason: <>Square root of the sum of the squared components, using <Katex tex="(\sqrt3)^2=3" />.</>,
   },
   {
-    working: <Katex display tex="\cos(\theta) = \frac{-16}{\sqrt{20}\sqrt{20}} = -\frac{16}{20} = -\frac45" />,
+    working: <Katex display tex="\begin{aligned} \cos(\theta) &= \frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\left|\underset{\sim}{a}\right|\left|\underset{\sim}{b}\right|} = \frac{-16}{\sqrt{20}\sqrt{20}} \\ &= -\frac{16}{20} = -\frac45 \end{aligned}" />,
     reason: <>This is <Katex tex="\cos(\theta)" />, not the answer — option A stops here.</>,
   },
   {
     working: <Katex display tex="\cos(2\theta) = 2\cos^2(\theta)-1" />,
-    reason: <>The double-angle identity in the form that needs only <Katex tex="\cos(\theta)" />.</>,
+    reason: <>Of the forms of the double-angle identity, this one needs only <Katex tex="\cos(\theta)" />, which we have.</>,
   },
   {
     working: <Katex display tex="= 2\times\tfrac{16}{25}-1 = \tfrac{32}{25}-\tfrac{25}{25}" />,
-    reason: <>Squaring removes the sign, so the answer comes out positive.</>,
+    reason: <>Substitute <Katex tex="\cos^2(\theta)=\tfrac{16}{25}" />. Since <Katex tex="2\cos^2(\theta)=\tfrac{32}{25}" /> is more than 1, <Katex tex="\cos(2\theta)" /> comes out positive.</>,
   },
   {
     working: <Katex display tex="\boxed{\tfrac{7}{25}}" />,
-    reason: <>Matches option <b>B</b>. Option C (12%) is the same magnitude with the wrong sign; option E, <Katex tex="-\tfrac{24}{25}" />, is <Katex tex="\sin(2\theta)=2\left(\tfrac35\right)\left(-\tfrac45\right)" />, the wrong double-angle formula.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option A is <Katex tex="\cos(\theta)" /> itself, but the question asks for <Katex tex="\cos(2\theta)" />. Option C (12%, the most popular wrong answer) is the right size with the wrong sign: it is <Katex tex="1-2\cos^2(\theta)=1-\tfrac{32}{25}" />, a mix-up of the <Katex tex="\cos" /> form <Katex tex="2\cos^2(\theta)-1" /> with the <Katex tex="\sin" /> form <Katex tex="1-2\sin^2(\theta)" />. Option E, <Katex tex="-\tfrac{24}{25}" />, is <Katex tex="\sin(2\theta)=2\sin(\theta)\cos(\theta)=2\left(\tfrac35\right)\left(-\tfrac45\right)" />, the wrong double-angle formula (<Katex tex="\sin(\theta)=\tfrac35" />, positive, because the angle between two vectors lies in <Katex tex="[0,\pi]" />). Option D (8%), <Katex tex="\tfrac{14}{25}" />, is twice the correct value; it does not come from any correct form of the identity. Check: <Katex tex="\theta=\cos^{-1}\left(-\tfrac45\right)\approx143.1^\circ" />, and <Katex tex="\cos(286.3^\circ)\approx0.28=\tfrac{7}{25}" />.</>,
   },
 ]
 

@@ -66,11 +66,13 @@ const EXAM_DII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{9}{(x+2)(x-4)} = \frac{9}{x^2-2x-8}" />,
-    reason: <>Expanding the denominator is quicker than partial fractions here — the report says partial fractions introduced errors.</>,
+    reason: <>Expanding the denominator gives a single quadratic to differentiate — quicker and safer than splitting into partial fractions first.</>,
+    more: <>The report says a significant number of students used partial fractions first and this sometimes introduced errors. That form is <Katex tex="f(x)=\tfrac32\left(\tfrac{1}{x-4}-\tfrac{1}{x+2}\right)" /> — the <Katex tex="\tfrac32" /> (that is, <Katex tex="\tfrac96" />) and the sign of each term are where slips happen. It does work, but it adds a step that this part doesn't need.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{-9(2x-2)}{\left(x^2-2x-8\right)^2}" />,
-    reason: <>Quotient rule with a constant numerator, or equivalently <Katex tex="9\left(x^2-2x-8\right)^{-1}" /> and the chain rule.</>,
+    reason: <>Write <Katex tex="f(x)=9\left(x^2-2x-8\right)^{-1}" /> and use the chain rule: bring down the power, then multiply by the inner derivative <Katex tex="2x-2" />.</>,
+    more: <>The quotient rule gives the same thing: the numerator 9 has derivative 0, so only <Katex tex="-9\times(2x-2)" /> survives on top. The report lists incorrect <Katex tex="f'(x)" /> as another error; the usual slips are a lost minus sign or a missing inner derivative.</>,
   },
   {
     working: <Katex display tex="f'(x) = 0 \implies 2x-2 = 0 \implies x = 1" />,
@@ -82,37 +84,39 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(1,-1)}" />,
-    reason: <>A single stationary point, midway between the two asymptotes — as symmetry would suggest.</>,
+    reason: <>A single stationary point, at <Katex tex="x=1" /> where the quadratic denominator turns (midway between its roots <Katex tex="-2" /> and <Katex tex="4" />).</>,
+    more: <>Why: the numerator of <Katex tex="f'(x)" /> is <Katex tex="-9" /> times the derivative of the denominator <Katex tex="x^2-2x-8" />, so <Katex tex="f'(x)=0" /> exactly at that parabola's vertex, halfway between its roots: <Katex tex="\tfrac{-2+4}{2}=1" />. That is the shortcut the report mentions some students used. On <Katex tex="-2<x<4" /> the denominator is negative with its most negative value <Katex tex="-9" /> at <Katex tex="x=1" />, so <Katex tex="f" /> is closest to zero there: <Katex tex="(1,-1)" /> is a local maximum, which you need for the sketch in part c.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="(x+2)(x-4) = 0 \implies x = -2,\ x = 4" />,
-    reason: <>Neither factor cancels, so both give vertical asymptotes.</>,
+    reason: <>The denominator is zero here and the numerator 9 is not, so nothing cancels: both are vertical asymptotes.</>,
   },
   {
     working: <Katex display tex="x\to\pm\infty \implies f(x)\to0" />,
-    reason: <>The denominator grows without bound while the numerator stays at 9.</>,
+    reason: <>The denominator grows without bound while the numerator stays at 9, so <Katex tex="y=0" /> is a horizontal asymptote.</>,
+    more: <>In general, when the numerator's degree (here 0) is less than the denominator's (here 2), the <Katex tex="x" />-axis is the horizontal asymptote. Only the two outer branches approach it, which is perhaps why it was the report's most frequent omission.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -2,\quad x = 4,\quad y = 0}" />,
-    reason: <>All three. Forgetting the horizontal one was the report's most frequent error.</>,
+    reason: <>All three asymptotes, including <Katex tex="y=0" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f(0) = \frac{9}{(2)(-4)} = -\tfrac98" />,
-    reason: <>The <Katex tex="y" />-intercept, which the report says was often missing. There is no <Katex tex="x" />-intercept, since the numerator is never zero.</>,
+    reason: <>The <Katex tex="y" />-intercept: set <Katex tex="x=0" />. There is no <Katex tex="x" />-intercept, since the numerator 9 is never zero.</>,
   },
   {
-    working: <Katex display tex="-2<x<4:\ (x+2)>0,\ (x-4)<0 \implies f(x)<0" />,
-    reason: <>The middle branch sits entirely below the axis, with the maximum <Katex tex="(1,-1)" /> at its top.</>,
+    working: <Katex display tex="\begin{aligned}&-2<x<4:\ (x+2)>0,\ (x-4)<0\\&\implies f(x)<0\end{aligned}" />,
+    reason: <>The middle branch is below the axis and <Katex tex="f(x)\to-\infty" /> at both asymptotes, so <Katex tex="(1,-1)" /> is a local maximum at its top.</>,
   },
   {
     working: <Katex display tex="x<-2 \text{ or } x>4 \implies f(x)>0" />,
-    reason: <>Both outer branches are above the axis and approach <Katex tex="y=0" /> from above.</>,
+    reason: <>Both outer branches are above the axis: they rise to <Katex tex="+\infty" /> beside the vertical asymptotes and approach <Katex tex="y=0" /> from above.</>,
   },
   {
     working: (
@@ -124,14 +128,16 @@ const ROWS_C: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>Drawn over the required <Katex tex="[-6,6]" />, with each branch hugging its asymptotes rather than swinging away from them.</>,
+    reason: <>Drawn only over <Katex tex="[-6,6]" />, with each branch approaching its asymptotes rather than swinging away from them.</>,
+    more: <>The report took marks off for the wrong domain, a missing <Katex tex="y" />-intercept, and curves that swung away from an asymptote. The graph should stop at the endpoints <Katex tex="\left(-6,\tfrac{9}{40}\right)" /> and <Katex tex="\left(6,\tfrac{9}{16}\right)" />, both small and positive. They are not asked for, but they show the outer branches really are flattening towards <Katex tex="y=0" />. Near <Katex tex="x=-2" /> and <Katex tex="x=4" /> the curve must get steeper and closer to the dashed line without ever touching or bending away from it.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_a^b\bigl(f(x)\bigr)^2dx" />,
-    reason: <>Rotation about the <Katex tex="x" />-axis. The <Katex tex="\pi" /> and the square are the two things the report says went missing.</>,
+    reason: <>Rotating about the <Katex tex="x" />-axis makes each thin slice a disc of radius <Katex tex="|f(x)|" />, area <Katex tex="\pi\bigl(f(x)\bigr)^2" />.</>,
+    more: <>Adding up those discs of thickness <Katex tex="dx" /> gives the integral. The report says most errors were a missing <Katex tex="\pi" /> or an unsquared <Katex tex="f(x)" />. Both come from the disc area <Katex tex="\pi r^2" />, so remembering where the formula comes from protects you from both.</>,
   },
   {
     working: <Katex display tex="\bigl(f(x)\bigr)^2 = \frac{81}{(x+2)^2(x-4)^2}" />,
@@ -139,14 +145,14 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V = \pi\int_0^3\frac{81}{(x+2)^2(x-4)^2}\,dx}" />,
-    reason: <>The region runs from the <Katex tex="y" />-axis to <Katex tex="x=3" />. It lies below the <Katex tex="x" />-axis, but squaring makes that irrelevant.</>,
+    reason: <>The region runs from the <Katex tex="y" />-axis (<Katex tex="x=0" />) to <Katex tex="x=3" />. It lies below the <Katex tex="x" />-axis, but squaring makes that irrelevant.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Cas fn="nInt">π·∫(81/((x+2)^2(x-4)^2), x, 0, 3)</Cas>,
-    reason: <>Straight into the calculator from part d(i).</>,
+    reason: <>Evaluate the part d.i integral numerically on CAS.</>,
   },
   {
     working: <Katex display tex="V = 12.8473\ldots" />,
@@ -154,7 +160,8 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V \approx 12.85}" />,
-    reason: <>To two decimal places, as asked. Sanity check: <Katex tex="|f|" /> runs from <Katex tex="\tfrac98" /> down to 1 and back to <Katex tex="\tfrac95" /> over <Katex tex="[0,3]" />, so the solid is roughly a cylinder of radius a little over 1 and length 3 — <Katex tex="\pi\times1.2^2\times3\approx13.6" />, close ✓.</>,
+    reason: <>To two decimal places, as asked.</>,
+    more: <>Sanity check: <Katex tex="|f|" /> runs from <Katex tex="\tfrac98" /> down to 1 and back to <Katex tex="\tfrac95" /> over <Katex tex="[0,3]" />, so the solid is roughly a cylinder of radius a little over 1 and length 3 — <Katex tex="\pi\times1.2^2\times3\approx13.6" />, close ✓.</>,
   },
 ]
 

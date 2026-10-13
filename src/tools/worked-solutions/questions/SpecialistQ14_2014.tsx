@@ -26,11 +26,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{A: } \tfrac{1}{x-y} \text{ and C: } \tfrac{1}{y-x} \text{ are undefined when } y = x" />,
-    reason: <>Both survive. Options B and D are defined everywhere, and option E blows up on <Katex tex="y=-x" /> instead.</>,
+    reason: <>Both survive. B and D are defined everywhere (they equal 0 on <Katex tex="y=x" />, giving horizontal segments); E is undefined on <Katex tex="y=-x" /> instead.</>,
   },
   {
     working: <Katex display tex="\text{test } y = 0,\ x>0" />,
-    reason: <>Along the positive <Katex tex="x" />-axis the printed segments slope downwards.</>,
+    reason: <>To separate A from C, check the gradient's sign somewhere easy: along the positive <Katex tex="x" />-axis the printed segments slope downwards.</>,
   },
   {
     working: <Katex display tex="\text{A: } \frac{1}{x-0} = \frac1x > 0" />,
@@ -42,7 +42,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \frac{1}{y-x}}" />,
-    reason: <>Matches option <b>C</b>. Two checks — where the field is vertical, then the sign somewhere convenient — settle it without testing every point.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>A is vertical in the right place, but it is exactly the negative of C, so every one of its gradients has the opposite sign to the field's. A second check on C: above the line, where <Katex tex="y>x" /> (the upper left of the figure), <Katex tex="\tfrac{1}{y-x}>0" />, and those segments do slope upwards.</>,
   },
 ]
 
@@ -65,9 +66,9 @@ export default function SpecialistQ14_2014() {
       }
       background={
         <p>
-          Two quick tests handle almost every direction-field question: find where the
-          segments are vertical (the denominator is zero there), then check the sign of the
-          gradient at one convenient point.
+          Direction-field questions are almost always settled by two features of the picture:
+          where the segments are vertical or horizontal (a zero denominator or numerator), and
+          the sign of the gradient in one region.
         </p>
       }
       options={[

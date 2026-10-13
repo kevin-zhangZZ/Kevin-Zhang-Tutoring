@@ -14,11 +14,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="u = \sqrt{x+1} \implies u^2 = x+1" />,
-    reason: <>Squaring makes everything easier to substitute than keeping the root.</>,
+    reason: <>Square the given substitution so that <Katex tex="x" /> can be written in terms of <Katex tex="u" /> with no root.</>,
   },
   {
     working: <Katex display tex="x = u^2-1, \qquad dx = 2u\,du" />,
-    reason: <>Differentiating <Katex tex="x=u^2-1" /> with respect to <Katex tex="u" />.</>,
+    reason: <>Every <Katex tex="x" /> must be replaced, <Katex tex="dx" /> included: rearrange for <Katex tex="x" />, then differentiate with respect to <Katex tex="u" />.</>,
   },
   {
     working: <Katex display tex="x+2 = u^2+1, \qquad \sqrt{x+1} = u" />,
@@ -26,15 +26,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dx}{(x+2)\sqrt{x+1}} = \frac{2u\,du}{\left(u^2+1\right)u} = \frac{2\,du}{u^2+1}" />,
-    reason: <>The <Katex tex="u" /> cancels — which is the point of this substitution.</>,
+    reason: <>The <Katex tex="u" /> from <Katex tex="dx=2u\,du" /> cancels the <Katex tex="u" /> from the root, so no root is left.</>,
   },
   {
     working: <Katex display tex="x=0 \implies u = 1; \qquad x=2 \implies u = \sqrt3" />,
-    reason: <>The terminals must be converted too; leaving them as 0 and 2 gives option B.</>,
+    reason: <>The terminals are <Katex tex="x" />-values, so put each into <Katex tex="u=\sqrt{x+1}" />. Leaving them as 0 and 2 gives option B.</>,
   },
   {
     working: <Katex display tex="\boxed{2\int_1^{\sqrt3}\frac{1}{u^2+1}\,du}" />,
-    reason: <>Matches option <b>E</b>. Option A (19%, the most popular wrong answer) has the right terminals but still has a root in the denominator — with <Katex tex="dx=2u\,du" />, the <Katex tex="u" /> from <Katex tex="\sqrt{x+1}" /> cancels completely. (It evaluates to <Katex tex="2\left(\tfrac\pi3-\tfrac\pi4\right)=\tfrac\pi6" />, though the question only asks for the transformed integral.)</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: <>Option A (19%, the most popular wrong answer) has the right terminals but still has a root, because it mixes two substitutions: it converts <Katex tex="x+2" /> correctly to <Katex tex="u^2+1" />, but writes <Katex tex="\sqrt{x+1}" /> as <Katex tex="\sqrt u" /> (as if <Katex tex="u=x+1" />) and replaces <Katex tex="dx" /> by <Katex tex="du" /> without the factor <Katex tex="2u" />. With <Katex tex="dx=2u\,du" />, the root is just <Katex tex="u" /> and cancels completely. Option B has the correct integrand but the old <Katex tex="x" />-terminals; option C is what the different substitution <Katex tex="u=x+1" /> gives (terminals 1 and 3, root not removed). As a check, E evaluates to <Katex tex="2\left(\tfrac\pi3-\tfrac\pi4\right)=\tfrac\pi6\approx0.524" />, the same value as the original integral — though the question only asks for the transformed integral.</>,
   },
 ]
 

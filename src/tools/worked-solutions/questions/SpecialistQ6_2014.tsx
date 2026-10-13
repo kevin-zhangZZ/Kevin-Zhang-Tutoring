@@ -14,19 +14,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="i^{2n+3} = i^{2n}\times i^3" />,
-    reason: <>Split the index so that the part involving <Katex tex="n" /> can be written in terms of <Katex tex="p" />.</>,
+    reason: <>Index law <Katex tex="a^{m+k}=a^m\times a^k" />: split off the part involving <Katex tex="n" />, which can be written in terms of <Katex tex="p" />.</>,
   },
   {
     working: <Katex display tex="i^{2n} = \left(i^n\right)^2 = p^2" />,
-    reason: <>The power-of-a-power law. Note it is <Katex tex="\left(i^n\right)^2" />, not <Katex tex="\left(i^2\right)^n" /> — though either route works.</>,
+    reason: <>Power-of-a-power law, <Katex tex="a^{2n}=\left(a^n\right)^2" />, then substitute <Katex tex="i^n=p" />.</>,
+    more: <>Writing <Katex tex="i^{2n}=\left(i^2\right)^n=(-1)^n" /> is also true, but it is not in terms of <Katex tex="p" />. Grouping as <Katex tex="\left(i^n\right)^2" /> lets the given <Katex tex="i^n=p" /> go straight in.</>,
   },
   {
     working: <Katex display tex="i^3 = i^2\times i = -i" />,
-    reason: <>Using the given <Katex tex="i^2=-1" />.</>,
+    reason: <>Using the given <Katex tex="i^2=-1" />, so <Katex tex="i^3=-i" />, not <Katex tex="-1" /> or <Katex tex="i" />.</>,
   },
   {
     working: <Katex display tex="\boxed{i^{2n+3} = -ip^2}" />,
-    reason: <>Matches option <b>D</b>. Option E drops the minus sign; options A and B add <Katex tex="i" /> instead of multiplying by it.</>,
+    reason: <>Multiply the two pieces: <Katex tex="p^2\times(-i)" />. Matches option <b>D</b>.</>,
+    more: <>The most common wrong answer, A (16%), is <Katex tex="p^2+i^3=p^2-i" />: adding the two pieces instead of multiplying them. Adding indices means multiplying powers, never adding them. Option B makes the same slip with <Katex tex="i^3" /> taken as <Katex tex="+i" />. Option C takes <Katex tex="i^3" /> as <Katex tex="-1" /> (confusing it with <Katex tex="i^2" />), and option E takes it as <Katex tex="+i" />. Check with <Katex tex="n=1" />: <Katex tex="p=i" />, <Katex tex="i^{5}=i" /> and <Katex tex="-ip^2=-i\cdot(-1)=i" /> ✓.</>,
   },
 ]
 

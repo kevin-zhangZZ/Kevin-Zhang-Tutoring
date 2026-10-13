@@ -23,15 +23,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 8\,\mathrm{cis}\!\left(\tfrac{3\pi}{2}\right)" />,
-    reason: <><Katex tex="\left(2\sqrt2\right)^2=4\times2=8" /> — not 4, which is where option B comes from.</>,
+    reason: <><Katex tex="\left(2\sqrt2\right)^2=2^2\times\left(\sqrt2\right)^2=4\times2=8" /> (square both factors, so not 4), and <Katex tex="2\times\tfrac{3\pi}{4}=\tfrac{3\pi}{2}" />.</>,
   },
   {
     working: <Katex display tex="\mathrm{cis}\!\left(\tfrac{3\pi}{2}\right) = \cos\!\left(\tfrac{3\pi}2\right)+i\sin\!\left(\tfrac{3\pi}2\right) = -i" />,
-    reason: <>Three-quarters of the way round, i.e. the negative imaginary axis.</>,
+    reason: <>An angle of <Katex tex="\tfrac{3\pi}{2}" /> is three-quarters of a turn anticlockwise: straight down the negative imaginary axis.</>,
   },
   {
     working: <Katex display tex="\boxed{z^2 = -8i}" />,
-    reason: <>Matches option <b>A</b>. Option E, <Katex tex="-4i" />, points the right way but squares the modulus to 4 instead of 8.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Every option is a multiple of <Katex tex="i" />, so the distractors differ only in size and direction. Option E, <Katex tex="-4i" />, has the right direction but squares <Katex tex="2\sqrt2" /> to 4 instead of 8. Option C, <Katex tex="-2\sqrt2\,i" />, doubles the argument but forgets to square the modulus. Options B and D point up the positive imaginary axis (argument <Katex tex="\tfrac{\pi}{2}" />), which no correct doubling of <Katex tex="\tfrac{3\pi}{4}" /> gives.</>,
   },
 ]
 

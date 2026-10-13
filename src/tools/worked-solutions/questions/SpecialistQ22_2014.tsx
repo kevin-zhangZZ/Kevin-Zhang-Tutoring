@@ -4,6 +4,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import { Cas } from '../CasRef'
 import vtSrc from './spec-2014-mcq22-vt.png'
 
 const EXAMINER: MCQExaminerStats = {
@@ -15,39 +16,62 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{distance} = \int_0^9 |v|\,dt" />,
-    reason: <>Distance travelled, not displacement — so the part below the axis counts positively.</>,
-  },
-  {
-    working: <Katex display tex="0\le t\le2:\quad \text{a straight line from } (0,0) \text{ to } (2,9)" />,
-    reason: <>Read off the grid. A triangle, so no calculus needed.</>,
+    reason: <>Distance travelled, not displacement — so area below the <Katex tex="t" />-axis counts positively.</>,
   },
   {
     working: <Katex display tex="A_1 = \tfrac12\times2\times9 = 9" />,
-    reason: <>Half the base times the height.</>,
+    reason: <>For <Katex tex="0\le t\le2" /> the graph is a straight line from <Katex tex="(0,0)" /> to <Katex tex="(2,9)" />: a triangle, so half base times height.</>,
   },
   {
-    working: <Katex display tex="2\le t\le4:\quad v = 9 \implies A_2 = 2\times9 = 18" />,
-    reason: <>A rectangle: the graph is flat at <Katex tex="v=9" /> across these two seconds.</>,
+    working: <Katex display tex="A_2 = 2\times9 = 18" />,
+    reason: <>For <Katex tex="2\le t\le4" /> the graph is flat at <Katex tex="v=9" />: a rectangle.</>,
   },
   {
-    working: <Katex display tex="v(t) = -\tfrac9{16}(t-4)^2+9 = 0 \implies (t-4)^2 = 16 \implies t = 8" />,
-    reason: <>The body reverses at <Katex tex="t=8" />, so the last interval has to be split there.</>,
+    working: <Katex display tex="-\tfrac9{16}(t-4)^2+9 = 0" />,
+    reason: <>Find where the velocity changes sign: the body reverses there, so the last interval must be split.</>,
   },
   {
-    working: <Katex display tex="A_3 = \int_4^8\left(9-\tfrac9{16}(t-4)^2\right)dt = 36-12 = 24" />,
-    reason: <>Substituting <Katex tex="s=t-4" />: <Katex tex="\int_0^4\left(9-\tfrac9{16}s^2\right)ds = 36-\tfrac9{16}\cdot\tfrac{64}{3}" />.</>,
+    working: <Katex display tex="(t-4)^2 = 16 \implies t = 8" />,
+    reason: <>Take <Katex tex="t-4=4" />; the root <Katex tex="t=0" /> is outside <Katex tex="[4,9]" />.</>,
   },
   {
-    working: <Katex display tex="A_4 = \left|\int_8^9 v\,dt\right| = \tfrac{39}{16} = 2.4375" />,
-    reason: <>The body runs backwards for the last second, adding to the distance rather than cancelling. Ignoring this gives <Katex tex="9+18+24=51" />, option D.</>,
+    working: <Katex display tex="\int v\,dt = 9t-\tfrac{3}{16}(t-4)^3" />,
+    reason: <>Antidifferentiate <Katex tex="(t-4)^2" /> as <Katex tex="\tfrac13(t-4)^3" /> (the inside is linear with coefficient 1), so <Katex tex="-\tfrac9{16}\times\tfrac13=-\tfrac3{16}" />; the 9 gives <Katex tex="9t" />.</>,
+  },
+  {
+    working: <Katex display tex="A_3 = \int_4^8 v\,dt = (72-12)-(36-0) = 24" />,
+    reason: <>On <Katex tex="[4,8]" /> the velocity is positive, so this integral is the area.</>,
+  },
+  {
+    working: <Katex display tex="\int_8^9 v\,dt = \left(81-\tfrac{375}{16}\right)-60 = -\tfrac{39}{16}" />,
+    reason: <>Negative, because the body is moving backwards for the last second.</>,
+  },
+  {
+    working: <Katex display tex="A_4 = \tfrac{39}{16} = 2.4375" />,
+    reason: <>Distance counts this leg positively: take the absolute value, and add it.</>,
+    more: (
+      <>
+        Leaving this last second out altogether gives <Katex tex="9+18+24=51" />, option D (12%).
+        On the calculator, both pieces can be done in one step:{' '}
+        <Cas fn="nInt">nInt(abs(-9/16·(t-4)^2+9), t, 4, 9)</Cas> returns{' '}
+        <Katex tex="26.4375" />, which is <Katex tex="24+2.4375" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="9+18+24+2.4375 = 53.4375" />,
-    reason: <>Adding the four pieces.</>,
+    reason: <>Adding the four areas.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 53.4\ \text{metres}}" />,
-    reason: <>Matches option <b>E</b>. Subtracting the reverse leg instead of adding it gives <Katex tex="48.6" />, option C — the most popular wrong answer.</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: (
+      <>
+        The most popular wrong answer, C (25%), is <Katex tex="9+18+24-2.4375\approx48.6" />: it
+        integrates <Katex tex="v" /> straight across <Katex tex="[4,9]" />, so the backwards leg
+        cancels instead of adding. That is the displacement, not the distance travelled.
+      </>
+    ),
   },
 ]
 

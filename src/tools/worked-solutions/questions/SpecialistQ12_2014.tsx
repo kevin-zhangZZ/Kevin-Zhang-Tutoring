@@ -14,19 +14,16 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_1^4\frac{dy}{dx}\,dx = y(4)-y(1)" />,
-    reason: <>The fundamental theorem of calculus: integrating a derivative recovers the change in the function.</>,
+    reason: <>We know <Katex tex="y" /> at <Katex tex="x=1" /> and want it at <Katex tex="x=4" />, so integrate <Katex tex="\tfrac{dy}{dx}" /> from 1 to 4: integrating a derivative gives the change in the function.</>,
   },
   {
     working: <Katex display tex="y(4) = y(1)+\int_1^4\sqrt{2x^6+1}\,dx" />,
-    reason: <>Rearranging. The initial value sits <em>outside</em> the integral — it is not part of the integrand.</>,
-  },
-  {
-    working: <Katex display tex="y(1) = 5" />,
-    reason: <>Given.</>,
+    reason: <>Substituting <Katex tex="\tfrac{dy}{dx}=\sqrt{2x^6+1}" /> and rearranging. The initial value sits <em>outside</em> the integral — it is not part of the integrand.</>,
   },
   {
     working: <Katex display tex="\boxed{y(4) = \int_1^4\sqrt{2x^6+1}\,dx+5}" />,
-    reason: <>Matches option <b>C</b>. Options A and E put the <Katex tex="5" /> inside the integral, which would add <Katex tex="5\times3=15" /> instead of 5; option D subtracts it.</>,
+    reason: <>Substituting <Katex tex="y(1)=5" />; the integral can't be found by hand, so it is left unevaluated. Matches option <b>C</b>.</>,
+    more: <>Options A and E put the 5 inside the integral, so it is integrated over an interval of length 3: option A equals <Katex tex="\int_1^4\sqrt{2x^6+1}\,dx+15" /> and option E equals <Katex tex="\int_1^4\sqrt{2x^6+1}\,dx-15" />. Option B gives only the <em>change</em> <Katex tex="y(4)-y(1)" />, forgetting the starting value. Option D (15%, the most popular wrong answer) subtracts the starting value instead of adding it.</>,
   },
 ]
 
@@ -42,9 +39,10 @@ export default function SpecialistQ12_2014() {
       }
       background={
         <p>
-          There is no elementary antiderivative of <Katex tex="\sqrt{2x^6+1}" />, so the
-          question is not asking you to integrate at all — only to arrange the initial
-          condition and the definite integral correctly.
+          The general form: if <Katex tex="\tfrac{dy}{dx}=f(x)" /> and <Katex tex="y(a)=b" />,
+          then <Katex tex="y(c)=b+\int_a^c f(x)\,dx" />. Use it whenever <Katex tex="f" /> has
+          no antiderivative you can find (as with <Katex tex="\sqrt{2x^6+1}" />): the question
+          tests only where the initial value goes, not integrating.
         </p>
       }
       options={[
