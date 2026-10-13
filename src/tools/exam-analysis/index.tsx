@@ -146,7 +146,7 @@ export default function ExamAnalysis() {
   useEffect(() => {
     if (rest.split('/')[0] !== subject) navigate(`${TOOL}/${subject}${params.toString() ? `?${params}` : ''}`, { replace: true })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [rest])
 
   return (
     <div className="px-4 sm:px-6 pt-6 sm:pt-10 pb-16 max-w-6xl mx-auto">
@@ -188,7 +188,7 @@ export default function ExamAnalysis() {
         </Section>
 
         <Section title="The Questions" blurb={<ListCaption ctx={ctx} />}>
-          <QuestionList subject={subject} items={listItems} />
+          <QuestionList key={subject} subject={subject} items={listItems} />
         </Section>
 
         <AboutNumbers />

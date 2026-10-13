@@ -32,8 +32,11 @@ class Boundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   }
 }
 
-// Keyed by pathname so moving to another page clears a previous failure.
+// Keyed by the tool (the path's first segment), so moving to another page clears a previous
+// failure. Not by the whole path: a tool keeps its URL-driven state below its route (the worked
+// solutions' subject / year / question), and re-keying on every step would remount the tool and
+// throw away everything the visitor had set, like which exam tab is open.
 export default function RouteErrorBoundary({ children }: { children: ReactNode }) {
   const { pathname } = useLocation()
-  return <Boundary key={pathname}>{children}</Boundary>
+  return <Boundary key={pathname.split('/')[1] ?? ''}>{children}</Boundary>
 }

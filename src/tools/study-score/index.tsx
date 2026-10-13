@@ -248,7 +248,7 @@ export default function StudyScore() {
     const q = liveQuery().toString()
     if (rest.split('/')[0] !== subject) write(`${TOOL}/${subject}${q ? `?${q}` : ''}`)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [rest])
 
   const marksKey = marks.join('-')
   // eslint-disable-next-line react-hooks/exhaustive-deps

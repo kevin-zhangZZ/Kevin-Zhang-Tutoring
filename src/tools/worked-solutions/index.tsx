@@ -208,7 +208,10 @@ function QuestionsPage({ rest }: { rest: string }) {
     }
   }, [selected])
 
-  useEffect(() => setSheetOpen(false), [selected?.id])
+  useEffect(() => {
+    setSheetOpen(false)
+    setSideSheetOpen(false)
+  }, [selected?.id])
 
   function showVideo() {
     detailRef.current?.querySelector('[data-video]')?.scrollIntoView({ behavior: 'smooth', block: 'center' })

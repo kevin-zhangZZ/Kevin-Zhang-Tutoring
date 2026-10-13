@@ -281,11 +281,19 @@ function YearContent({
   const exams = EXAMS[subject]
   const { anchor } = useContext(AnchorCtx)
   const selectedExam = anchor && anchor.subject === subject && anchor.year === year ? anchor.exam : null
-  // Tabs follow the open question (so previous / next across exams switches tab), until the
-  // visitor picks a tab themselves.
+  // The exam tab and the folded / unfolded exams and groups are the visitor's view of the list,
+  // so stepping to another year keeps them (folds are keyed without the year). Opening a question
+  // points the tab at its exam and unfolds its exam and group, so previous / next across exams
+  // follows along and the open question's row is always in view.
   const [tabChoice, setTabChoice] = useState<string | null>(null)
-  useEffect(() => setTabChoice(null), [anchor?.id, year, subject])
   const [folded, setFolded] = useState<Record<string, boolean>>({})
+  useEffect(() => {
+    if (!selected) return
+    setTabChoice(selected.exam)
+    setFolded(f => ({ ...f, [`${subject}-${selected.exam}`]: false, [`${subject}-${selected.exam}-${selected.type}`]: false }))
+    // Only when a different question opens, not on every render of the same one.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected?.id])
 
   if (year === null) return <StartHere pointing={prefs.yearNav === 'rail' ? 'left' : 'up'} />
 
@@ -309,7 +317,7 @@ function YearContent({
   )
 
   if (prefs.examLayout === 'tabs' && exams.length > 1) {
-    const current = tabChoice ?? selectedExam ?? exams[0]
+    const current = (tabChoice && exams.includes(tabChoice) ? tabChoice : null) ?? selectedExam ?? exams[0]
     return (
       <>
         <SegmentedControl
@@ -456,7 +464,7 @@ function ExamSection({
   setFolded: (key: string, folded: boolean) => void
   defaultOpen: boolean
 }) {
-  const examKey = `${subject}-${year}-${exam}`
+  const examKey = `${subject}-${exam}`
   const collapsible = prefs.examLayout === 'collapsible'
   const open = !collapsible || !(folded[examKey] ?? !defaultOpen)
   const types = examTypes(subject, year, exam)
@@ -610,8 +618,10 @@ function TopicView({
   sort: ListSort
   nav: SidebarNav
 }) {
-  // null = follow the open question's topic; '' = the visitor closed every topic.
+  // null = follow the open question's topic; '' = the visitor closed every topic. Switching
+  // subject or opening a question goes back to following it.
   const [openTopic, setOpenTopic] = useState<string | null>(null)
+  useEffect(() => setOpenTopic(null), [subject, selected?.id])
   const { anchor } = useContext(AnchorCtx)
   const auto = anchor && anchor.subject === subject ? topicOf(anchor) : ''
   const open = openTopic ?? auto
