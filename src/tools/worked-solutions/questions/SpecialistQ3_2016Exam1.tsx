@@ -26,31 +26,37 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\cos(y)+y\sin(x) = x^2" />,
-    reason: <>Differentiate both sides with respect to <Katex tex="x" />, treating <Katex tex="y" /> as a function of <Katex tex="x" />.</>,
+    reason: <><Katex tex="y" /> can't be made the subject, so differentiate both sides implicitly with respect to <Katex tex="x" />, treating <Katex tex="y" /> as a function of <Katex tex="x" />.</>,
+    more: <>Quick check that the point is on the curve: <Katex tex="\cos\!\left(-\tfrac{\pi}{2}\right)+\left(-\tfrac{\pi}{2}\right)\sin(0)=0+0=0=0^2" />. ✓</>,
   },
   {
     working: <Katex display tex="-\sin(y)\frac{dy}{dx} + \frac{dy}{dx}\sin(x) + y\cos(x) = 2x" />,
-    reason: <>Chain rule on <Katex tex="\cos(y)" />, then product rule on <Katex tex="y\sin(x)" /> — with another chain rule hidden in the <Katex tex="\tfrac{dy}{dx}" />.</>,
+    reason: <>Chain rule on <Katex tex="\cos(y)" /> gives <Katex tex="-\sin(y)\tfrac{dy}{dx}" />; product rule on <Katex tex="y\sin(x)" />, where the derivative of <Katex tex="y" /> is <Katex tex="\tfrac{dy}{dx}" />.</>,
+    more: <>Both <Katex tex="\tfrac{dy}{dx}" /> terms appear because <Katex tex="y" /> depends on <Katex tex="x" />: differentiating <Katex tex="\cos(y)" /> gives <Katex tex="-\sin(y)" /> times the inner derivative <Katex tex="\tfrac{dy}{dx}" />. For <Katex tex="y\sin(x)" />, take <Katex tex="u=y" /> (so <Katex tex="u'=\tfrac{dy}{dx}" />) and <Katex tex="v=\sin(x)" /> (so <Katex tex="v'=\cos(x)" />): <Katex tex="u'v+uv'=\tfrac{dy}{dx}\sin(x)+y\cos(x)" />.</>,
   },
   {
     working: <Katex display tex="-\sin\!\left(-\frac{\pi}{2}\right)\frac{dy}{dx} + 0 + \left(-\frac{\pi}{2}\right)(1) = 0" />,
-    reason: <>Substituting <Katex tex="\left(0,-\tfrac{\pi}{2}\right)" /> straight away — no need to rearrange for <Katex tex="\tfrac{dy}{dx}" /> in general. Note <Katex tex="\sin(0)=0" /> and <Katex tex="\cos(0)=1" />.</>,
+    reason: <>Substitute <Katex tex="x=0" />, <Katex tex="y=-\tfrac{\pi}{2}" /> straight away, using <Katex tex="\sin(0)=0" /> and <Katex tex="\cos(0)=1" />.</>,
+    more: <>Substituting first means you never rearrange for <Katex tex="\tfrac{dy}{dx}" /> in general. Doing that gives <Katex tex="\tfrac{dy}{dx}=\tfrac{2x-y\cos(x)}{\sin(x)-\sin(y)}" />, which at the point is <Katex tex="\tfrac{0+\pi/2}{0-(-1)}=\tfrac{\pi}{2}" /> — the same answer with more algebra.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} - \frac{\pi}{2} = 0 \implies \frac{dy}{dx} = \frac{\pi}{2}" />,
-    reason: <>Because <Katex tex="-\sin\!\left(-\tfrac{\pi}{2}\right)=-(-1)=+1" />. The report notes sign errors when substituting the point — watch this double negative.</>,
+    reason: <>Because <Katex tex="-\sin\!\left(-\tfrac{\pi}{2}\right)=-(-1)=+1" />. This is the gradient of the <em>tangent</em> at the point.</>,
+    more: <>The report notes sign errors when substituting the point, and this double negative is where they happen. The inner value comes from <Katex tex="\sin" /> being odd: <Katex tex="\sin\!\left(-\tfrac{\pi}{2}\right)=-\sin\!\left(\tfrac{\pi}{2}\right)=-1" />.</>,
   },
   {
     working: <Katex display tex="m_{\perp} = -\frac{1}{\frac{\pi}{2}} = -\frac{2}{\pi}" />,
-    reason: <>Negative <em>reciprocal</em> — not the reciprocal, and not just the negative. The report lists both of those as errors.</>,
+    reason: <>The line perpendicular to the graph (the normal) is perpendicular to the tangent, so <Katex tex="m_1m_2=-1" />: its gradient is the negative <em>reciprocal</em>.</>,
+    more: <>The report lists students who found the tangent's gradient or equation instead, who used the reciprocal <Katex tex="\tfrac{2}{\pi}" />, and who used just the negative <Katex tex="-\tfrac{\pi}{2}" />. Only the negative reciprocal passes the check <Katex tex="\tfrac{\pi}{2}\times\left(-\tfrac{2}{\pi}\right)=-1" />.</>,
   },
   {
     working: <Katex display tex="y-\left(-\frac{\pi}{2}\right) = -\frac{2}{\pi}(x-0)" />,
-    reason: <>Point–gradient form.</>,
+    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" /> with the given point and <Katex tex="m_{\perp}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -\frac{2x}{\pi}-\frac{\pi}{2}}" />,
-    reason: <>Finish with the equation, not just the gradient — the report notes students who stopped one line early.</>,
+    reason: <>Make <Katex tex="y" /> the subject. The question asks for the equation, so don't stop at the gradient.</>,
+    more: <>The report notes students who found the gradient of the perpendicular line and did not continue. Any equivalent form is fine, e.g. <Katex tex="4x+2\pi y+\pi^2=0" />.</>,
   },
 ]
 
@@ -66,9 +72,10 @@ export default function SpecialistQ3_2016Exam1() {
       </Background>
       <Background>
         <p>
-          The curve cannot be written as <Katex tex="y=\ldots" />, so implicit
-          differentiation is the only route — and with a point supplied you can substitute
-          before rearranging, which keeps the algebra to two lines.
+          The line perpendicular to a graph at a point is the <em>normal</em>: it is
+          perpendicular to the tangent there. Plan: find the tangent gradient{' '}
+          <Katex tex="\tfrac{dy}{dx}" /> at the point, turn it into the normal's gradient,
+          then write the line through the point.
         </p>
       </Background>
       <WorkingTable rows={ROWS} />

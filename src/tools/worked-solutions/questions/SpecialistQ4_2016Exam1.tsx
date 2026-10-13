@@ -31,27 +31,32 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="A = 6x^2" />,
-    reason: <>A cube has six square faces. The report lists four different wrong formulas for this one line — it is worth writing out "six faces, each <Katex tex="x" /> by <Katex tex="x" />" before committing.</>,
+    reason: <>A cube has six square faces, each <Katex tex="x" /> by <Katex tex="x" />.</>,
+    more: <>The report lists four wrong formulas for this one line: <Katex tex="x^2" /> (one face only), <Katex tex="2x^2" />, <Katex tex="4x^2" /> and, most often, <Katex tex="x^3" /> — which is the cube's volume, not its surface area. Saying "six faces, each <Katex tex="x" /> by <Katex tex="x" />" to yourself before writing anything avoids all four.</>,
   },
   {
     working: <Katex display tex="\frac{dA}{dt} = \frac{dA}{dx}\times\frac{dx}{dt}" />,
-    reason: <>The chain rule links the two rates. <Katex tex="A" /> is known in terms of <Katex tex="x" />, and <Katex tex="x" /> in terms of <Katex tex="t" />.</>,
+    reason: <>We want <Katex tex="\tfrac{dA}{dt}" />, but <Katex tex="A" /> is given in terms of <Katex tex="x" />, and <Katex tex="x" /> in terms of <Katex tex="t" />. The chain rule links the two rates.</>,
+    more: <>Equivalently, substitute first: <Katex tex="A=6\arctan^2(t)" />, then differentiate with respect to <Katex tex="t" /> — that still needs the chain rule (an outer square, an inner <Katex tex="\arctan" />), and gives the same line 4 below. The report also saw students write <Katex tex="t=\tan(x)" />: then <Katex tex="\tfrac{dt}{dx}=\sec^2(x)=1+\tan^2(x)=1+t^2" />, so <Katex tex="\tfrac{dx}{dt}=\tfrac{1}{1+t^2}" /> — the same result by a longer route. Others worked entirely in <Katex tex="x" />: <Katex tex="\tfrac{dx}{dt}=\tfrac{1}{\sec^2(x)}=\cos^2(x)" />, so <Katex tex="\tfrac{dA}{dt}=12x\cos^2(x)" />; at <Katex tex="t=1" />, <Katex tex="x=\tfrac{\pi}{4}" /> and <Katex tex="\cos^2\tfrac{\pi}{4}=\tfrac{1}{2}" />, giving <Katex tex="12\times\tfrac{\pi}{4}\times\tfrac{1}{2}=\tfrac{3\pi}{2}" /> again.</>,
   },
   {
     working: <Katex display tex="\frac{dA}{dx} = 12x, \qquad \frac{dx}{dt} = \frac{1}{1+t^2}" />,
-    reason: <>Note the derivative of <Katex tex="\arctan(t)" /> has <Katex tex="t" /> in it, not <Katex tex="x" /> — the report's other flagged confusion. And <Katex tex="\arctan(t)" /> is the inverse of <Katex tex="\tan" />, not <Katex tex="\tfrac{1}{\tan(t)}" />.</>,
+    reason: <>Power rule for <Katex tex="6x^2" />; the standard result <Katex tex="\tfrac{d}{dt}\arctan(t)=\tfrac{1}{1+t^2}" /> (on the formula sheet).</>,
+    more: <>Two traps from the report. First, the derivative of <Katex tex="\arctan(t)" /> is in terms of <Katex tex="t" />: writing <Katex tex="\tfrac{1}{1+x^2}" /> mixes up the two variables. Second, <Katex tex="\arctan(t)=\tan^{-1}(t)" /> means the <em>inverse function</em> of <Katex tex="\tan" />, not the reciprocal <Katex tex="\tfrac{1}{\tan(t)}" />.</>,
   },
   {
     working: <Katex display tex="\frac{dA}{dt} = \frac{12x}{1+t^2} = \frac{12\arctan(t)}{1+t^2}" />,
-    reason: <>Substituting <Katex tex="x=\arctan(t)" /> puts everything in one variable.</>,
+    reason: <>Multiply the two derivatives, then substitute <Katex tex="x=\arctan(t)" /> so everything is in terms of <Katex tex="t" />.</>,
+    more: <>The report notes some students reached this correct derivative and stopped. The question asks for the rate <em>one day after</em> — a number — so you must still substitute <Katex tex="t=1" />.</>,
   },
   {
     working: <Katex display tex="t=1: \quad \frac{dA}{dt} = \frac{12\arctan(1)}{1+1} = \frac{12\times\frac{\pi}{4}}{2}" />,
-    reason: <><Katex tex="\arctan(1)=\tfrac{\pi}{4}" />, an exact value.</>,
+    reason: <>"One day after" means <Katex tex="t=1" />. <Katex tex="\arctan(1)=\tfrac{\pi}{4}" /> because <Katex tex="\tan\tfrac{\pi}{4}=1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dA}{dt} = \frac{3\pi}{2} \text{ mm}^2\text{ per day}}" />,
-    reason: <>About <Katex tex="4.7" /> mm² per day. Plausible: after one day the side is <Katex tex="\tfrac{\pi}{4}\approx0.79" /> mm, so the cube has about <Katex tex="3.7" /> mm² of surface and is still growing quickly.</>,
+    reason: <><Katex tex="12\times\tfrac{\pi}{4}=3\pi" />, then halve. Exact answer with the units asked for.</>,
+    more: <>Check: <Katex tex="\tfrac{3\pi}{2}\approx4.71" /> mm² per day. From <Katex tex="A=6\arctan^2(t)" />, the surface area is about 3.22 mm² at <Katex tex="t=0.9" /> and 4.16 mm² at <Katex tex="t=1.1" />, so over those 0.2 days it grows at about <Katex tex="\tfrac{4.16-3.22}{0.2}\approx4.7" /> mm² per day, which agrees with the answer.</>,
   },
 ]
 

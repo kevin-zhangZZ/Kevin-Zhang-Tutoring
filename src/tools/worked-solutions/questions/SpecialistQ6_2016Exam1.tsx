@@ -25,10 +25,11 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\left|1-\sqrt3i\right| = \sqrt{1+3} = 2, \qquad \operatorname{Arg} = -\frac{\pi}{3}" />,
-    reason: <>Fourth quadrant: positive real part, negative imaginary part. The report says a sketch may have helped with the quadrant errors it saw.</>,
+    reason: <>Reference angle <Katex tex="\tan^{-1}\!\left(\tfrac{\sqrt3}{1}\right)=\tfrac{\pi}{3}" />; the point <Katex tex="(1,-\sqrt3)" /> is in the fourth quadrant, so the argument is negative.</>,
+    more: <>The report says a wrong argument was common, usually from the wrong quadrant (here that would be, e.g., <Katex tex="\tfrac{\pi}{3}" /> or <Katex tex="-\tfrac{2\pi}{3}" />), sometimes a wrong exact value, and that a sketch may have helped. A five-second sketch of <Katex tex="1-\sqrt3i" /> as the point <Katex tex="(1,-\sqrt3)" />, right one and down about 1.7, settles the quadrant before any calculator-free trig.</>,
   },
   {
-    working: <Katex display tex="1-\sqrt3i = 2\operatorname{cis}\!\left(-\frac{\pi}{3}\right), \qquad 1+\sqrt3i = 2\operatorname{cis}\!\left(\frac{\pi}{3}\right)" />,
+    working: <Katex display tex="\begin{aligned} 1-\sqrt3i &= 2\operatorname{cis}\!\left(-\frac{\pi}{3}\right) \\ 1+\sqrt3i &= 2\operatorname{cis}\!\left(\frac{\pi}{3}\right) \end{aligned}" />,
     reason: <>The denominator is the conjugate, so same modulus and opposite argument.</>,
   },
   {
@@ -49,7 +50,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{4+4\sqrt3\,i}" />,
-    reason: <>So <Katex tex="a=4" /> and <Katex tex="b=4\sqrt3" />. The report's elegant shortcut: <Katex tex="\left(1-\sqrt3i\right)^2 = -2-2\sqrt3i = -2\left(1+\sqrt3i\right)" />, so the numerator is <Katex tex="4\left(1+\sqrt3i\right)^2" />, four times the square of the denominator, and the quotient is <Katex tex="4\left(1+\sqrt3i\right)" /> in one line. Worth spotting, but polar form is the reliable route.</>,
+    reason: <>Expand: <Katex tex="8\times\tfrac12=4" /> and <Katex tex="8\times\tfrac{\sqrt3}{2}=4\sqrt3" />, so <Katex tex="a=4" /> and <Katex tex="b=4\sqrt3" />.</>,
+    more: <>Check (catches the sign errors the report mentions): <Katex tex="\left(4+4\sqrt3i\right)\left(1+\sqrt3i\right) = 4+4\sqrt3i+4\sqrt3i-12 = -8+8\sqrt3i" />, and <Katex tex="16\operatorname{cis}\!\left(\tfrac{2\pi}{3}\right) = 16\left(-\tfrac12+\tfrac{\sqrt3}{2}i\right) = -8+8\sqrt3i" /> too. The report's elegant shortcut: <Katex tex="\left(1-\sqrt3i\right)^2 = -2-2\sqrt3i = -2\left(1+\sqrt3i\right)" />, so the numerator is <Katex tex="4\left(1+\sqrt3i\right)^2" />, four times the square of the denominator, and the quotient is <Katex tex="4\left(1+\sqrt3i\right)" /> in one line. Worth spotting, but polar form is the reliable route.</>,
   },
 ]
 
@@ -65,9 +67,10 @@ export default function SpecialistQ6_2016Exam1() {
       </Background>
       <Background>
         <p>
-          Expanding the fourth power in cartesian form works, but it is four binomial
-          expansions and then a realisation of the denominator. Polar form turns the whole
-          thing into arithmetic on two numbers.
+          Expanding the fourth power in Cartesian form works (square, then square again),
+          but then you still multiply top and bottom by the conjugate of the denominator, and
+          every step is a chance for a sign error. Polar form turns the whole thing into
+          arithmetic on a modulus and an argument.
         </p>
       </Background>
       <WorkingTable rows={ROWS} />
