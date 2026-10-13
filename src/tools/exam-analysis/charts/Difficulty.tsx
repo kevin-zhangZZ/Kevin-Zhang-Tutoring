@@ -1,13 +1,15 @@
 // "What students find hard": one 0–100% strip per topic (or subtopic), with every MCQ and
-// short-answer part as a dot at its VCAA average and a line at the topic's average. Hardest
-// topic first; a dot opens its worked solution.
+// short-answer part as a dot at its VCAA average and a line at the topic's average, against a
+// dashed line at the average of everything in view. Hardest topic first; a dot opens its
+// worked solution.
 
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { questionPath } from '../../worked-solutions/routes'
-import { fmt, itemLabel, itemScore, pct, type Group, type Item } from '../model'
+import { fmt, itemLabel, itemScore, pct, statOf, type Group, type Item } from '../model'
 import { isPicked, yearCount, type ChartCtx } from '../view'
 import { BAND_FILL, BandKey, TipBody, bandOf, useTip, useWidth } from './common'
+import { HARD_BELOW } from '../../worked-solutions/sidebarModel'
 
 function itemTip(i: Item) {
   const s = itemScore(i)
@@ -39,7 +41,22 @@ function jitter(key: string): number {
 
 const TICKS = [0, 0.25, 0.5, 0.75, 1]
 
-function StripRow({ ctx, g, width, onItem }: { ctx: ChartCtx; g: Group; width: number; onItem: (i: Item) => void }) {
+/** The section's headline: the hardest topic with enough marks to count, and how much of it is hard. */
+export function difficultyHeadline(ctx: ChartCtx): string {
+  const total = ctx.groups.reduce((s, g) => s + g.marks, 0)
+  const minMarks = Math.max(3, total * 0.02)
+  const rows = ctx.groups.filter(g => g.score !== null && g.marks >= minMarks).sort((a, b) => (a.score ?? 0) - (b.score ?? 0))
+  if (!rows.length) return 'Nothing scored in these filters'
+  const g = rows[0]
+  const scored = g.itemList.filter(i => itemScore(i) !== null)
+  const hard = scored.filter(i => (itemScore(i) ?? 1) * 100 < HARD_BELOW).length
+  const share = scored.length ? hard / scored.length : 0
+  const lead = rows.length > 1 ? `${g.label} is the hardest, at ${pct(g.score)} on average` : `${g.label} averages ${pct(g.score)}`
+  const part = share >= 0.55 ? 'more than half' : share >= 0.45 ? 'about half' : share >= 0.3 ? 'about a third' : share >= 0.22 ? 'about a quarter' : null
+  return part ? `${lead}; ${part} of its items average under ${HARD_BELOW}%` : lead
+}
+
+function StripRow({ ctx, g, width, overall, onItem }: { ctx: ChartCtx; g: Group; width: number; overall: number | null; onItem: (i: Item) => void }) {
   const tip = useTip()
   const h = 30
   const pad = 6
@@ -97,6 +114,7 @@ function StripRow({ ctx, g, width, onItem }: { ctx: ChartCtx; g: Group; width: n
         {TICKS.map(t => (
           <line key={t} x1={x(t)} x2={x(t)} y1={0} y2={h} stroke="var(--ea-grid)" />
         ))}
+        {overall !== null && <line x1={x(overall)} x2={x(overall)} y1={0} y2={h} stroke="var(--ea-ref)" strokeDasharray="2 3" />}
         {dots.map(d => (
           <circle
             key={d.i.key}
@@ -125,12 +143,13 @@ export function DotStrip({ ctx }: { ctx: ChartCtx }) {
   const valueW = 44
   const stripW = Math.max(120, width - labelW - valueW - 16)
   const pad = 6
+  const overall = statOf(ctx.items).score
   return (
     <div ref={ref}>
       <p className="text-[12px] text-gray-500 dark:text-gray-400 mb-2 flex flex-wrap gap-x-4 gap-y-1">
         <span>
-          Each dot is one MCQ or short-answer part, placed at its VCAA average; the dark line is the topic’s average. Hardest first. Click a dot to open
-          its solution.
+          One dot per MCQ or short-answer part, at its VCAA average. The solid line is the topic’s average; the dashed line is everything in view
+          {overall !== null ? ` (${pct(overall)})` : ''}. Hardest first; click a dot to open its solution.
         </span>
         <BandKey />
       </p>
@@ -147,7 +166,7 @@ export function DotStrip({ ctx }: { ctx: ChartCtx }) {
               >
                 {g.label}
               </button>
-              <StripRow ctx={ctx} g={g} width={stripW} onItem={i => navigate(questionPath(i.question))} />
+              <StripRow ctx={ctx} g={g} width={stripW} overall={overall} onItem={i => navigate(questionPath(i.question))} />
               <span style={{ width: valueW }} className="flex-none text-right text-[12.5px] font-semibold tabular-nums text-gray-800 dark:text-gray-200">
                 {pct(g.score)}
               </span>

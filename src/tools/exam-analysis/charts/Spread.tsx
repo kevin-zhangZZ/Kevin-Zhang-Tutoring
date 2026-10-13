@@ -1,14 +1,16 @@
-// "How the scores spread out": every question in view, in 5% steps of its VCAA average,
-// coloured by the sidebar's difficulty bands. Click a bar to list those questions.
+// "How hard is a typical question": every question in view, in 5% steps of its VCAA average,
+// coloured by the sidebar's difficulty bands, with each band's share written over it and a
+// dashed line at the median. Click a bar to list those questions.
 //
 // It counts questions, not parts: a short answer's score is its parts' average marks over their
 // marks (just the parts in view, when a topic is picked). Parts alone would give a saw-tooth —
 // a 1-mark part's average comes in steps of 0.1, so it can only ever land in every other bin.
 
 import type { CSSProperties } from 'react'
-import type { Item } from '../model'
+import { pct, type Item } from '../model'
 import type { ChartCtx } from '../view'
-import { BAND_FILL, BandKey, TipBody, bandOf, niceTicks, useTip, useWidth, vBarPath } from './common'
+import { BAND_FILL, TipBody, bandOf, niceTicks, useTip, useWidth, vBarPath, type Band } from './common'
+import { EASY_FROM, HARD_BELOW } from '../../worked-solutions/sidebarModel'
 
 export const BIN_COUNT = 20
 
@@ -36,11 +38,35 @@ export function questionScores(items: Item[]): Map<string, { score: number; mark
   return out
 }
 
+function medianOf(xs: number[]): number | null {
+  if (!xs.length) return null
+  const v = [...xs].sort((a, b) => a - b)
+  const m = Math.floor(v.length / 2)
+  return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2
+}
+
+/** The section's headline: the median question, and how many are hard. */
+export function spreadHeadline(items: Item[]): string {
+  const scores = [...questionScores(items).values()].map(q => q.score)
+  const med = medianOf(scores)
+  if (med === null) return 'Nothing scored in these filters'
+  const hard = scores.filter(x => x * 100 < HARD_BELOW).length / scores.length
+  const oneIn = hard > 0 && hard < 0.5 ? Math.round(1 / hard) : null
+  const tail = oneIn && oneIn <= 10 ? `about 1 in ${oneIn}` : pct(hard)
+  return `The typical question averages ${pct(med)}, and ${tail} average${tail.startsWith('about 1') ? 's' : ''} under ${HARD_BELOW}%`
+}
+
+const BANDS: { band: Band; from: number; to: number; name: string }[] = [
+  { band: 'hard', from: 0, to: HARD_BELOW, name: 'Hard' },
+  { band: 'medium', from: HARD_BELOW, to: EASY_FROM, name: 'Middling' },
+  { band: 'easy', from: EASY_FROM, to: 100, name: 'Well done' },
+]
+
 export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
   const tip = useTip()
   const [ref, width] = useWidth<HTMLDivElement>()
   const height = 240
-  const m = { l: 34, r: 14, t: 10, b: 26 }
+  const m = { l: 34, r: 14, t: 40, b: 26 }
   const counts = new Array(BIN_COUNT).fill(0) as number[]
   const marks = new Array(BIN_COUNT).fill(0) as number[]
   const scores = questionScores(items)
@@ -49,6 +75,9 @@ export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
     marks[binOf(score)] += mk
   }
   const n = scores.size
+  const all = [...scores.values()].map(q => q.score)
+  const med = medianOf(all)
+  const shareIn = (from: number, to: number) => (n ? all.filter(x => x * 100 >= from && x * 100 < (to === 100 ? 101 : to)).length / n : 0)
   const ticks = niceTicks(Math.max(1, ...counts))
   const yMax = ticks[ticks.length - 1]
   const iw = Math.max(10, width - m.l - m.r)
@@ -58,12 +87,9 @@ export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
 
   return (
     <div>
-      <p className="text-[12px] text-gray-500 dark:text-gray-400 mb-2 flex flex-wrap gap-x-4 gap-y-1">
-        <span>
-          {n} {n === 1 ? 'question' : 'questions'} in view, by VCAA average: an MCQ’s % correct, a short answer’s average mark as a share of its marks. Click a bar
-          to list them.
-        </span>
-        <BandKey />
+      <p className="text-[12px] text-gray-500 dark:text-gray-400 mb-2">
+        {n} {n === 1 ? 'question' : 'questions'} in view, by VCAA average: an MCQ’s % correct, a short answer’s average mark as a share of its marks. The bands are
+        the worked-solutions sidebar’s. Click a bar to list its questions.
       </p>
       <div ref={tip.wrapRef} className="relative">
         <div ref={ref}>
@@ -77,6 +103,21 @@ export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
                   </text>
                 </g>
               ))}
+              {/* Each band's name and share, over a hairline spanning its bins. */}
+              {BANDS.map(b => {
+                const x0 = m.l + (b.from / 100) * iw + 2
+                const x1 = m.l + (b.to / 100) * iw - 2
+                const wide = x1 - x0 > 96
+                return (
+                  <g key={b.band}>
+                    <line x1={x0} x2={x1} y1={22} y2={22} strokeWidth={2} strokeLinecap="round" stroke={BAND_FILL[b.band]} />
+                    <text x={x0} y={14} fontSize={11.5} className={b.band === 'hard' ? 'fill-amber-700 dark:fill-amber-400' : 'fill-gray-600 dark:fill-gray-300'}>
+                      <tspan fontWeight={700}>{pct(shareIn(b.from, b.to))}</tspan>
+                      {wide && <tspan dx={4}>{b.name.toLowerCase()}</tspan>}
+                    </text>
+                  </g>
+                )
+              })}
               {counts.map((c, k) => {
                 const x = m.l + k * bw
                 const h = (c / yMax) * ih
@@ -111,6 +152,14 @@ export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
                   </g>
                 )
               })}
+              {med !== null && (
+                <g pointerEvents="none">
+                  <line x1={m.l + med * iw} x2={m.l + med * iw} y1={m.t - 6} y2={m.t + ih} stroke="var(--ea-ref)" strokeDasharray="3 3" />
+                  <text x={m.l + med * iw + 5} y={m.t + 4} fontSize={11} fontWeight={600} className="fill-gray-700 dark:fill-gray-200">
+                    Median {pct(med)}
+                  </text>
+                </g>
+              )}
               {Array.from({ length: BIN_COUNT / 2 + 1 }, (_, k) => k * 10).map(v => (
                 <text
                   key={v}

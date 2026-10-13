@@ -118,6 +118,10 @@ export interface Stat {
   items: number
   /** Marks-weighted average score, 0–1, over the items VCAA reports an average for. */
   score: number | null
+  /** The average student's marks on the scored items, and the marks they drop there. Marks on
+   *  items with no VCAA average are in neither. */
+  earned: number
+  lost: number
 }
 
 export function statOf(items: Item[]): Stat {
@@ -131,7 +135,7 @@ export function statOf(items: Item[]): Stat {
       scoreSum += i.avg
     }
   }
-  return { marks, items: items.length, score: scoredMarks ? scoreSum / scoredMarks : null }
+  return { marks, items: items.length, score: scoredMarks ? scoreSum / scoredMarks : null, earned: scoreSum, lost: scoredMarks - scoreSum }
 }
 
 /** An item's own score, 0–1. */

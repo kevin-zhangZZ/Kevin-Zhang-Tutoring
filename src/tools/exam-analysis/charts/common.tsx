@@ -1,8 +1,8 @@
 // Pieces every exam-analysis chart shares: its width, the hover/focus tooltip, and colours.
+// Colour on this page means one thing: grey is the data, amber is "hard" or "marks lost".
 
 import { useCallback, useLayoutEffect, useRef, useState, type ReactNode, type RefObject } from 'react'
 import { HARD_BELOW, EASY_FROM } from '../../worked-solutions/sidebarModel'
-import { TAXONOMY, type AnalysisSubject } from '../taxonomy'
 
 /** The element's current content width, kept up to date as it resizes. */
 export function useWidth<T extends HTMLElement>(): [RefObject<T>, number] {
@@ -89,16 +89,6 @@ export function TipBody({ value, label, lines }: { value: ReactNode; label: Reac
 }
 
 // ── Colours ────────────────────────────────────────────────────────────────────────────────
-
-/** A topic's colour follows the topic (its place in the taxonomy), never its rank, so it
- *  keeps its colour however the charts are filtered or sorted. */
-export function topicIndex(subject: AnalysisSubject, topic: string): number {
-  return Math.max(0, TAXONOMY[subject].findIndex(t => t.id === topic))
-}
-
-export function topicColor(subject: AnalysisSubject, topic: string): string {
-  return `var(--ea-t${topicIndex(subject, topic) + 1})`
-}
 
 export type Band = 'hard' | 'medium' | 'easy'
 
