@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import SegmentedControl from '../../components/ui/SegmentedControl'
+import { Reveal, stagger } from '../../components/motion/Reveal'
 import { guides, CONFIDENCE_LABEL, type Confidence } from './data'
 import { audits } from './audit'
 import { SkipIcon, NoteIcon, NewIcon } from './icons'
@@ -71,7 +72,7 @@ function PaperCard({ paper, showExam }: { paper: Paper; showExam: boolean }) {
     tips.length ? `${tips.length} doable with a tip` : '',
   ].filter(Boolean).join(' · ')
   return (
-    <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden">
+    <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden">
       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 px-4 py-2.5 bg-gray-50 dark:bg-gray-800/50 border-b border-gray-100 dark:border-gray-800">
         <span className="text-[13px] font-semibold text-gray-800 dark:text-gray-100">{showExam ? paper.exam : 'The exam'}</span>
         <span className="text-xs text-gray-500 dark:text-gray-400">{summary}</span>
@@ -118,21 +119,12 @@ function PaperCard({ paper, showExam }: { paper: Paper; showExam: boolean }) {
 }
 
 // ── "Which paper are you doing?" ─────────────────────────────────────────────
+// One button per year, each with how many questions to skip in it, then Exam 1 / Exam 2. The
+// subject comes from the switch at the top of the page.
 
-function Select({ label, value, onChange, children }: { label: string; value: string; onChange: (v: string) => void; children: ReactNode }) {
-  return (
-    <label className="flex flex-col gap-1 text-xs font-semibold text-gray-500 dark:text-gray-400">
-      {label}
-      <select
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        className="text-sm font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      >
-        {children}
-      </select>
-    </label>
-  )
-}
+/** Questions to skip in a year, across its papers. */
+const skipsIn = (papers: Paper[], year: number) =>
+  papers.filter(p => p.year === year).reduce((n, p) => n + p.items.filter(i => i.status === 'skip').length, 0)
 
 function PaperPicker({ subject, year, exam, papers, reviewed, onChange }: {
   subject: string
@@ -145,31 +137,52 @@ function PaperPicker({ subject, year, exam, papers, reviewed, onChange }: {
   const exams = examsFor(subject)
   const paper = year !== null ? papers.find(p => p.year === year && p.exam === exam) : undefined
   const explanations = year !== null ? explanationsFor(subject, year) : undefined
-  const title = year !== null ? `${SHORT_NAME[subject]} ${year}${exams.length > 1 ? ` · ${exam}` : ''}` : ''
+  const title = year !== null ? `${SHORT_NAME[subject]} ${year}${exams.length > 1 ? `, ${exam}` : ''}` : ''
 
   return (
-    <section className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sm:p-5 mb-10" aria-labelledby="picker-title">
-      <h2 id="picker-title" className="font-display text-lg font-semibold text-gray-900 dark:text-white">Which paper are you doing?</h2>
-      <div className="flex flex-wrap gap-3 mt-3">
-        <Select label="Subject" value={subject} onChange={v => onChange(v, year, examsFor(v)[0])}>
-          {guides.map(g => <option key={g.id} value={g.id}>{SHORT_NAME[g.id] ?? g.name}</option>)}
-        </Select>
-        <Select label="Year" value={year === null ? '' : String(year)} onChange={v => onChange(subject, v ? Number(v) : null, exam)}>
-          <option value="">Choose a year</option>
-          {PICKER_YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-        </Select>
+    <section className="rise-in rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 sm:p-7 mb-10" style={stagger(3)} aria-labelledby="picker-title">
+      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+        <div>
+          <h2 id="picker-title" className="font-display text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Which paper are you doing?</h2>
+          <p className="mt-1 text-[13px] text-gray-500 dark:text-gray-400">Pick a year to see what to skip in it. The number is how many questions to skip.</p>
+        </div>
         {exams.length > 1 && (
-          <Select label="Exam" value={exam} onChange={v => onChange(subject, year, v)}>
-            {exams.map(e => <option key={e} value={e}>{e}</option>)}
-          </Select>
+          <SegmentedControl aria-label="Exam" value={exam} onChange={v => onChange(subject, year, v)} options={exams.map(e => ({ value: e, label: e }))} />
         )}
       </div>
 
+      <div className="mt-5 grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-2" role="group" aria-label="Year">
+        {PICKER_YEARS.map(y => {
+          const on = y === year
+          const checked = reviewed.has(y)
+          const n = skipsIn(papers, y)
+          return (
+            <button
+              key={y}
+              type="button"
+              aria-pressed={on}
+              aria-label={`${y}${checked ? `, ${n} to skip` : ', not checked yet'}`}
+              onClick={() => onChange(subject, on ? null : y, exam)}
+              className={`flex flex-col items-center rounded-xl border px-2 py-2.5 transition-[background-color,border-color,transform] active:scale-[0.97] ${
+                on
+                  ? 'border-gray-900 dark:border-white bg-gray-900 dark:bg-white text-white dark:text-gray-900'
+                  : 'border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 text-gray-900 dark:text-white hover:-translate-y-0.5'
+              }`}
+            >
+              <span className="font-display text-base font-bold tabular-nums">{y}</span>
+              <span className={`text-[11px] font-semibold tabular-nums ${on ? 'opacity-75' : checked && n ? 'text-rose-600 dark:text-rose-400' : 'text-gray-400 dark:text-gray-500'}`}>
+                {!checked ? 'not checked' : n ? `${n} skip` : 'none'}
+              </span>
+            </button>
+          )
+        })}
+      </div>
+
       {year !== null && (
-        <div className="mt-4 border-t border-gray-100 dark:border-gray-800 pt-4" aria-live="polite">
-          <p className="font-display text-[15px] font-bold text-gray-900 dark:text-white mb-2.5">{title}</p>
+        <div key={`${year}-${exam}`} className="slide-up-in mt-6 border-t border-gray-100 dark:border-gray-800 pt-5" aria-live="polite">
+          <p className="font-display text-lg font-bold text-gray-900 dark:text-white mb-3">{title}</p>
           {!reviewed.has(year) ? (
-            <p className="text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-lg px-3 py-2.5">
+            <p className="text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-xl px-4 py-3">
               <b className="text-gray-800 dark:text-gray-100">This paper hasn’t been checked question by question yet.</b> Watch for the topics listed below.
             </p>
           ) : paper ? (
@@ -224,13 +237,20 @@ export default function ExamSkipGuide() {
     })
   }
 
+  const scrollToYear = (y: number) => document.getElementById(`y${y}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
   return (
-    <div className="max-w-4xl mx-auto px-5 sm:px-6 py-10">
-      {/* Header */}
-      <div className="flex flex-wrap items-end justify-between gap-4 mb-2">
-        <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
-          Past Exam Skip Guide
-        </h1>
+    <div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 sm:py-12">
+      {/* Header: the title, then the subject switch. */}
+      <div className="rise-in flex flex-wrap items-end justify-between gap-x-6 gap-y-4" style={stagger(0)}>
+        <div>
+          <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white tracking-[-0.03em]">
+            Past Exam Skip Guide
+          </h1>
+          <p className="mt-2 text-[15px] sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
+            What to skip when practising with 2014&ndash;2022 VCE papers, now that the study design has changed.
+          </p>
+        </div>
         <SegmentedControl
           size="md"
           aria-label="Subject"
@@ -251,97 +271,127 @@ export default function ExamSkipGuide() {
           }))}
         />
       </div>
-      <p className="text-[15px] text-gray-600 dark:text-gray-300 leading-relaxed mb-8 max-w-2xl">
-        What to skip when practicing with 2014&ndash;2022 VCE papers, now that the study design has changed.
-      </p>
 
-      {/* Study design context */}
-      <div className={`flex flex-wrap gap-x-8 gap-y-2 text-xs text-gray-500 dark:text-gray-400 ${guide.intro ? 'mb-3' : 'mb-8'}`}>
-        <span><span className="font-semibold text-gray-700 dark:text-gray-300">Current</span>&ensp;{guide.currentSD}</span>
-        <span><span className="font-semibold text-gray-700 dark:text-gray-300">2014&ndash;2022 papers used</span>&ensp;{guide.oldSD}</span>
+      {/* The change of study design, old papers to now. */}
+      <div className="rise-in mt-8 grid sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 sm:gap-4" style={stagger(1)}>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-100/70 dark:bg-gray-900/60 px-5 py-4">
+          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">2014&ndash;2022 papers used</p>
+          <p className="mt-0.5 font-display text-lg font-bold text-gray-700 dark:text-gray-300">{guide.oldSD}</p>
+        </div>
+        <span aria-hidden className="justify-self-center text-2xl text-gray-300 dark:text-gray-600 rotate-90 sm:rotate-0">→</span>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-5 py-4">
+          <p className="text-xs font-semibold text-blue-700 dark:text-blue-300">Current</p>
+          <p className="mt-0.5 font-display text-lg font-bold text-gray-900 dark:text-white">{guide.currentSD}</p>
+        </div>
       </div>
       {guide.intro && (
-        <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-8 max-w-2xl">{guide.intro}</p>
+        <p className="rise-in mt-5 text-[15px] text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl" style={stagger(2)}>{guide.intro}</p>
       )}
 
-      <PaperPicker
-        subject={subjectId}
-        year={pickedYear}
-        exam={pickedExam}
-        papers={papers}
-        reviewed={reviewed}
-        onChange={(s, y, e) => { if (s !== subjectId) setOpenTitles(new Set()); go(s, y, e) }}
-      />
-
-      {/* Topic list — collapsed to a title row by default; click to expand the full write-up
-          in place, so the list stays scannable even as more topics get added. */}
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 mb-14 overflow-hidden">
-        {guide.items.map((item, i) => {
-          const Icon = CONFIDENCE_ICON[item.confidence]
-          const isOpen = openTitles.has(item.title)
-          return (
-            <div key={item.title} className={i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}>
-              <button
-                onClick={() => toggleItem(item.title)}
-                aria-expanded={isOpen}
-                className="w-full flex items-center gap-3 px-4 py-3.5 text-left hover:bg-gray-50 dark:hover:bg-gray-800/60"
-              >
-                <span className={`flex-none ${CONFIDENCE_TEXT[item.confidence]}`}>
-                  <Icon className="w-[17px] h-[17px]" />
-                </span>
-                <span className="flex-1 min-w-0 text-[14px] font-semibold text-gray-900 dark:text-white leading-snug">
-                  {item.title}
-                </span>
-                <span className="flex-none text-[11px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
-                  {CONFIDENCE_LABEL[item.confidence].split(' — ')[0]}
-                </span>
-                <svg
-                  className={`flex-none w-3.5 h-3.5 text-gray-400 transition-transform ${isOpen ? 'rotate-90' : ''}`}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                >
-                  <path d="M9 6l6 6-6 6" />
-                </svg>
-              </button>
-              {isOpen && (
-                <div className="px-4 pb-4 pl-[42px]">
-                  <p className={`text-[11px] font-bold tracking-wide mb-2 ${CONFIDENCE_TEXT[item.confidence]}`}>
-                    {CONFIDENCE_LABEL[item.confidence]}
-                  </p>
-                  <RichText text={item.detail} className="text-[13px] text-gray-600 dark:text-gray-300 leading-relaxed" />
-                  {item.where && (
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2.5 pt-2.5 border-t border-gray-100 dark:border-gray-800">
-                      Typically appeared in &mdash; {item.where}
-                    </p>
-                  )}
-                </div>
-              )}
-            </div>
-          )
-        })}
+      <div className="mt-8">
+        <PaperPicker
+          subject={subjectId}
+          year={pickedYear}
+          exam={pickedExam}
+          papers={papers}
+          reviewed={reviewed}
+          onChange={(s, y, e) => { if (s !== subjectId) setOpenTitles(new Set()); go(s, y, e) }}
+        />
       </div>
 
-      {/* Question-by-question audit — timeline, one card per paper */}
+      {/* Topic list: collapsed to a title row by default; click to expand the full write-up
+          in place, so the list stays scannable even as more topics get added. */}
+      <Reveal>
+        <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">What changed</h2>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 mb-14 overflow-hidden">
+          {guide.items.map((item, i) => {
+            const Icon = CONFIDENCE_ICON[item.confidence]
+            const isOpen = openTitles.has(item.title)
+            return (
+              <div key={item.title} className={i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}>
+                <button
+                  onClick={() => toggleItem(item.title)}
+                  aria-expanded={isOpen}
+                  className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-gray-50 dark:hover:bg-gray-800/60"
+                >
+                  <span className={`flex-none ${CONFIDENCE_TEXT[item.confidence]}`}>
+                    <Icon className="w-[18px] h-[18px]" />
+                  </span>
+                  <span className="flex-1 min-w-0 text-[15px] font-semibold text-gray-900 dark:text-white leading-snug">
+                    {item.title}
+                  </span>
+                  <span className="flex-none text-[11px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                    {CONFIDENCE_LABEL[item.confidence].split(' — ')[0]}
+                  </span>
+                  <svg
+                    className={`flex-none w-3.5 h-3.5 text-gray-400 transition-transform ${isOpen ? 'rotate-90' : ''}`}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                  >
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
+                </button>
+                {isOpen && (
+                  <div className="slide-up-in px-5 pb-5 pl-[50px]">
+                    <p className={`text-[11px] font-bold tracking-wide mb-2 ${CONFIDENCE_TEXT[item.confidence]}`}>
+                      {CONFIDENCE_LABEL[item.confidence]}
+                    </p>
+                    <RichText text={item.detail} className="text-[14px] text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl" />
+                    {item.where && (
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-2.5 pt-2.5 border-t border-gray-100 dark:border-gray-800">
+                        Typically appeared in: {item.where}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      </Reveal>
+
+      {/* Question-by-question audit: a year rail on laptops (sticky, with counts), and each
+          year's papers side by side. */}
       <div className="mb-14">
-        <h2 className="font-display text-xl font-semibold text-gray-900 dark:text-white mb-8">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
           Question-by-question audit
         </h2>
 
         {years.length > 0 ? (
-          <div className="flex flex-col gap-9">
-            {years.map(year => (
-              <section key={year} id={`y${year}`} className="scroll-mt-6">
-                <h3 className="font-display text-[18px] font-bold text-gray-900 dark:text-white mb-2.5">{year}</h3>
-                <div className="flex flex-col gap-4">
-                  {papers.filter(p => p.year === year).map(p => (
-                    <PaperCard key={p.exam} paper={p} showExam={examsFor(subjectId).length > 1} />
-                  ))}
-                </div>
-              </section>
-            ))}
+          <div className="lg:grid lg:grid-cols-[9rem_minmax(0,1fr)] lg:gap-10">
+            <nav aria-label="Years" className="hidden lg:block">
+              <ul className="sticky top-6 flex flex-col gap-0.5">
+                {years.map(y => (
+                  <li key={y}>
+                    <button
+                      type="button"
+                      onClick={() => scrollToYear(y)}
+                      className="w-full flex items-baseline justify-between rounded-lg px-3 py-1.5 text-left hover:bg-gray-100 dark:hover:bg-gray-800/70 transition-colors"
+                    >
+                      <span className="font-display text-[15px] font-bold text-gray-900 dark:text-white tabular-nums">{y}</span>
+                      <span className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 tabular-nums">{skipsIn(papers, y)} skip</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <div className="flex flex-col gap-10">
+              {years.map(year => (
+                <Reveal key={year}>
+                  <section id={`y${year}`} className="scroll-mt-6">
+                    <h3 className="font-display text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-3 tabular-nums">{year}</h3>
+                    <div className="grid gap-4 xl:grid-cols-2 xl:items-start">
+                      {papers.filter(p => p.year === year).map(p => (
+                        <PaperCard key={p.exam} paper={p} showExam={examsFor(subjectId).length > 1} />
+                      ))}
+                    </div>
+                  </section>
+                </Reveal>
+              ))}
+            </div>
           </div>
         ) : (
           <p className="text-sm text-gray-500 dark:text-gray-400 italic">
