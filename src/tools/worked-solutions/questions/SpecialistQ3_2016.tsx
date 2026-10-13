@@ -16,7 +16,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{x^3-ax}{x^2} = \frac{x^3}{x^2}-\frac{ax}{x^2}" />,
-    reason: <>Split the fraction term by term before doing anything else — the whole question falls out of the simplified form.</>,
+    reason: <>The denominator is a single term, so divide each numerator term by <Katex tex="x^2" />. A polynomial part plus a fraction shows the asymptotes directly.</>,
   },
   {
     working: <Katex display tex="f(x) = x-\frac{a}{x}" />,
@@ -24,15 +24,26 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x\to0 \implies \frac{a}{x}\to\pm\infty" />,
-    reason: <>So <Katex tex="x=0" /> is a vertical asymptote. It is genuine, not a hole: the <Katex tex="x" /> in the numerator cancelled only one of the two in the denominator.</>,
+    reason: <>So <Katex tex="x=0" /> is a vertical asymptote (as <Katex tex="a\ne0" />).</>,
+    more: <>It is genuine, not a hole: the factor <Katex tex="x" /> in the numerator cancelled only one of the two in the denominator, so an <Katex tex="x" /> is left underneath. If <Katex tex="a" /> were <Katex tex="0" /> the function would just be <Katex tex="y=x" /> with a hole at the origin — that is why the question says <Katex tex="a" /> is non-zero.</>,
   },
   {
     working: <Katex display tex="x\to\pm\infty \implies \frac{a}{x}\to0 \implies f(x)\to x" />,
-    reason: <>The curve approaches the line <Katex tex="y=x" />, an <em>oblique</em> asymptote. Option B's <Katex tex="y=0" /> would need the whole function to die away, which it does not.</>,
+    reason: <>The difference <Katex tex="f(x)-x=-\tfrac{a}{x}" /> shrinks to <Katex tex="0" />, so the line <Katex tex="y=x" /> is an <em>oblique</em> asymptote.</>,
   },
   {
     working: <Katex display tex="\boxed{x=0 \text{ and } y=x \text{ only}}" />,
-    reason: <>Matches option <b>C</b>. Option A (12%) misses the oblique asymptote; option D treats <Katex tex="\pm\sqrt a" /> — the <Katex tex="x" />-intercepts, where <Katex tex="x^2=a" /> — as asymptotes, which is the opposite of what they are.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: (
+      <>
+        <b>A</b> (12%, the most common wrong answer) misses the oblique asymptote — a straight-line asymptote need not be horizontal.{' '}
+        <b>B</b>&rsquo;s <Katex tex="y=0" /> would need the whole function to die away as <Katex tex="x\to\pm\infty" />, but{' '}
+        <Katex tex="f(x)" /> grows like <Katex tex="x" />. <b>E</b>&rsquo;s <Katex tex="y=a" /> has no basis: the <Katex tex="a" /> term is{' '}
+        <Katex tex="\tfrac{a}{x}" />, which tends to <Katex tex="0" />, not <Katex tex="a" />. <b>D</b> treats{' '}
+        <Katex tex="x=\pm\sqrt a" /> as asymptotes, but these are the <Katex tex="x" />-intercepts (where <Katex tex="x^2=a" />, when{' '}
+        <Katex tex="a>0" />): <Katex tex="f(\pm\sqrt a)=0" />, a finite value — the opposite of an asymptote.
+      </>
+    ),
   },
 ]
 

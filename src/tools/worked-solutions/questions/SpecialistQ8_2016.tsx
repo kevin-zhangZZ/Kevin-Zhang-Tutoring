@@ -16,19 +16,20 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="u = x^4 \implies \frac{du}{dx} = 4x^3 \implies x^3\,dx = \frac{du}{4}" />,
-    reason: <>The exponent is <Katex tex="2x^4" />, so <Katex tex="u=x^4" /> is the substitution that tidies it — and conveniently the leftover <Katex tex="x^3" /> is exactly what the derivative supplies.</>,
+    reason: <>Choose <Katex tex="u=x^4" /> because its derivative, <Katex tex="4x^3" />, matches the <Katex tex="x^3" /> sitting outside the exponential — every option has <Katex tex="e^{2u}" /> or <Katex tex="e^u" />, so <Katex tex="u" /> is in the exponent.</>,
   },
   {
     working: <Katex display tex="x=a \implies u=a^4; \qquad x=b \implies u=b^4" />,
-    reason: <>Change the terminals too. Leaving them as <Katex tex="a" /> and <Katex tex="b" /> gives options A and C.</>,
+    reason: <>Change the terminals too. Leaving them as <Katex tex="a" /> and <Katex tex="b" /> is the slip in options A and C.</>,
   },
   {
     working: <Katex display tex="\int_a^b x^3e^{2x^4}\,dx = \int_{a^4}^{b^4} e^{2u}\cdot\frac{du}{4}" />,
-    reason: <>Substituting everything at once.</>,
+    reason: <>Replace <Katex tex="x^3\,dx" /> by <Katex tex="\tfrac{du}{4}" />, <Katex tex="x^4" /> by <Katex tex="u" />, and the terminals by their <Katex tex="u" />-values — no <Katex tex="x" /> may remain.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac14\int_{a^4}^{b^4} e^{2u}\,du}" />,
-    reason: <>Matches option <b>D</b>. Note the exponent stays <Katex tex="2u" /> — option E's <Katex tex="e^u" /> would need <Katex tex="u=2x^4" />, which changes the constant to <Katex tex="\tfrac18" /> and the terminals to <Katex tex="2a^4" /> and <Katex tex="2b^4" />, not <Katex tex="8a^3" />.</>,
+    reason: <>Matches option <b>D</b>: new terminals <Katex tex="a^4,\ b^4" />, the factor <Katex tex="\tfrac14" />, and the exponent still <Katex tex="2u" />.</>,
+    more: <>Each distractor gets at least one piece wrong. A (2%) keeps the old terminals and loses the <Katex tex="\tfrac14" />; B (5%) changes the terminals but loses the <Katex tex="\tfrac14" />. C (9%) and E (12%, the most popular wrong answer) come from <Katex tex="u=2x^4" />, where <Katex tex="du=8x^3\,dx" /> and the integral becomes <Katex tex="\tfrac18\int_{2a^4}^{2b^4} e^{u}\,du" />. C forgets to change the terminals; E substitutes <Katex tex="a" /> and <Katex tex="b" /> into <Katex tex="\tfrac{du}{dx}=8x^3" /> instead of into <Katex tex="u=2x^4" />. New terminals always come from the substitution itself: <Katex tex="x=a\implies u=a^4" />.</>,
   },
 ]
 

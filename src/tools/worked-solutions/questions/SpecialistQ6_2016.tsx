@@ -36,38 +36,36 @@ const ROWS: WorkingRow[] = [
     reason: <>A quick sketch first (the paper gives none): plot each point from its modulus and argument.</>,
   },
   {
-    working: <Katex display tex="z_3 = 2\,\mathrm{cis}\!\left(\tfrac{\pi}{3}+\pi\right) = -z_1, \qquad z_4 = \mathrm{cis}\!\left(\tfrac{3\pi}{4}+\pi\right) = -z_2" />,
-    reason: (
-      <>
-        Each point is the opposite of another: same modulus, argument shifted by <Katex tex="\pi" />. So the
-        parallelogram is centred at the origin and its diagonals are the segments <Katex tex="z_1z_3" /> and{' '}
-        <Katex tex="z_2z_4" />, both passing through <Katex tex="O" />.
-      </>
-    ),
+    working: <Katex display tex="\begin{aligned} z_3 &= 2\,\mathrm{cis}\!\left(-\tfrac{2\pi}{3}\right) = 2\,\mathrm{cis}\!\left(\tfrac{\pi}{3}-\pi\right) = -z_1 \\ z_4 &= \mathrm{cis}\!\left(-\tfrac{\pi}{4}\right) = \mathrm{cis}\!\left(\tfrac{3\pi}{4}-\pi\right) = -z_2 \end{aligned}" />,
+    reason: <>Each is its partner rotated by <Katex tex="\pi" /> (same modulus), so <Katex tex="z_3=-z_1" /> and <Katex tex="z_4=-z_2" />: the diagonals <Katex tex="z_1z_3" /> and <Katex tex="z_2z_4" /> pass through <Katex tex="O" />.</>,
+    more: <>Why these are the diagonals: going round by argument the order is <Katex tex="z_1, z_2, z_3, z_4" />, so <Katex tex="z_1" /> and <Katex tex="z_3" /> are opposite corners, as are <Katex tex="z_2" /> and <Katex tex="z_4" />. Rotating a point by <Katex tex="\pi" /> about the origin multiplies it by <Katex tex="\mathrm{cis}(\pi)=-1" />, so the diagonals bisect each other at <Katex tex="O" /> — the defining property of a parallelogram, centred at the origin.</>,
   },
   {
     working: <Katex display tex="|z_1| = |z_3| = 2, \qquad |z_2| = |z_4| = 1" />,
     reason: <>Every modulus lies between 1 and 2, so <b>E</b> is true.</>,
   },
   {
-    working: <Katex display tex="|z_1z_3| = 2|z_1| = 4, \qquad |z_2z_4| = 2|z_2| = 2" />,
-    reason: <>Each diagonal is twice the corresponding modulus, giving lengths 4 and 2 — <b>B</b> is true.</>,
+    working: <Katex display tex="\begin{aligned} |z_3-z_1| &= |{-2z_1}| = 2|z_1| = 4 \\ |z_4-z_2| &= |{-2z_2}| = 2|z_2| = 2 \end{aligned}" />,
+    reason: <>Each diagonal runs from a point through <Katex tex="O" /> to its opposite, so it is twice that modulus — <b>B</b> is true.</>,
   },
   {
-    working: <Katex display tex="\arg(z_1) - \arg(z_2) = \frac{\pi}{3} - \frac{3\pi}{4} = -\frac{5\pi}{12}" />,
-    reason: <>The diagonals lie along the directions of <Katex tex="z_1" /> and <Katex tex="z_2" />, so the acute angle between them is <Katex tex="\tfrac{5\pi}{12}" /> — <b>A</b> is true.</>,
+    working: <Katex display tex="\begin{aligned} &\left|\arg(z_2) - \arg(z_1)\right| \\ &= \frac{3\pi}{4} - \frac{\pi}{3} = \frac{5\pi}{12} \end{aligned}" />,
+    reason: <>The diagonals lie along the directions of <Katex tex="z_1" /> and <Katex tex="z_2" />, so the angle between them is the gap in arguments, <Katex tex="\tfrac{5\pi}{12}" /> — acute, so <b>A</b> is true.</>,
+    more: <>Two lines crossing make two angles, <Katex tex="\theta" /> and <Katex tex="\pi-\theta" />. Here <Katex tex="\tfrac{5\pi}{12}" /> (75°) is less than <Katex tex="\tfrac{\pi}{2}" />, so it is the acute one; the other is <Katex tex="\tfrac{7\pi}{12}" />.</>,
   },
   {
-    working: <Katex display tex="z_1+z_2+z_3+z_4 = z_1+z_2+(-z_1)+(-z_2) = 0" />,
+    working: <Katex display tex="\begin{aligned} &z_1+z_2+z_3+z_4 \\ &= z_1+z_2+(-z_1)+(-z_2) = 0 \end{aligned}" />,
     reason: <>The opposite pairs cancel, so <b>D</b> is true.</>,
   },
   {
-    working: <Katex display tex="|z_1z_2z_3z_4| = |z_1||z_2||z_3||z_4| = 2\times1\times2\times1 = 4 \ne 0" />,
-    reason: <>The modulus of a product is the product of the moduli. None of the four is zero, so their product cannot be zero.</>,
+    working: <Katex display tex="\begin{aligned} |z_1z_2z_3z_4| &= |z_1||z_2||z_3||z_4| \\ &= 2\times1\times2\times1 = 4 \ne 0 \end{aligned}" />,
+    reason: <>The modulus of a product is the product of the moduli. A product of complex numbers is zero only if a factor is zero.</>,
+    more: <>This is the examiner's comment. In fact <Katex tex="z_1z_2z_3z_4=4\,\mathrm{cis}\!\left(\tfrac{\pi}{6}\right)" /> (multiply moduli, add arguments), but you only need its modulus to see it is not zero.</>,
   },
   {
     working: <Katex display tex="\boxed{z_1z_2z_3z_4 \ne 0}" />,
-    reason: <>Matches option <b>C</b> — the one statement that is not true. A product of complex numbers is zero only if one of the factors is zero, and here every modulus is <Katex tex="1" /> or <Katex tex="2" />.</>,
+    reason: <>Matches option <b>C</b> — the one statement that is not true.</>,
+    more: <>The question asks for the false statement, so the work is checking each option in turn; every wrong answer is a true statement judged false. D (15%) was the most popular: perhaps students expected the sum, like the product, to be non-zero — but as vectors <Katex tex="z_1" /> and <Katex tex="z_3" /> point in exactly opposite directions with equal length, as do <Katex tex="z_2" /> and <Katex tex="z_4" />, so the sum cancels to <Katex tex="0" />. B (13%): 4 and 2 are the diagonals, not the sides — the sides <Katex tex="|z_2-z_1|\approx1.99" /> and <Katex tex="|z_3-z_2|\approx2.46" /> are something else entirely. A (7%): <Katex tex="\tfrac{5\pi}{12}" /> (75°) really is the acute angle, as found above. E (8%): the inequality includes its endpoints, so moduli of exactly 1 and 2 satisfy it.</>,
   },
 ]
 
@@ -79,7 +77,7 @@ export default function SpecialistQ6_2016() {
           <p className="mb-2">The points corresponding to the four complex numbers</p>
           <Katex
             display
-            tex="z_1 = 2\,\mathrm{cis}\!\left(\dfrac{\pi}{3}\right), \quad z_2 = \mathrm{cis}\!\left(\dfrac{3\pi}{4}\right), \quad z_3 = 2\,\mathrm{cis}\!\left(-\dfrac{2\pi}{3}\right), \quad z_4 = \mathrm{cis}\!\left(-\dfrac{\pi}{4}\right)"
+            tex="\begin{gathered} z_1 = 2\,\mathrm{cis}\!\left(\dfrac{\pi}{3}\right), \quad z_2 = \mathrm{cis}\!\left(\dfrac{3\pi}{4}\right), \\ z_3 = 2\,\mathrm{cis}\!\left(-\dfrac{2\pi}{3}\right), \quad z_4 = \mathrm{cis}\!\left(-\dfrac{\pi}{4}\right) \end{gathered}"
             className="my-2"
           />
           <p>

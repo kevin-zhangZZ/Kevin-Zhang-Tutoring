@@ -22,23 +22,35 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="a = v\frac{dv}{dx}" />,
-    reason: <>Velocity is given as a function of <Katex tex="x" />, so this is the form of acceleration to use — no <Katex tex="t" /> appears anywhere in the question.</>,
+    reason: <>Velocity is given as a function of position <Katex tex="x" />, not time, so use this form of acceleration.</>,
+    more: <>Acceleration is <Katex tex="\tfrac{dv}{dt}" />, but with <Katex tex="v" /> in terms of <Katex tex="x" /> the chain rule gives <Katex tex="\tfrac{dv}{dt}=\tfrac{dv}{dx}\cdot\tfrac{dx}{dt}=v\tfrac{dv}{dx}" />.</>,
   },
   {
     working: <Katex display tex="v = 3-x^2 \implies \frac{dv}{dx} = -2x" />,
-    reason: <>Differentiating with respect to <Katex tex="x" />.</>,
+    reason: <>Differentiate with respect to <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="a = \left(3-x^2\right)(-2x) = 2x^3-6x" />,
-    reason: <>Expanding. Equivalently <Katex tex="\tfrac{d}{dx}\!\left(\tfrac12v^2\right)=\tfrac{d}{dx}\!\left(\tfrac12(3-x^2)^2\right)" />, which gives the same thing.</>,
+    reason: <>Multiply by <Katex tex="v" /> and expand.</>,
+    more: <>The examiners' version, <Katex tex="a=\tfrac{d}{dx}\!\left(\tfrac12v^2\right)=\tfrac{d}{dx}\!\left(\tfrac12(3-x^2)^2\right)" />, is the same formula written another way and gives the same result.</>,
   },
   {
     working: <Katex display tex="F = ma = 3\left(2x^3-6x\right)" />,
-    reason: <>The one piece of mechanics in the question: force is mass times acceleration. Stopping at the acceleration lands on option C.</>,
+    reason: <>The question asks for force, not acceleration: force is mass times acceleration, with <Katex tex="m=3" /> kg.</>,
   },
   {
     working: <Katex display tex="\boxed{F = 6x^3-18x}" />,
-    reason: <>Matches option <b>D</b>. Option B (23%), <Katex tex="-6x" />, comes from using <Katex tex="\tfrac{dv}{dx}" /> as the acceleration and forgetting the factor of <Katex tex="v" />.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
+      <>
+        Option B (23%), <Katex tex="-6x" />, is <Katex tex="3\tfrac{dv}{dx}" />: the right mass
+        but <Katex tex="\tfrac{dv}{dx}" /> used as the acceleration, missing the factor of{' '}
+        <Katex tex="v" />. Option A, <Katex tex="-2x" />, is <Katex tex="\tfrac{dv}{dx}" /> alone.
+        Option C (11%) is the correct acceleration with the mass left out. Option E,{' '}
+        <Katex tex="9x-3x^3=3x\left(3-x^2\right)" />, is <Katex tex="3xv" />, which is not
+        an acceleration at all.
+      </>
+    ),
   },
 ]
 
@@ -62,8 +74,8 @@ export default function SpecialistQ15_2016() {
           <strong>On the mechanics.</strong> Force analysis is off the current study design,
           but this question needs only one substitution — force equals mass times
           acceleration — and everything else is the standard{' '}
-          <Katex tex="a=v\tfrac{dv}{dx}" /> conversion from velocity-as-a-function-of-
-          position to acceleration. The skip guide lists it as doable for that reason.
+          <Katex tex="a=v\tfrac{dv}{dx}" /> conversion from velocity in terms of position
+          to acceleration. The skip guide lists it as doable for that reason.
         </p>
       }
       options={[

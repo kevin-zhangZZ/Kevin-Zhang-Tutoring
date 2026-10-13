@@ -8,11 +8,19 @@
 // Parts d.i. and d.ii. (arc length from a Cartesian rule) are no longer on the study design —
 // the skip guide lists both — so their statements are shown, marked as such, with no worked
 // solution (KZ's decision, Sept 2026).
+//
+// Interactive (Oct 2026 review; only e. qualifies, 34% full marks): interactives/
+// spec-2016e2-q1e-terminals.tsx — a horizontal slice moves up the glass, showing the terminals are
+// the heights f(−0.5) = −33/4 and f(−3) = 14/3 of the arc's ends, with a toggle shading what
+// −3 to −0.5 used as y-terminals would cover. All values rechecked with sympy/scipy.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import graphSrc from './spec-2016e2-q1c-graph.png'
+import { Explore, lazyWidget } from '../Explore'
+
+const TerminalsWidget = lazyWidget(() => import('../interactives/spec-2016e2-q1e-terminals'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [7, 93],
@@ -72,23 +80,25 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{4}{x}+x+x^2" />,
-    reason: <>Splitting the fraction term by term makes both derivatives easy.</>,
+    reason: <>Divide each term by <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="f'(x) = -\frac{4}{x^2}+1+2x = \frac{2x^3+x^2-4}{x^2}" />,
-    reason: <>Over a common denominator, ready to set the numerator to zero.</>,
+    reason: <>A stationary point has <Katex tex="f'(x)=0" />. Over a common denominator, the fraction is zero only when its numerator is.</>,
   },
   {
     working: <Cas fn="solve">solve(2x³ + x² - 4 = 0, x)</Cas>,
-    reason: <>The cubic has one real root. A fraction is zero only when its numerator is.</>,
+    reason: <>The cubic has only one real root, so there is exactly one stationary point.</>,
   },
   {
     working: <Katex display tex="x \approx 1.1134 \implies f(x) \approx 5.9457" />,
-    reason: <>Keep the unrounded <Katex tex="x" /> when computing <Katex tex="y" /> — rounding first is the error the report flags in part (b).</>,
+    reason: <>Substitute the unrounded <Katex tex="x" /> into <Katex tex="f" />, then round once at the end.</>,
+    more: <>Rounding <Katex tex="x" /> first is the error the report flags in part b. It is a local minimum: <Katex tex="f''(x)=\tfrac{8}{x^3}+2" /> (part b) is positive at <Katex tex="x\approx1.11" />. That is the turning point to label in part c.</>,
   },
   {
     working: <Katex display tex="\boxed{(1.11,\ 5.95)}" />,
     reason: <>Two decimal places, in coordinate form as asked.</>,
+    more: <>The report notes a few students gave the point of inflection instead. A stationary point is where <Katex tex="f'(x)=0" /> (the graph is flat); an inflection is where the concavity changes, which is part b.</>,
   },
 ]
 
@@ -99,38 +109,49 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{8}{x^3}+2 = 0 \implies x^3 = -4 \implies x = -\sqrt[3]{4}" />,
-    reason: <>An exact value, about <Katex tex="-1.5874" />.</>,
+    reason: <>An inflection needs <Katex tex="f''(x)=0" />. Keep the exact root, about <Katex tex="-1.5874" />, for the next line.</>,
   },
   {
     working: <Katex display tex="f\!\left(-\sqrt[3]{4}\right) = \frac{4}{-\sqrt[3]{4}}-\sqrt[3]{4}+\sqrt[3]{16} = -\sqrt[3]{4}" />,
-    reason: <>The first and third terms are both <Katex tex="\sqrt[3]{16}" /> in magnitude and cancel — so the point lies exactly on the line <Katex tex="y=x" />, which is why both coordinates are the same.</>,
+    reason: <>Substitute the exact <Katex tex="x" />, not <Katex tex="-1.59" />. The first and third terms, <Katex tex="-\sqrt[3]{16}" /> and <Katex tex="+\sqrt[3]{16}" />, cancel.</>,
+    more: <>Since <Katex tex="\tfrac{4}{\sqrt[3]{4}}=\sqrt[3]{\tfrac{64}{4}}=\sqrt[3]{16}" />, and <Katex tex="\left(\sqrt[3]{4}\right)^2=\sqrt[3]{16}" />. So the point lies exactly on the line <Katex tex="y=x" />, which is why both coordinates are the same. On CAS, entering <Katex tex="f(-\sqrt[3]{4})" /> does this in one step.</>,
   },
   {
     working: <Katex display tex="f'' \text{ changes sign at } x=-\sqrt[3]{4}" />,
-    reason: <><Katex tex="\tfrac{8}{x^3}" /> passes through <Katex tex="-2" /> there and is continuous nearby, so the concavity really does flip. (At <Katex tex="x=0" /> the function is undefined, so that is not a candidate.)</>,
+    reason: <>For <Katex tex="x<-\sqrt[3]{4}" />, <Katex tex="f''>0" />; for <Katex tex="-\sqrt[3]{4}<x<0" />, <Katex tex="f''<0" />. The concavity flips, so it is a genuine inflection.</>,
+    more: <>Check with a value each side: <Katex tex="f''(-2)=-1+2=1>0" /> and <Katex tex="f''(-1)=-8+2=-6<0" />. <Katex tex="f''=0" /> alone is not enough, which is why this line is needed. At <Katex tex="x=0" /> the function is undefined, so that is not a candidate.</>,
   },
   {
     working: <Katex display tex="\boxed{(-1.59,\ -1.59)}" />,
-    reason: <>The report notes <Katex tex="-1.58" /> appearing as a <Katex tex="y" />-value, from substituting the already-rounded <Katex tex="-1.59" /> instead of the exact <Katex tex="-\sqrt[3]{4}" />.</>,
+    reason: <>Both coordinates to two decimal places, and both negative.</>,
+    more: <>The report's most common error was a <Katex tex="y" />-value of <Katex tex="-1.58" />: substituting the rounded <Katex tex="x=-1.59" /> gives <Katex tex="f(-1.59)\approx-1.5776" />, which rounds to <Katex tex="-1.58" />. Rounding happens once, at the end. The report also notes some students dropped the negative sign of <Katex tex="y" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x\in[-3,3]\setminus\{0\}" />,
-    reason: <>The rule is undefined at <Katex tex="x=0" />, so the graph has two separate branches. Drawing across the gap, or beyond <Katex tex="\pm3" />, costs marks.</>,
+    reason: <>The rule is undefined at <Katex tex="x=0" />, so the graph has two separate branches. Draw nothing across the gap or beyond <Katex tex="\pm3" />.</>,
+    more: <>The report says marks were lost for ignoring the domain. The domain <Katex tex="[-3,3]" /> is closed, so both ends are drawn as closed dots and the curve stops there.</>,
   },
   {
-    working: <Katex display tex="x\to0^- \implies f\to-\infty; \qquad x\to0^+ \implies f\to+\infty" />,
-    reason: <>The <Katex tex="\tfrac4x" /> term dominates near the origin and carries its sign.</>,
+    working: <Katex display tex="\begin{aligned} &x\to0^- \implies f\to-\infty \\ &x\to0^+ \implies f\to+\infty \end{aligned}" />,
+    reason: <>Near <Katex tex="x=0" /> the <Katex tex="\tfrac4x" /> term dominates and carries its sign, so <Katex tex="x=0" /> is a vertical asymptote.</>,
   },
   {
     working: <Katex display tex="f(-3) = \tfrac{14}{3}\approx4.67, \qquad f(3) = \tfrac{40}{3}\approx13.33" />,
-    reason: <>The two endpoints. The report notes marks lost for inaccurate endpoint placement — plot them carefully against the printed scale (the right-hand endpoint sits just below the top gridline, <Katex tex="y=14" />).</>,
+    reason: <>The two endpoints, computed so they can be plotted accurately against the printed scale.</>,
+    more: <>The report notes marks lost for inaccurate endpoint placement and advises using technology to support an accurate sketch, not copying a rough shape. Graph <Katex tex="f" /> on CAS with the same window as the printed axes (<Katex tex="x" /> from <Katex tex="-3" /> to <Katex tex="3" />, <Katex tex="y" /> from <Katex tex="-14" /> to <Katex tex="14" />), then plot the computed points: the right-hand endpoint sits just below the top gridline, <Katex tex="y=14" />.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned} &x<0:\ f'(x)<0,\ \ f(-2)=0 \\ &x>0:\ \text{minimum at } (1.11,5.95) \end{aligned}" />,
+    reason: <>For <Katex tex="x<0" /> the numerator of <Katex tex="f'" /> is negative, so the left branch falls; <Katex tex="f(-2)=\tfrac{4+4-8}{-2}=0" />. The right branch falls from <Katex tex="+\infty" /> and rises to <Katex tex="\tfrac{40}{3}" />, so its turning point is a minimum.</>,
+    more: <>For <Katex tex="x<0" /> the numerator of <Katex tex="f'" />, <Katex tex="2x^3+x^2-4=x^2(2x+1)-4" />, is always negative: for <Katex tex="x\le-\tfrac12" /> the term <Katex tex="x^2(2x+1)" /> is <Katex tex="\le0" />, and for <Katex tex="-\tfrac12<x<0" />, <Katex tex="x^2<\tfrac14" /> and <Katex tex="2x+1<1" />, so it is less than <Katex tex="\tfrac14" />. Either way it is below <Katex tex="4" />. So the left branch is decreasing. For the intercept, set the numerator of <Katex tex="f" />, <Katex tex="x^3+x^2+4" />, to zero and try the factors of <Katex tex="4" />: <Katex tex="x=-2" /> works, and <Katex tex="x^3+x^2+4=(x+2)(x^2-x+2)" />, where the quadratic has no real roots (discriminant <Katex tex="1-8<0" />). So <Katex tex="-2" /> is the only intercept. The left branch is concave up, then concave down after the inflection of part b.</>,
   },
   {
     working: <Katex display tex="\text{label } (1.11,5.95) \text{ and } (-1.59,-1.59)" />,
-    reason: <>The question asks explicitly for both, with coordinates.</>,
+    reason: <>The question asks explicitly for both, with coordinates, and each dot must sit at its true position on the grid.</>,
+    more: <>The report says students generally labelled these points but did not always plot them with appropriate accuracy: <Katex tex="(-1.59,-1.59)" /> sits just left of the gridline <Katex tex="x=-1.5" />, about a fifth of the way up from <Katex tex="y=-2" /> to <Katex tex="0" />.</>,
   },
 ]
 
@@ -139,19 +160,21 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_c^b x^2\,dy" />,
-    reason: <>Rotating about the <Katex tex="y" />-axis means slicing horizontally, so the radius is <Katex tex="x" /> and the variable of integration is <Katex tex="y" />. That fixes <Katex tex="a=\pi" />.</>,
+    reason: <>Rotating about the <Katex tex="y" />-axis means slicing horizontally: discs of radius <Katex tex="x" /> and thickness <Katex tex="dy" />, each of volume <Katex tex="\pi x^2\,dy" />. So <Katex tex="a=\pi" />.</>,
   },
   {
     working: <Katex display tex="y = f(-0.5) = -8-0.5+0.25 = -\frac{33}{4}" />,
-    reason: <>The lower terminal: the <Katex tex="y" />-value at one end of the rotated arc.</>,
+    reason: <>The terminals are heights, so convert each end of <Katex tex="x\in[-3,-0.5]" /> using <Katex tex="f" />. This is the bottom end, so it gives <Katex tex="c" />.</>,
+    more: <>Using <Katex tex="-3" /> and <Katex tex="-0.5" /> themselves as terminals is the natural slip: in a <Katex tex="dy" /> integral they would be read as heights, and cover only a band of the glass. Each end is safe to convert because <Katex tex="f'(x)<0" /> on <Katex tex="[-3,-0.5]" /> (part c): the arc falls steadily, so every height between the two ends meets it exactly once.</>,
   },
   {
     working: <Katex display tex="y = f(-3) = -\frac43-3+9 = \frac{14}{3}" />,
-    reason: <>The upper terminal.</>,
+    reason: <>The other end, the top of the glass, so the upper terminal <Katex tex="b" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a=\pi,\quad b=\frac{14}{3},\quad c=-\frac{33}{4}}" />,
-    reason: <>Exact values — the report says decimals for <Katex tex="b" /> lost the mark, since Section B requires exact answers unless told otherwise. Swapping <Katex tex="b" /> and <Katex tex="c" /> would need <Katex tex="a=-\pi" /> to compensate.</>,
+    reason: <>Exact values, as Section B requires unless told otherwise; <Katex tex="b" /> is the top of the glass, <Katex tex="c" /> the bottom.</>,
+    more: <>The report says a number of students gave a decimal for <Katex tex="b" />, which lost the mark: <Katex tex="4.67" /> is only an approximation to <Katex tex="\tfrac{14}{3}" />. Swapping <Katex tex="b" /> and <Katex tex="c" /> reverses the integral, <Katex tex="\int_{14/3}^{-33/4}=-\int_{-33/4}^{14/3}" />, so it is only correct with <Katex tex="a=-\pi" />, as the report says.</>,
   },
 ]
 
@@ -285,15 +308,14 @@ export default function SpecialistQ1_2016Exam2() {
           <p>
             About the <Katex tex="x" />-axis the slices are vertical and the formula is{' '}
             <Katex tex="\pi\int y^2\,dx" />. About the <Katex tex="y" />-axis they are
-            horizontal instead: the radius is <Katex tex="x" />, the thickness is{' '}
-            <Katex tex="dy" />, and the terminals are <Katex tex="y" />-values.
-          </p>
-          <p>
-            So the work here is entirely in converting the given <Katex tex="x" />-interval{' '}
-            <Katex tex="[-3,-0.5]" /> into the matching <Katex tex="y" />-interval.
+            horizontal instead, and the formula becomes <Katex tex="\pi\int x^2\,dy" />: the
+            roles of <Katex tex="x" /> and <Katex tex="y" /> swap, terminals included.
           </p>
         </Background>
         <WorkingTable rows={ROWS_E} />
+        <Explore title="The terminals are the heights of the arc's two ends, not −3 and −0.5">
+          <TerminalsWidget />
+        </Explore>
       </PartCard>
     </div>
   )

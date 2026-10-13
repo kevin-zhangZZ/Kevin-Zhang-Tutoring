@@ -19,24 +19,37 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\underset{\sim}{a}-\underset{\sim}{b} = (-2+m)\underset{\sim}{i}-2\underset{\sim}{j}+\underset{\sim}{k}" />,
-    reason: <>Component by component: <Katex tex="-2-(-m)=m-2" />, <Katex tex="-1-1=-2" />, <Katex tex="3-2=1" />.</>,
+    working: <Katex display tex="\underset{\sim}{a}-\underset{\sim}{b} = (m-2)\underset{\sim}{i}-2\underset{\sim}{j}+\underset{\sim}{k}" />,
+    reason: <>Subtract component by component: <Katex tex="-2-(-m)=m-2" />, <Katex tex="-1-1=-2" />, <Katex tex="3-2=1" />.</>,
   },
   {
     working: <Katex display tex="\left(\underset{\sim}{a}-\underset{\sim}{b}\right)\cdot\underset{\sim}{b} = 0" />,
-    reason: <>Perpendicular vectors have zero dot product.</>,
+    reason: <>Two non-zero vectors are perpendicular exactly when their dot product is zero.</>,
   },
   {
     working: <Katex display tex="(m-2)(-m)+(-2)(1)+(1)(2) = 0" />,
-    reason: <>Dotting with <Katex tex="\underset{\sim}{b}=-m\underset{\sim}{i}+\underset{\sim}{j}+2\underset{\sim}{k}" />.</>,
+    reason: <>Dot product: multiply matching components of <Katex tex="\underset{\sim}{a}-\underset{\sim}{b}" /> and <Katex tex="\underset{\sim}{b}=-m\underset{\sim}{i}+\underset{\sim}{j}+2\underset{\sim}{k}" />, then add.</>,
   },
   {
     working: <Katex display tex="-m^2+2m-2+2 = 0 \implies m(m-2) = 0" />,
-    reason: <>The constants cancel, leaving a factorisable quadratic — no formula needed.</>,
+    reason: <>The constants cancel; multiply by <Katex tex="-1" /> and factorise.</>,
   },
   {
     working: <Katex display tex="\boxed{m = 0 \text{ or } m = 2}" />,
-    reason: <>Matches option <b>C</b>. Both are valid: <Katex tex="m=0" /> is a genuine solution, not a degenerate one, since <Katex tex="\underset{\sim}{b}=\underset{\sim}{j}+2\underset{\sim}{k}" /> is still a non-zero vector. Options A and B each keep only one root.</>,
+    reason: <>Matches option <b>C</b> — both roots work.</>,
+    more: (
+      <>
+        <Katex tex="m=0" /> is a genuine solution, not a degenerate one: then{' '}
+        <Katex tex="\underset{\sim}{b}=\underset{\sim}{j}+2\underset{\sim}{k}" /> and{' '}
+        <Katex tex="\underset{\sim}{a}-\underset{\sim}{b}=-2\underset{\sim}{i}-2\underset{\sim}{j}+\underset{\sim}{k}" /> are both non-zero, and their dot product
+        is <Katex tex="0-2+2=0" />. Options A and B each keep only one root. Option E (11%)
+        comes from the double-negative slip <Katex tex="-2-m" /> (instead of <Katex tex="-2+m" />) in the first component, which gives{' '}
+        <Katex tex="m(m+2)=0" />. Option D, <Katex tex="4.5" />, comes from dotting{' '}
+        <Katex tex="\underset{\sim}{a}-\underset{\sim}{b}" /> with{' '}
+        <Katex tex="\underset{\sim}{a}" /> instead of <Katex tex="\underset{\sim}{b}" />:{' '}
+        <Katex tex="-2(m-2)+2+3=0" />.
+      </>
+    ),
   },
 ]
 

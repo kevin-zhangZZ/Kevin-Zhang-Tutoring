@@ -20,7 +20,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \mathrm{E}(S) &= 3(204) + 2(76) \\ &= 612+152 \\ &= 764 \end{aligned}" />,
-    reason: <>Expectation is linear, so it adds regardless of independence.</>,
+    reason: <>Means always add: three oranges at <Katex tex="204" /> g each and two lemons at <Katex tex="76" /> g each.</>,
+    more: <>Expectation is linear, so <Katex tex="\mathrm{E}(S)" /> is the sum of the five individual means whether or not the masses are independent. Independence is needed only for the variance in the next step.</>,
   },
   {
     working: (
@@ -29,7 +30,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= 3(9^2)+2(3^2) = 243+18 = 261" />
       </>
     ),
-    reason: <>For <em>independent</em> variables, variances add — but each orange contributes its own <Katex tex="\mathrm{Var}(O)=9^2" /> separately, which is <em>not</em> the same as <Katex tex="\mathrm{Var}(3\times\text{one orange})=3^2\times9^2" />.</>,
+    reason: <>The five masses are independent, so their <em>variances</em> add: one <Katex tex="9^2" /> for each orange and one <Katex tex="3^2" /> for each lemon.</>,
+    more: <>This is the report's note, <Katex tex="\mathrm{Var}(X_1+X_2+X_3)\ne\mathrm{Var}(3X)" />. Three <em>different</em> oranges vary independently, so a heavy one is often offset by a light one: the variance is <Katex tex="3\times9^2=243" />. <Katex tex="3X" /> is one orange's mass tripled, so its deviation from the mean is tripled too: <Katex tex="\mathrm{Var}(3X)=3^2\times9^2=729" />. Treating the set as <Katex tex="3O+2L" /> gives <Katex tex="729+36=765" /> and a standard deviation of <Katex tex="3\sqrt{85}" />, which is not an option. And it is variances that add, never standard deviations.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \mathrm{sd}(S) &= \sqrt{261} \\ &= \sqrt{9\times29} \\ &= 3\sqrt{29} \end{aligned}" />,
@@ -37,7 +39,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(S)=764, \ \mathrm{sd}(S) = 3\sqrt{29}}" />,
-    reason: <>Matches option <b>A</b>. Option C (22%), <Katex tex="\sqrt{33}" />, adds the standard deviations as if they were variances (<Katex tex="3\times9+2\times3=33" />); options B, D and E have the wrong mean, <Katex tex="636" />.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Option C (chosen by 22%) has the right mean but <Katex tex="\sqrt{33}" />: it adds the standard deviations as if they were variances, <Katex tex="3\times9+2\times3=33" />, then takes the square root. Options B, D and E all have mean <Katex tex="636=2(204)+3(76)" />, which swaps the numbers of oranges and lemons; B's <Katex tex="12=9+3" /> and E's <Katex tex="33" /> also add standard deviations directly, and D's <Katex tex="3\sqrt{10}=\sqrt{9^2+3^2}" /> adds one orange's and one lemon's variance, ignoring how many of each there are.</>,
   },
 ]
 

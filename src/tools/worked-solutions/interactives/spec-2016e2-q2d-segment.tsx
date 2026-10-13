@@ -112,7 +112,7 @@ export default function Segment() {
         <Label at={[-2.1, 0.32]} attach="w">−2</Label>
         <Label at={P2} attach="ne">1 + 3i</Label>
         {s.step === 0 && <Label at={[2.2, -1.2]} color={C.f}>major</Label>}
-        {s.step === 0 && <Label at={[-1.35, 2.35]} color={C.guide} attach="sw">minor</Label>}
+        {s.step === 0 && <Label at={[-1.35, 2.35]} color={C.ink} attach="sw">minor</Label>}
       </Plane>
       <Controls>
         <StepNav step={s.step} count={4} onBack={s.back} onNext={s.next} />

@@ -21,18 +21,21 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="3-2i \text{ is a root} \implies 3+2i \text{ is a root}" />,
     reason: <><Katex tex="b" /> and <Katex tex="c" /> are real, so non-real roots come in conjugate pairs.</>,
+    more: <>This is the examiner's one-line comment. The conjugate-root theorem needs <em>real</em> coefficients — that is why the question tells you <Katex tex="b" /> and <Katex tex="c" /> are real. With the conjugate you now know all three roots: <Katex tex="0" />, <Katex tex="3-2i" /> and <Katex tex="3+2i" />.</>,
   },
   {
     working: <Katex display tex="z^2+bz+c = \bigl(z-(3-2i)\bigr)\bigl(z-(3+2i)\bigr)" />,
-    reason: <>Those two roots account for the whole quadratic.</>,
+    reason: <>The quadratic has leading coefficient 1 and exactly these two roots, so it equals this product.</>,
   },
   {
     working: <Katex display tex="= z^2-6z+\left(9-4i^2\right) = z^2-6z+13" />,
-    reason: <>Sum of roots <Katex tex="6" />, product <Katex tex="(3-2i)(3+2i)=9+4=13" />.</>,
+    reason: <>Expand: the <Katex tex="i" /> terms cancel, and <Katex tex="i^2=-1" /> gives <Katex tex="9+4=13" />.</>,
+    more: <>Shortcut: a monic quadratic is <Katex tex="z^2-(\text{sum of roots})z+(\text{product of roots})" />. Here the sum is <Katex tex="6" /> and the product is <Katex tex="|3-2i|^2=13" />.</>,
   },
   {
     working: <Katex display tex="\boxed{b=-6,\ c=13}" />,
-    reason: <>Matches option <b>E</b>. Option A has the sign of <Katex tex="b" /> wrong — remember the coefficient of <Katex tex="z" /> is <em>minus</em> the sum of the roots.</>,
+    reason: <>Matches option <b>E</b>, reading <Katex tex="b" /> and <Katex tex="c" /> off <Katex tex="z^2+bz+c" />.</>,
+    more: <>Option A (8%) has the sign of <Katex tex="b" /> wrong — the coefficient of <Katex tex="z" /> is <em>minus</em> the sum of the roots. Options B and C (7%, 10%) just copy the real and imaginary parts of the root <Katex tex="3-2i" /> (C with both signs flipped); D is unrelated. Check E: <Katex tex="(3-2i)^2=5-12i" />, and <Katex tex="5-12i-6(3-2i)+13=0" /> ✓.</>,
   },
 ]
 

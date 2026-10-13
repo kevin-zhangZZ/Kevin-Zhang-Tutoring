@@ -16,11 +16,9 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
 }
 
-// Approximate points along the curve traced by eye from (0,-1), following the arrows already
-// drawn on the field. (These happen to be exactly what Euler's method with step size 0.5 —
-// matching the diagram's own grid — would also give, since "step along the local arrow,
-// re-read the new arrow, repeat" is precisely what tracing the field by eye means made
-// precise. Shown here only as a light numerical check, not as the primary method.)
+// Points along the curve traced from (0,-1): Euler's method with step 0.5 (the diagram's own
+// grid spacing), which is "follow the local arrow, re-read, repeat" made precise. Verified
+// against the exact solution y = 1 - x - 2e^(-x) (e.g. y(3.5) = -2.56; Euler gives -2.516).
 const STEPS: { x: number; y: number; yLabel: string }[] = [
   { x: 0, y: -1, yLabel: '−1' },
   { x: 0.5, y: -0.5, yLabel: '−0.5' },
@@ -56,7 +54,8 @@ const STEPS_TABLE = (
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dy}{dx} = -x-y" />,
-    reason: <>The slope at each point. At <Katex tex="(0,-1)" /> it is <Katex tex="+1" />, so the solution curve starts off rising. The quickest route on a multiple-choice question is to start at the given point and <b>follow the arrows already drawn</b> on the field (Euler's method with the field's own grid spacing, in effect).</>,
+    reason: <>Rearrange for the slope at any point. At <Katex tex="(0,-1)" /> it is <Katex tex="-0-(-1)=+1" />, so the solution curve starts off rising.</>,
+    more: <>The quickest route on a multiple-choice question is to start at the given point and <b>follow the arrows already drawn</b> on the field, stepping a little at a time and re-reading the slope at each new point — which is exactly Euler's method with a small step.</>,
   },
   {
     working: (
@@ -64,11 +63,15 @@ const ROWS: WorkingRow[] = [
         <DirectionFieldDiagram />
       </div>
     ),
-    reason: <>Starting at <Katex tex="(0,-1)" />, the local arrows point up-and-right — the curve climbs gently at first. Following the arrows further right, they swing around: by about <Katex tex="x\approx1" /> they're close to horizontal, and beyond that they tilt increasingly down-and-right. The curve turns over, flattens briefly, then descends — bending down more and more steeply as <Katex tex="x" /> grows, exactly as sketched here.</>,
+    reason: <>Following the arrows right from <Katex tex="(0,-1)" />, the curve rises briefly, levels off where <Katex tex="-x-y=0" />, then falls ever more steeply.</>,
+    more: <>The slope is zero on the line <Katex tex="y=-x" />, which this curve crosses near <Katex tex="x\approx0.7" />: that is its highest point. Past that point (above the line <Katex tex="y=-x" />) the slopes are negative and keep steepening, but never past <Katex tex="-1" />: the straight line <Katex tex="y=1-x" /> is itself a solution (its slope <Katex tex="-1" /> equals <Katex tex="-x-(1-x)" />), and our curve, which starts below it, bends towards it from below without crossing it.</>,
   },
   {
     working: STEPS_TABLE,
-    reason: <>Reading a few approximate coordinates off the sketched curve is enough to tell the five candidate points apart — no need to solve anything, just follow where the traced curve actually sits at each <Katex tex="x" />.</>,
+    reason: <>To put numbers on the traced curve, step along the arrows with the grid spacing <Katex tex="0.5" />: <Katex tex="y_{n+1}=y_n+0.5\left(-x_n-y_n\right)" /> (Euler's method).</>,
+    more: <>
+      For example, from <Katex tex="(0,-1)" /> the slope is <Katex tex="1" />, so <Katex tex="y(0.5)\approx-1+0.5(1)=-0.5" />. At <Katex tex="(0.5,-0.5)" /> the slope is <Katex tex="0" />, so <Katex tex="y(1)\approx-0.5" />. At <Katex tex="(1,-0.5)" /> the slope is <Katex tex="-0.5" />, so <Katex tex="y(1.5)\approx-0.75" />, and so on. These values are only approximate, but they are close enough to tell the five options apart.
+    </>,
   },
   {
     working: (
@@ -77,18 +80,22 @@ const ROWS: WorkingRow[] = [
         <br />
         D: at <Katex tex="x=2.5" />, the curve sits at <Katex tex="y\approx-1.56" />, not <Katex tex="-1" />.
         <br />
-        E: at <Katex tex="x=2.5" />, the curve sits at <Katex tex="y\approx-1.56" /> — not even the right sign for <Katex tex="+1" />.
+        E: at <Katex tex="x=2.5" />, the curve is below the <Katex tex="x" />-axis, nowhere near <Katex tex="+1" />.
       </>
     ),
-    reason: <>Each of these sits well away from the traced curve — ruled out.</>,
+    reason: <>Each of these is well away from the traced curve, so ruled out.</>,
   },
   {
-    working: <>C: following the arrows <em>backward</em> from <Katex tex="(0,-1)" /> instead, the curve drops away sharply — by <Katex tex="x=-1.5" /> it's already well below <Katex tex="-4" />, nowhere near <Katex tex="-2" />.</>,
-    reason: <>Ruled out.</>,
+    working: <>C: going left from <Katex tex="(0,-1)" />, <Katex tex="y(-0.5)\approx-1.5" />, <Katex tex="y(-1)\approx-2.5" />, <Katex tex="y(-1.5)\approx-4.25" />, nowhere near <Katex tex="-2" />.</>,
+    reason: <>Going left, positive slopes make the curve fall, and here they steepen (<Katex tex="2" />, then <Katex tex="3.5" />), so it drops below <Katex tex="-2" /> before <Katex tex="x=-1" />.</>,
+    more: <>Stepping left, Euler's method runs backwards: <Katex tex="y(x-0.5)\approx y(x)-0.5\times\text{slope}" />. From <Katex tex="(0,-1)" /> (slope <Katex tex="1" />) to <Katex tex="(-0.5,-1.5)" /> (slope <Katex tex="0.5+1.5=2" />) to <Katex tex="(-1,-2.5)" /> (slope <Katex tex="1+2.5=3.5" />) to <Katex tex="(-1.5,-4.25)" />. The true curve is lower still. C (14%) was the most popular wrong answer. Tracing left needs the same care as tracing right: below the line <Katex tex="y=-x" /> on the left the segments are steep, so the curve plunges.</>,
   },
   {
-    working: <Katex display tex="\boxed{y(3.5) \approx -2.52 \ \approx \ (3.5,\,-2.5)}" />,
-    reason: <>Matches option <b>B</b> — the only point lying on (or extrapolating smoothly along) the traced curve through <Katex tex="(0,-1)" />.</>,
+    working: <Katex display tex="y(3.5) \approx -2.52, \ \text{so } \boxed{(3.5,\,-2.5)}" />,
+    reason: <>Matches option <b>B</b> — the only option close to the traced curve through <Katex tex="(0,-1)" />.</>,
+    more: <>
+      A check you can do by hand: <Katex tex="y=1-x-2e^{-x}" /> satisfies the equation, since <Katex tex="\tfrac{dy}{dx}=-1+2e^{-x}" /> and <Katex tex="-x-y=-1+2e^{-x}" />, and it passes through <Katex tex="(0,-1)" />. It gives <Katex tex="y(3.5)\approx-2.56" />, so <Katex tex="(3.5,-2.5)" /> is very close to, though not exactly on, the solution: this question asks what a direction-field reading supports, and B is the only option within reach. The other options miss by <Katex tex="0.6" /> or more (exact <Katex tex="y" />-values: <Katex tex="-2.10" /> at <Katex tex="x=3" />, <Katex tex="-1.66" /> at <Katex tex="x=2.5" />, <Katex tex="-6.46" /> at <Katex tex="x=-1.5" />).
+    </>,
   },
 ]
 

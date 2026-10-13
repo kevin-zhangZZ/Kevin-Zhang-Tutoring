@@ -5,17 +5,18 @@
 // figures drawn on that same grid. Worked solutions below are original. Every answer re-derived
 // and checked with sympy (part d also by numerical integration of the segment); VCAA's report
 // and itute agree on all six parts (itute writes part d as 9(2 + 3π)/4, the same number).
-// Interactive diagrams (§15): part a. drags a point and compares its distances to 1 and −2 + 3i,
-// showing the perpendicular bisector (interactives/spec-2016e2-q2a-bisector.tsx); part d. builds
-// the major segment step by step from a three-quarter sector and a right-angled triangle, with the
-// circle-minus-minor-segment check (interactives/spec-2016e2-q2d-segment.tsx); part e. reads the
-// argument of a dragged point on the ray, past O and at O (interactives/spec-2016e2-q2e-ray.tsx);
-// part f. rotates the ray Arg(z) = απ and records on a number line which α meet the line
-// (interactives/spec-2016e2-q2f-rotate.tsx).
+// Interactive diagrams (§15.3, qualifying parts only: d 39%, e 34%, f 7% full marks): part d.
+// builds the major segment step by step from a three-quarter sector and a right-angled triangle,
+// with the circle-minus-minor-segment check (interactives/spec-2016e2-q2d-segment.tsx); part e.
+// reads the argument of a dragged point on the ray, past O and at O
+// (interactives/spec-2016e2-q2e-ray.tsx); part f. rotates the ray Arg(z) = απ and records on a
+// number line which α meet the line (interactives/spec-2016e2-q2f-rotate.tsx). Parts a-c do not
+// qualify (72/66/77% full marks), so the earlier part a bisector widget was unhooked; the
+// report's traps (former Common Mistake boxes) now live in the rows' `more`.
 // Parts a-c have no video walkthrough yet; the tutor will record and add these later.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import blankSrc from './spec-2016e2-q2c-blank-argand.png'
@@ -23,7 +24,6 @@ import sketchSrc from './spec-2016e2-q2c-sketch.png'
 import raySrc from './spec-2016e2-q2e-ray.png'
 import raysSrc from './spec-2016e2-q2f-rays.png'
 
-const BisectorWidget = lazyWidget(() => import('../interactives/spec-2016e2-q2a-bisector'))
 const SegmentWidget = lazyWidget(() => import('../interactives/spec-2016e2-q2d-segment'))
 const RayWidget = lazyWidget(() => import('../interactives/spec-2016e2-q2e-ray'))
 const RotateWidget = lazyWidget(() => import('../interactives/spec-2016e2-q2f-rotate'))
@@ -94,12 +94,19 @@ export default function SpecialistQ2_2016Exam2() {
       ),
       reason: (
         <>
-          Before any algebra, read the equation as distances. <Katex tex="|z-1|" /> is the distance from{' '}
+          Substitute <Katex tex="z=x+yi" /> and group each side into its real and imaginary parts, ready to take the
+          modulus of each.
+        </>
+      ),
+      more: (
+        <>
+          Before any algebra, it helps to read the equation as distances. <Katex tex="|z-1|" /> is the distance from{' '}
           <Katex tex="z" /> to the point <Katex tex="1" />, i.e. <Katex tex="(1,0)" />. Rewrite the other side as{' '}
           <Katex tex="|z-(-2+3i)|" />: the distance from <Katex tex="z" /> to <Katex tex="(-2,3)" />. So the equation
           describes every point the same distance from <Katex tex="(1,0)" /> and <Katex tex="(-2,3)" />, which is the
-          perpendicular bisector of the segment joining them. That is why it is a line. To find its equation,
-          substitute <Katex tex="z=x+yi" /> and collect the real and imaginary parts on each side.
+          perpendicular bisector of the segment joining them. That is why it is a line. The report says very few students
+          used this perpendicular bisector approach here, but it gives the quick check in the last row, and a way to draw
+          the line in part c even if the algebra goes wrong.
         </>
       ),
     },
@@ -107,11 +114,19 @@ export default function SpecialistQ2_2016Exam2() {
       working: <Katex display tex="(x-1)^2+y^2 = (x+2)^2+(y-3)^2" />,
       reason: (
         <>
-          <Katex tex="|a+bi|=\sqrt{a^2+b^2}" />, so both sides are square roots; squaring gets rid of them. Watch the
-          sign: the imaginary part of <Katex tex="z+2-3i" /> is <Katex tex="y-3" />, not <Katex tex="y+3" />.
+          <Katex tex="|a+bi|=\sqrt{a^2+b^2}" />, so both sides are square roots; squaring removes them. Careful: the
+          imaginary part of <Katex tex="z+2-3i" /> is <Katex tex="y-3" />, not <Katex tex="y+3" />.
         </>
       ),
-      more: <>See the common mistake below.</>,
+      more: (
+        <>
+          One sign slip here flips the gradient. Reading the imaginary part as <Katex tex="y+3" /> gives{' '}
+          <Katex tex="(x-1)^2+y^2=(x+2)^2+(y+3)^2" />, so <Katex tex="-6x-6y-12=0" /> and <Katex tex="y=-x-2" />: a
+          negative gradient, which the report says was the most common error. That equation is the set of points equally
+          far from <Katex tex="(1,0)" /> and <Katex tex="(-2,-3)" />, the wrong second point. Both checks in the last row
+          catch it straight away.
+        </>
+      ),
     },
     {
       working: (
@@ -131,11 +146,18 @@ export default function SpecialistQ2_2016Exam2() {
       working: <Katex display tex="\boxed{y = x + 2}" />,
       reason: (
         <>
-          Divide by <Katex tex="6" /> and make <Katex tex="y" /> the subject. Two quick checks. The midpoint of{' '}
-          <Katex tex="(1,0)" /> and <Katex tex="(-2,3)" />, <Katex tex="\left(-\tfrac12,\tfrac32\right)" />, is on it
-          (<Katex tex="-\tfrac12+2=\tfrac32" />). And the segment joining the two points has gradient{' '}
-          <Katex tex="\tfrac{3-0}{-2-1}=-1" />, so a line perpendicular to it has gradient <Katex tex="+1" />. The report
-          says the most common error was a negative gradient; the gradient check catches it.
+          Divide by <Katex tex="6" /> and make <Katex tex="y" /> the subject. Check: points equally far from{' '}
+          <Katex tex="(1,0)" /> and <Katex tex="(-2,3)" /> form the perpendicular bisector of the segment joining them
+          (gradient <Katex tex="-1" />), so the gradient must be <Katex tex="+1" />.
+        </>
+      ),
+      more: (
+        <>
+          The bisector crosses the segment at right angles. The segment has gradient{' '}
+          <Katex tex="\tfrac{3-0}{-2-1}=-1" />, so the line has gradient{' '}
+          <Katex tex="+1" />; a negative gradient (the report&apos;s most common error) must be wrong. It also passes
+          through the segment&apos;s midpoint <Katex tex="\left(-\tfrac12,\tfrac32\right)" />, and indeed{' '}
+          <Katex tex="-\tfrac12+2=\tfrac32" />.
         </>
       ),
     },
@@ -183,8 +205,13 @@ export default function SpecialistQ2_2016Exam2() {
       ),
       reason: (
         <>
-          Factorise. <Cas fn="solve" /> on the two equations together gives the same pair, but this quadratic is quick by
-          hand.
+          Factorise.
+        </>
+      ),
+      more: (
+        <>
+          On CAS, <Cas fn="solve" /> with the line and the circle entered together as a system gives the same pair, but
+          this quadratic is quick by hand.
         </>
       ),
     },
@@ -203,9 +230,9 @@ export default function SpecialistQ2_2016Exam2() {
       working: <Katex display tex="\boxed{z = -2 \ \text{ and } \ z = 1+3i}" />,
       reason: (
         <>
-          Check: both are 3 from the centre <Katex tex="1" />. <Katex tex="-2" /> is 3 to its left and{' '}
-          <Katex tex="1+3i" /> is 3 above it. VCAA writes them as the points <Katex tex="(-2,0)" /> and{' '}
-          <Katex tex="(1,3)" />; either form is fine in the complex plane.
+          Check: both are 3 from the centre <Katex tex="1" /> (<Katex tex="-2" /> is 3 to its left,{' '}
+          <Katex tex="1+3i" /> is 3 above it). As points, <Katex tex="(-2,0)" /> and <Katex tex="(1,3)" />; either form
+          is fine.
         </>
       ),
     },
@@ -222,12 +249,16 @@ export default function SpecialistQ2_2016Exam2() {
       ),
       reason: (
         <>
-          Mark the four easy points of the circle first, the centre <Katex tex="(1,0)" /> plus or minus 3 in each
-          direction, and draw a smooth circle through them (a compass helps). For the line you already know two exact
-          points on it, the intersections from part b. The report notes the line was not always placed accurately, so
-          rule it through those points, and extend it across the whole grid: it is a line, not a segment. If part a went
-          wrong, draw the perpendicular bisector of <Katex tex="1" /> and <Katex tex="-2+3i" /> instead; the report says
-          some students got a correct line that way.
+          Circle: mark the four points 3 units left, right, above and below the centre, and draw through them. Line:
+          rule it through the two part b intersections, across the whole grid.
+        </>
+      ),
+      more: (
+        <>
+          A compass helps with the circle. The report notes the line was not always placed with sufficient accuracy;
+          ruling it through two exact points you already know avoids that, and it must run edge to edge, since it is a
+          line, not a segment. If part a went wrong, draw the perpendicular bisector of <Katex tex="1" /> and{' '}
+          <Katex tex="-2+3i" /> instead; the report says some students got a correct line that way.
         </>
       ),
     },
@@ -260,13 +291,17 @@ export default function SpecialistQ2_2016Exam2() {
       ),
       reason: (
         <>
-          Start from the picture in part c. The chord joins the two intersection points from part b. What decides a
-          segment&apos;s area is the angle the chord makes at the centre, so join the centre to each end. One radius
-          points straight left, the other straight up. They are perpendicular, so the chord cuts off exactly a quarter
-          of the circle&apos;s angle.
+          Join the centre to each end of the chord (the part b points). One radius points straight left, the other
+          straight up, so they meet at a right angle.
         </>
       ),
-      more: <>Step through the diagram below.</>,
+      more: (
+        <>
+          Start from the picture in part c. What decides a segment&apos;s area is the angle the chord subtends at the
+          centre, so that is the first thing to find. Here it is exactly <Katex tex="\tfrac{\pi}{2}" />, a quarter of
+          the full turn, which is what makes this question quick. Step through the diagram below.
+        </>
+      ),
     },
     {
       working: (
@@ -277,9 +312,15 @@ export default function SpecialistQ2_2016Exam2() {
       ),
       reason: (
         <>
-          The major segment is the bigger piece, the one containing the centre. Its curved outline has no formula of
-          its own, so cut it along the two radii into shapes that do: the three-quarter sector outside the right angle,
-          plus the triangle between the radii and the chord. The report calls this the easiest route.
+          The major segment is the bigger piece, containing the centre. Cut it along the two radii: a three-quarter
+          sector plus the triangle between the radii and the chord.
+        </>
+      ),
+      more: (
+        <>
+          Sector and triangle both have area formulas; the segment as a whole does not. The report says a correct answer
+          was most easily found this way. It also notes that some students set up elaborate definite integrals, which
+          occasionally worked but was not an efficient approach.
         </>
       ),
     },
@@ -296,11 +337,25 @@ export default function SpecialistQ2_2016Exam2() {
       working: <Katex display tex="\boxed{\text{Area} = \dfrac{27\pi}{4} + \dfrac{9}{2} \text{ square units}}" />,
       reason: (
         <>
-          About <Katex tex="25.71" />: more than the three-quarter sector alone (<Katex tex="\tfrac{27\pi}{4}\approx21.21" />)
-          but less than the whole circle (<Katex tex="9\pi\approx28.27" />), as it must be. The other common route,
-          circle minus minor segment, gives <Katex tex="9\pi-\left(\tfrac{9\pi}{4}-\tfrac92\right)" />, the same answer;
-          so does the segment formula <Katex tex="\tfrac12r^2(\theta-\sin\theta)" /> with the reflex angle{' '}
-          <Katex tex="\theta=\tfrac{3\pi}{2}" />.
+          Check: about <Katex tex="25.71" />, more than the three-quarter sector alone (
+          <Katex tex="\tfrac{27\pi}{4}\approx21.21" />) but less than the whole circle (<Katex tex="9\pi\approx28.27" />).
+        </>
+      ),
+      more: (
+        <>
+          <p>
+            The other common route is circle minus minor segment. The minor segment is the quarter circle minus the
+            triangle, <Katex tex="\tfrac{9\pi}{4}-\tfrac92" />, and all of it must be subtracted:
+          </p>
+          <Katex display tex="9\pi-\left(\tfrac{9\pi}{4}-\tfrac92\right)=\tfrac{27\pi}{4}+\tfrac92." />
+          <p>
+            Dropping the bracket gives <Katex tex="\tfrac{27\pi}{4}-\tfrac92\approx16.71" />, smaller than the
+            three-quarter sector on its own, so the size check above catches it. The report notes that sign and
+            factorisation errors took some students from a correct approach to an incorrect final answer; this is one
+            such slip. The segment formula <Katex tex="\tfrac12r^2(\theta-\sin\theta)" /> with the reflex angle{' '}
+            <Katex tex="\theta=\tfrac{3\pi}{2}" /> also works: <Katex tex="\tfrac92\left(\tfrac{3\pi}{2}+1\right)" />,
+            the same answer.
+          </p>
         </>
       ),
     },
@@ -316,12 +371,16 @@ export default function SpecialistQ2_2016Exam2() {
       ),
       reason: (
         <>
-          <Katex tex="\mathrm{Arg}(z)" /> is the angle from the positive real axis round to the line from{' '}
-          <Katex tex="O" /> to <Katex tex="z" />: anticlockwise positive, clockwise negative. Every point in the
-          direction <Katex tex="-\tfrac{3\pi}{4}" /> has this argument, however far out, so the locus is a half-line
-          starting at <Katex tex="O" />, a ray. <Katex tex="-\tfrac{3\pi}{4}" /> is <Katex tex="135^\circ" /> clockwise,
-          into the third quadrant at <Katex tex="45^\circ" /> to both axes, so it passes through{' '}
-          <Katex tex="-1-i" />, <Katex tex="-2-2i" />, and so on.
+          <Katex tex="\mathrm{Arg}(z)" /> is the angle from the positive real axis to <Katex tex="z" />, clockwise
+          negative. Every point in the direction <Katex tex="-\tfrac{3\pi}{4}" /> (third quadrant, <Katex tex="45^\circ" />{' '}
+          to both axes) has it: a ray from <Katex tex="O" />.
+        </>
+      ),
+      more: (
+        <>
+          However far out a point is along that direction, its argument is still <Katex tex="-\tfrac{3\pi}{4}" />, so the
+          locus is a half-line starting at <Katex tex="O" />, through <Katex tex="-1-i" />, <Katex tex="-2-2i" />, and so
+          on. It is not the whole line <Katex tex="y=x" />.
         </>
       ),
     },
@@ -337,16 +396,25 @@ export default function SpecialistQ2_2016Exam2() {
       ),
       reason: (
         <>
-          Draw it from <Katex tex="O" /> to the edge of the grid. The origin itself is excluded:{' '}
-          <Katex tex="\mathrm{Arg}(0)" /> is undefined, since there is no direction from <Katex tex="O" /> to itself,
-          so mark it with an open circle. The report notes students who drew a line, or a ray that included or extended
-          past the origin. The other half of the line <Katex tex="y=x" /> has argument <Katex tex="\tfrac{\pi}{4}" />, not{' '}
-          <Katex tex="-\tfrac{3\pi}{4}" />.
+          Draw it from an open circle at <Katex tex="O" /> to the edge of the grid. <Katex tex="O" /> is excluded since{' '}
+          <Katex tex="\mathrm{Arg}(0)" /> is undefined; don&apos;t continue past <Katex tex="O" />.
         </>
       ),
       more: (
         <>
-          Drag the point through <Katex tex="O" /> in the diagram below to see it.
+          <p>
+            <Katex tex="\mathrm{Arg}(0)" /> is undefined because there is no direction from <Katex tex="O" /> to itself.
+            The report notes students who sketched a line, or a ray that included or extended past the origin.
+          </p>
+          <p>
+            One way to end up with a line is converting to <Katex tex="\tan" />:{' '}
+            <Katex tex="\tan\!\left(-\tfrac{3\pi}{4}\right)=1" />, so <Katex tex="\tfrac{y}{x}=1" />, i.e.{' '}
+            <Katex tex="y=x" />. But <Katex tex="\tan\theta=1" /> for <Katex tex="\theta=\tfrac{\pi}{4}" /> too, and the
+            first-quadrant half of <Katex tex="y=x" /> has argument <Katex tex="\tfrac{\pi}{4}" />, not{' '}
+            <Katex tex="-\tfrac{3\pi}{4}" />. <Katex tex="\tan" /> throws the quadrant away;{' '}
+            <Katex tex="\mathrm{Arg}(z)=-\tfrac{3\pi}{4}" /> needs <Katex tex="x<0" /> and <Katex tex="y<0" />. Drag the
+            point through <Katex tex="O" /> in the diagram below to see the argument jump.
+          </p>
         </>
       ),
     },
@@ -365,15 +433,19 @@ export default function SpecialistQ2_2016Exam2() {
       ),
       reason: (
         <>
-          Picture the ray swinging round <Katex tex="O" /> as <Katex tex="\alpha" /> changes. The line{' '}
-          <Katex tex="y=x+2" /> has gradient 1 and lies entirely above the parallel line through the
-          origin, <Katex tex="y=x" /> (dashed). A ray pointing into that upper side (shaded) must eventually cross{' '}
-          <Katex tex="y=x+2" />, as the example ray at <Katex tex="\tfrac{2\pi}{3}" /> does. A ray pointing below the
-          dashed line heads away and never meets it, and one pointing exactly along the dashed line (
-          <Katex tex="\theta=\tfrac{\pi}{4}" /> or <Katex tex="\theta=-\tfrac{3\pi}{4}" />) stays parallel to it forever.
+          <Katex tex="y=x+2" /> lies entirely above its parallel through <Katex tex="O" />, <Katex tex="y=x" /> (dashed).
+          A ray from <Katex tex="O" /> meets it only if it points above <Katex tex="y=x" /> (shaded).
         </>
       ),
-      more: <>Rotate the ray in the diagram below.</>,
+      more: (
+        <>
+          Picture the ray swinging round <Katex tex="O" /> as <Katex tex="\alpha" /> changes. A ray pointing into the
+          shaded side must eventually cross <Katex tex="y=x+2" />, as the example ray at{' '}
+          <Katex tex="\tfrac{2\pi}{3}" /> does. A ray pointing below the dashed line heads away and never meets it, and
+          one pointing exactly along the dashed line (<Katex tex="\tfrac{\pi}{4}" /> or{' '}
+          <Katex tex="-\tfrac{3\pi}{4}" />) stays parallel to it forever. Rotate the ray in the diagram below.
+        </>
+      ),
     },
     {
       working: (
@@ -384,10 +456,9 @@ export default function SpecialistQ2_2016Exam2() {
       ),
       reason: (
         <>
-          Now pin the boundary down with algebra. Let <Katex tex="\theta=\alpha\pi" />. A point on the ray is{' '}
-          <Katex tex="(t\cos\theta, t\sin\theta)" /> with <Katex tex="t>0" /> (<Katex tex="t" /> is its distance from{' '}
-          <Katex tex="O" />, and <Katex tex="O" /> itself is excluded). Substitute into <Katex tex="y=x+2" /> and solve
-          for <Katex tex="t" />.
+          Now the algebra. Let <Katex tex="\theta=\alpha\pi" />. Points on the ray are{' '}
+          <Katex tex="(t\cos\theta, t\sin\theta)" />, <Katex tex="t>0" /> (the distance from <Katex tex="O" />).
+          Substitute into <Katex tex="y=x+2" />.
         </>
       ),
     },
@@ -395,11 +466,16 @@ export default function SpecialistQ2_2016Exam2() {
       working: <Katex display tex="t>0 \iff \sin\theta > \cos\theta" />,
       reason: (
         <>
-          The ray meets the line only if this <Katex tex="t" /> is positive; a negative <Katex tex="t" /> is behind{' '}
-          <Katex tex="O" />, on the opposite ray. On the unit circle, <Katex tex="(\cos\theta,\sin\theta)" /> is the
-          ray&apos;s direction, and <Katex tex="\sin\theta>\cos\theta" /> says that point is above the line{' '}
-          <Katex tex="y=x" />: the same condition as the picture. Equality, at <Katex tex="\theta=\tfrac{\pi}{4}" /> and{' '}
-          <Katex tex="-\tfrac{3\pi}{4}" />, is the parallel case, where no <Katex tex="t" /> works.
+          The meeting point is on the ray only if <Katex tex="t>0" />. If <Katex tex="\sin\theta=\cos\theta" />, no{' '}
+          <Katex tex="t" /> works: the ray is parallel.
+        </>
+      ),
+      more: (
+        <>
+          A negative <Katex tex="t" /> is behind <Katex tex="O" />, on the opposite ray. Geometrically,{' '}
+          <Katex tex="(\cos\theta,\sin\theta)" /> is the ray&apos;s direction on the unit circle, and{' '}
+          <Katex tex="\sin\theta>\cos\theta" /> says that point is above <Katex tex="y=x" />: the same condition as the
+          picture. Equality happens at <Katex tex="\theta=\tfrac{\pi}{4}" /> and <Katex tex="-\tfrac{3\pi}{4}" />.
         </>
       ),
     },
@@ -407,12 +483,18 @@ export default function SpecialistQ2_2016Exam2() {
       working: <Katex display tex="\theta \in \left(-\pi, -\tfrac{3\pi}{4}\right) \cup \left(\tfrac{\pi}{4}, \pi\right]" />,
       reason: (
         <>
-          Going anticlockwise, the unit-circle points above <Katex tex="y=x" /> run from <Katex tex="\tfrac{\pi}{4}" /> to{' '}
-          <Katex tex="\tfrac{5\pi}{4}" />. But <Katex tex="\theta" /> is a principal argument, in{' '}
-          <Katex tex="(-\pi,\pi]" />: keep <Katex tex="\left(\tfrac{\pi}{4},\pi\right]" />, and write the rest of the arc,
-          from <Katex tex="\pi" /> round to <Katex tex="\tfrac{5\pi}{4}" />, as <Katex tex="-\pi" /> to{' '}
-          <Katex tex="-\tfrac{3\pi}{4}" /> (subtract <Katex tex="2\pi" />). <Katex tex="-\pi" /> is left out, because a
-          principal argument is never <Katex tex="-\pi" />.
+          <Katex tex="\sin\theta>\cos\theta" /> from <Katex tex="\tfrac{\pi}{4}" /> round to{' '}
+          <Katex tex="\tfrac{5\pi}{4}" />. <Katex tex="\mathrm{Arg}" /> lies in <Katex tex="(-\pi,\pi]" />, so write{' '}
+          <Katex tex="\pi" /> to <Katex tex="\tfrac{5\pi}{4}" /> as <Katex tex="-\pi" /> to{' '}
+          <Katex tex="-\tfrac{3\pi}{4}" />, excluding <Katex tex="-\pi" />.
+        </>
+      ),
+      more: (
+        <>
+          Subtracting <Katex tex="2\pi" /> turns <Katex tex="\left(\pi,\tfrac{5\pi}{4}\right)" /> into{' '}
+          <Katex tex="\left(-\pi,-\tfrac{3\pi}{4}\right)" />. The direction <Katex tex="\pi" /> itself (the negative real
+          axis, which meets the line at <Katex tex="-2" />) is kept once, at the top end of{' '}
+          <Katex tex="\left(\tfrac{\pi}{4},\pi\right]" />; the principal argument is never <Katex tex="-\pi" />.
         </>
       ),
     },
@@ -420,11 +502,19 @@ export default function SpecialistQ2_2016Exam2() {
       working: <Katex display tex="\boxed{\alpha \in \left(-1, -\tfrac{3}{4}\right) \cup \left(\tfrac{1}{4}, 1\right]}" />,
       reason: (
         <>
-          Divide by <Katex tex="\pi" />, since <Katex tex="\theta = \alpha\pi" />. The question asks for{' '}
-          <Katex tex="\alpha" />, so the answer has no <Katex tex="\pi" /> in it; the report says answers containing
-          multiples of <Katex tex="\pi" /> were common. <Katex tex="\alpha=1" /> (the ray along the negative real axis,
-          through <Katex tex="-2" />) is included. <Katex tex="\alpha=-1" /> is not, since{' '}
-          <Katex tex="\mathrm{Arg}(z)=-\pi" /> is impossible; including it was the other common error the report lists.
+          Divide by <Katex tex="\pi" />, since <Katex tex="\theta = \alpha\pi" />: the question asks for{' '}
+          <Katex tex="\alpha" />, so no <Katex tex="\pi" /> in the answer. <Katex tex="\alpha=1" /> is included;{' '}
+          <Katex tex="\alpha=-1" /> is not.
+        </>
+      ),
+      more: (
+        <>
+          The report lists two common incorrect answers. Answers containing multiples of <Katex tex="\pi" />{' '}
+          give the right directions, but as values of the angle <Katex tex="\theta" />, not of <Katex tex="\alpha" />.
+          Including <Katex tex="\alpha=-1" /> treats <Katex tex="\mathrm{Arg}(z)=-\pi" /> as a ray, but no complex number
+          has principal argument <Katex tex="-\pi" />: the left-pointing ray through <Katex tex="-2" /> is{' '}
+          <Katex tex="\alpha=1" />, already counted. The report also notes that some students did not note that the
+          principal value of the argument was used in the question.
         </>
       ),
     },
@@ -440,26 +530,6 @@ export default function SpecialistQ2_2016Exam2() {
 
       <PartCard letter="a" topic="Line Locus" marks={2} statement={<>Find the equation of this line in the form <Katex tex="y = mx + c" />.</>} examinerReport={EXAMINER_A}>
         <WorkingTable rows={rowsA} />
-        <Explore title="Why |z − 1| = |z + 2 − 3i| is a line: its points are the same distance from 1 and −2 + 3i">
-          <BisectorWidget />
-        </Explore>
-        <WrongMethod
-          title="Read the imaginary part of z + 2 − 3i as y + 3"
-          source="Report: negative gradient"
-          working={
-            <>
-              <Katex display tex="(x-1)^2+y^2 = (x+2)^2+(y+3)^2" />
-              <Katex display tex="\implies -6x-6y-12=0 \implies y=-x-2" />
-            </>
-          }
-        >
-          One sign slip and the gradient flips. <Katex tex="z+2-3i=(x+2)+(y-3)i" />, so the second distance is to{' '}
-          <Katex tex="(-2,3)" />, not <Katex tex="(-2,-3)" />. The report says the most common error was a negative
-          gradient, and this is one way to get one. Both checks catch it straight away: the midpoint{' '}
-          <Katex tex="\left(-\tfrac12,\tfrac32\right)" /> is not on <Katex tex="y=-x-2" />, and a line of equal distances
-          has to cross the segment from <Katex tex="(1,0)" /> to <Katex tex="(-2,3)" /> (gradient <Katex tex="-1" />) at
-          right angles, so its gradient must be <Katex tex="+1" />.
-        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -502,18 +572,6 @@ export default function SpecialistQ2_2016Exam2() {
         <Explore title="The major segment is three-quarters of the circle plus a right-angled triangle">
           <SegmentWidget />
         </Explore>
-        <WrongMethod
-          title="Circle minus minor segment, without the bracket"
-          source="Report: sign errors"
-          working={<Katex display tex="9\pi-\frac{9\pi}{4}-\frac92 = \frac{27\pi}{4}-\frac92 \approx 16.71" />}
-        >
-          The minor segment is the quarter circle minus the triangle, <Katex tex="\tfrac{9\pi}{4}-\tfrac92" />, and all
-          of it must be subtracted: <Katex tex="9\pi-\left(\tfrac{9\pi}{4}-\tfrac92\right)=\tfrac{27\pi}{4}+\tfrac92" />.
-          Dropping the bracket subtracts the triangle instead of adding it back. The report notes that sign errors took
-          some students from a correct approach to an incorrect final answer; this is one such slip. A size check catches
-          it: the major segment contains the whole three-quarter sector, so it must be more than{' '}
-          <Katex tex="\tfrac{27\pi}{4}\approx21.21" />.
-        </WrongMethod>
       </PartCard>
 
       <PartCard letter="e" topic="Ray Locus" marks={1} statement={<>Sketch the ray given by <Katex tex="\mathrm{Arg}(z) = -\dfrac{3\pi}{4}" /> on the Argand diagram in <b>part c.</b></>} examinerReport={EXAMINER_E} videoSrc={VIDEO.e}>
@@ -521,18 +579,6 @@ export default function SpecialistQ2_2016Exam2() {
         <Explore title="Why Arg(z) = −3π/4 is a ray that stops at an open circle at O, not a line">
           <RayWidget />
         </Explore>
-        <WrongMethod
-          title="Turn the argument into tan θ = y/x"
-          source="Examiner's report"
-          working={<Katex display tex="\tan\!\left(-\tfrac{3\pi}{4}\right)=1 \implies \frac{y}{x}=1 \implies y=x" />}
-        >
-          <Katex tex="\tan\theta=1" /> for <Katex tex="\theta=\tfrac{\pi}{4}" /> as well as{' '}
-          <Katex tex="-\tfrac{3\pi}{4}" />, so <Katex tex="y=x" /> also contains the first-quadrant half, whose argument
-          is <Katex tex="\tfrac{\pi}{4}" />. Using <Katex tex="\tan" /> throws the quadrant away, and you end up drawing a
-          line, which the report notes some students did. <Katex tex="\mathrm{Arg}(z)=-\tfrac{3\pi}{4}" /> needs{' '}
-          <Katex tex="x<0" /> and <Katex tex="y<0" />: only the third-quadrant half, starting at an open circle at{' '}
-          <Katex tex="O" />.
-        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -551,37 +597,13 @@ export default function SpecialistQ2_2016Exam2() {
           </p>
           <p>
             <Katex tex="\mathrm{Arg}" /> is the <em>principal</em> argument, which always lies in{' '}
-            <Katex tex="(-\pi,\pi]" />. So only <Katex tex="-1<\alpha\le1" /> gives a ray at all:{' '}
-            <Katex tex="\alpha=1" /> gives <Katex tex="\mathrm{Arg}(z)=\pi" />, but <Katex tex="\alpha=-1" /> would need{' '}
-            <Katex tex="\mathrm{Arg}(z)=-\pi" />, which no complex number has. The answer is a set of values of{' '}
-            <Katex tex="\alpha" />: plain numbers, not angles, so no <Katex tex="\pi" /> appears in it.
+            <Katex tex="(-\pi,\pi]" />. So only <Katex tex="-1<\alpha\le1" /> gives a ray at all.
           </p>
         </Background>
         <WorkingTable rows={rowsF} />
         <Explore title="Rotate the ray: it meets y = x + 2 only when it points above the parallel line y = x">
           <RotateWidget />
         </Explore>
-        <WrongMethod
-          title="Give the range of the angle instead of α"
-          source="Examiner's report"
-          working={<Katex display tex="\left(-\pi,-\tfrac{3\pi}{4}\right)\cup\left(\tfrac{\pi}{4},\pi\right]" />}
-        >
-          These are the right directions, but they are values of <Katex tex="\theta=\alpha\pi" />, the angle. The
-          question asks for <Katex tex="\alpha" />, so divide every endpoint by <Katex tex="\pi" />. The report says
-          answers containing multiples of <Katex tex="\pi" /> were common.
-        </WrongMethod>
-        <WrongMethod
-          title="Include α = −1, since the ray pointing left does hit the line"
-          source="Examiner's report"
-          working={<Katex display tex="\alpha\in\left[-1,-\tfrac34\right)\cup\left(\tfrac14,1\right]" />}
-        >
-          The ray pointing left, along the negative real axis, does meet the line at <Katex tex="-2" />. But every point
-          on it has principal argument <Katex tex="\pi" />, not <Katex tex="-\pi" />, because <Katex tex="\mathrm{Arg}" />{' '}
-          only takes values in <Katex tex="(-\pi,\pi]" />. So <Katex tex="\mathrm{Arg}(z)=-\pi" /> has no solutions and{' '}
-          <Katex tex="\alpha=-1" /> gives no ray at all; that direction is already counted once, as{' '}
-          <Katex tex="\alpha=1" />. The report lists including <Katex tex="\alpha=-1" /> as a common error, and notes
-          that some students did not use the principal value of the argument.
-        </WrongMethod>
       </PartCard>
     </div>
   )

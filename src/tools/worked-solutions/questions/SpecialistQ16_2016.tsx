@@ -17,28 +17,43 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="u_x = 20\cos(30^\circ) = 10\sqrt3, \qquad u_y = 20\sin(30^\circ) = 10" />,
-    reason: <>Split the initial velocity into components. Exact values throughout — every option is exact.</>,
+    working: <Katex display tex="\begin{aligned}u_x &= 20\cos(30^\circ) = 10\sqrt3 \\ u_y &= 20\sin(30^\circ) = 10\end{aligned}" />,
+    reason: <>Split the initial velocity into horizontal and vertical components. Keep exact values — every option is exact.</>,
   },
   {
     working: <Katex display tex="\text{vertical: } y = 10t-\tfrac12gt^2" />,
-    reason: <>Gravity acts downwards only, so the vertical motion is constant acceleration <Katex tex="-g" />.</>,
+    reason: <>Gravity acts only vertically, so the vertical motion has constant acceleration <Katex tex="-g" />: <Katex tex="y=u_yt-\tfrac12gt^2" />.</>,
   },
   {
     working: <Katex display tex="y = 0 \implies t\left(10-\tfrac{g}{2}t\right) = 0 \implies t = \frac{20}{g}" />,
-    reason: <>The ball lands when it returns to ground level. <Katex tex="t=0" /> is the launch.</>,
+    reason: <>The ball lands when it is back at ground level; <Katex tex="t=0" /> is the launch, so take the other root.</>,
+    more: <>This flight time is option B (7%) — a time in seconds, not a distance.</>,
   },
   {
     working: <Katex display tex="\text{horizontal: } x = 10\sqrt3\,t" />,
-    reason: <>No horizontal force, so constant horizontal velocity. This independence of the two directions is the whole method.</>,
+    reason: <>No horizontal force, so the horizontal velocity stays <Katex tex="10\sqrt3" /> the whole flight.</>,
   },
   {
     working: <Katex display tex="x = 10\sqrt3\times\frac{20}{g}" />,
-    reason: <>Substituting the flight time.</>,
+    reason: <>Substitute the flight time into the horizontal distance.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{200\sqrt3}{g}}" />,
-    reason: <>Matches option <b>D</b>, about <Katex tex="35.4" /> m — a plausible hit. Option C (28%) halves it, which is the distance to the highest point rather than the full range.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
+      <>
+        Check: with <Katex tex="g=9.8" /> this is about <Katex tex="35.3" /> m, a plausible
+        hit. Option C (28%), <Katex tex="\tfrac{100\sqrt3}{g}" />, is exactly half the
+        range: the horizontal distance to the highest point, reached at{' '}
+        <Katex tex="t=\tfrac{10}{g}" /> when the vertical velocity is zero.
+        Option A (14%),{' '}
+        <Katex tex="\tfrac{10\sqrt3}{g}=\tfrac{20\sin(60^\circ)}{g}" />, is the remembered
+        range formula <Katex tex="\tfrac{u^2\sin(2\theta)}{g}" /> with <Katex tex="u" /> not
+        squared; a speed divided by <Katex tex="g" /> is a time, not a distance. Option E,{' '}
+        <Katex tex="\tfrac{400}{g}=\tfrac{20^2}{g}" />, would be the range for a{' '}
+        <Katex tex="45^\circ" /> launch, not <Katex tex="30^\circ" />.
+      </>
+    ),
   },
 ]
 

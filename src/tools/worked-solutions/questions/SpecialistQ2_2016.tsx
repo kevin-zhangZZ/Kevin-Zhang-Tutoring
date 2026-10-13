@@ -20,11 +20,20 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-b\le x-a\le b" />,
-    reason: <>Multiplying through by <Katex tex="b" />. Because <Katex tex="b>0" /> is given, the inequality signs do not flip — that condition is in the question for exactly this reason.</>,
+    reason: <>Multiply through by <Katex tex="b" />. Because <Katex tex="b>0" /> is given, the inequality signs do not flip.</>,
+    more: <>That is exactly why the question states <Katex tex="b>0" />. If <Katex tex="b" /> were negative the signs would flip, and the domain would be <Katex tex="[a+b,\ a-b]" /> instead.</>,
   },
   {
     working: <Katex display tex="\boxed{a-b\le x\le a+b}" />,
-    reason: <>Adding <Katex tex="a" />. Matches option <b>B</b>. Option C is what you get if the <Katex tex="b" /> never gets multiplied through; option E if the <Katex tex="a" /> never gets added; option D confuses the domain with the range, which is <Katex tex="[0,\pi]" /> for <Katex tex="\arccos" />.</>,
+    reason: <>Add <Katex tex="a" /> throughout. Matches option <b>B</b>.</>,
+    more: (
+      <>
+        <b>C</b> (8%, the most common wrong answer) is what you get if the <Katex tex="b" /> never gets multiplied through;{' '}
+        <b>E</b> if the <Katex tex="a" /> never gets added; <b>A</b> is the domain of plain <Katex tex="\arccos(x)" />, ignoring the
+        transformation altogether. <b>D</b> confuses the domain with the range: it sets <Katex tex="\tfrac{x-a}{b}" /> in{' '}
+        <Katex tex="[0,\pi]" />, which is the range of <Katex tex="\arccos" />, not its domain.
+      </>
+    ),
   },
 ]
 
