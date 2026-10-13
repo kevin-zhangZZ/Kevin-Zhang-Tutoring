@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo, type ReactNode } from 'react'
 import SegmentedControl from '../../components/ui/SegmentedControl'
+import { stagger, useReducedMotion } from '../../components/motion/Reveal'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -357,13 +358,13 @@ function SettingsScreen({
                 key={f}
                 onClick={() => pickFocus(f)}
                 aria-pressed={on}
-                className={`flex flex-col gap-1 min-h-[88px] rounded-xl border-2 px-3 py-2.5 text-left transition-colors ${
+                className={`flex flex-col gap-1 min-h-[104px] sm:min-h-[118px] rounded-2xl border-2 px-3.5 py-3 text-left transition-[border-color,background-color,transform] hover:-translate-y-0.5 active:scale-[0.98] ${
                   on ? TONE[s.level].tile : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-gray-300 dark:hover:border-gray-700'
                 }`}
               >
-                <span className={`text-[13.5px] font-bold leading-tight ${on ? TONE[s.level].title : 'text-gray-900 dark:text-gray-100'}`}>{FOCUS[f].name}</span>
+                <span className={`font-display text-[15px] font-bold leading-tight ${on ? TONE[s.level].title : 'text-gray-900 dark:text-gray-100'}`}>{FOCUS[f].name}</span>
                 <span className="text-[13px] font-bold tracking-[0.14em] text-gray-500 dark:text-gray-400">{glyphs(FOCUS[f].ops)}</span>
-                <span className="mt-auto font-mono text-xs tabular-nums text-gray-500 dark:text-gray-400">{examples[f]}</span>
+                <span className="mt-auto font-display text-base sm:text-lg font-bold tabular-nums text-gray-700 dark:text-gray-300">{examples[f]}</span>
               </button>
             )
           })}
@@ -434,7 +435,7 @@ function SettingsScreen({
       <div className="sticky bottom-0 -mx-5 px-5 pt-3 pb-4 bg-gray-50/95 dark:bg-gray-950/95 backdrop-blur-sm sm:static sm:mx-0 sm:p-0 sm:bg-transparent sm:backdrop-blur-none flex flex-col gap-2">
         <button
           onClick={() => onStart(s)}
-          className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-[0.99] transition-[background-color,transform] text-[15px]"
+          className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-display font-bold rounded-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_14px_30px_-14px_rgba(37,99,235,0.85)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-[background-color,transform] text-lg"
         >
           Start
         </button>
@@ -467,6 +468,9 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
   const [shakeKey, setShakeKey] = useState(0)
   const [correct,  setCorrect]  = useState(0)
   const [wrong,    setWrong]    = useState(0)
+  const [streak,   setStreak]   = useState(0)
+  // Counts questions shown, so each new one can rise in.
+  const [shown,    setShown]    = useState(0)
   const inputRef   = useRef<HTMLInputElement>(null)
   const doneRef    = useRef(false)
   const busyRef    = useRef(false)
@@ -501,6 +505,7 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
     setInput(''); setFlash(null); setMessage('')
     // Avoid an immediate repeat — but only try a few times, since a tiny custom range may have just one question.
     setQuestion(q => { let n = genQuestion(cfg); for (let i = 0; i < 20 && n.text === q.text; i++) n = genQuestion(cfg); return n })
+    setShown(n => n + 1)
     shownAt.current = performance.now()
     busyRef.current = false
     if (!coarse) setTimeout(() => inputRef.current?.focus(), 0)
@@ -514,7 +519,7 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
     if (digits !== '' && Number(digits) === question.answer) {
       busyRef.current = true
       log.current.answered.push({ text: question.text, answer: question.answer, op: question.op, ms: performance.now() - shownAt.current })
-      setCorrect(c => c + 1); setFlash('correct'); setMessage('')
+      setCorrect(c => c + 1); setStreak(k => k + 1); setFlash('correct'); setMessage('')
       setTimeout(nextQuestion, 300)
     }
   }, [question, nextQuestion])
@@ -525,7 +530,7 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
     const typed = Number(input)
     if (typed === question.answer) return
     log.current.wrongs.push({ text: question.text, answer: question.answer, typed })
-    setWrong(w => w + 1); setFlash('wrong'); setMessage(`Not ${typed}. Try again`)
+    setWrong(w => w + 1); setStreak(0); setFlash('wrong'); setMessage(`Not ${typed}. Try again`)
     setShakeKey(k => k + 1)
     setInput('')
     setTimeout(() => setFlash(f => (f === 'wrong' ? null : f)), 450)
@@ -545,11 +550,16 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
   return (
     <div className="flex flex-col gap-4 sm:gap-6">
       <div className="card px-5 py-3.5">
-        <div className="flex items-center justify-between mb-3">
-          <span className="font-mono text-lg font-semibold text-gray-800 dark:text-gray-200 tabular-nums">{mm}:{ss}</span>
+        <div className="flex items-center justify-between gap-3 mb-3">
+          <span className="font-mono text-lg font-semibold text-gray-800 dark:text-gray-200 tabular-nums" role="timer" aria-label={`${timeLeft} seconds left`}>{mm}:{ss}</span>
           <div className="flex items-center gap-4 text-sm font-semibold tabular-nums">
-            <span className="text-emerald-600 dark:text-emerald-400">✓ {correct}</span>
-            <span className="text-rose-500 dark:text-rose-400">✗ {wrong}</span>
+            {streak >= 3 && (
+              <span key={streak} className="pop rounded-full bg-amber-100 dark:bg-amber-500/15 px-2.5 py-0.5 text-xs font-bold text-amber-800 dark:text-amber-300">
+                {streak} in a row
+              </span>
+            )}
+            <span className="text-emerald-600 dark:text-emerald-400">✓ {correct}<span className="sr-only"> right</span></span>
+            <span className="text-rose-500 dark:text-rose-400">✗ {wrong}<span className="sr-only"> wrong</span></span>
           </div>
         </div>
         <div className="h-1.5 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
@@ -559,27 +569,28 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
 
       <div
         key={shakeKey}
-        className={`flex flex-col items-center justify-center gap-4 sm:gap-5 ${coarse ? 'min-h-[150px] py-6' : 'min-h-[220px] py-10'} rounded-xl border-2 transition-colors duration-150 px-8 ${
+        className={`flex flex-col items-center justify-center gap-5 sm:gap-6 ${coarse ? 'min-h-[180px] py-7' : 'min-h-[300px] py-12'} rounded-2xl border-2 transition-colors duration-150 px-6 sm:px-8 ${
           shakeKey ? 'animate-[shake_0.32s]' : ''
-        } ${
+        } ${flash === 'correct' ? 'pop' : ''} ${
           flash === 'correct' ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/30'
           : flash === 'wrong'  ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/30'
           : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900'
         }`}
       >
-        <p className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white select-none">{question.text} =</p>
+        {/* Each new question rises in. */}
+        <p key={shown} className="slide-up-in font-display text-5xl sm:text-7xl font-bold tracking-[-0.03em] text-gray-900 dark:text-white select-none tabular-nums">{question.text} =</p>
         {coarse ? (
           // Touch screens: the on-screen keypad types here, so the phone's keyboard stays closed.
           <p
             aria-live="polite"
             aria-label={`Your answer: ${input || 'empty'}`}
-            className={`w-36 text-center text-2xl font-bold border-b-2 py-1 min-h-[44px] ${
+            className={`w-44 text-center font-display text-4xl font-bold border-b-[3px] py-1 min-h-[56px] tabular-nums ${
               flash === 'correct' ? 'border-emerald-400 text-emerald-600 dark:text-emerald-400'
               : flash === 'wrong'  ? 'border-rose-400'
               : 'border-blue-500 text-gray-900 dark:text-white'
             }`}
           >
-            {input || <span className="text-gray-500 dark:text-gray-400">?</span>}
+            {input || <span className="text-gray-400 dark:text-gray-500">?</span>}
           </p>
         ) : (
           <input
@@ -588,7 +599,7 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
             onChange={e => handleInput(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter') check() }}
             placeholder="?"
-            className={`w-36 text-center text-2xl font-bold bg-transparent border-b-2 transition-colors duration-150 focus:outline-none py-1 ${
+            className={`w-52 text-center font-display text-5xl font-bold bg-transparent border-b-[3px] tabular-nums transition-colors duration-150 focus:outline-none py-1 placeholder:text-gray-300 dark:placeholder:text-gray-600 ${
               flash === 'correct' ? 'border-emerald-400 text-emerald-600 dark:text-emerald-400'
               : flash === 'wrong'  ? 'border-rose-400 text-rose-600 dark:text-rose-400'
               : 'border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:border-blue-500'
@@ -605,7 +616,7 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
               key={k}
               onClick={() => pressKey(k)}
               aria-label={k === 'del' ? 'Delete' : k === 'check' ? 'Check' : k}
-              className={`h-14 rounded-xl text-xl font-semibold select-none active:scale-[0.97] transition-transform ${
+              className={`h-14 rounded-xl text-2xl font-display font-bold select-none active:scale-[0.95] transition-transform ${
                 k === 'check' ? 'bg-blue-600 active:bg-blue-700 text-white text-base'
                 : k === 'del' ? 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-base'
                 : 'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white'
@@ -633,6 +644,25 @@ const OP_GROUP: Record<Op, 'addsub' | 'muldiv'> = { add: 'addsub', sub: 'addsub'
 const fmt = (n: number) => n.toLocaleString('en-AU')
 const secs = (ms: number) => `${(ms / 1000).toFixed(1)}s`
 
+/** Counts from 0 up to `to` over ~0.9s (straight to it for reduced motion). */
+function useCountUp(to: number) {
+  const reduce = useReducedMotion()
+  const [n, setN] = useState(reduce ? to : 0)
+  useEffect(() => {
+    if (reduce) { setN(to); return }
+    let raf = 0
+    const t0 = performance.now()
+    const step = (now: number) => {
+      const k = Math.min(1, (now - t0) / 900)
+      setN(Math.round(to * (1 - Math.pow(1 - k, 3))))
+      if (k < 1) raf = requestAnimationFrame(step)
+    }
+    raf = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(raf)
+  }, [to, reduce])
+  return n
+}
+
 function ResultsScreen({ result, best, newBest, onReplay, onSettings }: {
   result:     GameResult
   best?:      number
@@ -644,6 +674,7 @@ function ResultsScreen({ result, best, newBest, onReplay, onSettings }: {
   const accuracy = total === 0 ? 0 : Math.round(result.correct / total * 100)
   const ppm      = result.elapsed > 0 ? result.correct / result.elapsed * 60 : 0
   const settingsLabel = `${result.label}, ${durationLabel(result.duration)}`
+  const shownScore = useCountUp(result.correct)
 
   // Review: each question answered wrong (first wrong try), the slowest one, and the average per operation type.
   const firstWrongs = result.wrongs.filter((w, i, all) => all.findIndex(x => x.text === w.text) === i)
@@ -656,11 +687,11 @@ function ResultsScreen({ result, best, newBest, onReplay, onSettings }: {
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <div className="w-full card px-6 py-8 text-center">
+      <div className="rise-in w-full card px-6 py-10 text-center">
         <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-2">
           {result.endedEarly ? 'Round Ended' : 'Time’s Up'}: {settingsLabel}
         </p>
-        <p className="font-display text-7xl font-bold text-gray-900 dark:text-white leading-none tabular-nums">{result.correct}</p>
+        <p className="font-display text-8xl sm:text-9xl font-bold tracking-[-0.04em] text-gray-900 dark:text-white leading-none tabular-nums" aria-label={`${result.correct}`}>{shownScore}</p>
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">correct answers</p>
         {newBest ? (
           <p className="inline-block mt-3 text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/50 rounded-full px-3 py-1">New best!</p>
@@ -759,10 +790,10 @@ export default function SpeedMaths() {
   const cfg = useMemo<Config>(() => ({ ops: setup.ops, ranges: rangesOf(setup), duration: setup.duration }), [setup])
 
   return (
-    <div className="max-w-lg mx-auto px-5 sm:px-6 py-8">
-      <div className="mb-6">
-        <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-1">Speed Maths</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Solve as many arithmetic problems as you can before time runs out.</p>
+    <div className="max-w-2xl mx-auto px-5 sm:px-6 py-8 sm:py-10">
+      <div className="mb-6 sm:mb-8 rise-in" style={stagger(0)}>
+        <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white tracking-[-0.03em] mb-1.5">Speed Maths</h1>
+        <p className="text-[15px] text-gray-500 dark:text-gray-400">Solve as many arithmetic problems as you can before time runs out.</p>
       </div>
 
       {screen === 'settings' && <SettingsScreen initial={setup} onStart={start} />}
