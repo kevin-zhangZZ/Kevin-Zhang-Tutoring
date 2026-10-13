@@ -1,7 +1,7 @@
 import { Fragment, useState, type ReactNode } from 'react'
 import { angles, type AngleUnit } from './data'
 import { formatTime, type SessionMode, type Tally } from './session'
-import type { Best } from './storage'
+import { useStoredState, type Best } from './storage'
 import SegmentedControl from '../../components/ui/SegmentedControl'
 
 // Pieces shared by Values Test and Locate Test.
@@ -126,15 +126,32 @@ interface WeakSpotProps {
 export function WeakSpotCircle({ perAngle, unit, onPick, drill = null }: WeakSpotProps) {
   const S = 220, c = S / 2, R = 66, LR = 92
   const asked = Object.values(perAngle).some(t => t.right + t.wrong > 0)
+  // Angle labels can be hidden, to test yourself on where the points are. Remembered on this device.
+  const [{ labels }, setPrefs] = useStoredState('uc-weakspot', { labels: true })
   return (
     <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-4 py-3">
-      <div className="flex items-baseline justify-between gap-2">
+      <div className="flex items-center justify-between gap-2">
         <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">Your Circle So Far</p>
-        {drill !== null && onPick && (
-          <button onClick={() => onPick(null)} className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline">
-            Back to every angle
+        <div className="flex items-center gap-3">
+          {drill !== null && onPick && (
+            <button onClick={() => onPick(null)} className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline">
+              Back to every angle
+            </button>
+          )}
+          <button
+            onClick={() => setPrefs({ labels: !labels })}
+            aria-pressed={labels}
+            aria-label={labels ? 'Hide angle labels' : 'Show angle labels'}
+            title={labels ? 'Hide angle labels' : 'Show angle labels'}
+            className="relative -m-1 p-1 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors after:absolute after:-inset-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+              <circle cx="12" cy="12" r="3" />
+              {!labels && <path d="M4 4l16 16" />}
+            </svg>
           </button>
-        )}
+        </div>
       </div>
       <svg viewBox={`0 0 ${S} ${S}`} className="w-full max-w-[240px] mx-auto block" role="group" aria-label="How each angle has gone so far">
         <line x1={14} y1={c} x2={S - 14} y2={c} stroke="currentColor" strokeOpacity="0.12" />
@@ -163,9 +180,11 @@ export function WeakSpotCircle({ perAngle, unit, onPick, drill = null }: WeakSpo
               >
                 <title>{`${label}: ${tip}`}</title>
               </circle>
-              <text x={lx} y={ly + 3.5} textAnchor="middle" fontSize="10" fill="currentColor" fillOpacity={picked ? 1 : 0.6} fontWeight={picked ? 700 : 400} fontFamily="Inter, sans-serif">
-                {label}
-              </text>
+              {labels && (
+                <text x={lx} y={ly + 3.5} textAnchor="middle" fontSize="10" fill="currentColor" fillOpacity={picked ? 1 : 0.6} fontWeight={picked ? 700 : 400} fontFamily="Inter, sans-serif">
+                  {label}
+                </text>
+              )}
             </g>
           )
         })}
@@ -258,5 +277,36 @@ export function RoundResults({ correct, total, elapsed, summary, best, newBest, 
         </button>
       </div>
     </div>
+  )
+}
+
+// ── Round track: one segment per question in a test round, coloured as it's answered ──
+
+export function RoundTrack({ history, total }: { history: boolean[]; total: number }) {
+  return (
+    <div className="flex gap-1" role="img" aria-label={`${history.length} of ${total} answered, ${history.filter(Boolean).length} right`}>
+      {Array.from({ length: total }, (_, i) => {
+        const h = history[i]
+        return (
+          <span
+            key={i}
+            className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${
+              h === true ? 'bg-emerald-500' : h === false ? 'bg-rose-500' : i === history.length ? 'bg-blue-400 dark:bg-blue-500' : 'bg-gray-200 dark:bg-gray-800'
+            }`}
+          />
+        )
+      })}
+    </div>
+  )
+}
+
+// ── Streak: appears at 3 right in a row, and pops each time it grows ──
+
+export function StreakBadge({ streak }: { streak: number }) {
+  if (streak < 3) return null
+  return (
+    <span key={streak} className="pop inline-flex items-center gap-1 rounded-full bg-amber-100 dark:bg-amber-500/15 px-2.5 py-0.5 text-xs font-bold text-amber-800 dark:text-amber-300 tabular-nums">
+      {streak} in a row
+    </span>
   )
 }

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { angles, shiftedAngleTex, shiftedAngleDegTex, RANGE_LABEL, type AngleUnit, type AngleData } from './data'
 import Katex from '../../components/Katex'
 import { useSession, type SessionMode } from './session'
-import { SessionBar, Choice, WeakSpotCircle, RoundResults } from './SessionParts'
+import { SessionBar, Choice, WeakSpotCircle, RoundResults, RoundTrack, StreakBadge } from './SessionParts'
 import { useStoredState, readBest, saveBest, useCoarsePointer, type Best } from './storage'
 
 type Domain = 'pos' | 'neg' | 'both'
@@ -143,6 +143,12 @@ export default function LocateMode() {
         </SessionBar>
       </div>
 
+      {mode === 'test' && !session.finished && (
+        <div className="lg:col-start-1">
+          <RoundTrack history={session.history} total={session.total} />
+        </div>
+      )}
+
       {session.finished ? (
         <div className="lg:col-span-2">
           <RoundResults
@@ -164,13 +170,14 @@ export default function LocateMode() {
       ) : (
         <>
           {/* Question card */}
-          <div className={`lg:col-start-1 flex flex-col items-center justify-center min-h-[104px] rounded-xl border-2 transition-colors duration-200 px-5 py-4 ${
+          <div className={`relative lg:col-start-1 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[180px] rounded-2xl border-2 transition-colors duration-200 px-5 py-6 sm:py-8 ${flash === 'correct' ? 'pop' : ''} ${
             flash === 'correct' ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40'
             : flash === 'wrong'  ? 'border-rose-300 dark:border-rose-800 bg-white dark:bg-gray-900'
             : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900'
           }`}>
+            <div className="absolute right-3 top-3"><StreakBadge streak={session.streak} /></div>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-1.5">{verb} the angle</p>
-            <div className="text-2xl">
+            <div key={session.answered} className="slide-up-in text-3xl sm:text-4xl">
               <Katex tex={question.angleTex} />
             </div>
             {/* Feedback area — both messages occupy the same space, so the card doesn't jump. */}
@@ -194,7 +201,7 @@ export default function LocateMode() {
           </div>
 
           {/* Unit circle — the points are the answers */}
-          <div className="lg:col-start-2 lg:row-start-1 lg:row-span-3 w-full lg:max-w-[calc(100vh-170px)] lg:mx-auto">
+          <div className="lg:col-start-2 lg:row-start-1 lg:row-span-4 w-full lg:max-w-[calc(100vh-150px)] lg:mx-auto">
             <svg
               viewBox={`0 0 ${VB} ${VB}`}
               className="w-full h-auto"
@@ -233,13 +240,14 @@ export default function LocateMode() {
                 }
 
                 return (
-                  <g key={i}>
+                  <g key={i} className={flash ? '' : 'uc-pt'}>
                     {/* Visible dot */}
                     <circle
+                      className="uc-dot"
                       cx={cx} cy={cy} r={DOT_R}
                       fill={fill}
                       fillOpacity={opacity}
-                      style={{ transition: 'fill 0.2s, fill-opacity 0.2s' }}
+                      style={{ transition: 'fill 0.2s, fill-opacity 0.2s, r 0.15s' }}
                     />
                     {/* Enlarged hit target, also reachable with Tab and Enter. The label doesn't
                         name the angle, so it doesn't give the answer away. */}

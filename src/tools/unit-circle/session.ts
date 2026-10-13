@@ -27,6 +27,8 @@ interface State<Q> {
   correct: number
   wrong: number
   misses: Miss<Q>[]
+  /** Right or wrong for each answer so far, in order (the round track and the streak). */
+  history: boolean[]
   perAngle: Record<number, Tally>
   elapsed: number
   started: boolean
@@ -47,7 +49,7 @@ type Action<Q> =
 
 function fresh<Q>(first: Q, queue: Q[] = [], total = ROUND_LENGTH, retry = false, drill: number | null = null): State<Q> {
   return {
-    question: first, answered: 0, correct: 0, wrong: 0, misses: [], perAngle: {},
+    question: first, answered: 0, correct: 0, wrong: 0, misses: [], history: [], perAngle: {},
     elapsed: 0, started: false, paused: false, finished: false, drill, queue, total, retry,
   }
 }
@@ -64,6 +66,7 @@ function reducer<Q>(s: State<Q>, a: Action<Q>): State<Q> {
         paused: !a.correct,
         perAngle: { ...s.perAngle, [a.angle]: a.correct ? { ...t, right: t.right + 1 } : { ...t, wrong: t.wrong + 1 } },
         misses: a.correct ? s.misses : [...s.misses, { question: s.question, given: a.given ?? '' }],
+        history: [...s.history, a.correct],
       }
     }
     case 'advance':
@@ -133,7 +136,11 @@ export function useSession<Q>({ mode, generate, angleOf, resetKey }: Options<Q>)
     dispatch({ type: 'drill', angle, next: gen.current(angle, ref.current.question) })
   }, [])
 
-  return { ...state, record, advance, restart, setDrill }
+  // Right answers in a row, counting back from the latest.
+  const wrongAt = state.history.lastIndexOf(false)
+  const streak = state.history.length - 1 - wrongAt
+
+  return { ...state, streak, record, advance, restart, setDrill }
 }
 
 /** "01:42" */

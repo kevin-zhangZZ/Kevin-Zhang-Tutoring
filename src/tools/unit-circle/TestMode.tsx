@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { angles, shiftedAngleTex, shiftedAngleDegTex, RANGE_LABEL, type AngleUnit } from './data'
 import Katex from '../../components/Katex'
 import { useSession, type SessionMode } from './session'
-import { SessionBar, Choice, WeakSpotCircle, RoundResults } from './SessionParts'
+import { SessionBar, Choice, WeakSpotCircle, RoundResults, RoundTrack, StreakBadge } from './SessionParts'
 import { useStoredState, readBest, saveBest, type Best } from './storage'
 import WrongExplanation from './WrongExplanation'
 
@@ -227,6 +227,12 @@ export default function TestMode() {
         </SessionBar>
       </div>
 
+      {mode === 'test' && !session.finished && (
+        <div className="lg:col-start-1">
+          <RoundTrack history={session.history} total={session.total} />
+        </div>
+      )}
+
       {session.finished ? (
         <div className="lg:col-span-2">
           <RoundResults
@@ -248,14 +254,16 @@ export default function TestMode() {
       ) : (
         <>
           {/* Question card */}
-          <div className={`lg:col-start-1 min-w-0 flex flex-col items-center justify-center min-h-[96px] sm:min-h-[112px] rounded-xl border-2 transition-colors duration-200 px-5 py-4 sm:py-5 ${
+          <div className={`relative lg:col-start-1 min-w-0 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[180px] rounded-2xl border-2 transition-colors duration-200 px-5 py-6 sm:py-8 ${flash === 'correct' ? 'pop' : ''} ${
             flash === 'correct' ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40'
             // A wrong answer marks the card's edge only: the explanation inside needs a calm page.
             : flash === 'wrong'  ? 'border-rose-300 dark:border-rose-800 bg-white dark:bg-gray-900'
             : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900'
           }`}>
+            <div className="absolute right-3 top-3"><StreakBadge streak={session.streak} /></div>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">What is</p>
-            <div className="text-2xl">
+            {/* Each new question rises in. */}
+            <div key={session.answered} className="slide-up-in text-3xl sm:text-4xl">
               <Katex tex={questionTex(question)} />
             </div>
 
@@ -292,16 +300,16 @@ export default function TestMode() {
           </div>
 
           {/* Answer grid */}
-          <div className="lg:col-start-2 lg:row-start-1 lg:row-span-3 flex flex-col gap-2">
+          <div className="lg:col-start-2 lg:row-start-1 lg:row-span-4 flex flex-col gap-2.5">
             {rows.map((row, rowIdx) => (
-              <div key={rowIdx} className="flex gap-2">
+              <div key={rowIdx} className="flex gap-2.5">
                 {row.map(({ label, tex }) => {
                   const isCorrect  = label === question.correctLabel
                   const isSelected = label === selectedLabel
 
-                  let cls = 'flex-1 px-1 rounded-lg border text-sm font-medium transition-all duration-150 flex items-center justify-center min-h-[44px] sm:min-h-[56px] lg:min-h-[64px] '
+                  let cls = 'flex-1 px-1 rounded-xl border text-base font-medium transition-all duration-150 flex items-center justify-center min-h-[48px] sm:min-h-[60px] lg:min-h-[72px] '
                   if (!flash) {
-                    cls += 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/30 active:scale-[0.97] cursor-pointer'
+                    cls += 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/30 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-14px_rgba(37,99,235,0.6)] dark:hover:shadow-none active:translate-y-0 active:scale-[0.97] cursor-pointer'
                   } else if (isCorrect) {
                     cls += 'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300'
                   } else if (isSelected) {
