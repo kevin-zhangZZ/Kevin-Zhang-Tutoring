@@ -77,8 +77,8 @@ check(L.compareLogs(X, A) === 'clash', 'someone else’s log clashes')
 check(L.compareLogs([A[1], A[0]], A) === 'clash', 'the same papers in another order is a clash')
 
 // ── Goals ──
-check(L.parseGoal('40') === 40 && L.parseGoal('20') === 20 && L.parseGoal('45') === 45, 'goals 20–45')
-check(L.parseGoal('46') === null && L.parseGoal('19') === null && L.parseGoal('39.5') === null && L.parseGoal('') === null && L.parseGoal(null) === null, 'bad goals')
+check(L.parseGoal('40') === 40 && L.parseGoal('20') === 20 && L.parseGoal('50') === 50, 'goals 20–50')
+check(L.parseGoal('51') === null && L.parseGoal('19') === null && L.parseGoal('39.5') === null && L.parseGoal('') === null && L.parseGoal(null) === null, 'bad goals')
 
 // ── Scores ──
 const sample = L.decodeAttempts('20260712-2019-27-55.20260719-2018-26-52.20260726-2017-30-60.20260802-2016-28-58.20260816-2020-32-62.20260830-2021-31-64.20260913-2019-33-66.20260927-2022-34-63', 'methods')
@@ -93,8 +93,8 @@ check(L.rollingAverages(scored).length === 6 && L.rollingAverages(scored.slice(0
 // ── Projection helpers ──
 const typ = (s, marks) => M.typicalOf(M.project(s, marks))
 check(typ('methods', [30, 60]) === 37, `Methods 30/60 typical 37 (${typ('methods', [30, 60])})`)
-check(typ('methods', [38, 76]) === 44, `Methods 38/76 typical 44 (${typ('methods', [38, 76])})`)
-check(typ('methods', [40, 80]) === 47, `Methods full marks typical 47 (${typ('methods', [40, 80])})`)
+check(typ('methods', [38, 76]) === 46, `Methods 38/76 typical 46 (${typ('methods', [38, 76])})`)
+check(typ('methods', [40, 80]) === 50, `Methods full marks typical 50 (${typ('methods', [40, 80])})`)
 for (const s of SUBJECT_IDS) {
   const max = M.totalMax(s)
   check(max === 120, `${s} totals 120`)
@@ -113,8 +113,15 @@ for (const s of SUBJECT_IDS) {
     check(n.years.length === DISTRIBUTIONS[s].length, `${s} one total per year`)
   }
   for (let i = 1; i < need.length; i++) check((need[i].typical ?? 999) >= (need[i - 1].typical ?? 0), `${s} totals rise with the target`)
-  const fm = M.fullMarksRange(s)
-  check(fm.lo <= fm.hi && fm.hi <= 50 && fm.lo >= 44, `${s} full marks range ${fm.lo}–${fm.hi}`)
+  // The top-end stretch: full marks is 50 every year, scores rise with marks, and 40 and below don't move.
+  const full = M.project(s, SUBJECTS[s].exams.map(e => e.rawMax))
+  check(full.every(r => Math.abs(r.exact - 50) < 1e-9), `${s} full marks is 50 every year`)
+  let prev = M.project(s, M.splitTotal(s, 0))
+  for (let t = 1; t <= max; t++) {
+    const cur = M.project(s, M.splitTotal(s, t))
+    if (cur.some((r, i) => r.exact < prev[i].exact - 1e-9)) check(false, `${s} score falls at total ${t}`)
+    prev = cur
+  }
 }
 // Only the total matters, so any split gives the same score.
 check(M.project('methods', [30, 60]).every((r, i) => Math.abs(r.exact - M.project('methods', [40, 50])[i].exact) < 1e-9), 'only the total matters')
@@ -154,7 +161,7 @@ check(isOldCourse('methods', 2015) && isOldCourse('methods', 2014) && !isOldCour
 check(newerCourseLabel('specialist') === 'Current Course' && newerCourseLabel('chemistry') === 'Current Course' && newerCourseLabel('methods') === null, 'only a true current design is labelled Current Course')
 
 check(M.nearCeiling('chemistry', [120], [44]) && M.nearCeiling('methods', [38, 76], [44]) && !M.nearCeiling('methods', [30, 60], [37]), 'near the top: 45+ in a year, or 90% of the marks')
-check(same(M.marksNeeded('chemistry', [45])[0].years.map((v, k) => (v === null ? DISTRIBUTIONS.chemistry[k].year : null)).filter(Boolean), [2015]), 'Chemistry 45 is out of reach only on the 2015 paper')
+check(M.marksNeeded('chemistry', [45, 50]).every(n => n.years.every(v => v !== null)), 'with the top-end stretch, every score is in reach every year')
 
 console.log(`${passed} passed, ${failed} failed`)
 if (failed) {

@@ -37,9 +37,12 @@ export default function CheckMarks({
     <div aria-busy={busy || undefined} className={`flex flex-col gap-5 transition-opacity motion-reduce:transition-none ${busy ? 'opacity-50' : ''}`}>
       <Headline rows={rows} typical={typical} />
       <KeepInMind subject={subject} nearTop={nearCeiling(subject, marks, rows.map(r => r.score))} />
-      <YearByYear subject={subject} marks={marks} rows={rows} />
-      <MarksNeeded subject={subject} marks={marks} typical={typical} cardRef={endRef} />
-      <Announce text={`${said}. Typical year ${typical}. In ${latest.year}: ${latest.score}, ${aheadOf(latest.pct)} of the state.`} />
+      {/* Side by side on a laptop; stacked below that. */}
+      <div className="grid gap-5 lg:grid-cols-2 lg:items-start">
+        <YearByYear subject={subject} marks={marks} rows={rows} />
+        <MarksNeeded subject={subject} marks={marks} typical={typical} cardRef={endRef} />
+      </div>
+  <Announce text={`${said}. Typical year ${typical}. In ${latest.year}: ${latest.score}, ${aheadOf(latest.pct)} of the state.`} />
     </div>
   )
 }

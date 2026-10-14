@@ -2,7 +2,7 @@
 // of the page in both modes (the two everyday caveats are in Keep in Mind, by the result).
 
 import { CURRENT_DESIGN_FROM, DISTRIBUTIONS, SUBJECTS, type Subject } from './data.ts'
-import { MEAN, RHO, RHO_RANGE, SD } from './model.ts'
+import { MEAN, RHO, RHO_RANGE, SD, STRETCH_FROM } from './model.ts'
 
 const B = 'font-semibold text-gray-700 dark:text-gray-300'
 
@@ -55,7 +55,8 @@ export default function HowItWorks({ subject }: { subject: Subject }) {
           <b className={B}>What it leaves out.</b> School-assessed coursework (SACs) also counts, but SAC marks are moderated against the{' '}
           {one ? 'exam' : 'exams'}, so a student whose SACs are in line with {one ? 'their exam' : 'their exams'} keeps the same rank. This is a projection from
           published statistics, not VCAA’s calculation, so treat it as give or take 2 points. Near full marks, many students are tied, and VCAA separates them
-          with their SACs.
+          with their SACs. Because SACs are left out, the rank alone would put full marks at only 44 to 49, so above {STRETCH_FROM} each year’s scale is
+          stretched to make full marks 50.
         </p>
         <p>
           <b className={B}>Sources.</b> VCAA grade distributions:{' '}

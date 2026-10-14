@@ -159,9 +159,9 @@ export function saveAttempts(subject: Subject, encoded: string) {
   writeStore(STORE_KEY, subject, encoded)
 }
 
-/** Goals are whole study scores; above 45 the tool reads too low to aim at. */
+/** Goals are whole study scores. */
 export const GOAL_MIN = 20
-export const GOAL_MAX = 45
+export const GOAL_MAX = 50
 
 /** A goal from a link or a box, or null if it isn't a whole number from GOAL_MIN to GOAL_MAX.
  *  Digits only, as for a mark (parseMark): "4e1" and "40.0" aren't goals, though Number() reads

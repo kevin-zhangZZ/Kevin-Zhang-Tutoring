@@ -147,7 +147,7 @@ function subtitleOf(view: View, dated: boolean, n: number): string {
 
 // ── Goal box ───────────────────────────────────────────────────────────────────────────────
 
-const GOAL_HINT = `Goals go up to ${GOAL_MAX}: near full marks this tool reads a few points low.`
+const GOAL_HINT = `Study scores go up to ${GOAL_MAX}.`
 const GOAL_WHOLE = `Goals are whole numbers from ${GOAL_MIN} to ${GOAL_MAX}.`
 
 /**

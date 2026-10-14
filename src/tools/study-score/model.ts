@@ -11,6 +11,7 @@
 //    RHO and find the share of students whose total is below this one. Chemistry has one exam,
 //    so its rank is simply the rank on that exam.
 // 3. Study scores are scaled to a normal distribution with mean 30 and SD 7, capped at 0–50.
+// 4. Above 40, each year's scale is stretched so full marks is 50 (stretchTop).
 //
 // SACs are left out: they are moderated against the exam scores, so a student whose SACs track
 // their exams keeps the same rank.
@@ -166,13 +167,44 @@ export function studyScoreOf(pct: number): number {
   return Math.min(50, Math.max(0, MEAN + SD * normInv(pct)))
 }
 
+/** Scores at or below this are left as the rank gives them; above it, the top-end stretch applies. */
+export const STRETCH_FROM = 40
+
+/**
+ * The rank alone puts full marks at about 44–49, depending on the year: students tied on full marks
+ * count as only half below each other, and VCAA separates them with SACs, which aren't in the
+ * model. Someone with full marks on every exam is in practice at the very top, so above
+ * STRETCH_FROM each year's scale is stretched linearly to put full marks on 50 exactly. Scores of
+ * STRETCH_FROM or less don't move, and the stretch keeps the order of every score.
+ */
+export function stretchTop(exact: number, ceiling: number): number {
+  if (exact <= STRETCH_FROM || ceiling >= 50 || ceiling <= STRETCH_FROM) return exact
+  return Math.min(50, STRETCH_FROM + ((exact - STRETCH_FROM) * (50 - STRETCH_FROM)) / (ceiling - STRETCH_FROM))
+}
+
+function pctOf(ms: Marginal[], xs: number[]): number {
+  return ms.length === 1 ? ms[0].cdf(xs[0]) : combinedPct(ms[0], ms[1], xs[0] + xs[1], RHO)
+}
+
+/** The rank's study score at full marks in a year, before the stretch. */
+const ceilings = new Map<string, number>()
+function ceilingOf(subject: Subject, d: YearDist): number {
+  const key = `${subject}-${d.year}`
+  let c = ceilings.get(key)
+  if (c === undefined) {
+    c = studyScoreOf(pctOf(marginals(subject, d), d.exams.map(e => e.max)))
+    ceilings.set(key, c)
+  }
+  return c
+}
+
 /** One year's projection. `raw` is one raw mark per exam (see SUBJECTS for what each is out of). */
 export function projectYear(subject: Subject, d: YearDist, raw: number[]): Projection {
   // GA scores are twice the raw marks.
   const xs = raw.map(r => r * 2)
   const ms = marginals(subject, d)
-  const pct = ms.length === 1 ? ms[0].cdf(xs[0]) : combinedPct(ms[0], ms[1], xs[0] + xs[1], RHO)
-  const exact = studyScoreOf(pct)
+  const pct = pctOf(ms, xs)
+  const exact = stretchTop(studyScoreOf(pct), ceilingOf(subject, d))
   const last = d.exams[d.exams.length - 1]
   return {
     year: d.year,
@@ -262,15 +294,8 @@ export function marksNeeded(subject: Subject, targets: number[]): MarksNeeded[] 
   })
 }
 
-/** The rounded study scores full marks projects to across the years: the model's ceiling. */
-export function fullMarksRange(subject: Subject): { lo: number; hi: number } {
-  const rows = project(subject, SUBJECTS[subject].exams.map(e => e.rawMax))
-  const scores = rows.map(r => r.score)
-  return { lo: Math.min(...scores), hi: Math.max(...scores) }
-}
-
-/** Whether marks are near the top, where this model reads low: some year scores 45 or more, or the
- *  marks are 90% or more of the total (a paper like Chemistry 2015 tops out at 44 even then). */
+/** Whether marks are near the top, where SACs decide the last few points and the top-end stretch
+ *  applies: some year scores 45 or more, or the marks are 90% or more of the total. */
 export function nearCeiling(subject: Subject, marks: number[], scores: number[]): boolean {
   return scores.some(s => s >= 45) || marks.reduce((t, m) => t + m, 0) >= 0.9 * totalMax(subject)
 }

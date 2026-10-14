@@ -3,7 +3,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { OLD_COURSE_UP_TO, SUBJECTS, type Subject } from './data.ts'
-import { fullMarksRange } from './model.ts'
+import { STRETCH_FROM } from './model.ts'
 
 export const CARD = 'rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sm:p-5'
 /** One CARD drawn as two elements, top and bottom, with 0.5rem between their contents (the page's
@@ -24,7 +24,7 @@ export function scrollBehavior(): ScrollBehavior {
 
 /**
  * The two things every projection needs said next to it (give or take 2 points; SACs aren't in
- * it), plus, when they apply, the full-marks ceiling and old-course papers reading low.
+ * it), plus, when they apply, the top-end stretch and old-course papers reading low.
  */
 export function KeepInMind({ subject, nearTop = false, oldCourse = false }: { subject: Subject; nearTop?: boolean; oldCourse?: boolean }) {
   const id = useId()
@@ -34,9 +34,8 @@ export function KeepInMind({ subject, nearTop = false, oldCourse = false }: { su
     `SACs aren’t included. If your SACs are in line with ${one ? 'your exam' : 'your exams'}, they won’t change it.`,
   ]
   if (nearTop) {
-    const { lo, hi } = fullMarksRange(subject)
     lines.push(
-      `Near full marks this reads low: full marks itself shows ${lo === hi ? `${lo}` : `${lo} to ${hi}, depending on the year`}. Many students tie at the top, and SACs decide the last few points.`,
+      `Above ${STRETCH_FROM}, the scale is stretched so full marks reads 50. This close to the top, SACs decide the last few points.`,
     )
   }
   const last = OLD_COURSE_UP_TO[subject]
