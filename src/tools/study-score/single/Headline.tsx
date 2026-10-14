@@ -41,7 +41,8 @@ export default function Headline({ rows, typical }: { rows: Projection[]; typica
         <p className="mt-2 text-[0.8125rem] text-gray-500 dark:text-gray-400">In a typical year (the middle of {span})</p>
       </div>
 
-      <div className="flex flex-col gap-3 min-w-0">
+      {/* Top-aligned, not centred: the words below the scale vary in length, and the scale stays put. */}
+      <div className="flex flex-col gap-3 min-w-0 sm:self-start sm:pt-4">
         {/* The 0–50 scale: the band is the lowest to highest year, the marker the typical year. */}
         <div aria-hidden className="pt-2">
           <div className="relative h-3 rounded-full bg-gray-100 dark:bg-gray-800">
@@ -54,12 +55,13 @@ export default function Headline({ rows, typical }: { rows: Projection[]; typica
             {[0, 10, 20, 30, 40, 50].map(t => <span key={t}>{t}</span>)}
           </div>
         </div>
-        {lo === hi ? (
-          <p className="text-sm text-gray-700 dark:text-gray-200">
+        {/* Both wordings share one cell, the unused one invisible, so the card keeps its height
+            when every year agrees (as at full marks). */}
+        <div className="grid">
+          <p className={`[grid-area:1/1] text-sm text-gray-700 dark:text-gray-200 ${lo === hi ? '' : 'invisible'}`} aria-hidden={lo !== hi || undefined}>
             The same in every year from {first} to {latest.year}
           </p>
-        ) : (
-          <div>
+          <div className={`[grid-area:1/1] ${lo === hi ? 'invisible' : ''}`} aria-hidden={lo === hi || undefined}>
             <p className="text-[15px] font-semibold text-gray-800 dark:text-gray-100 tabular-nums">
               Between {lo} and {hi}, depending on the year
             </p>
@@ -68,7 +70,7 @@ export default function Headline({ rows, typical }: { rows: Projection[]; typica
               did well.
             </p>
           </div>
-        )}
+        </div>
         <p className="text-[0.8125rem] text-gray-500 dark:text-gray-400 tabular-nums">
           In {latest.year}: <b className="font-semibold text-gray-700 dark:text-gray-200">{latest.score}</b>, {aheadOf(latest.pct)} of the state
         </p>
