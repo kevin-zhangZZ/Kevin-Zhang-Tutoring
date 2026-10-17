@@ -23,6 +23,7 @@ import { FilterBar, type FilterProps } from './Filters'
 import { AllocationBars, allocationHeadline } from './charts/Allocation'
 import { DotStrip, difficultyHeadline } from './charts/Difficulty'
 import { Dumbbells, trendHeadline, type TrendMeasure } from './charts/Trends'
+import { ShiftSankey, shiftHeadline } from './charts/Shift'
 import { Histogram, binLabel, binOf, questionScores, spreadHeadline } from './charts/Spread'
 import { QuestionList } from './QuestionList'
 import { bandOf } from './charts/common'
@@ -187,6 +188,10 @@ export default function ExamAnalysis() {
           source={source}
         >
           <Dumbbells ctx={ctx} measure={measure} />
+        </Section>
+
+        <Section ask="Where Did the Marks Move?" title={shiftHeadline(ctx)} source={source}>
+          <ShiftSankey ctx={ctx} />
         </Section>
 
         <Section ask="How Hard Is a Typical Question?" title={spreadHeadline(pickedItems)} source={source}>

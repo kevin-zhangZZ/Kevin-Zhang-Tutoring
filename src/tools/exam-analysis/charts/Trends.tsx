@@ -11,14 +11,14 @@ import { TipBody, hash01, niceTicks, useTip, useWidth } from './common'
 
 export type TrendMeasure = 'marks' | 'score'
 
-interface Periods {
+export interface Periods {
   a: number[]
   b: number[]
   /** True when the split is the study-design change rather than half-way. */
   design: boolean
 }
 
-function periodsOf(years: number[]): Periods | null {
+export function periodsOf(years: number[]): Periods | null {
   if (years.length < 2) return null
   const k = years.findIndex(y => y >= STUDY_DESIGN_YEAR)
   if (k > 0) return { a: years.slice(0, k), b: years.slice(k), design: true }
@@ -26,9 +26,9 @@ function periodsOf(years: number[]): Periods | null {
   return { a: years.slice(0, half), b: years.slice(half), design: false }
 }
 
-const span = (ys: number[]) => (ys.length === 1 ? String(ys[0]) : `${ys[0]}–${ys[ys.length - 1]}`)
+export const span = (ys: number[]) => (ys.length === 1 ? String(ys[0]) : `${ys[0]}–${ys[ys.length - 1]}`)
 
-interface Track {
+export interface Track {
   id: string
   label: string
   g: Group | null
@@ -43,7 +43,7 @@ function valueOver(g: Group, ys: number[], measure: TrendMeasure): number | null
   return statOf(list).score
 }
 
-function tracksOf(ctx: ChartCtx, p: Periods, measure: TrendMeasure): Track[] {
+export function tracksOf(ctx: ChartCtx, p: Periods, measure: TrendMeasure): Track[] {
   const out: Track[] = ctx.groups
     .filter(g => g.marks > 0)
     .map(g => ({ id: g.id, label: g.label, g, a: valueOver(g, p.a, measure), b: valueOver(g, p.b, measure) }))
