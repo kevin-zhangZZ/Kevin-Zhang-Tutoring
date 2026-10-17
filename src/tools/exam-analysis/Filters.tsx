@@ -1,7 +1,9 @@
-// The analysis page's filters: one bar above the charts (sticky on wide screens) that scopes
-// everything below it — subject, years, exam, question type, and topics or subtopics.
+// The analysis page's filters: one floating card above the charts that follows the page as it
+// scrolls and scopes everything below it — subject, years, exam, question type, and topics or
+// subtopics. Below lg, once it's following the page it folds into a one-line summary of the
+// filters that opens the full set on tap, so it never covers half a phone screen.
 
-import { useId, type ReactNode } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import SegmentedControl from '../../components/ui/SegmentedControl'
 import { ALL_YEARS, FIRST_YEAR, LAST_YEAR, STUDY_DESIGN_YEAR, type ExamFilter, type Filters, type Level, type TypeFilter } from './model'
 import type { AnalysisSubject } from './taxonomy'
@@ -110,23 +112,105 @@ function Presets({ f, onChange }: { f: Filters; onChange: FilterProps['onChange'
   )
 }
 
-function Bar({ children }: { children: ReactNode }) {
-  return (
-    <div className="xl:sticky top-0 z-30 -mx-4 sm:-mx-6 px-4 sm:px-6 py-2.5 bg-gray-50/95 dark:bg-gray-950/95 backdrop-blur border-y xl:border-t-0 border-gray-200 dark:border-gray-800">
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-2">{children}</div>
-    </div>
-  )
+/** True once the element has scrolled past the top of the page's scroll area. */
+function useStuck() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [stuck, setStuck] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    const main = document.getElementById('main-content')
+    if (!el || !main) return
+    const check = () => setStuck(el.getBoundingClientRect().top < main.getBoundingClientRect().top)
+    check()
+    main.addEventListener('scroll', check, { passive: true })
+    window.addEventListener('resize', check)
+    return () => {
+      main.removeEventListener('scroll', check)
+      window.removeEventListener('resize', check)
+    }
+  }, [])
+  return [ref, stuck] as const
+}
+
+function summary(p: FilterProps): string {
+  const years = p.f.from === p.f.to ? String(p.f.from) : `${p.f.from}–${p.f.to}`
+  return [
+    SUBJECTS.find(x => x.id === p.f.subject)?.label,
+    years,
+    p.f.exam === 'all' ? 'Both exams' : p.f.exam,
+    p.f.type === 'all' ? null : TYPES.find(x => x.id === p.f.type)?.label,
+    p.level === 'sub' ? 'Subtopics' : null,
+  ]
+    .filter(Boolean)
+    .join(' · ')
 }
 
 export function FilterBar(p: FilterProps) {
+  const [sentinel, stuck] = useStuck()
+  const [open, setOpen] = useState(false)
+  useEffect(() => {
+    if (!stuck) setOpen(false)
+  }, [stuck])
+  const folded = stuck && !open
+
+  // Folding shrinks the card; a matching bottom margin keeps its footprint in the page the same
+  // size, so the content below doesn't jump up when it folds.
+  const card = useRef<HTMLDivElement>(null)
+  const [h, setH] = useState(0)
+  const full = useRef(0)
+  useEffect(() => {
+    const el = card.current
+    if (!el) return
+    const ro = new ResizeObserver(() => setH(el.offsetHeight))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+  if (!folded && h) full.current = h
+  const makeUp = folded && full.current > h ? full.current - h : 0
+
   return (
-    <Bar>
-      <Seg value={p.f.subject} options={SUBJECTS} onChange={p.onSubject} />
-      <YearSelects f={p.f} onChange={p.onChange} />
-      <Presets f={p.f} onChange={p.onChange} />
-      <Seg label="Exam" value={p.f.exam} options={EXAMS} onChange={exam => p.onChange({ exam })} />
-      <Seg label="Questions" value={p.f.type} options={TYPES} onChange={type => p.onChange({ type })} />
-      <Seg label="Show" value={p.level} options={LEVELS} onChange={p.onLevel} />
-    </Bar>
+    <>
+      <div ref={sentinel} aria-hidden className="h-px -mb-px" />
+      <div className="sticky top-2 sm:top-3 z-30" style={{ marginBottom: makeUp }}>
+        <div
+          ref={card}
+          className={`rounded-2xl border px-3.5 sm:px-4 py-2.5 backdrop-blur transition-shadow duration-200 ${
+            stuck
+              ? 'bg-white/90 dark:bg-gray-900/90 border-gray-200 dark:border-gray-700 shadow-lg shadow-gray-900/[0.06] dark:shadow-black/40'
+              : 'bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800'
+          }`}
+        >
+          {folded && (
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-expanded={false}
+              className="lg:hidden w-full flex items-center justify-between gap-3 text-left [@media(pointer:coarse)]:py-1"
+            >
+              <span className="min-w-0 truncate text-[13px] font-semibold text-gray-800 dark:text-gray-100">{summary(p)}</span>
+              <span className="flex-none rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-3 py-1 text-[12px] font-semibold">Filters</span>
+            </button>
+          )}
+          <div className={`${folded ? 'hidden lg:flex' : 'flex'} flex-wrap items-center gap-x-5 gap-y-2`}>
+            <Seg value={p.f.subject} options={SUBJECTS} onChange={p.onSubject} />
+            <YearSelects f={p.f} onChange={p.onChange} />
+            <Presets f={p.f} onChange={p.onChange} />
+            <Seg label="Exam" value={p.f.exam} options={EXAMS} onChange={exam => p.onChange({ exam })} />
+            <Seg label="Questions" value={p.f.type} options={TYPES} onChange={type => p.onChange({ type })} />
+            <Seg label="Show" value={p.level} options={LEVELS} onChange={p.onLevel} />
+            {stuck && open && (
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-expanded
+                className="lg:hidden ml-auto rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-3.5 py-1 [@media(pointer:coarse)]:py-2 text-[12px] font-semibold"
+              >
+                Done
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
   )
 }

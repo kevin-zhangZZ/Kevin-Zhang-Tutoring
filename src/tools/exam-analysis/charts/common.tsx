@@ -4,19 +4,20 @@
 import { useCallback, useLayoutEffect, useRef, useState, type ReactNode, type RefObject } from 'react'
 import { HARD_BELOW, EASY_FROM } from '../../worked-solutions/sidebarModel'
 
-/** The element's current content width, kept up to date as it resizes. */
-export function useWidth<T extends HTMLElement>(): [RefObject<T>, number] {
-  const ref = useRef<T>(null)
+/** The element's current content width, kept up to date as it resizes. A callback ref, so it
+ *  picks the element up whenever it mounts — including after a chart has first shown a message
+ *  in its place (e.g. "pick more than one year") and only later draws. */
+export function useWidth<T extends HTMLElement>(): [(el: T | null) => void, number] {
+  const [el, setEl] = useState<T | null>(null)
   const [width, setWidth] = useState(0)
   useLayoutEffect(() => {
-    const el = ref.current
     if (!el) return
     setWidth(el.clientWidth)
     const ro = new ResizeObserver(entries => setWidth(Math.floor(entries[0].contentRect.width)))
     ro.observe(el)
     return () => ro.disconnect()
-  }, [])
-  return [ref, width]
+  }, [el])
+  return [setEl, width]
 }
 
 // ── Tooltip ────────────────────────────────────────────────────────────────────────────────

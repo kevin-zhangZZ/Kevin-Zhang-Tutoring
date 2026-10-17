@@ -211,7 +211,7 @@ export default function ExamAnalysis() {
 // ── Pieces ─────────────────────────────────────────────────────────────────────────────────
 
 /** A section: the question it answers, the answer as its headline, the chart, and where the numbers come from. */
-function Section({ ask, title, blurb, options, source, children }: { ask: string; title: string; blurb?: ReactNode; options?: ReactNode; source?: string; children: ReactNode }) {
+function Section({ ask, title, blurb, options, source, children }: { ask: string; title: ReactNode; blurb?: ReactNode; options?: ReactNode; source?: string; children: ReactNode }) {
   return (
     <Reveal>
     <section className="@container rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sm:p-6">
