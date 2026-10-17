@@ -19,6 +19,7 @@ import { DISTRIBUTIONS, SUBJECTS, SUBJECT_IDS, type Subject } from './data.ts'
 import { project, typicalOf } from './model.ts'
 import { CARD_BOTTOM, CARD_TOP, CopyLink, FOCUS, SUB } from './shared.tsx'
 import HowItWorks from './about.tsx'
+import SubjectPicker from './SubjectPicker.tsx'
 import CheckMarks from './single/index.tsx'
 import MarkInputs from './single/MarkInputs.tsx'
 import StickyMarkBar from './single/StickyMarkBar.tsx'
@@ -277,15 +278,7 @@ export default function StudyScore() {
           own part (its subtitle, and Check My Marks' inputs and Copy Link) as the first block of
           the tabpanel, so the panel holds everything the tabs switch. */}
       <div className={`${CARD_TOP} flex flex-col gap-4`}>
-        <SegmentedControl
-          aria-label="Subject"
-          size="md"
-          fill
-          className="w-full sm:w-auto sm:max-w-md"
-          value={subject}
-          onChange={goSubject}
-          options={SUBJECT_IDS.map(s => ({ value: s, label: SUBJECTS[s].label, ariaLabel: SUBJECTS[s].name }))}
-        />
+        <SubjectPicker value={subject} onChange={goSubject} />
         <SegmentedControl
           variant="tabs"
           aria-label="Mode"

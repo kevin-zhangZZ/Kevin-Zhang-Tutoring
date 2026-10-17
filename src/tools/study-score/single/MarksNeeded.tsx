@@ -4,7 +4,7 @@
 
 import { useId, useMemo, type Ref } from 'react'
 import { DISTRIBUTIONS, SUBJECTS, type Subject } from '../data.ts'
-import { marksNeeded, splitTotal, totalMax } from '../model.ts'
+import { marksNeeded, splitTotal, totalMax, totalOf } from '../model.ts'
 import { CARD, H2, SUB } from '../shared.tsx'
 
 const TARGETS = [30, 35, 40, 45]
@@ -23,11 +23,12 @@ export default function MarksNeeded({
 }) {
   const id = useId()
   const two = SUBJECTS[subject].exams.length > 1
+  const weighted = SUBJECTS[subject].weighted === true
   const max = totalMax(subject)
   const years = DISTRIBUTIONS[subject]
   const across = `${years[0].year}–${years[years.length - 1].year}`
   const rows = useMemo(() => marksNeeded(subject, TARGETS), [subject])
-  const total = marks.reduce((s, m) => s + m, 0)
+  const total = totalOf(subject, marks)
   // The student's row goes after every target already reached; the next one up is in bold.
   const youAt = rows.filter(r => r.target <= typical).length
   const next = rows[youAt]?.target
@@ -54,9 +55,11 @@ export default function MarksNeeded({
         Marks Needed
       </h2>
       <p className={`${SUB} mt-0.5 mb-3 max-w-2xl`}>
-        {two
-          ? `Total marks out of ${max} for each study score. Only the total counts, so any split between the two exams works.`
-          : `Marks out of ${max} on the exam for each study score.`}
+        {weighted
+          ? `Exam score out of ${max} for each study score: the oral counts for a quarter and the written for three quarters, so a written mark is worth more. Each example gets that score on both papers.`
+          : two
+            ? `Total marks out of ${max} for each study score. Only the total counts, so any split between the two exams works.`
+            : `Marks out of ${max} on the exam for each study score.`}
       </p>
 
       <table className="w-full max-w-xl text-[0.8125rem] sm:text-[0.84375rem] tabular-nums">

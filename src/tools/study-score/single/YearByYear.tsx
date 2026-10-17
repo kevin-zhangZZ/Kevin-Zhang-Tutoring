@@ -211,9 +211,11 @@ function YearRow({
   const rank = aheadOf(r.pct)
   const cohort = r.cohort.toLocaleString('en-AU')
   const detail =
-    exams.length > 1
+    // Per-exam ranks only where each mark is its own graded assessment; Japanese's oral and
+    // written are ranked together.
+    r.pctExams.length > 1
       ? `${exams.map((e, i) => `${e.label} alone: ${aheadOf(r.pctExams[i])}`).join(' · ')} · ${cohort} students sat ${exams[exams.length - 1].label}.`
-      : `${cohort} students sat the exam.`
+      : `${cohort} students sat the ${exams.length > 1 ? 'exams' : 'exam'}.`
 
   return (
     <li className="-mx-2 border-t border-gray-100 dark:border-gray-800">

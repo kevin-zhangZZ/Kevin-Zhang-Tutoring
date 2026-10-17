@@ -11,10 +11,10 @@ export function aheadOf(pct: number): string {
 }
 
 /** Each exam's own rank, in words ("Exam 1 ahead of 72% · Exam 2 ahead of 78%"), or nothing for a
- *  one-exam study. */
+ *  one-exam study (or one exam in parts, like Japanese's oral and written, ranked together). */
 export function examShares(subject: Subject, p: Projection): string {
   const exams = SUBJECTS[subject].exams
-  if (exams.length < 2) return ''
+  if (p.pctExams.length < 2) return ''
   return exams.map((e, i) => `${e.label} ${aheadOf(p.pctExams[i])}`).join(' · ')
 }
 

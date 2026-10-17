@@ -8,7 +8,7 @@
 
 import { useId, useMemo, useRef, type MutableRefObject, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { SUBJECTS, currentCourseFrom, isOldCourse, newerCourseLabel, type Subject } from '../data.ts'
+import { SUBJECTS, currentCourseFrom, examsFor, isOldCourse, newerCourseLabel, type Subject } from '../data.ts'
 import { aheadOf, parseMark } from '../format.ts'
 import { Announce } from '../shared.tsx'
 import { today } from './dates.ts'
@@ -42,7 +42,7 @@ type Check = { tone: 'hint' | 'error'; text: string; focus: 'date' | number } | 
 /** What's wrong or missing, first thing first, or the attempt ready to save. A mark is read by
  *  parseMark, as in Check My Marks, so the same mistake reads the same way in both modes. */
 function checkValues(subject: Subject, v: FormValues): Check {
-  const exams = SUBJECTS[subject].exams
+  const exams = examsFor(subject, v.paper)
   const marks = exams.map((e, k) => parseMark(v.marks[k] ?? '', e.label, e.rawMax))
   const bad = marks.findIndex(m => m.error !== null)
   if (bad >= 0) {
@@ -125,7 +125,8 @@ export default function AttemptForm({
   className?: string
 }) {
   const uid = useId()
-  const exams = SUBJECTS[subject].exams
+  // The chosen paper's totals: they differ from today's on some older papers.
+  const exams = examsFor(subject, values.paper)
   const editing = editId !== undefined
   const markRefs = useRef<(HTMLInputElement | null)[]>([])
   const dateRef = useRef<HTMLInputElement | null>(null)

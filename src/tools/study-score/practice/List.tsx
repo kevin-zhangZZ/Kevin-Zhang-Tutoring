@@ -8,7 +8,7 @@
 // hear one sentence per paper instead.
 
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react'
-import { SUBJECTS, type Subject } from '../data.ts'
+import { SUBJECTS, examsFor, type Subject } from '../data.ts'
 import { aheadOf, examShares } from '../format.ts'
 import { fmtDate, fmtDateShort, isOtherYear, nth } from './dates.ts'
 import { attemptName, type Attempt, type Draft, type Scored } from './log.ts'
@@ -168,11 +168,11 @@ function Row({
   onRemove: () => void
 }) {
   const editorId = useId()
-  const exams = SUBJECTS[subject].exams
+  const exams = examsFor(subject, a.paper)
   const retake = a.sitting > 1 ? `${nth(a.sitting)} try` : null
   const shares = examShares(subject, a.proj)
   // The per-exam ranks wide rows show, joined with commas (a middle dot can be read as "dot").
-  const perExam = exams.length > 1 ? ` ${exams.map((e, k) => `${e.label} ${aheadOf(a.proj.pctExams[k])}`).join(', ')}.` : ''
+  const perExam = a.proj.pctExams.length > 1 ? ` ${exams.map((e, k) => `${e.label} ${aheadOf(a.proj.pctExams[k])}`).join(', ')}.` : ''
   const said = `Your ${attemptName(a)}${retake ? ` (${retake})` : ''}: ${exams
     .map((e, k) => `${e.label} ${a.marks[k]} out of ${e.rawMax}`)
     .join(', ')}. Projects to ${a.proj.score}, ${aheadOf(a.proj.pct)} of the state.${perExam}`

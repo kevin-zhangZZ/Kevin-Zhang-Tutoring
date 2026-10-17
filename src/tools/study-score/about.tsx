@@ -1,17 +1,26 @@
 // How It Works: the method behind the projections and the VCAA sources, folded away at the foot
 // of the page in both modes (the two everyday caveats are in Keep in Mind, by the result).
 
-import { CURRENT_DESIGN_FROM, DISTRIBUTIONS, SUBJECTS, type Subject } from './data.ts'
+import { CURRENT_DESIGN_FROM, DISTRIBUTIONS, OLDER_NAME, SUBJECTS, type Subject } from './data.ts'
 import { MEAN, RHO, RHO_RANGE, SD, STRETCH_FROM } from './model.ts'
 
 const B = 'font-semibold text-gray-700 dark:text-gray-300'
 
 export default function HowItWorks({ subject }: { subject: Subject }) {
   const rows = DISTRIBUTIONS[subject]
-  const one = SUBJECTS[subject].exams.length === 1
+  const { name, exams } = SUBJECTS[subject]
+  const one = exams.length === 1
+  /** Graded assessments the marks feed: 2 for Methods; 1 for Japanese, whose two exams are one. */
+  const graded = rows[rows.length - 1].exams.length
   const first = rows[0].year
   const last = rows[rows.length - 1].year
   const current = CURRENT_DESIGN_FROM[subject]
+  const older = exams[0].older
+  const design = ` The ${current === last ? `${last} paper is` : current === last - 1 ? `${current} and ${last} papers are` : `papers from ${current} on are`} on the current study design; earlier years are on older study designs, which covered some different content.`
+  const oldName = OLDER_NAME[subject]
+  const furtherNote = oldName
+    ? ` Papers up to ${oldName.upTo} are ${oldName.name}, the subject ${name} replaced, scored against the students who sat ${oldName.name} that year.`
+    : ''
 
   return (
     <details className="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
@@ -23,22 +32,31 @@ export default function HowItWorks({ subject }: { subject: Subject }) {
       </summary>
       <div className="px-4 sm:px-5 pb-4 pt-1 max-w-3xl flex flex-col gap-2 text-[0.8125rem] leading-relaxed text-gray-600 dark:text-gray-400">
         <p>
-          <b className={B}>{one ? 'Ranking the exam.' : 'Ranking each exam.'}</b> Every year VCAA publishes how many students got each grade (UG to A+) on{' '}
-          {one ? 'the exam' : 'Exam 1 and Exam 2'}, and the score range for each grade. That gives the share of the state below each grade boundary; between
-          boundaries the projection fills in a smooth curve.
+          <b className={B}>{one ? 'Ranking the exam.' : graded > 1 ? 'Ranking each exam.' : 'Ranking the exams.'}</b> Every year VCAA publishes how many students
+          got each grade (UG to A+) on {one ? 'the exam' : graded > 1 ? `${exams[0].label} and ${exams[1].label}` : 'the oral and written exams together'}, and the score
+          range for each grade. That gives the share of the state below each grade boundary; between boundaries the projection fills in a smooth curve.
         </p>
         {one ? (
           <p>
-            <b className={B}>One exam.</b> {SUBJECTS[subject].name} has a single end-of-year exam, out of {SUBJECTS[subject].exams[0].rawMax}, so your rank on that
-            exam is your projected rank.
-            {` The ${current === last ? `${last} paper is` : current === last - 1 ? `${current} and ${last} papers are` : `papers from ${current} on are`} on the current study design; earlier years are on older study designs, which covered some different content.`}
+            <b className={B}>One exam.</b> {name} has a single end-of-year exam, out of {exams[0].rawMax}, so your rank on that exam is your projected rank.
+            {older && ` Papers up to ${older.upTo} were out of ${older.rawMax}; a mark counts for the same share of the paper in every year.`}
+            {design}
+          </p>
+        ) : graded > 1 ? (
+          <p>
+            <b className={B}>Combining the exams.</b> {exams[1].label} has {exams[1].rawMax} marks to {exams[0].label}’s {exams[0].rawMax}, so it carries{' '}
+            {exams[1].rawMax === 2 * exams[0].rawMax ? 'twice the' : 'more'} weight overall. But a mark is a mark: one more on {exams[0].label} helps exactly as much as one
+            more on {exams[1].label}. VCAA doesn’t publish how students’ {exams[0].label} and {exams[1].label} results line up, so the projection assumes a correlation of{' '}
+            {RHO} between them — typical for two papers on the same course. Anything from {RHO_RANGE[0]} to {RHO_RANGE[1]} moves the result by a point or two at most, and
+            mostly near the top or bottom of the scale.
+            {furtherNote}
           </p>
         ) : (
           <p>
-            <b className={B}>Combining the exams.</b> Exam 2 has twice as many marks, so it carries twice the weight overall. But a mark is a mark: one more on
-            Exam 1 helps exactly as much as one more on Exam 2. VCAA doesn’t publish how students’ Exam 1 and Exam 2 results line up, so the projection assumes
-            a correlation of {RHO} between them — typical for two papers on the same course. Anything from {RHO_RANGE[0]} to {RHO_RANGE[1]} moves the result by a
-            point or two at most, and mostly near the top or bottom of the scale.
+            <b className={B}>Oral and written.</b> VCAA reports the {exams[0].label.toLowerCase()} and {exams[1].label.toLowerCase()} exams as one combined score:
+            the oral is a quarter of it and the written three quarters, their 12.5% and 37.5% shares of the study score. So a written mark (out of{' '}
+            {exams[1].rawMax}) is worth more than an oral one (out of {exams[0].rawMax}).
+            {design}
           </p>
         )}
         <p>

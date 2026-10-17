@@ -89,12 +89,15 @@ function slopeOf(xs: number[], zs: number[]): number {
 
 export function marginalOf(dist: ExamDist): Marginal {
   const total = dist.bands.reduce((s, b) => s + b[2], 0)
-  // A boundary sits half a mark above each band's top score: everyone at or below it.
+  // A boundary sits half a mark above each band's top score: everyone at or below it. A boundary
+  // with nobody below it (Further Maths 2020 Exam 1 had no UG) or nobody above says nothing
+  // about where the curve is (its z is infinite), so it is left out.
   const xs: number[] = []
   const zs: number[] = []
   let cum = 0
   for (let i = 0; i < dist.bands.length - 1; i++) {
     cum += dist.bands[i][2]
+    if (cum <= 0 || cum >= total) continue
     xs.push(dist.bands[i][1] + 0.5)
     zs.push(normInv(cum / total))
   }
@@ -198,10 +201,25 @@ function ceilingOf(subject: Subject, d: YearDist): number {
   return c
 }
 
-/** One year's projection. `raw` is one raw mark per exam (see SUBJECTS for what each is out of). */
-export function projectYear(subject: Subject, d: YearDist, raw: number[]): Projection {
-  // GA scores are twice the raw marks.
-  const xs = raw.map(r => r * 2)
+/** A year's GA scores for a set of marks: each mark's share of its paper, times its share of
+ *  the graded assessment it feeds, times that assessment's maximum. */
+export function gaScores(subject: Subject, d: YearDist, raw: number[], outOf: number[]): number[] {
+  const xs = d.exams.map(() => 0)
+  SUBJECTS[subject].exams.forEach((e, i) => {
+    const g = e.ga ?? i
+    xs[g] += (raw[i] / outOf[i]) * (e.share ?? 1) * d.exams[g].max
+  })
+  return xs
+}
+
+/**
+ * One year's projection. `raw` is one raw mark per exam box (see SUBJECTS). `outOf` is what each
+ * is out of: by default the current papers, so the same marks mean the same share of the paper in
+ * every year (an Economics 72/80 counts as 81/90 on the 2014–2016 papers); a logged paper passes
+ * its own totals.
+ */
+export function projectYear(subject: Subject, d: YearDist, raw: number[], outOf = SUBJECTS[subject].exams.map(e => e.rawMax)): Projection {
+  const xs = gaScores(subject, d, raw, outOf)
   const ms = marginals(subject, d)
   const pct = pctOf(ms, xs)
   const exact = stretchTop(studyScoreOf(pct), ceilingOf(subject, d))
@@ -232,15 +250,26 @@ export function typicalOf(rows: Projection[]): number {
   return Math.round(mid)
 }
 
-/** Raw marks the subject's exams add up to: 120 for every subject today. */
+/** What a subject's totals count in: raw marks summed over its papers (120 for Methods), or for a
+ *  weighted subject (Japanese) the weighted percentage of the exam, out of 100. */
 export function totalMax(subject: Subject): number {
+  if (SUBJECTS[subject].weighted) return 100
   return SUBJECTS[subject].exams.reduce((s, e) => s + e.rawMax, 0)
 }
 
+/** A set of marks as a total, in totalMax's units (rounded for a weighted subject). */
+export function totalOf(subject: Subject, marks: number[]): number {
+  const exams = SUBJECTS[subject].exams
+  if (SUBJECTS[subject].weighted) return Math.round(exams.reduce((s, e, i) => s + (marks[i] / e.rawMax) * (e.share ?? 1) * 100, 0))
+  return marks.reduce((s, m) => s + m, 0)
+}
+
 /** A total split across the exams in proportion to each paper's size (60 → 20 + 40). Only the
- *  total changes the projection, so this is just one example split. */
+ *  total changes the projection, so this is just one example split. For a weighted subject the
+ *  total is a percentage, and the split is that percentage of every paper. */
 export function splitTotal(subject: Subject, total: number): number[] {
   const exams = SUBJECTS[subject].exams
+  if (SUBJECTS[subject].weighted) return exams.map(e => Math.round((total * e.rawMax) / 100))
   const all = totalMax(subject)
   let left = total
   return exams.map((e, i) => {
@@ -297,5 +326,5 @@ export function marksNeeded(subject: Subject, targets: number[]): MarksNeeded[] 
 /** Whether marks are near the top, where SACs decide the last few points and the top-end stretch
  *  applies: some year scores 45 or more, or the marks are 90% or more of the total. */
 export function nearCeiling(subject: Subject, marks: number[], scores: number[]): boolean {
-  return scores.some(s => s >= 45) || marks.reduce((t, m) => t + m, 0) >= 0.9 * totalMax(subject)
+  return scores.some(s => s >= 45) || totalOf(subject, marks) >= 0.9 * totalMax(subject)
 }

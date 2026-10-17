@@ -10,7 +10,7 @@
 // paper year, then one mark per exam, in log order. Links made before dates were optional were
 // always dated and sorted, so they read the same.
 
-import { DISTRIBUTIONS, SUBJECTS, type Subject } from '../data.ts'
+import { DISTRIBUTIONS, SUBJECTS, examsFor, type Subject } from '../data.ts'
 import { projectYear, type Projection } from '../model.ts'
 import { fmtDate, nth } from './dates.ts'
 
@@ -53,7 +53,9 @@ export function decodeAttempts(s: string, subject: Subject): Attempt[] {
     if (!/^(\d{8}|n)$/.test(d ?? '') || marks.length !== exams.length || !marks.every(m => /^\d{1,3}$/.test(m))) continue
     const date = d === 'n' ? null : `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6)}`
     const a: Draft = { date, paper: Number(paper), marks: marks.map(Number) }
-    if ((date !== null && Number.isNaN(Date.parse(date))) || !years.includes(a.paper) || a.marks.some((m, k) => m > exams[k].rawMax)) continue
+    if ((date !== null && Number.isNaN(Date.parse(date))) || !years.includes(a.paper)) continue
+    // Each paper's own totals (Economics 2014–2016 was out of 90).
+    if (a.marks.some((m, k) => m > examsFor(subject, a.paper)[k].rawMax)) continue
     out.push(a)
   }
   return renumber(out)
@@ -197,7 +199,8 @@ export function scoreAttempts(subject: Subject, attempts: Attempt[]): Scored[] {
     const sitting = (seen.get(a.paper) ?? 0) + 1
     seen.set(a.paper, sitting)
     const d = DISTRIBUTIONS[subject].find(x => x.year === a.paper)!
-    return { ...a, sitting, proj: projectYear(subject, d, a.marks) }
+    const outOf = examsFor(subject, a.paper).map(e => e.rawMax)
+    return { ...a, sitting, proj: projectYear(subject, d, a.marks, outOf) }
   })
 }
 

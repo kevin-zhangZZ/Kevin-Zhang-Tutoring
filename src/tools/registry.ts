@@ -59,7 +59,7 @@ export const tools: Tool[] = [
   {
     id: 'study-score',
     name: 'Study Score Projection',
-    description: 'Enter your Methods, Specialist or Chemistry exam marks and see the study score they would have earned in each year from 2014 to 2025, or log your practice papers and track the trend.',
+    description: 'Enter your exam marks for Methods, Specialist, General Maths, Chemistry, English, Accounting, Economics or Japanese and see the study score they would have earned in each year from 2014 to 2025, or log your practice papers and track the trend.',
     tagline: 'Your exam marks as a study score, 2014–2025',
     route: '/study-score',
     component: StudyScore,
