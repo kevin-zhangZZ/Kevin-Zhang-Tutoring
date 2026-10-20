@@ -658,6 +658,55 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q4-2022-e2', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Vectors — a minigolf ball in the wind: launch angle, minimum speed, closest approach, arc length', type: 'sa', hasDetail: true },
   { id: 'spec-q6-2022-e2', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'Q6(a–e)', topic: 'Statistics — a one-tailed test on can masses, its critical value, and a difference of two normals', type: 'sa', hasDetail: true },
 
+  // 2022 Specialist NHT (Northern Hemisphere Timetable) Exam 1, sat 31 May 2022. Question 4
+  // is omitted: a mass on a smooth inclined plane held by a pulley, then sliding once the
+  // string is cut — entirely Mechanics. Question 6 uses R = ma once over what is otherwise
+  // vector calculus, so it is in with a note. The NHT reports give sample answers only (no
+  // percentages, mark distributions or comments).
+  { id: 'spec-q1-2022nht-e1', subject: 'specialist', year: 2022, exam: 'NHT Exam 1', code: 'Q1', topic: 'Calculus — implicit differentiation with exponentials at a point', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2022nht-e1', subject: 'specialist', year: 2022, exam: 'NHT Exam 1', code: 'Q2', topic: 'Complex numbers — a quotient of powers in cartesian form', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2022nht-e1', subject: 'specialist', year: 2022, exam: 'NHT Exam 1', code: 'Q3', topic: 'Calculus — volume of revolution between a parabola and a chord', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2022nht-e1', subject: 'specialist', year: 2022, exam: 'NHT Exam 1', code: 'Q5', topic: 'Complex numbers — a circle from a ratio of distances', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2022nht-e1', subject: 'specialist', year: 2022, exam: 'NHT Exam 1', code: 'Q6', topic: 'Vectors — the resultant force from a position vector', type: 'sa', hasDetail: true },
+  { id: 'spec-q7-2022nht-e1', subject: 'specialist', year: 2022, exam: 'NHT Exam 1', code: 'Q7(a–b)', topic: 'Vectors — the cartesian equation of a sec–tan path, then its speed', type: 'sa', hasDetail: true },
+  { id: 'spec-q8-2022nht-e1', subject: 'specialist', year: 2022, exam: 'NHT Exam 1', code: 'Q8(a–c)', topic: 'Statistics — print runs in succession, and a sample size from an interval', type: 'sa', hasDetail: true },
+  { id: 'spec-q9-2022nht-e1', subject: 'specialist', year: 2022, exam: 'NHT Exam 1', code: 'Q9(a–b)', topic: 'Functions — sketching 9/((x + 1)(x − 2)²), then the area under it by partial fractions', type: 'sa', hasDetail: true },
+  { id: 'spec-q10-2022nht-e1', subject: 'specialist', year: 2022, exam: 'NHT Exam 1', code: 'Q10(a–b)', topic: 'Calculus — an arcsin derivative, then a distance along a curve that uses it', type: 'sa', hasDetail: true },
+
+  // 2022 Specialist NHT Exam 2, Section A. MCQ 9 is omitted (arc length from a cartesian
+  // rule) and MCQ 14 (tensions holding a hovering balloon) as Mechanics. MCQ 15 (net force
+  // from a constant acceleration) and MCQ 17 (three forces in equilibrium close into a
+  // triangle, like 2022 Exam 2 MCQ 16) are in with an explanatory note. The report gives the
+  // answer key only, so these rows carry no percentCorrect.
+  { id: 'spec-q1-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 1', topic: 'Functions — values of b giving a rational function exactly two asymptotes', type: 'mc', hasDetail: true },
+  { id: 'spec-q2-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 2', topic: 'Functions — implied domain equal to range for sin(cos⁻¹(ax − 1))', type: 'mc', hasDetail: true },
+  { id: 'spec-q3-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 3', topic: 'Functions — area enclosed by x + |2y| = 4 and the y-axis', type: 'mc', hasDetail: true },
+  { id: 'spec-q4-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 4', topic: 'Complex numbers — centre and radius of a circle', type: 'mc', hasDetail: true },
+  { id: 'spec-q5-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 5', topic: 'Algebra — partial fractions with an irreducible quadratic and a repeated factor', type: 'mc', hasDetail: true },
+  { id: 'spec-q6-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 6', topic: 'Complex numbers — values of b giving a cubic one real and two complex roots', type: 'mc', hasDetail: true },
+  { id: 'spec-q7-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 7', topic: 'Complex numbers — the fifth roots of 6 + 30i on an Argand diagram', type: 'mc', hasDetail: true },
+  { id: 'spec-q8-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 8', topic: 'Differential equations — matching a slope field', type: 'mc', hasDetail: true },
+  { id: 'spec-q10-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 10', topic: 'Calculus — the substitution x = eᵘ − e⁻ᵘ in ∫√(4 + x²) dx', type: 'mc', hasDetail: true },
+  { id: 'spec-q11-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 11', topic: 'Vectors — finding p from a given vector resolute', type: 'mc', hasDetail: true },
+  { id: 'spec-q12-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 12', topic: 'Vectors — when two moving particles collide', type: 'mc', hasDetail: true },
+  { id: 'spec-q13-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 13', topic: 'Vectors — cos(2θ) from a dot product', type: 'mc', hasDetail: true },
+  { id: 'spec-q15-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 15', topic: 'Kinematics — net force from a constant acceleration', type: 'mc', hasDetail: true },
+  { id: 'spec-q16-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 16', topic: 'Kinematics — velocity from v = te^(−x)', type: 'mc', hasDetail: true },
+  { id: 'spec-q17-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 17', topic: 'Vectors — three forces in equilibrium', type: 'mc', hasDetail: true },
+  { id: 'spec-q18-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 18', topic: 'Statistics — a sum of two independent normal waiting times', type: 'mc', hasDetail: true },
+  { id: 'spec-q19-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 19', topic: 'Statistics — sample versus population, and a 99% confidence interval', type: 'mc', hasDetail: true },
+  { id: 'spec-q20-2022nht', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 20', topic: 'Statistics — the standard deviation behind a confidence interval', type: 'mc', hasDetail: true },
+
+  // 2022 Specialist NHT Exam 2, Section B. Question 4 is omitted: two people on sliding mats
+  // down a rough slide with friction — entirely Mechanics. Question 6 d.–e. drop a package
+  // from the aircraft; it falls under gravity alone, so the work is antidifferentiating a
+  // constant acceleration vector, which is current vector calculus.
+  { id: 'spec-q1-2022nht-e2', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'Q1(a–d)', topic: 'Functions — x³/(x² − 1): asymptotes, stationary points, a sketch and a volume', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2022nht-e2', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'Q2(a–f)', topic: 'Complex numbers — a ray from √3 + i, the circle |z| = 2, cube roots of 8i and a bisector', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2022nht-e2', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'Q3(a–d)', topic: 'Differential equations — a mixing tank: setting up and verifying a DE, then the peak outflow rate', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2022nht-e2', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'Q5(a–g)', topic: 'Statistics — a one-tailed test on ball bearings, control limits and a binomial count', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2022nht-e2', subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'Q6(a–e)', topic: 'Vectors — an aircraft’s path, its closest approach, and a dropped package', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2023 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic questions excluded).
   { id: 'spec-q15-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — magnitude of the difference of two unit vectors', type: 'mc', hasDetail: true, percentCorrect: 18 },

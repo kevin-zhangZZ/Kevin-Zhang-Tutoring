@@ -62,6 +62,19 @@ Fixed suffixes:
 When the last import of an image is removed, delete the image in the same change — the folder
 should hold no unreferenced files.
 
+**NHT papers** (Northern Hemisphere Timetable, sat in May/June — first added Oct 2026 with 2022
+Specialist) are their own exams, `'NHT Exam 1'` / `'NHT Exam 2'`, in the same year: `NHT` goes
+straight after the year everywhere — files `SpecialistQ3_2022NHT.tsx` (MCQ) and
+`SpecialistQ2_2022NHTExam2.tsx`, ids `spec-q3-2022nht` and `spec-q2-2022nht-e2`, images
+`spec-2022nht-mcq7-optA.png` and `spec-2022nhte2-q2a-argand.png`, paper chunk
+`q-spec-2022nht-e2`, sources `public/exams/specialist/2022nht-exam2.pdf` (+ `-report.docx/.pdf`,
+registered in `examSources.ts`). The sidebar shows an NHT tab for a year only when that year has
+NHT questions (`examsFor` in `sidebarModel.ts`), and the Exam Analysis leaves NHT papers out.
+**NHT reports give the answer key and sample answers only** — no percentages, mark distributions
+or comments — so an NHT MCQ has `percentages: {}` and no `percentCorrect` in `data.ts`, and an
+NHT part's `SAExaminerStats` leaves out `marks`/`average` and carries only a printed note
+(`{ comment }`), or `{}` for a single-part question's `ReportShelf` when there is none.
+
 ## 3. Question file template
 
 Every question file follows this shape:

@@ -6,7 +6,7 @@
 import type { SubjectId } from './subjects'
 
 export const QUESTION_COUNT: Record<SubjectId, number> = {
-  specialist: 391,
+  specialist: 423,
   methods: 402,
   chemistry: 73,
 }

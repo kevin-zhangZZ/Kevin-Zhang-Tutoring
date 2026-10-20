@@ -69,6 +69,37 @@ const CAS_FUNCTIONS: Record<string, CasEntry> = {
       'Returns a single root only. Give bounds — nSolve(f(x)=0, x) | 10 ≤ x ≤ 20 — when the equation has several, or you may get the wrong one.',
     menu: 'menu → 3 Algebra → 1 Solve → nSolve',
   },
+  cSolve: {
+    syntax: 'cSolve(equation, variable)',
+    purpose: 'Solves an equation over the complex numbers, returning the non-real solutions as well as the real ones.',
+    structure: [
+      ['equation', 'the equation to solve, written with = (not :=)'],
+      ['variable', 'the unknown to solve for'],
+    ],
+    notes:
+      'Plain solve returns real solutions only, so a cubic with one real root shows just that one. Results come in a + bi form; set the mode to polar (re^(iθ)) when you want moduli and arguments.',
+    menu: 'menu → 3 Algebra → C Complex → 1 Solve',
+  },
+  factor: {
+    syntax: 'factor(expression, variable)',
+    purpose: 'Factorises a polynomial (or rational expression) exactly.',
+    structure: [
+      ['expression', 'the polynomial to factorise'],
+      ['variable', 'optional: the variable to factorise in, which also allows factors with surds'],
+    ],
+    notes: 'A squared factor in the output, such as (z + 1)², is a repeated root — the graph touches the axis there.',
+    menu: 'menu → 3 Algebra → 2 Factor',
+  },
+  expand: {
+    syntax: 'expand(expression, variable)',
+    purpose: 'Expands an expression; for a rational expression, naming the variable returns its partial fractions.',
+    structure: [
+      ['expression', 'the expression to expand or split'],
+      ['variable', 'the variable to split in — needed for partial fractions'],
+    ],
+    notes: 'Without the variable a rational expression is only expanded over a common denominator, not split.',
+    menu: 'menu → 3 Algebra → 3 Expand',
+  },
   normCdf: {
     syntax: 'normCdf(lower, upper, μ, σ)',
     purpose: 'The probability that a normally distributed variable lies between two values.',

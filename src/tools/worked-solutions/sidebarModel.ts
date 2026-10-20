@@ -13,6 +13,16 @@ export const EXAMS: Record<SubjectId, string[]> = {
   chemistry: ['Exam'],
 }
 
+/** The papers a subject's year lists: its usual exams, then any Northern Hemisphere Timetable
+ *  ("NHT Exam 1", "NHT Exam 2") papers the archive holds for that year — only some years have
+ *  those, so they're found from the questions rather than listed for every year. */
+export function examsFor(subject: SubjectId, year: number): string[] {
+  const nht = new Set<string>()
+  for (const q of QUESTIONS) if (q.subject === subject && q.year === year && q.exam.startsWith('NHT')) nht.add(q.exam)
+  for (const o of OMITTED) if (o.subject === subject && o.year === year && o.exam.startsWith('NHT')) nht.add(o.exam)
+  return [...EXAMS[subject], ...[...nht].sort()]
+}
+
 // Every year 2015-2025 has a sourced paper + report (examSources.ts), so the year choices
 // cover that whole range even where a subject has no questions for a year.
 const SOURCED_YEARS = Array.from({ length: 2025 - 2015 + 1 }, (_, i) => 2015 + i)
@@ -27,9 +37,9 @@ export function mainCode(code: string): string {
   return code.replace(/\(.*\)\s*$/, '').trim()
 }
 
-/** "E1", "E2", or '' for Chemistry's single exam. */
+/** "E1", "E2", "NHT E1", or '' for Chemistry's single exam. */
 export function examShort(exam: string): string {
-  return exam === 'Exam' ? '' : `E${exam.slice(-1)}`
+  return exam === 'Exam' ? '' : `${exam.startsWith('NHT') ? 'NHT ' : ''}E${exam.slice(-1)}`
 }
 
 /** The category half of `topic` ("Complex numbers — …" → "Complex Numbers"), in Title Case
@@ -169,7 +179,7 @@ export function listSequence(opts: {
 }): QuestionMeta[] {
   if (opts.view === 'topic' && opts.topic) return topicQuestions(opts.subject, opts.topic, opts.sort)
   if (opts.year === null) return []
-  return EXAMS[opts.subject].flatMap(exam =>
+  return examsFor(opts.subject, opts.year).flatMap(exam =>
     (['mc', 'sa'] as QuestionType[]).flatMap(type => examQuestions(opts.subject, opts.year!, exam, type, opts.sort)),
   )
 }

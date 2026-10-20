@@ -30,8 +30,12 @@ export interface Paper {
 /** The years a paper picker offers: the old-study-design papers this guide is about. */
 export const PICKER_YEARS = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
 
-export function examsFor(subject: string): string[] {
-  return subject === 'chemistry' ? ['Exam'] : ['Exam 1', 'Exam 2']
+/** A year's papers: the usual exams, then any Northern Hemisphere Timetable ("NHT Exam 1")
+ *  papers that year's audit rows cover. */
+export function examsFor(subject: string, papers: Paper[] = [], year: number | null = null): string[] {
+  const base = subject === 'chemistry' ? ['Exam'] : ['Exam 1', 'Exam 2']
+  const nht = papers.filter(p => p.year === year && p.exam.startsWith('NHT')).map(p => p.exam)
+  return [...base, ...[...new Set(nht)].sort()]
 }
 
 export const examSlug = (exam: string) => exam.trim().toLowerCase().replace(/\s+/g, '-')

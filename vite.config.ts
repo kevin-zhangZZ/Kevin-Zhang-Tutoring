@@ -9,10 +9,11 @@ const port = process.env.PORT ? Number(process.env.PORT) : undefined
 
 // The worked-solutions chunk a question file belongs to (see manualChunks below).
 function paperChunk(id: string): string | undefined {
-  const m = id.match(/\/worked-solutions\/questions\/(Methods|Specialist|Chemistry)Q\d+_(\d{4})(Exam[12])?\.tsx$/)
+  const m = id.match(/\/worked-solutions\/questions\/(Methods|Specialist|Chemistry)Q\d+_(\d{4})(NHT)?(Exam[12])?\.tsx$/)
   if (!m) return
   const subject = { Methods: 'meth', Specialist: 'spec', Chemistry: 'chem' }[m[1]]
-  return subject === 'chem' ? `q-chem-${m[2]}` : `q-${subject}-${m[2]}-${m[3] === 'Exam1' ? 'e1' : 'e2'}`
+  const year = m[3] ? `${m[2]}nht` : m[2]
+  return subject === 'chem' ? `q-chem-${year}` : `q-${subject}-${year}-${m[4] === 'Exam1' ? 'e1' : 'e2'}`
 }
 
 export default defineConfig({
@@ -25,7 +26,9 @@ export default defineConfig({
         // The worked solutions load their question files on demand (questionLoader.ts). One
         // chunk per question would be ~870 files, so group them a paper at a time:
         // MethodsQ3_2019Exam1 → q-meth-2019-e1, SpecialistQ12_2019 (Exam 2 MCQ) and
-        // SpecialistQ2_2019Exam2 → q-spec-2019-e2, ChemistryQ15_2019 → q-chem-2019.
+        // SpecialistQ2_2019Exam2 → q-spec-2019-e2, ChemistryQ15_2019 → q-chem-2019. The
+        // Northern Hemisphere Timetable papers carry NHT after the year: SpecialistQ3_2022NHT
+        // (NHT Exam 2 MCQ) and SpecialistQ2_2022NHTExam2 → q-spec-2022nht-e2.
         // Only the question files (and their own images) go in those chunks: without
         // onlyExplicitManualChunks Rollup also drags their shared imports (React, KaTeX, the
         // question kit) into whichever paper chunk sees them first, and Home would preload it.

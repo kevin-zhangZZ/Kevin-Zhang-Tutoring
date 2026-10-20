@@ -134,7 +134,7 @@ function PaperPicker({ subject, year, exam, papers, reviewed, onChange }: {
   reviewed: Set<number>
   onChange: (subject: string, year: number | null, exam: string) => void
 }) {
-  const exams = examsFor(subject)
+  const exams = examsFor(subject, papers, year)
   const paper = year !== null ? papers.find(p => p.year === year && p.exam === exam) : undefined
   const explanations = year !== null ? explanationsFor(subject, year) : undefined
   const title = year !== null ? `${SHORT_NAME[subject]} ${year}${exams.length > 1 ? `, ${exam}` : ''}` : ''
@@ -213,13 +213,12 @@ export default function ExamSkipGuide() {
   const [, , subjectSeg, yearSeg, examSeg] = pathname.split('/')
   const subjectId = guides.find(g => g.id === subjectSeg)?.id ?? guides[0].id
   const pickedYear = yearSeg && PICKER_YEARS.includes(Number(yearSeg)) ? Number(yearSeg) : null
-  const exams = examsFor(subjectId)
-  const pickedExam = exams.find(e => examSlug(e) === examSeg) ?? exams[0]
-
   const [openTitles, setOpenTitles] = useState<Set<string>>(new Set())
   const guide = guides.find(g => g.id === subjectId)!
   const audit = audits.find(a => a.id === subjectId)!
   const papers = papersFor(subjectId, audit.rows)
+  const exams = examsFor(subjectId, papers, pickedYear)
+  const pickedExam = exams.find(e => examSlug(e) === examSeg) ?? exams[0]
   const reviewed = reviewedYears(audit.rows)
   const years = [...new Set(papers.map(p => p.year))]
 

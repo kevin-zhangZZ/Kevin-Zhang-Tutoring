@@ -10,9 +10,11 @@ import { SectionIcon, isSection } from './mcqSections'
 // VCAA examination-report stats for one part of a short-answer question: the percentage
 // of students who scored each mark (index = mark value, e.g. marks[0] = % who scored 0),
 // the average mark, and the examiner's written comment (if the report included one).
+// The Northern Hemisphere Timetable reports print no statistics, so their parts leave `marks`
+// and `average` out and carry only the report's note, if it has one.
 export interface SAExaminerStats {
-  marks: number[]
-  average: number
+  marks?: number[]
+  average?: number
   comment?: ReactNode
 }
 
@@ -370,15 +372,18 @@ export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; 
   const { hideAnswers } = useStudyMode()
   const reveal = useContext(RevealCtx)
   if (hideAnswers && reveal && !reveal.done) return null
+  const { marks, average } = stats
+  if (!marks && !stats.comment) return null
 
-  const last = stats.marks.length - 1
+  const last = (marks?.length ?? 0) - 1
   return (
     <div>
       <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Examiner's Report</p>
       <div className="rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden bg-white dark:bg-gray-900">
+        {marks && (
         <div className="flex items-end gap-5 px-4 py-3">
-          <div className="flex-1 flex gap-px" role="img" aria-label={stats.marks.map((p, m) => `${p}% scored ${m}`).join(', ')}>
-            {stats.marks.map((p, m) => (
+          <div className="flex-1 flex gap-px" role="img" aria-label={marks.map((p, m) => `${p}% scored ${m}`).join(', ')}>
+            {marks.map((p, m) => (
               // Sized by share, with a floor so a 2% section still has room for its label.
               <div key={m} className="flex flex-col gap-1" style={{ flex: `${Math.max(p, 0.01)} 1 0`, minWidth: 34 }}>
                 <span className="text-[11px] font-semibold tabular-nums text-center text-gray-600 dark:text-gray-300">{m}</span>
@@ -393,11 +398,12 @@ export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; 
             ))}
           </div>
           <span className="pb-0.5 text-[12px] text-gray-500 dark:text-gray-400 whitespace-nowrap">
-            Average <b className="text-[13px] font-bold tabular-nums text-gray-800 dark:text-gray-100">{formatAverage(stats.average)}</b> / {maxMarks}
+            Average <b className="text-[13px] font-bold tabular-nums text-gray-800 dark:text-gray-100">{average === undefined ? '—' : formatAverage(average)}</b> / {maxMarks}
           </span>
         </div>
+        )}
         {stats.comment && (
-          <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-800 text-[12.5px] leading-relaxed text-gray-600 dark:text-gray-400">
+          <div className={`px-4 py-3 ${marks ? 'border-t' : ''} border-gray-100 dark:border-gray-800 text-[12.5px] leading-relaxed text-gray-600 dark:text-gray-400`}>
             {stats.comment}
           </div>
         )}

@@ -10,6 +10,8 @@ import { examSourceFor } from './examSources'
 import type { ListSort, ListView, SidebarPrefs } from './sidebarPrefs'
 import {
   EXAMS,
+  examsFor,
+  examShort,
   HARD_BELOW,
   EASY_FROM,
   difficulty,
@@ -278,7 +280,7 @@ function YearContent({
   sort: ListSort
   nav: SidebarNav
 }) {
-  const exams = EXAMS[subject]
+  const exams = year === null ? EXAMS[subject] : examsFor(subject, year)
   const { anchor } = useContext(AnchorCtx)
   const selectedExam = anchor && anchor.subject === subject && anchor.year === year ? anchor.exam : null
   // The exam tab and the folded / unfolded exams and groups are the visitor's view of the list,
@@ -327,7 +329,7 @@ function YearContent({
           aria-label="Exam"
           value={current}
           onChange={setTabChoice}
-          options={exams.map(e => ({ value: e, label: e }))}
+          options={exams.map(e => ({ value: e, label: tabLabel(e, exams.length) }))}
         />
         {section(current, true, true)}
         <Legend prefs={prefs} />
@@ -340,6 +342,12 @@ function YearContent({
       <Legend prefs={prefs} />
     </>
   )
+}
+
+// A paper's tab. With the NHT papers alongside there are four tabs, so they shorten to fit:
+// "Exam 1", "Exam 2", "NHT 1", "NHT 2".
+function tabLabel(exam: string, count: number): string {
+  return count > 2 && exam.startsWith('NHT') ? `NHT ${exam.slice(-1)}` : exam
 }
 
 // Difficulty colours: grey → amber, deeper amber = harder. Numbers stay grey apart from the
@@ -708,7 +716,7 @@ function QuestionRow({
           <span className="flex-1 min-w-0 flex flex-col">
             <span className={`flex items-baseline gap-2 font-display ${compact ? 'text-[11px]' : 'text-[11.5px]'} font-bold whitespace-nowrap`}>
               <span className="flex-none w-[34px] tabular-nums text-gray-500 dark:text-gray-400">{q.year}</span>
-              {q.exam !== 'Exam' && <span className="flex-none w-[46px] text-gray-500 dark:text-gray-400">{q.exam}</span>}
+              {q.exam !== 'Exam' && <span className="flex-none w-[46px] text-gray-500 dark:text-gray-400">{q.exam.startsWith('NHT') ? examShort(q.exam) : q.exam}</span>}
               <span className="text-sky-700 dark:text-sky-300">{mainCode(q.code)}</span>
             </span>
             <span className={`truncate ${compact ? 'text-[11.5px]' : 'text-[12px]'} text-gray-500 dark:text-gray-400 leading-snug`}>

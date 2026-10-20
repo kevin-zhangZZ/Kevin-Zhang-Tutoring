@@ -31,6 +31,9 @@ function build(): Item[] {
   const items: Item[] = []
   for (const q of QUESTIONS) {
     if (q.subject !== 'methods' && q.subject !== 'specialist') continue
+    // The Northern Hemisphere Timetable papers had a small cohort and their reports give no
+    // statistics, so they stay out of the analysis.
+    if (q.exam.startsWith('NHT')) continue
     const subject = q.subject
     const exam = q.exam as ExamName
     if (q.type === 'mc') {

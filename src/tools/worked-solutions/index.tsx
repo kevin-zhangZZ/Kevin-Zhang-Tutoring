@@ -12,7 +12,7 @@ import { AlwaysDetailed, StudyModeProvider, useStudyMode } from './studyMode'
 import { TOOL_PATH, parsePath, questionPath, subjectPath, yearPath } from './routes'
 import { SidebarPrefsProvider, useSidebarPrefs } from './sidebarPrefs'
 import { QuestionSidebar, type SidebarNav } from './QuestionSidebar'
-import { listSequence, mainCode, partsOf, relativeLabel, topicOf } from './sidebarModel'
+import { examShort, listSequence, mainCode, partsOf, relativeLabel, topicOf } from './sidebarModel'
 import SidebarSettings from './SidebarSettings'
 import { useBackToTop } from '../../components/Layout'
 import { useDialogFocus } from '../../lib/a11y'
@@ -539,7 +539,7 @@ function StartPanel({ subject, year }: { subject: SubjectId; year: number | null
                   className="group grid grid-cols-[4.75rem_minmax(0,1fr)_auto] items-baseline gap-3 rounded-xl px-3 py-2.5 -mx-3 hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors"
                 >
                   <span className="font-display text-[14px] font-bold text-sky-700 dark:text-sky-400 whitespace-nowrap">
-                    {mixedExams ? `${examShortLabel(q.exam)} ` : ''}{mainCode(q.code)}
+                    {mixedExams ? `${examShort(q.exam)} ` : ''}{mainCode(q.code)}
                   </span>
                   <span className="min-w-0 truncate text-[13.5px] text-gray-700 dark:text-gray-300">{topicOf(q)}</span>
                   <span className="text-[13px] font-extrabold tabular-nums text-amber-700 dark:text-amber-400">{q.percentCorrect}% right</span>
@@ -552,9 +552,6 @@ function StartPanel({ subject, year }: { subject: SubjectId; year: number | null
     </div>
   )
 }
-
-/** "Exam 2" → "E2", for the hardest-questions list. */
-const examShortLabel = (exam: string) => exam.replace(/^Exam\s*/, 'E')
 
 // First screen: the three subjects with how much each holds and every year as a way straight
 // in, plus a way back to the last question this device opened.
