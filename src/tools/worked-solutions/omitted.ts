@@ -52,4 +52,7 @@ export const OMITTED: OmittedQuestion[] = [
   ...mechanics(2022, 'NHT Exam 1', ['Q4']),
   { subject: 'specialist', year: 2022, exam: 'NHT Exam 2', code: 'MCQ 9', reason: 'Arc length from Cartesian form' },
   ...mechanics(2022, 'NHT Exam 2', ['MCQ 14', 'Q4']),
+  { subject: 'specialist', year: 2023, exam: 'NHT Exam 2', code: 'MCQ 15', reason: 'Mechanics' },
+  { subject: 'specialist', year: 2023, exam: 'NHT Exam 2', code: 'Q5', reason: 'Mechanics' },
+  { subject: 'specialist', year: 2023, exam: 'NHT Exam 1', code: 'Q4', reason: 'Mechanics' },
 ]

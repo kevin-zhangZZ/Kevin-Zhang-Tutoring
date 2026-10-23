@@ -51,6 +51,12 @@ register('specialist', 'specialist', 2014, 'Exam 2', '2014-exam2')
 // reports give the answers only — no percentages, mark distributions or comments.
 register('specialist', 'specialist', 2022, 'NHT Exam 1', '2022nht-exam1')
 register('specialist', 'specialist', 2022, 'NHT Exam 2', '2022nht-exam2')
+for (let year = 2023; year <= 2026; year++) {
+  for (const subject of ['methods', 'specialist'] as const) {
+    register(subject, subject, year, 'NHT Exam 1', `${year}nht-exam1`)
+    register(subject, subject, year, 'NHT Exam 2', `${year}nht-exam2`)
+  }
+}
 
 // Returns undefined for any subject/year/exam combination outside the registered range, so callers can
 // simply skip rendering the links rather than guess at a URL.

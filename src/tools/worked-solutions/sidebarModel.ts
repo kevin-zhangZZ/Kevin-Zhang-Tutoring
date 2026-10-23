@@ -15,12 +15,14 @@ export const EXAMS: Record<SubjectId, string[]> = {
 
 /** The papers a subject's year lists: its usual exams, then any Northern Hemisphere Timetable
  *  ("NHT Exam 1", "NHT Exam 2") papers the archive holds for that year — only some years have
- *  those, so they're found from the questions rather than listed for every year. */
+ *  those, so they're found from the questions rather than listed for every year. A year whose
+ *  November exams haven't been sat yet (NHT papers are sat in May/June) lists only its NHT ones. */
 export function examsFor(subject: SubjectId, year: number): string[] {
   const nht = new Set<string>()
   for (const q of QUESTIONS) if (q.subject === subject && q.year === year && q.exam.startsWith('NHT')) nht.add(q.exam)
   for (const o of OMITTED) if (o.subject === subject && o.year === year && o.exam.startsWith('NHT')) nht.add(o.exam)
-  return [...EXAMS[subject], ...[...nht].sort()]
+  const main = SOURCED_YEARS.includes(year) || QUESTIONS.some(q => q.subject === subject && q.year === year && !q.exam.startsWith('NHT'))
+  return [...(main ? EXAMS[subject] : []), ...[...nht].sort()]
 }
 
 // Every year 2015-2025 has a sourced paper + report (examSources.ts), so the year choices
