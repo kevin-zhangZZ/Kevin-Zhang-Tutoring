@@ -11,7 +11,7 @@
 // figure just before c. already shows the inverse of g1 starting at (1, 2).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly, WarningNote } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './meth-2023e2-q5-graph.png'
@@ -256,10 +256,22 @@ const ROWS_E: WorkingRow[] = [
   {
     working: (
       <Cas fn="solve">
-        solve((e^(k−x)+e^(x−k))/k = x and (−e^(k−x)+e^(x−k))/k = 1, {'{'}x,k{'}'}) | k&gt;0
+        solve((e^(k−x)+e^(x−k))/k = x and (−e^(k−x)+e^(x−k))/k = 1, {'{'}x,k{'}'})
       </Cas>
     ),
     reason: <>Two equations, two unknowns. The second is <Katex tex="h'(x)=1" />, using the derivative from part d.</>,
+  },
+  {
+    working: <Katex display tex="\text{TI-Nspire: } k = -1.26873\ldots, \quad x = -1.86680\ldots" />,
+    reason: (
+      <>
+        Swapping both signs gives another solution, so take <Katex tex="k=1.26873\ldots" />, <Katex tex="x=1.86680\ldots" />.
+        <WarningNote label="CAS can’t solve this as asked:">
+          the TI-Nspire only returns this negative pair, which <Katex tex="k>0" /> rules out. In the exam, write both equations, then flip the signs of its answer and say why (&ldquo;by symmetry, <Katex tex="(x,k)\to(-x,-k)" /> is also a solution, and <Katex tex="k>0" />&rdquo;).
+        </WarningNote>
+      </>
+    ),
+    more: <>Why swapping signs works: put <Katex tex="-x" /> and <Katex tex="-k" /> into <Katex tex="h" /> and every exponent is unchanged while the <Katex tex="\tfrac1k" /> flips sign, so <Katex tex="h" /> becomes <Katex tex="-h" />. Then <Katex tex="h=x" /> turns into <Katex tex="-h=-x" />, the same equation, and the same happens to <Katex tex="h'=1" />. So whenever <Katex tex="(x,k)" /> solves the pair, so does <Katex tex="(-x,-k)" />. Writing both equations down matters, since that is the method the mark rewards. It is a 1-mark question, so don&rsquo;t spend minutes fighting the calculator or trying other syntax: flip the signs, give the answer and move on.</>,
   },
   {
     working: <Katex display tex="k = 1.26873\ldots, \quad x = 1.86680\ldots" />,

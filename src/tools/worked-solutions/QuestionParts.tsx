@@ -343,10 +343,9 @@ export function WrongMethod({
   )
 }
 
-// A note that the current Chemistry Data Book gives a different value from the one the paper
-// and report used (AUTHORING_GUIDE §14.4). Sits inside a working row's `reason`, after the
-// reasoning itself, as a yellow callout with a warning sign so it isn't missed.
-export function DataBookNote({ children }: { children: ReactNode }) {
+// A yellow callout with a warning sign, inside a working row's `reason` after the reasoning
+// itself, for something a student must not miss (e.g. a CAS that can't solve the line as written).
+export function WarningNote({ label, children }: { label: string; children: ReactNode }) {
   return (
     <span className="mt-2 flex gap-2 items-start rounded-lg border border-amber-300 dark:border-amber-700/70 bg-amber-50 dark:bg-amber-950/40 px-3 py-2 text-amber-900 dark:text-amber-100">
       <svg viewBox="0 0 24 24" className="flex-none w-[18px] h-[18px] mt-px" role="img" aria-label="Warning">
@@ -355,10 +354,16 @@ export function DataBookNote({ children }: { children: ReactNode }) {
         <circle cx="12" cy="17.9" r="1.2" fill="#422006" />
       </svg>
       <span>
-        <b>Data Book update:</b> {children}
+        <b>{label}</b> {children}
       </span>
     </span>
   )
+}
+
+// A note that the current Chemistry Data Book gives a different value from the one the paper
+// and report used (AUTHORING_GUIDE §14.4).
+export function DataBookNote({ children }: { children: ReactNode }) {
+  return <WarningNote label="Data Book update:">{children}</WarningNote>
 }
 
 // Marks distribution + comment for one part of a short-answer question, as published in the VCAA
