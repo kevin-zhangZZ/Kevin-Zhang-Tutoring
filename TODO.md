@@ -22,8 +22,8 @@ delete them once they're live.
 
 ## Shipping
 
-- [ ] Deploy (`npm run deploy`): the 2022–2026 NHT exams, sidebar headers, Inter font, Q5e
-      warning and tablet switch were committed and pushed 23 Oct 2026 but not deployed.
+- [x] Deployed 23 Oct 2026 (index-D_Wn_Ei6.js): the 2022–2026 NHT exams, sidebar headers,
+      Inter font, Q5e warning and tablet switch.
 
 ## Content
 
