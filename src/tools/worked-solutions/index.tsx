@@ -76,13 +76,13 @@ function AnswersSwitch({ compact }: { compact?: boolean }) {
 
 // Concise (the default): just the exam working, its reasoning, the report and the video.
 // Detailed: also the Background notes, interactive diagrams and Common Mistake boxes.
-function DetailSwitch({ compact }: { compact?: boolean }) {
+function DetailSwitch({ compact, size = 'md', className }: { compact?: boolean; size?: 'sm' | 'md'; className?: string }) {
   const { detailed, setDetailed } = useStudyMode()
   return (
     <SegmentedControl
-      size="md"
+      size={size}
       fill
-      className={compact ? '' : 'w-full sm:w-auto'}
+      className={className ?? (compact ? '' : 'w-full sm:w-auto')}
       aria-label="Solution detail"
       title="Concise shows the exam working only; Detailed adds background notes, interactive diagrams and common mistakes"
       value={detailed ? 'detailed' : 'concise'}
@@ -318,7 +318,14 @@ function QuestionsPage({ rest }: { rest: string }) {
                     <Link to={yearPath(selected.subject, openYear)} className="text-[13px] font-semibold text-sky-700 dark:text-sky-400 truncate">
                       ‹ {view === 'topic' ? topicOf(selected) : `${selected.year} ${SUBJECTS.find(s => s.id === selected.subject)?.label}`}
                     </Link>
-                    <span className="flex-none flex items-center gap-1">
+                    <span className="flex-none flex items-center gap-3">
+                      {/* Tablets: the page header (and its switch) is hidden while a question is
+                          open, and phones keep the switch in the Questions sheet. */}
+                      {selected.subject !== 'chemistry' && (
+                        <span className="hidden sm:block">
+                          <DetailSwitch size="sm" className="" />
+                        </span>
+                      )}
                       {index > -1 && (
                         <span className="font-display text-[11.5px] font-bold text-gray-500 dark:text-gray-400">
                           {index + 1} of {sequence.length}
@@ -339,6 +346,11 @@ function QuestionsPage({ rest }: { rest: string }) {
                         </button>
                       )}
                     </span>
+                  </div>
+                )}
+                {!(prefs.backBar === 'on' && openYear !== null) && selected.subject !== 'chemistry' && (
+                  <div className="hidden sm:flex lg:hidden justify-end -mt-2 mb-5">
+                    <DetailSwitch size="sm" className="" />
                   </div>
                 )}
                 <StickyQuestionBar
