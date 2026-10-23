@@ -4,6 +4,7 @@
 // sheet, and the live preview on the settings page.
 
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
+import { flushSync } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { SUBJECT_NAME, QUESTION_TYPE_LABEL, type QuestionMeta, type QuestionType, type SubjectId } from './data'
 import { examSourceFor } from './examSources'
@@ -20,6 +21,7 @@ import {
   examItems,
   examTypes,
   mainCode,
+  questionNumber,
   omittedFor,
   partsOf,
   hasExplore,
@@ -320,17 +322,32 @@ function YearContent({
 
   if (prefs.examLayout === 'tabs' && exams.length > 1) {
     const current = (tabChoice && exams.includes(tabChoice) ? tabChoice : null) ?? selectedExam ?? exams[0]
+    // The November papers and the NHT ones are two sittings, so each gets its own captioned row
+    // of tabs; a year with only one sitting shows just that row.
+    const sittings = [
+      { name: 'VCE', papers: exams.filter(e => !e.startsWith('NHT')) },
+      { name: 'NHT', papers: exams.filter(e => e.startsWith('NHT')) },
+    ].filter(s => s.papers.length > 0)
     return (
       <>
-        <SegmentedControl
-          variant="buttons"
-          fill
-          className="w-full mb-2"
-          aria-label="Exam"
-          value={current}
-          onChange={setTabChoice}
-          options={exams.map(e => ({ value: e, label: tabLabel(e, exams.length) }))}
-        />
+        <div className="flex flex-col gap-1.5 mb-2">
+          {sittings.map(s => (
+            <div key={s.name}>
+              {(sittings.length > 1 || s.name === 'NHT') && (
+                <p className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-0.5">{s.name}</p>
+              )}
+              <SegmentedControl
+                variant="buttons"
+                fill
+                className="w-full"
+                aria-label={`${s.name} exam`}
+                value={current}
+                onChange={setTabChoice}
+                options={s.papers.map(e => ({ value: e, label: e.replace(/^NHT /, ''), ariaLabel: e }))}
+              />
+            </div>
+          ))}
+        </div>
         {section(current, true, true)}
         <Legend prefs={prefs} />
       </>
@@ -342,12 +359,6 @@ function YearContent({
       <Legend prefs={prefs} />
     </>
   )
-}
-
-// A paper's tab. With the NHT papers alongside there are four tabs, so they shorten to fit:
-// "Exam 1", "Exam 2", "NHT 1", "NHT 2".
-function tabLabel(exam: string, count: number): string {
-  return count > 2 && exam.startsWith('NHT') ? `NHT ${exam.slice(-1)}` : exam
 }
 
 // Difficulty colours: grey → amber, deeper amber = harder. Numbers stay grey apart from the
@@ -490,7 +501,7 @@ function ExamSection({
         {collapsible ? (
           <button
             type="button"
-            onClick={() => setFolded(examKey, open)}
+            onClick={e => foldInPlace(e.currentTarget, () => setFolded(examKey, open))}
             aria-expanded={open}
             className="flex items-center gap-1.5 text-[11.5px] font-bold text-gray-900 dark:text-white"
           >
@@ -529,21 +540,23 @@ function ExamSection({
                   (foldable ? (
                     <button
                       type="button"
-                      onClick={() => setFolded(typeKey, typeOpen)}
+                      onClick={e => foldInPlace(e.currentTarget, () => setFolded(typeKey, typeOpen))}
                       aria-expanded={typeOpen}
-                      className="flex items-center gap-1.5 bg-slate-200 dark:bg-slate-800/40 hover:bg-slate-300/70 dark:hover:bg-slate-800/70 rounded-lg px-2.5 py-1.5 my-0.5 text-left"
+                      className="flex items-center gap-2 bg-slate-200 dark:bg-slate-800/40 hover:bg-slate-300/70 dark:hover:bg-slate-800/70 rounded-lg px-2.5 py-2.5 my-0.5 text-left"
                     >
-                      <Chevron open={typeOpen} />
-                      <span className="font-display text-[10.5px] font-bold leading-none text-slate-700 dark:text-slate-300 tracking-wide">
+                      <TypeIcon type={type as QuestionType} />
+                      <span className="font-display text-[11.5px] font-bold leading-none text-slate-700 dark:text-slate-300 tracking-wide">
                         {QUESTION_TYPE_LABEL[type as QuestionType]}
                       </span>
-                      <span className="ml-auto font-display text-[10.5px] font-bold leading-none text-slate-500 dark:text-slate-400">
+                      <span className="ml-auto font-display text-[11px] font-bold leading-none text-slate-500 dark:text-slate-400">
                         {items.filter(it => it.kind === 'question').length}
                       </span>
+                      <ChevronDown open={typeOpen} />
                     </button>
                   ) : (
-                    <div className="flex items-center bg-slate-200 dark:bg-slate-800/40 rounded-lg px-2.5 py-1.5 my-0.5">
-                      <span className="font-display text-[10.5px] font-bold leading-none text-slate-700 dark:text-slate-300 tracking-wide">
+                    <div className="flex items-center gap-2 bg-slate-200 dark:bg-slate-800/40 rounded-lg px-2.5 py-2.5 my-0.5">
+                      <TypeIcon type={type as QuestionType} />
+                      <span className="font-display text-[11.5px] font-bold leading-none text-slate-700 dark:text-slate-300 tracking-wide">
                         {QUESTION_TYPE_LABEL[type as QuestionType]}
                       </span>
                     </div>
@@ -587,13 +600,29 @@ function SourceLinks({ paper, report, style }: { paper: string; report: string; 
   )
 }
 
+// In a paper's list the group header (Multiple Choice / Short Answer) already says what the
+// rows are, so each row shows only its number ("MCQ" / "Question" stays for screen readers).
+// The By Topic list, the pager and the question header mix papers, so they keep "MCQ 12", "Q3".
+const NUMBER_COL = 'w-[22px] tabular-nums'
+
+function QuestionNumber({ code }: { code: string }) {
+  return (
+    <>
+      <span className="sr-only">{code.startsWith('MCQ') ? 'MCQ ' : 'Question '}</span>
+      {questionNumber(code)}
+    </>
+  )
+}
+
 function OmittedRow({ o }: { o: OmittedQuestion }) {
   const redacted = /redacted/i.test(o.reason)
   // The Skip Guide explains why, and opens on this paper.
   const why = `/exam-skip-guide/${o.subject}/${o.year}/${o.exam.trim().toLowerCase().replace(/\s+/g, '-')}`
   return (
     <div className="flex items-center gap-2 px-2 py-1.5 ml-2.5">
-      <span className="flex-none w-[52px] font-display text-[11.5px] font-bold text-gray-500 dark:text-gray-400">{o.code}</span>
+      <span className={`flex-none ${NUMBER_COL} font-display text-[11.5px] font-bold text-gray-500 dark:text-gray-400`}>
+        <QuestionNumber code={o.code} />
+      </span>
       <span className="flex-1 min-w-0 text-[11.5px] text-gray-500 dark:text-gray-400 italic leading-snug">
         {o.reason}
         {!redacted && (
@@ -726,9 +755,9 @@ function QuestionRow({
         ) : (
           <>
             <span
-              className={`flex-none w-[52px] font-display ${compact ? 'text-[11px]' : 'text-[11.5px]'} font-bold text-sky-700 dark:text-sky-300 whitespace-nowrap`}
+              className={`flex-none ${NUMBER_COL} font-display ${compact ? 'text-[11px]' : 'text-[11.5px]'} font-bold text-sky-700 dark:text-sky-300 whitespace-nowrap`}
             >
-              {mainCode(q.code)}
+              <QuestionNumber code={q.code} />
             </span>
             <span className={`flex-1 min-w-0 truncate ${compact ? 'text-[12px]' : 'text-[12.5px]'} text-gray-700 dark:text-gray-300`}>
               {topicOf(q)}
@@ -757,7 +786,7 @@ function QuestionRow({
 
       {isSelected && prefs.parts === 'show' && parts.length > 1 && (
         <div
-          className={`${inTopic ? 'ml-[28px]' : 'ml-[72px]'} mr-1 mt-0.5 mb-1.5 flex flex-col border-l-2 border-sky-100 dark:border-sky-900/60`}
+          className={`${inTopic ? 'ml-[28px]' : 'ml-[42px]'} mr-1 mt-0.5 mb-1.5 flex flex-col border-l-2 border-sky-100 dark:border-sky-900/60`}
         >
           {parts.map(p => {
             const on = activePart === p.l
@@ -849,6 +878,91 @@ function Difficulty({ q, mode }: { q: QuestionMeta; mode: SidebarPrefs['diff'] }
         />
       ))}
     </span>
+  )
+}
+
+// Folding a group shortens the list. When the sidebar is scrolled, the browser then clamps its
+// scroll position to the new, shorter height (and the box itself shrinks once the list fits), so
+// the whole list jumps under the pointer. So the header that was clicked stays where it was: the
+// list keeps its height with bottom padding, and gives that padding back as the reader scrolls up,
+// all of it once they reach the top, where shrinking moves nothing. A sidebar that doesn't scroll
+// on its own (phones) is left alone.
+const slack = new WeakMap<HTMLElement, { base: number; extra: number; listening: boolean }>()
+
+function setSlack(box: HTMLElement, extra: number) {
+  const state = slack.get(box)!
+  state.extra = Math.max(0, extra)
+  box.style.paddingBottom = state.extra ? `${state.base + state.extra}px` : ''
+}
+
+function trimSlack(box: HTMLElement) {
+  const state = slack.get(box)
+  if (!state || !state.extra) return
+  const content = box.scrollHeight - state.extra
+  setSlack(box, box.scrollTop <= 0 ? 0 : Math.min(state.extra, box.scrollTop + box.clientHeight - content))
+}
+
+function foldInPlace(header: HTMLElement, fold: () => void) {
+  let box = header.parentElement
+  while (box && !/(auto|scroll)/.test(getComputedStyle(box).overflowY)) box = box.parentElement
+  if (!box || box.tagName === 'MAIN' || box.scrollTop <= 0) {
+    flushSync(fold)
+    if (box) trimSlack(box)
+    return
+  }
+  const scroller = box
+  const target = scroller.scrollTop
+  const height = scroller.clientHeight
+  if (!slack.has(scroller)) {
+    slack.set(scroller, { base: parseFloat(getComputedStyle(scroller).paddingBottom) || 0, extra: 0, listening: false })
+  }
+  const state = slack.get(scroller)!
+  flushSync(fold)
+  // Enough padding that the list is as tall as the box was, below the scroll position it had.
+  const content = scroller.scrollHeight - state.extra
+  setSlack(scroller, Math.max(state.extra, target + height - content))
+  scroller.scrollTop = target
+  trimSlack(scroller)
+  if (state.extra && !state.listening) {
+    state.listening = true
+    const onScroll = () => {
+      trimSlack(scroller)
+      if (!state.extra) {
+        state.listening = false
+        scroller.removeEventListener('scroll', onScroll)
+      }
+    }
+    scroller.addEventListener('scroll', onScroll, { passive: true })
+  }
+}
+
+// The Multiple Choice / Short Answer headers: an icon for the kind of question (a checklist, a
+// pencil) before the label, and the fold arrow on the right, pointing down while open.
+function TypeIcon({ type }: { type: QuestionType }) {
+  return (
+    <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 flex-none text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      {type === 'mc' ? (
+        <>
+          <path d="M3.5 5.5l1.5 1.5l2.5 -2.5" />
+          <path d="M3.5 11.5l1.5 1.5l2.5 -2.5" />
+          <path d="M3.5 17.5l1.5 1.5l2.5 -2.5" />
+          <path d="M11 6h9M11 12h9M11 18h9" />
+        </>
+      ) : (
+        <>
+          <path d="M4 20h4l10.5 -10.5a2.83 2.83 0 1 0 -4 -4l-10.5 10.5v4" />
+          <path d="M13.5 6.5l4 4" />
+        </>
+      )}
+    </svg>
+  )
+}
+
+function ChevronDown({ open }: { open: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" className={`w-3.5 h-3.5 flex-none text-slate-500 dark:text-slate-400 transition-transform ${open ? '' : '-rotate-90'}`} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M6 9l6 6l6 -6" />
+    </svg>
   )
 }
 
