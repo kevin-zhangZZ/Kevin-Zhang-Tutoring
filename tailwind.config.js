@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // Aptos first: it's used wherever it's installed (it isn't a web font, so it can't be
-        // served to visitors); everyone else gets the fonts after it.
-        sans: ['Aptos', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['"Aptos Display"', 'Aptos', '"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
+        // Inter everywhere, served as a web font so every visitor sees the same text. `display`
+        // (headings, labels, numbers) is kept as its own name but is the same family.
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         // Trig ratio colors — CSS variables in index.css, with a darker shade in light mode
