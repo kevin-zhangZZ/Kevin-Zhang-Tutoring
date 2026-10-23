@@ -14,16 +14,16 @@ const REPORT: SAExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\begin{aligned} |z|&=\sqrt{1^2+\left(\sqrt3\right)^2}=2 \ \operatorname{Arg}(z)&=-\frac{\pi}{3} \end{aligned}" />,
+    working: <Katex display tex="\begin{aligned} |z|&=\sqrt{1^2+\left(\sqrt3\right)^2}=2 \\ \operatorname{Arg}(z)&=-\frac{\pi}{3} \end{aligned}" />,
     reason: <><Katex tex="z=1-\sqrt3i" /> has positive real part and negative imaginary part, so it is in the fourth quadrant. The reference angle is <Katex tex="\tan^{-1}\!\left(\tfrac{\sqrt3}{1}\right)=\tfrac\pi3" />, measured clockwise.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} |w|&=\sqrt{4+4}=2\sqrt2 \ \operatorname{Arg}(w)&=-\frac{3\pi}{4} \end{aligned}" />,
+    working: <Katex display tex="\begin{aligned} |w|&=\sqrt{4+4}=2\sqrt2 \\ \operatorname{Arg}(w)&=-\frac{3\pi}{4} \end{aligned}" />,
     reason: <><Katex tex="w=-2-2i" /> is in the third quadrant. The reference angle is <Katex tex="\tan^{-1}(1)=\tfrac\pi4" />, so the principal argument is <Katex tex="-\pi+\tfrac\pi4=-\tfrac{3\pi}{4}" />.</>,
     more: <>Not <Katex tex="\tfrac\pi4" />: that is the argument of <Katex tex="2+2i" />, in the first quadrant. Always place the number on the Argand plane before quoting an inverse tangent.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} z&=2\operatorname{cis}\!\left(-\frac{\pi}{3}\right) \ w&=2\sqrt2\operatorname{cis}\!\left(-\frac{3\pi}{4}\right) \end{aligned}" />,
+    working: <Katex display tex="\begin{aligned} z&=2\operatorname{cis}\!\left(-\frac{\pi}{3}\right) \\ w&=2\sqrt2\operatorname{cis}\!\left(-\frac{3\pi}{4}\right) \end{aligned}" />,
   },
   {
     working: <Katex display tex="\begin{aligned} z^3&=2^3\operatorname{cis}\!\left(3\times-\frac{\pi}{3}\right)=8\operatorname{cis}(-\pi) \\ w^2&=\left(2\sqrt2\right)^2\operatorname{cis}\!\left(2\times-\frac{3\pi}{4}\right)=8\operatorname{cis}\!\left(-\frac{3\pi}{2}\right) \end{aligned}" />,

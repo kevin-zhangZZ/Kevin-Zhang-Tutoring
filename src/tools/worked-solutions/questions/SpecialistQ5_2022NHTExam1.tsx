@@ -17,7 +17,7 @@ const REPORT: SAExaminerStats = {}
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\begin{aligned} z&=x+iy \ 3\sqrt{x^2+(y+1)^2}&=\sqrt{x^2+y^2} \end{aligned}" />,
+    working: <Katex display tex="\begin{aligned} z&=x+iy \\ 3\sqrt{x^2+(y+1)^2}&=\sqrt{x^2+y^2} \end{aligned}" />,
     reason: <><Katex tex="z+i=x+(y+1)i" />, so <Katex tex="|z+i|=\sqrt{x^2+(y+1)^2}" />, and <Katex tex="|z|=\sqrt{x^2+y^2}" />. This is the distance from <Katex tex="z" /> to <Katex tex="-i" /> and the distance from <Katex tex="z" /> to <Katex tex="0" />.</>,
     more: <>Read as distances, the equation says <Katex tex="z" /> is three times as far from <Katex tex="0" /> as from <Katex tex="-i" />. Equal distances (a ratio of 1) would give a straight line, the perpendicular bisector; any other fixed ratio gives a circle, as the algebra will show.</>,
   },
