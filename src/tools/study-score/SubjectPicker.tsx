@@ -1,16 +1,25 @@
 // The subject switch: Methods, Specialist and Chemistry as a segmented control, as they were, with
-// a fourth segment for everything else. "Other" opens a search field under the control; once a
-// subject is picked there, the fourth segment shows its name. Search matches the full name, the
-// short label and what students call a subject ("spec", "chem", "further", "eco", "jap").
+// a fourth segment for everything else (about a hundred studies). "Other" opens a search field
+// under the control, listing the rest under their groups until something is typed; once a subject
+// is picked there, the fourth segment shows its name. Search matches the full name, the short label
+// and what students call a subject ("spec", "chem", "further", "eco", "jap", "hhd").
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
+import { Fragment, useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
 import SegmentedControl from '../../components/ui/SegmentedControl'
 import { SUBJECTS, SUBJECT_IDS, type Subject } from './data.ts'
 import { FOCUS } from './shared.tsx'
 
 /** The three subjects that keep their own segment. */
 const PINNED: Subject[] = ['methods', 'specialist', 'chemistry']
-const OTHERS = SUBJECT_IDS.filter(s => !PINNED.includes(s))
+/** The order groups appear in the list. */
+const GROUPS = ['Mathematics', 'Sciences', 'English', 'Humanities', 'Business and Economics', 'Health and PE', 'Technologies', 'The Arts', 'Languages', 'VCE VET', 'Extended Investigation']
+const groupRank = (s: Subject) => {
+  const i = GROUPS.indexOf(SUBJECTS[s].group)
+  return i < 0 ? GROUPS.length : i
+}
+const OTHERS = SUBJECT_IDS.filter(s => !PINNED.includes(s)).sort(
+  (a, b) => groupRank(a) - groupRank(b) || SUBJECTS[a].name.localeCompare(SUBJECTS[b].name),
+)
 const OTHER = 'other'
 
 /** Shorter names for phones, where four segments share about 330 px. */
@@ -25,24 +34,12 @@ const named = (s: Subject) =>
     SUBJECTS[s].label
   )
 
-/** Words students type for a subject, beyond its name and label. */
-const ALIASES: Record<Subject, string> = {
-  methods: 'maths math mm cas',
-  specialist: 'spec maths math sm',
-  chemistry: 'chem science',
-  general: 'gen maths math further fm',
-  english: 'eng',
-  accounting: 'acc accounts',
-  economics: 'eco econ',
-  japanese: 'jap jsl language languages lote',
-}
-
 /** Subjects for a search: those with a word starting with it first, then any containing it.
  *  Nothing typed: the subjects without a segment of their own. */
 function search(q: string): Subject[] {
   const t = q.trim().toLowerCase()
   if (!t) return OTHERS
-  const text = (s: Subject) => `${SUBJECTS[s].name} ${SUBJECTS[s].label} ${ALIASES[s]}`.toLowerCase()
+  const text = (s: Subject) => `${SUBJECTS[s].name} ${SUBJECTS[s].label} ${SUBJECTS[s].aliases}`.toLowerCase()
   const starts = SUBJECT_IDS.filter(s => text(s).split(/\s+/).some(w => w.startsWith(t)))
   const inside = SUBJECT_IDS.filter(s => !starts.includes(s) && text(s).includes(t))
   return [...starts, ...inside]
@@ -63,6 +60,12 @@ export default function SubjectPicker({ value, onChange }: { value: Subject; onC
   useEffect(() => {
     if (open) inputRef.current?.focus()
   }, [open])
+  // The highlighted subject stays in view as the arrow keys move through a long list.
+  const activeId = items[active] ? `${id}-opt-${items[active]}` : ''
+  useEffect(() => {
+    if (activeId) document.getElementById(activeId)?.scrollIntoView({ block: 'nearest' })
+  }, [activeId])
+  const grouped = query.trim() === ''
 
   const close = () => {
     setOpen(false)
@@ -182,28 +185,34 @@ export default function SubjectPicker({ value, onChange }: { value: Subject; onC
             >
               {items.length === 0 ? (
                 <li className="px-2.5 py-2 text-[0.8125rem] text-gray-500 dark:text-gray-400">
-                  No subject called “{query.trim()}”. Study scores cover {SUBJECT_IDS.map(s => SUBJECTS[s].label).join(', ')}.
+                  No subject called “{query.trim()}”. Try another name or a short form (“hhd”, “vcd”), or clear the search to see all {SUBJECT_IDS.length}.
                 </li>
               ) : (
                 items.map((s, i) => (
-                  <li
-                    key={s}
-                    id={`${id}-opt-${s}`}
-                    role="option"
-                    aria-selected={i === active}
-                    // Before the input's blur, so the pick isn't lost when the list closes.
-                    onMouseDown={e => {
-                      e.preventDefault()
-                      pick(s)
-                    }}
-                    onMouseMove={() => setActive(i)}
-                    className={`flex items-center justify-between gap-3 rounded-lg px-2.5 py-2 [@media(pointer:coarse)]:py-3 cursor-pointer ${
-                      i === active ? 'bg-sky-50 dark:bg-sky-950/60' : ''
-                    }`}
-                  >
-                    <span className="font-medium text-gray-900 dark:text-white">{SUBJECTS[s].name}</span>
-                    {s === value && <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">Current</span>}
-                  </li>
+                  <Fragment key={s}>
+                    {grouped && (i === 0 || SUBJECTS[items[i - 1]].group !== SUBJECTS[s].group) && (
+                      <li role="presentation" className="px-2.5 pt-2.5 pb-1 text-xs font-semibold text-gray-500 dark:text-gray-400">
+                        {SUBJECTS[s].group}
+                      </li>
+                    )}
+                    <li
+                      id={`${id}-opt-${s}`}
+                      role="option"
+                      aria-selected={i === active}
+                      // Before the input's blur, so the pick isn't lost when the list closes.
+                      onMouseDown={e => {
+                        e.preventDefault()
+                        pick(s)
+                      }}
+                      onMouseMove={() => setActive(i)}
+                      className={`flex items-center justify-between gap-3 rounded-lg px-2.5 py-2 [@media(pointer:coarse)]:py-3 cursor-pointer ${
+                        i === active ? 'bg-sky-50 dark:bg-sky-950/60' : ''
+                      }`}
+                    >
+                      <span className="font-medium text-gray-900 dark:text-white">{SUBJECTS[s].name}</span>
+                      {s === value && <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">Current</span>}
+                    </li>
+                  </Fragment>
                 ))
               )}
             </ul>

@@ -102,8 +102,13 @@ export function marginalOf(dist: ExamDist): Marginal {
     zs.push(normInv(cum / total))
   }
   const n = xs.length
-  const loSlope = slopeOf(xs.slice(0, 3), zs.slice(0, 3))
-  const hiSlope = slopeOf(xs.slice(n - 3), zs.slice(n - 3))
+  // The tails take the slope of the last three boundaries at each end (fewer in tiny studies, where
+  // everyone is in the top few grades). With a single boundary there's no slope to take, so the
+  // scale is assumed to span six standard deviations.
+  const tail = (from: number, to: number) =>
+    to - from >= 2 ? slopeOf(xs.slice(from, to), zs.slice(from, to)) : 6 / dist.max
+  const loSlope = tail(0, Math.min(3, n))
+  const hiSlope = tail(Math.max(0, n - 3), n)
 
   const z = (x: number) => {
     if (x <= xs[0]) return zs[0] - (xs[0] - x) * loSlope
@@ -152,14 +157,15 @@ function marginals(subject: Subject, d: YearDist): Marginal[] {
   return m
 }
 
-/** Share of students whose Exam 1 + Exam 2 GA total is below `total` (half of those level). */
-export function combinedPct(m1: Marginal, m2: Marginal, total: number, rho: number): number {
+/** Share of students whose combined score a1·x1 + a2·x2 is below `total` (half of those
+ *  level). For Methods both coefficients are 1: the GA scores just add up. */
+export function combinedPct(m1: Marginal, m2: Marginal, total: number, rho: number, a1 = 1, a2 = 1): number {
   const k = Math.sqrt(1 - rho * rho)
   let p = 0
   for (let x1 = 0; x1 <= m1.max; x1++) {
     const w = m1.pmf[x1]
     if (w < 1e-12) continue
-    const y = total - x1
+    const y = (total - a1 * x1) / a2
     const z2 = y < -0.5 ? -Infinity : y > m2.max + 0.5 ? Infinity : m2.z(Math.min(y, m2.max + 0.5))
     p += w * normCdf((z2 - rho * m1.zMid[x1]) / k)
   }
@@ -179,14 +185,34 @@ export const STRETCH_FROM = 40
  * model. Someone with full marks on every exam is in practice at the very top, so above
  * STRETCH_FROM each year's scale is stretched linearly to put full marks on 50 exactly. Scores of
  * STRETCH_FROM or less don't move, and the stretch keeps the order of every score.
+ *
+ * In a few small or performance studies so many students reach the top marks that the rank puts
+ * full marks at 40 or below (VCE VET Dance, some years of Hungarian). There the stretch starts
+ * STRETCH_GAP below that year's ceiling instead (never below the mean), so full marks still reads 50.
  */
+const STRETCH_GAP = 4
 export function stretchTop(exact: number, ceiling: number): number {
-  if (exact <= STRETCH_FROM || ceiling >= 50 || ceiling <= STRETCH_FROM) return exact
-  return Math.min(50, STRETCH_FROM + ((exact - STRETCH_FROM) * (50 - STRETCH_FROM)) / (ceiling - STRETCH_FROM))
+  const from = ceiling > STRETCH_FROM ? STRETCH_FROM : Math.max(MEAN, ceiling - STRETCH_GAP)
+  if (exact <= from || ceiling >= 50 || ceiling <= from) return exact
+  return Math.min(50, from + ((exact - from) * (50 - from)) / (ceiling - from))
 }
 
-function pctOf(ms: Marginal[], xs: number[]): number {
-  return ms.length === 1 ? ms[0].cdf(xs[0]) : combinedPct(ms[0], ms[1], xs[0] + xs[1], RHO)
+/** Each graded assessment's weight in the study score: its marks' weights added up. */
+function gaWeights(subject: Subject, d: YearDist): number[] {
+  const w = d.exams.map(() => 0)
+  for (const e of SUBJECTS[subject].exams) w[e.ga] += e.weight
+  return w
+}
+
+/** The share of the state below these GA scores. Two graded assessments combine by their weights
+ *  in the study score, so a GA point counts weight ÷ GA maximum; where weights are the GA maximums
+ *  (Methods), that is 1 each and the GA scores simply add, as VCAA's totals do. */
+function pctOf(subject: Subject, d: YearDist, ms: Marginal[], xs: number[]): number {
+  if (ms.length === 1) return ms[0].cdf(xs[0])
+  if (ms.length > 2) throw new Error(`${subject}: more than two graded assessments`)
+  const w = gaWeights(subject, d)
+  const a = [w[0] / d.exams[0].max, w[1] / d.exams[1].max]
+  return combinedPct(ms[0], ms[1], a[0] * xs[0] + a[1] * xs[1], RHO, a[0], a[1])
 }
 
 /** The rank's study score at full marks in a year, before the stretch. */
@@ -195,19 +221,19 @@ function ceilingOf(subject: Subject, d: YearDist): number {
   const key = `${subject}-${d.year}`
   let c = ceilings.get(key)
   if (c === undefined) {
-    c = studyScoreOf(pctOf(marginals(subject, d), d.exams.map(e => e.max)))
+    c = studyScoreOf(pctOf(subject, d, marginals(subject, d), d.exams.map(e => e.max)))
     ceilings.set(key, c)
   }
   return c
 }
 
 /** A year's GA scores for a set of marks: each mark's share of its paper, times its share of
- *  the graded assessment it feeds, times that assessment's maximum. */
+ *  the graded assessment it feeds (by weight), times that assessment's maximum. */
 export function gaScores(subject: Subject, d: YearDist, raw: number[], outOf: number[]): number[] {
   const xs = d.exams.map(() => 0)
+  const w = gaWeights(subject, d)
   SUBJECTS[subject].exams.forEach((e, i) => {
-    const g = e.ga ?? i
-    xs[g] += (raw[i] / outOf[i]) * (e.share ?? 1) * d.exams[g].max
+    xs[e.ga] += (raw[i] / outOf[i]) * (e.weight / w[e.ga]) * d.exams[e.ga].max
   })
   return xs
 }
@@ -221,7 +247,7 @@ export function gaScores(subject: Subject, d: YearDist, raw: number[], outOf: nu
 export function projectYear(subject: Subject, d: YearDist, raw: number[], outOf = SUBJECTS[subject].exams.map(e => e.rawMax)): Projection {
   const xs = gaScores(subject, d, raw, outOf)
   const ms = marginals(subject, d)
-  const pct = pctOf(ms, xs)
+  const pct = pctOf(subject, d, ms, xs)
   const exact = stretchTop(studyScoreOf(pct), ceilingOf(subject, d))
   const last = d.exams[d.exams.length - 1]
   return {
@@ -260,7 +286,10 @@ export function totalMax(subject: Subject): number {
 /** A set of marks as a total, in totalMax's units (rounded for a weighted subject). */
 export function totalOf(subject: Subject, marks: number[]): number {
   const exams = SUBJECTS[subject].exams
-  if (SUBJECTS[subject].weighted) return Math.round(exams.reduce((s, e, i) => s + (marks[i] / e.rawMax) * (e.share ?? 1) * 100, 0))
+  if (SUBJECTS[subject].weighted) {
+    const all = exams.reduce((s, e) => s + e.weight, 0)
+    return Math.round(exams.reduce((s, e, i) => s + (marks[i] / e.rawMax) * (e.weight / all) * 100, 0))
+  }
   return marks.reduce((s, m) => s + m, 0)
 }
 

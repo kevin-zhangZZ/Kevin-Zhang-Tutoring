@@ -2,7 +2,7 @@
 // screen-reader announcer, and the card styles.
 
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
-import { OLD_COURSE_UP_TO, SUBJECTS, type Subject } from './data.ts'
+import { oldCourseUpTo, smallestCohort, SUBJECTS, type Subject } from './data.ts'
 import { STRETCH_FROM } from './model.ts'
 
 export const CARD = 'rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sm:p-5'
@@ -28,17 +28,25 @@ export function scrollBehavior(): ScrollBehavior {
  */
 export function KeepInMind({ subject, nearTop = false, oldCourse = false }: { subject: Subject; nearTop?: boolean; oldCourse?: boolean }) {
   const id = useId()
-  const one = SUBJECTS[subject].exams.length === 1
+  const info = SUBJECTS[subject]
+  const one = info.exams.length === 1
+  const cohort = smallestCohort(subject)
   const lines = [
     'Each projected score is give or take 2 points.',
-    `SACs aren’t included. If your SACs are in line with ${one ? 'your exam' : 'your exams'}, they won’t change it.`,
+    info.tasks
+      ? `SACs and school-assessed tasks aren’t included, and in ${info.name} the tasks carry a lot of weight. If they’re in line with ${one ? 'your exam' : 'your exams'}, they won’t change it.`
+      : `SACs aren’t included. If your SACs are in line with ${one ? 'your exam' : 'your exams'}, they won’t change it.`,
   ]
+  // Fewer than 100 students in some year: a rank among a few dozen moves a lot with one student.
+  if (cohort < 100) {
+    lines.push(`As few as ${cohort} students sat the exam in some years shown, so projections can be several points out.`)
+  }
   if (nearTop) {
     lines.push(
       `Above ${STRETCH_FROM}, the scale is stretched so full marks reads 50. This close to the top, SACs decide the last few points.`,
     )
   }
-  const last = OLD_COURSE_UP_TO[subject]
+  const last = oldCourseUpTo(subject)
   if (oldCourse && last !== null) {
     lines.push(`Papers up to ${last} include topics that are no longer on the course. If you skipped those questions, those papers read a few points low.`)
   }

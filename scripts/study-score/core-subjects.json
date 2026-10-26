@@ -1,0 +1,46 @@
+{
+  "_about": "Hand-checked details of the subjects that were on the page before the full catalogue (study ids as in VCAA's file names). exam-totals.json holds the rest. build.py reads both.",
+  "mathematical_methods": {
+    "id": "methods", "name": "Mathematical Methods", "label": "Methods", "group": "Mathematics", "aliases": "maths math mm cas",
+    "design_from": 2023,
+    "inputs": [{ "label": "Exam 1", "short": "E1", "ga": 2, "raw_max": 40 }, { "label": "Exam 2", "short": "E2", "ga": 3, "raw_max": 80 }]
+  },
+  "specialist_mathematics": {
+    "id": "specialist", "name": "Specialist Mathematics", "label": "Specialist", "group": "Mathematics", "aliases": "spec maths math sm",
+    "design_from": 2023,
+    "inputs": [{ "label": "Exam 1", "short": "E1", "ga": 2, "raw_max": 40 }, { "label": "Exam 2", "short": "E2", "ga": 3, "raw_max": 80 }]
+  },
+  "general_mathematics": {
+    "id": "general", "name": "General Mathematics", "label": "General Maths", "group": "Mathematics", "aliases": "gen maths math further fm",
+    "design_from": 2023, "older_name": { "up_to": 2022, "name": "Further Mathematics" },
+    "inputs": [{ "label": "Exam 1", "short": "E1", "ga": 2, "raw_max": 40 }, { "label": "Exam 2", "short": "E2", "ga": 3, "raw_max": 60 }]
+  },
+  "chemistry": {
+    "id": "chemistry", "name": "Chemistry", "label": "Chemistry", "group": "Sciences", "aliases": "chem science",
+    "design_from": 2024,
+    "inputs": [{ "label": "Exam", "short": "Exam", "ga": 3, "raw_max": 120 }]
+  },
+  "english": {
+    "id": "english", "name": "English", "label": "English", "group": "English", "aliases": "eng",
+    "design_from": 2024,
+    "inputs": [{ "label": "Exam", "short": "Exam", "ga": 3, "raw_max": 60 }]
+  },
+  "accounting": {
+    "id": "accounting", "name": "Accounting", "label": "Accounting", "group": "Business and Economics", "aliases": "acc accounts",
+    "design_from": 2019,
+    "inputs": [{ "label": "Exam", "short": "Exam", "ga": 3, "raw_max": 100 }]
+  },
+  "economics": {
+    "id": "economics", "name": "Economics", "label": "Economics", "group": "Business and Economics", "aliases": "eco econ",
+    "design_from": 2023,
+    "inputs": [{ "label": "Exam", "short": "Exam", "ga": 3, "raw_max": 80, "older": [{ "up_to": 2016, "raw_max": 90 }] }]
+  },
+  "japanese_second_language": {
+    "id": "japanese", "name": "Japanese Second Language", "label": "Japanese", "group": "Languages", "aliases": "jap jsl",
+    "design_from": 2020,
+    "inputs": [
+      { "label": "Oral", "short": "Oral", "ga": 3, "raw_max": 40, "percent": 12.5 },
+      { "label": "Written", "short": "Written", "ga": 3, "raw_max": 75, "percent": 37.5 }
+    ]
+  }
+}

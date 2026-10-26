@@ -6,7 +6,7 @@
 // which a fixed 10–50 axis squashes into a few pixels on a phone.
 
 import { useId, useMemo, useRef, useState } from 'react'
-import { OLD_COURSE_UP_TO, SUBJECTS, newerCourseLabel, type Subject } from '../data.ts'
+import { gaLabels, oldCourseUpTo, SUBJECTS, newerCourseLabel, type Subject } from '../data.ts'
 import { aheadOf } from '../format.ts'
 import { MEAN, type Projection } from '../model.ts'
 import { CARD, H2, SUB } from '../shared.tsx'
@@ -90,7 +90,7 @@ export default function YearByYear({ subject, marks, rows }: { subject: Subject;
   // of study design ("Current Course" above it), Methods before 2016 (the newer years unlabelled,
   // since they span two designs).
   const newestFirst = [...rows].reverse()
-  const last = OLD_COURSE_UP_TO[subject]
+  const last = oldCourseUpTo(subject)
   const groups: { label: string | null; rows: Projection[] }[] =
     last === null
       ? [{ label: null, rows: newestFirst }]
@@ -214,7 +214,7 @@ function YearRow({
     // Per-exam ranks only where each mark is its own graded assessment; Japanese's oral and
     // written are ranked together.
     r.pctExams.length > 1
-      ? `${exams.map((e, i) => `${e.label} alone: ${aheadOf(r.pctExams[i])}`).join(' · ')} · ${cohort} students sat ${exams[exams.length - 1].label}.`
+      ? `${gaLabels(subject).map((l, i) => `${l} alone: ${aheadOf(r.pctExams[i])}`).join(' · ')} · ${cohort} students sat ${gaLabels(subject)[gaLabels(subject).length - 1]}.`
       : `${cohort} students sat the ${exams.length > 1 ? 'exams' : 'exam'}.`
 
   return (

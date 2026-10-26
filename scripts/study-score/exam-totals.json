@@ -1,0 +1,2753 @@
+{
+ "_about": "Raw exam totals, weights (% of study score) and study design years from VCAA examination specifications, papers and reports (sources per input). Researched 26 Oct 2026. build.py reads this with core-subjects.json.",
+ "biology": {
+  "id": "biology",
+  "name": "Biology",
+  "label": "Biology",
+  "group": "Sciences",
+  "aliases": "bio science",
+  "design_from": 2022,
+  "confidence": "high",
+  "notes": "2014-2016 papers out of 110 (40 MCQ + 70). 2017 paper (first of 2017-2025 era) out of 120, source https://www.vcaa.vic.edu.au/sites/default/files/Documents/exams/biology/2017/2017biology-w.pdf. Spec says 'From 2022' for current design.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 120,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/biology-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2016,
+      "raw_max": 110
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "physics": {
+  "id": "physics",
+  "name": "Physics",
+  "label": "Physics",
+  "group": "Sciences",
+  "aliases": "phys science",
+  "design_from": 2024,
+  "confidence": "high",
+  "notes": "2014-2016 /150 (core sections plus Section B detailed study; cover Total 150, checked 2014 and 2016); 2017-2023 /130 (20 MCQ + 110), checked 2017 and 2023; 2024+ /120 (20 + 100). Spec 'From 2024'.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 120,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/physics-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2016,
+      "raw_max": 150
+     },
+     {
+      "up_to": 2023,
+      "raw_max": 130
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "psychology": {
+  "id": "psychology",
+  "name": "Psychology",
+  "label": "Psychology",
+  "group": "Sciences",
+  "aliases": "psych science",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "2014-2016 /140 (checked 2016); 2017-2025 /120 (checked 2017 and 2025 cover: 40 MCQ + 80). Current study design listed from 2023 on VCAA page.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 120,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/psychology-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2016,
+      "raw_max": 140
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "environmental_science": {
+  "id": "environmental-science",
+  "name": "Environmental Science",
+  "label": "Environmental Science",
+  "group": "Sciences",
+  "aliases": "enviro science",
+  "design_from": 2022,
+  "confidence": "high",
+  "notes": "Spec 'From 2022'. 2025 paper: 30 MCQ + 90 = 120 (https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-EnvironmentalScience.pdf). 2014 paper also /120 (https://www.vcaa.vic.edu.au/sites/default/files/Documents/exams/envscience/2014/2014envsc-w.pdf).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 120,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/envscience-specs-w.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "foundation_mathematics": {
+  "id": "foundation-mathematics",
+  "name": "Foundation Mathematics",
+  "label": "Foundation Maths",
+  "group": "Mathematics",
+  "aliases": "maths math",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "Spec total 80 (20 MCQ + 60); 2025 paper cover confirms 20 + 60. Study first examined 2023.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/foundation-maths-specs-w.docx",
+    "percent": 40,
+    "short": "Exam"
+   }
+  ]
+ },
+ "algorithmics_hess": {
+  "id": "algorithmics-hess",
+  "name": "Algorithmics (HESS)",
+  "label": "Algorithmics",
+  "group": "Mathematics",
+  "aliases": "algo hess computing",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "Spec total 100 (20 + 80); 2025 paper confirms. 2015 paper also Total 100 (https://www.vcaa.vic.edu.au/sites/default/files/Documents/exams/algorithmics/2015/2015algorithmics-w.pdf). Current design listed from 2023.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/algorithmics-specs-w.docx",
+    "percent": 60,
+    "short": "Exam"
+   }
+  ]
+ },
+ "agricultural_and_horticultural_studies": {
+  "id": "agricultural-and-horticultural-studies",
+  "name": "Agricultural and Horticultural Studies",
+  "label": "Agriculture",
+  "group": "Sciences",
+  "aliases": "agri horticulture",
+  "design_from": 2020,
+  "confidence": "medium",
+  "notes": "Spec says 'From 2020'; VCAA page does not clearly split current/previous design years so 2020 is from the spec statement. 2014 (https://www.vcaa.vic.edu.au/sites/default/files/Documents/exams/agrihorculture/2014/2014aghort-w.pdf), 2020 and 2025 papers all /100.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/aghort-specs-w.docx",
+    "percent": 40,
+    "short": "Exam"
+   }
+  ]
+ },
+ "systems_engineering": {
+  "id": "systems-engineering",
+  "name": "Systems Engineering",
+  "label": "Systems Engineering",
+  "group": "Technologies",
+  "aliases": "engineering",
+  "design_from": 2026,
+  "confidence": "medium",
+  "notes": "A NEW study design starts 2026 (specs doc is for 2026+: 20 MCQ + 80 = 100, 30%). All 2014-2025 papers (the GA data range) are on the old design: 2014 and 2020 covers Total 100, 2025 paper 20 + 80 (https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-SystemsEngineering.pdf). Old-design percent not separately verified; assumed same 30.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-02/systems-engineering-specs.docx",
+    "percent": 30,
+    "short": "Exam"
+   }
+  ]
+ },
+ "applied_computing_data_analytics": {
+  "id": "applied-computing-data-analytics",
+  "name": "Applied Computing: Data Analytics",
+  "label": "Data Analytics",
+  "group": "Technologies",
+  "aliases": "computing it",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "New study design from 2025 (specs '(From 2025)': 20+20+60=100). 2020 paper (old design) also Total 100 (https://www.vcaa.vic.edu.au/sites/default/files/Documents/exams/appliedcomp/2020/2020AC-dataanalytics-w.pdf).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-05/AC-data-analytics-specs-w.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "applied_computing_software_development": {
+  "id": "applied-computing-software-development",
+  "name": "Applied Computing: Software Development",
+  "label": "Software Development",
+  "group": "Technologies",
+  "aliases": "computing it sd coding",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "New study design from 2025 (20+20+60=100). 2020 paper (old design) also Total 100 (https://www.vcaa.vic.edu.au/sites/default/files/Documents/exams/appliedcomp/2020/2020AC-softdev-w.pdf).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/AC-software-development-specs-w.pdf_1.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "food_studies": {
+  "id": "food-studies",
+  "name": "Food Studies",
+  "label": "Food Studies",
+  "group": "Technologies",
+  "aliases": "",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "2017-2022 /100 (checked 2017 and 2022: 15 + 85); 2023 onward /90 (2023 cover: 20 + 70; spec 20 + 70). 2016 was Food and Technology (not in GA range).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 90,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/foodstudies-specs-w.docx",
+    "percent": 40,
+    "older": [
+     {
+      "up_to": 2022,
+      "raw_max": 100
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "product_design_and_technologies": {
+  "id": "product-design-and-technologies",
+  "name": "Product Design and Technologies",
+  "label": "Product Design",
+  "group": "Technologies",
+  "aliases": "pdt design tech",
+  "design_from": 2024,
+  "confidence": "high",
+  "notes": "Spec 'From 2024' total 90. 2025 paper cover '16 questions (90 marks)'; 2014 paper Total 90 (https://www.vcaa.vic.edu.au/sites/default/files/Documents/exams/technology/2014/2014prodestech-w.pdf), consistent with GA /180 throughout.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 90,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/pdt-specs-w.docx",
+    "percent": 30,
+    "short": "Exam"
+   }
+  ]
+ },
+ "australian_history": {
+  "id": "australian-history",
+  "name": "Australian History",
+  "label": "Australian History",
+  "group": "Humanities",
+  "aliases": "history aus",
+  "design_from": 2022,
+  "confidence": "high",
+  "notes": "Specs: total 70 (Section A 50 + Section B 20). 2014 and 2021 papers both total 80 (GA 160). 2025 paper cover confirms 2 of 4 Qs/50 marks + 1 of 4/20 marks.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 70,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/history-aus-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2021,
+      "raw_max": 80
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "history_revolutions": {
+  "id": "history-revolutions",
+  "name": "History Revolutions",
+  "label": "Revolutions",
+  "group": "Humanities",
+  "aliases": "history revs",
+  "design_from": 2022,
+  "confidence": "high",
+  "notes": "VCAA page slug is .../Pages/revolutions.aspx. Specs total 70; 2021 Question Book total 80.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 70,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/hist-rev-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2021,
+      "raw_max": 80
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "ancient_history": {
+  "id": "ancient-history",
+  "name": "Ancient History",
+  "label": "Ancient History",
+  "group": "Humanities",
+  "aliases": "history",
+  "design_from": 2022,
+  "confidence": "high",
+  "notes": "Specs total 70. 2016 cover shows 2 sections x (20+20) = 80 (2021 paper same layout; GA 160).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 70,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/history-ancient-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2021,
+      "raw_max": 80
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "classical_studies": {
+  "id": "classical-studies",
+  "name": "Classical Studies",
+  "label": "Classical Studies",
+  "group": "Humanities",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Specs (From 2025): total 80, 50%. 2017 paper also total 80, consistent with GA 160 throughout.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/classical-specs-w.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "geography": {
+  "id": "geography",
+  "name": "Geography",
+  "label": "Geography",
+  "group": "Humanities",
+  "aliases": "",
+  "design_from": 2022,
+  "confidence": "medium",
+  "notes": "Specs total 80; 2016 paper total 80 (GA 160). 2014-2015 papers are not on VCAA site (earlier study design); raw 60 is inferred from GA 120 (GA = 2 x raw in all other studies) - not directly verified.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/geography-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2015,
+      "raw_max": 60
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "legal_studies": {
+  "id": "legal-studies",
+  "name": "Legal Studies",
+  "label": "Legal Studies",
+  "group": "Humanities",
+  "aliases": "legal law",
+  "design_from": 2024,
+  "confidence": "high",
+  "notes": "Specs (From 2024) total 80. 2018 and 2023 papers total 80; 2014 and 2017 covers show 70 (GA 140).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/legal-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2017,
+      "raw_max": 70
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "philosophy": {
+  "id": "philosophy",
+  "name": "Philosophy",
+  "label": "Philosophy",
+  "group": "Humanities",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "medium",
+  "notes": "Specs (From 2025): total 60 (A 40 + B 20), 50%. 2019 paper total 70 (2019-2024 era, GA 140); 2014 and 2018 papers total 60 (GA 120), same as now. Catalog line '2014-2025 (6) /120' appears to mean 2014-2018 plus 2025 (60 raw); 2019-2024 raw 70 only checked directly on 2019 and inferred for 2020-2024 from GA 140.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 60,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/philosophy-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 70
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "politics": {
+  "id": "politics",
+  "name": "Politics",
+  "label": "Politics",
+  "group": "Humanities",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "First exam 2025; specs total 80 (A 45, B 15, C 20).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/politics-specs-w.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "religion_and_society": {
+  "id": "religion-and-society",
+  "name": "Religion and Society",
+  "label": "Religion and Society",
+  "group": "Humanities",
+  "aliases": "rs",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "Specs (From 2023) total 80 (A 30 + B 50); 2014 paper also 80, so GA 160 throughout.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/religion-and-society-specs-w.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "sociology": {
+  "id": "sociology",
+  "name": "Sociology",
+  "label": "Sociology",
+  "group": "Humanities",
+  "aliases": "",
+  "design_from": 2024,
+  "confidence": "high",
+  "notes": "Specs (From 2024) total 80; 2014 paper also 80.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/sociology-specs-w.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "texts_and_traditions": {
+  "id": "texts-and-traditions",
+  "name": "Texts and Traditions",
+  "label": "Texts and Traditions",
+  "group": "Humanities",
+  "aliases": "religion",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "Specs total 90 (3 parts x 30); 2019 paper cover also 90 (GA 180 throughout).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 90,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/textstrad-specs-w.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "industry_and_enterprise": {
+  "id": "industry-and-enterprise",
+  "name": "Industry and Enterprise",
+  "label": "Industry and Enterprise",
+  "group": "Business and Economics",
+  "aliases": "",
+  "design_from": 2019,
+  "confidence": "high",
+  "notes": "Specs (From 2019) total 70; 2014 paper also 70 (GA 140 throughout).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 70,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/indent-specs-w.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "english_as_an_additional_language": {
+  "id": "english-as-an-additional-language",
+  "name": "English as an Additional Language (EAL)",
+  "label": "EAL",
+  "group": "English",
+  "aliases": "eal esl",
+  "design_from": 2024,
+  "confidence": "high",
+  "notes": "Current (2024+) paper /60 = Sections A,B,C at 20 each, 50% of study score; no separate aural section any more. 2014-2016: written exam /100 (A text response 40, B 30, C 30; 2014 and 2016 cover pages) -> GA /400. 2017-2023: aural and written exam /100 (Sec A listening 20 marks=20%, B 40%, C 40%; checked 2017, 2019, 2022, 2023 covers) -> GA /200. The aural part is inside the single paper, so one input only. 2024 paper PDF text is unreadable, spec used.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 60,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/eal-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2016,
+      "raw_max": 100
+     },
+     {
+      "up_to": 2023,
+      "raw_max": 100
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "english_language": {
+  "id": "english-language",
+  "name": "English Language",
+  "label": "English Language",
+  "group": "English",
+  "aliases": "el englang",
+  "design_from": 2024,
+  "confidence": "high",
+  "notes": "Spec: total 75 (A 15, B 30, C 30). GA 150 unchanged 2014-2025 so 75 assumed for older papers (not individually checked).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/engl-lang-specs-w.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "literature": {
+  "id": "literature",
+  "name": "Literature",
+  "label": "Literature",
+  "group": "English",
+  "aliases": "",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "Spec: total 40 (Sec A 20, Sec B 20). GA 80 constant, older papers assumed 40 (not individually checked).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/literature-specs-w.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "business_management": {
+  "id": "business-management",
+  "name": "Business Management",
+  "label": "Business Management",
+  "group": "Business and Economics",
+  "aliases": "bm busman",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "2014 and 2016 covers: total 65; 2017 and 2023 covers: total 75 (matches GA 130 -> 150).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/busman-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2016,
+      "raw_max": 65
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "health_and_human_development": {
+  "id": "health-and-human-development",
+  "name": "Health and Human Development",
+  "label": "HHD",
+  "group": "Health and PE",
+  "aliases": "hhd health",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "2014 and 2023 covers: total 100 (GA 200); 2025+ spec: 90 (Sec A 80, Sec B 10).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 90,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-02/health-human-specs.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 100
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "physical_education": {
+  "id": "physical-education",
+  "name": "Physical Education",
+  "label": "PE",
+  "group": "Health and PE",
+  "aliases": "pe phys ed",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "2014 and 2023 covers: total 120 (GA 240); 2025+ spec: 110 (20 MCQ + 90).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 110,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-02/physical-education-specs.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 120
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "outdoor_and_environmental_studies": {
+  "id": "outdoor-and-environmental-studies",
+  "name": "Outdoor and Environmental Studies",
+  "label": "Outdoor Ed",
+  "group": "Health and PE",
+  "aliases": "oes outdoor",
+  "design_from": 2024,
+  "confidence": "high",
+  "notes": "Spec total 90; 2014 cover also 90; GA 180 constant.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 90,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-02/outdoor-enviro-specs.docx",
+    "percent": 50,
+    "short": "Exam"
+   }
+  ]
+ },
+ "media": {
+  "id": "media",
+  "name": "Media",
+  "label": "Media",
+  "group": "The Arts",
+  "aliases": "",
+  "design_from": 2024,
+  "confidence": "high",
+  "notes": "2014 and 2017 covers: total 65 (GA 130); 2018 and 2023 covers: 75 (GA 150); 2024+ spec: 80 (Sec A 50, B 30), 40% of study score.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/media-specs-w.docx",
+    "percent": 40,
+    "older": [
+     {
+      "up_to": 2017,
+      "raw_max": 65
+     },
+     {
+      "up_to": 2023,
+      "raw_max": 75
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "visual_communication_design": {
+  "id": "visual-communication-design",
+  "name": "Visual Communication Design",
+  "label": "VCD",
+  "group": "The Arts",
+  "aliases": "vcd visual comm design",
+  "design_from": 2024,
+  "confidence": "high",
+  "notes": "2016 and 2023 covers: total 90 (GA 180); 2024+ spec: 80 (A 40, B 40), 30% of study score.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/vcd-specs-w.docx",
+    "percent": 30,
+    "older": [
+     {
+      "up_to": 2023,
+      "raw_max": 90
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "art_creative_practice": {
+  "id": "art-creative-practice",
+  "name": "Art Creative Practice",
+  "label": "Art Creative Practice",
+  "group": "The Arts",
+  "aliases": "art",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "Spec total 80 (A 60, B 20).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/art-CP-specs-w.docx",
+    "percent": 30,
+    "short": "Exam"
+   }
+  ]
+ },
+ "art_making_and_exhibiting": {
+  "id": "art-making-and-exhibiting",
+  "name": "Art Making and Exhibiting",
+  "label": "Art Making and Exhibiting",
+  "group": "The Arts",
+  "aliases": "art studio arts",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "Spec total 80 (A 60, B 20).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/art-ME-specs-w_0.docx",
+    "percent": 30,
+    "short": "Exam"
+   }
+  ]
+ },
+ "extended_investigation": {
+  "id": "extended-investigation",
+  "name": "Extended Investigation",
+  "label": "Extended Investigation",
+  "group": "Extended Investigation",
+  "aliases": "ei",
+  "design_from": 2025,
+  "confidence": "medium",
+  "notes": "2025 CTT /50 (2025 report question marks sum to 50), 10% of study score. EAT (GA3 /200) = written report /60 (36%) + oral presentation /40 (24%) = 100 marks total, 60% of study score; the two are separate marks but one GA3, so the page can combine them (raw/100). Older CTT raw: 2014 37 (GA 74), 2016-2018 38 (GA 76), 2015 and 2019-2024 40 (GA 80); covers 2014/2016/2017/2018 read from images, 2015 inferred from GA 80. Older EAT raw not checked; GA3 /200 constant, so 100 assumed. 2014 era study design differed (Extended Investigation 2014+ ... current design from 2025).",
+  "inputs": [
+   {
+    "label": "Critical Thinking Test",
+    "ga": 2,
+    "raw_max": 50,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/extended-investigation-CTT-specs.docx",
+    "percent": 10,
+    "older": [
+     {
+      "up_to": 2014,
+      "raw_max": 37
+     },
+     {
+      "up_to": 2018,
+      "raw_max": 38
+     },
+     {
+      "up_to": 2024,
+      "raw_max": 40
+     }
+    ],
+    "short": "Critical"
+   },
+   {
+    "label": "Written Report",
+    "ga": 3,
+    "raw_max": 60,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/extended-investigation-written-EAT-specs.docx",
+    "percent": 36,
+    "short": "Written"
+   },
+   {
+    "label": "Oral Presentation",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/extended-investigation-oral%20EAT-specs.docx",
+    "percent": 24,
+    "short": "Oral"
+   }
+  ]
+ },
+ "dance": {
+  "id": "dance",
+  "name": "Dance",
+  "label": "Dance",
+  "group": "The Arts",
+  "aliases": "",
+  "design_from": 2019,
+  "confidence": "medium",
+  "notes": "Performance: 16 criteria (8 per solo), each scored 0-10 in the 2023, 2024 and 2025 reports = 160 raw. The catalog's GA2 scale varies by year (480, 240 in 2020, 160 in 2024, 320 in 2025) while the raw 16x10 structure is the same in 2023-2025; 2020 (COVID) may have had fewer criteria, not verified. Specs do not state a raw performance total. Written spec: total 80.",
+  "inputs": [
+   {
+    "label": "Performance",
+    "ga": 2,
+    "raw_max": 160,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/dance-perf-specs.docx (criteria); marks per criterion from 2026-02/2025-DancePerformance-report.docx",
+    "percent": 50,
+    "short": "Performance"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/dance-written-specs-w.docx",
+    "percent": 25,
+    "short": "Written"
+   }
+  ]
+ },
+ "drama": {
+  "id": "drama",
+  "name": "Drama",
+  "label": "Drama",
+  "group": "The Arts",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Study design From 2025. Solo spec states no raw total; 100 inferred from 10 criteria each 0-10 in the 2025 report (GA 300 = 3x). Older solo assumed 100 (GA unchanged), not verified.",
+  "inputs": [
+   {
+    "label": "Solo Performance",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/drama-solo-specs-w.docx (35%); 2026-02/2025-drama-solo-report.docx (10 criteria each 0-10)",
+    "percent": 35,
+    "short": "Solo"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 60,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/drama-specs-w.docx",
+    "percent": 25,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 50
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "theatre_studies": {
+  "id": "theatre-studies",
+  "name": "Theatre Studies",
+  "label": "Theatre Studies",
+  "group": "The Arts",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "medium",
+  "notes": "Written total 50 (A30+B10+C10) = GA 100 x0.5. Monologue raw 100 inferred from report criteria (no total stated in specs). Older Stagecraft (2014-2019) and older written assumed same raw (GA unchanged), not verified.",
+  "inputs": [
+   {
+    "label": "Monologue",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/theatre-monologue-specs-w.docx (25%); 2026-02/2025-TheatreStudiesmonologue-report.docx (10 criteria each 0-10)",
+    "percent": 25,
+    "short": "Monologue"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 50,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/theatre-specs-w.docx",
+    "percent": 30,
+    "short": "Written"
+   }
+  ]
+ },
+ "music_composition": {
+  "id": "music-composition",
+  "name": "Music Composition",
+  "label": "Music Composition",
+  "group": "The Arts",
+  "aliases": "music",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "EAT criteria maxima 60/30/10 confirmed in 2025 EAT report (2026-02/2025-Music-Composition-EAT-report.docx). GA = 2x raw for both.",
+  "inputs": [
+   {
+    "label": "Externally Assessed Task",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-01/2026MusicCompositionEATSpecifications.docx (weightings 60/30/10 = 100; 50% of study score)",
+    "percent": 50,
+    "short": "Externally"
+   },
+   {
+    "label": "Aural and Written Exam",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-05/music-composition-specs.docx",
+    "percent": 20,
+    "short": "Aural"
+   }
+  ]
+ },
+ "music_contemporary_performance": {
+  "id": "music-contemporary-performance",
+  "name": "Music Contemporary Performance",
+  "label": "Music Contemporary",
+  "group": "The Arts",
+  "aliases": "music",
+  "design_from": 2023,
+  "confidence": "medium",
+  "notes": "Performance raw totals inferred from criterion counts x 10; consistent with GA = 2x raw (160 in 2023-24, 180 in 2025). Spec states no raw total.",
+  "inputs": [
+   {
+    "label": "Performance",
+    "ga": 2,
+    "raw_max": 90,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-01/music-contemporary-perf-perf-specs.docx (50%); 2026-02/2025-MusicContemporaryPerformance-report.docx (9 criteria each 0-10)",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 80
+     }
+    ],
+    "short": "Performance"
+   },
+   {
+    "label": "Aural and Written Exam",
+    "ga": 3,
+    "raw_max": 60,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-05/music-contemporary-perf-specs.docx",
+    "percent": 20,
+    "short": "Aural"
+   }
+  ]
+ },
+ "music_inquiry": {
+  "id": "music-inquiry",
+  "name": "Music Inquiry",
+  "label": "Music Inquiry",
+  "group": "The Arts",
+  "aliases": "music",
+  "design_from": 2023,
+  "confidence": "high",
+  "notes": "Criterion marks 0-25 each confirmed in 2025 EAT report. GA = 2x raw for both.",
+  "inputs": [
+   {
+    "label": "Externally Assessed Task",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-01/2026MusicInquiryEATspecs.docx (weightings 25+25+25+25 = 100; 50%)",
+    "percent": 50,
+    "short": "Externally"
+   },
+   {
+    "label": "Aural and Written Exam",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-05/music-inquiry-aural-and-written-specs.docx",
+    "percent": 15,
+    "short": "Aural"
+   }
+  ]
+ },
+ "music_repertoire_performance": {
+  "id": "music-repertoire-performance",
+  "name": "Music Repertoire Performance",
+  "label": "Music Repertoire",
+  "group": "The Arts",
+  "aliases": "music",
+  "design_from": 2023,
+  "confidence": "medium",
+  "notes": "Performance raw totals inferred from criterion counts x 10; consistent with GA = 2x raw (140 in 2023-24, 160 in 2025). 2023 criteria count not checked (assumed same as 2024).",
+  "inputs": [
+   {
+    "label": "Performance",
+    "ga": 2,
+    "raw_max": 80,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-01/music-repertoire-perf-specs.docx (50%); 2026-02/2025-MusicRepertoirePerformance-report.docx (8 criteria each 0-10)",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 70
+     }
+    ],
+    "short": "Performance"
+   },
+   {
+    "label": "Aural and Written Exam",
+    "ga": 3,
+    "raw_max": 60,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-01/music-repertoire-perf-written-specs.docx",
+    "percent": 20,
+    "short": "Aural"
+   }
+  ]
+ },
+ "vet_dance_vce_vet": {
+  "id": "vet-dance",
+  "name": "Dance (VCE VET)",
+  "label": "VET Dance",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "low",
+  "notes": "Raw 2024-25 = 200 (per-solo scoring); 2014-2023 raw appears to be 100 (GA 600 = 6x), 2020 70 (GA 420 = 6x). 2024 GA 200 and 2025 GA 400 (catalog) imply GA = 1x and 2x raw, i.e. the GA scale is inconsistent across years. Current design start year not found; spec docs give no marks.",
+  "inputs": [
+   {
+    "label": "Performance",
+    "ga": 2,
+    "raw_max": 200,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-07/vetdance-perf-specs.docx (50%, 10 criteria); 2026-02/2025-VETDancePerformance-report.docx (each criterion scored 0-10 for Performance 1 and Performance 2)",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2019,
+      "raw_max": 100
+     },
+     {
+      "up_to": 2020,
+      "raw_max": 70
+     },
+     {
+      "up_to": 2023,
+      "raw_max": 100
+     }
+    ],
+    "short": "Performance"
+   }
+  ]
+ },
+ "vet_music_performance_vce_vet": {
+  "id": "vet-music-performance",
+  "name": "Music Performance (VCE VET)",
+  "label": "VET Music Performance",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "medium",
+  "notes": "Raw 100 inferred from 10 criteria each 0-10 (7A and 7B reported as one table); GA 200 = 2x. Spec states no raw total. No written exam.",
+  "inputs": [
+   {
+    "label": "Performance",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-03/vetmusic-specs.docx (50%); 2026-02/2025-VET-Music-Performance-report.docx (10 mark tables, each 0-10)",
+    "percent": 50,
+    "short": "Performance"
+   }
+  ]
+ },
+ "vet_music_sound_production_vce_vet": {
+  "id": "vet-music-sound-production",
+  "name": "Music Sound Production (VCE VET)",
+  "label": "VET Music Sound Production",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "medium",
+  "notes": "The 34% comes from an older-format spec PDF; may be outdated. Study design start year not found.",
+  "inputs": [
+   {
+    "label": "Aural and Written Exam",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-Music-SoundProduction.pdf (contents: A 25 marks, B 75 marks); spec https://www.vcaa.vic.edu.au/sites/default/files/Documents/exams/vetmusic/vetmusic-SP-specs-w.pdf (total 100; 34 per cent)",
+    "percent": 34,
+    "short": "Aural"
+   }
+  ]
+ },
+ "vet_business_vce_vet": {
+  "id": "vet-business",
+  "name": "Business (VCE VET)",
+  "label": "VET Business",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-business. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-Business.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_community_services_vce_vet": {
+  "id": "vet-community-services",
+  "name": "Community Services (VCE VET)",
+  "label": "VET Community Services",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-community-services. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-CommunityServices.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_creative_and_digital_media_vce_vet": {
+  "id": "vet-creative-and-digital-media",
+  "name": "Creative and Digital Media (VCE VET)",
+  "label": "VET Creative and Digital Media",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-creative-and-digital-media. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted. Computer-based exam; specs state total marks 90 (A 20, B 30, C 40); GA /180.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 90,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-CDM.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_engineering_studies_vce_vet": {
+  "id": "vet-engineering-studies",
+  "name": "Engineering Studies (VCE VET)",
+  "label": "VET Engineering Studies",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-engineering-studies. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-EngineeringStudies.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_equine_studies_vce_vet": {
+  "id": "vet-equine-studies",
+  "name": "Equine Studies (VCE VET)",
+  "label": "VET Equine Studies",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-equine-studies. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-EquineStudies.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_furnishing_vce_vet": {
+  "id": "vet-furnishing",
+  "name": "Furnishing (VCE VET)",
+  "label": "VET Furnishing",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-furnishing. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted. Catalog 2018 'WRITTEN EXAM/200' is the same exam.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-Furnishing.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_health_vce_vet": {
+  "id": "vet-health",
+  "name": "Health (VCE VET)",
+  "label": "VET Health",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-health. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-Health.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_hospitality_cookeryvce_vet": {
+  "id": "vet-hospitality-cookery",
+  "name": "Hospitality (Cookery) (VCE VET)",
+  "label": "VET Hospitality (Cookery)",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": 2024,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-hospitality-cookery. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted. Cookery replaced Kitchen Operations in 2024.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 120,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-Hospitality-Cookery.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_hospitality_vce_vet": {
+  "id": "vet-hospitality",
+  "name": "Hospitality (VCE VET)",
+  "label": "VET Hospitality",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-hospitality. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 120,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-Hospitality.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_information_comms_technology_vce_vet": {
+  "id": "vet-information-comms-technology",
+  "name": "Information and Communications Technology (VCE VET)",
+  "label": "VET Information and Communications Technology",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": 2022,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-information-and-communications-technology. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted. No exam in 2015 (per catalog). VCAA notes ICT replaced VET Information, Digital Media and Technology in 2022.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 90,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-InfoCommsTech.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_integrated_technologies_vce_vet": {
+  "id": "vet-integrated-technologies",
+  "name": "Integrated Technologies (VCE VET)",
+  "label": "VET Integrated Technologies",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-integrated-technologies. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-IntegratedTechnologies.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_laboratory_skills_vce_vet": {
+  "id": "vet-laboratory-skills",
+  "name": "Laboratory Skills (VCE VET)",
+  "label": "VET Laboratory Skills",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-laboratory-skills. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-LaboratorySkills.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "vet_sport_and_recreation_vce_vet": {
+  "id": "vet-sport-and-recreation",
+  "name": "Sport and Recreation (VCE VET)",
+  "label": "VET Sport and Recreation",
+  "group": "VCE VET",
+  "aliases": "vet",
+  "design_from": null,
+  "confidence": "high",
+  "notes": "Total from 2025 exam paper section marks; spec says exam contributes 34 per cent. Specs list: https://vcaa.vic.edu.au/assessment/vet/vce-vet-examination-specifications-past-examinations-and-examination-reports/vce-vet-sport-and-recreation. GA max unchanged across years so older papers assumed same raw total. current_design_from not stated on VCAA page (it only says 'current program'), so null unless a replacement is noted.",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 2,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-VET-SportAndRecreation.pdf",
+    "percent": 34,
+    "short": "Exam"
+   }
+  ]
+ },
+ "chinese_second_language": {
+  "id": "chinese-second-language",
+  "name": "Chinese Second Language",
+  "label": "Chinese SL",
+  "group": "Languages",
+  "aliases": "csl chinese",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "GA3 /400 (oral 12.5% + written 37.5% = 50% of study score). Written paper total 75 also verified on pre-2020 papers (e.g. German 2016, French 2014/2019 'Structure of book' Total 75). Old-design (to 2019) oral raw total not published in anything I could read; GA max unchanged so assumed 40. ",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/chineseSL-oral-specs-w.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/chineseSL-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "chinese_second_language_advanced": {
+  "id": "chinese-second-language-advanced",
+  "name": "Chinese Second Language Advanced",
+  "label": "Chinese SLA",
+  "group": "Languages",
+  "aliases": "csla chinese",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "GA3 /400 (oral 12.5% + written 37.5% = 50% of study score). Written paper total 75 also verified on pre-2020 papers (e.g. German 2016, French 2014/2019 'Structure of book' Total 75). Old-design (to 2019) oral raw total not published in anything I could read; GA max unchanged so assumed 40. ",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/chineseSLA-oral-specs-w.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/chineseSLA-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "french": {
+  "id": "french",
+  "name": "French",
+  "label": "French",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "GA3 /400 (oral 12.5% + written 37.5% = 50% of study score). Written paper total 75 also verified on pre-2020 papers (e.g. German 2016, French 2014/2019 'Structure of book' Total 75). Old-design (to 2019) oral raw total not published in anything I could read; GA max unchanged so assumed 40. ",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/french-oral-specs-w.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/french-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "german": {
+  "id": "german",
+  "name": "German",
+  "label": "German",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "GA3 /400 (oral 12.5% + written 37.5% = 50% of study score). Written paper total 75 also verified on pre-2020 papers (e.g. German 2016, French 2014/2019 'Structure of book' Total 75). Old-design (to 2019) oral raw total not published in anything I could read; GA max unchanged so assumed 40. ",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/german-oral-specs-w.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/german-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "italian": {
+  "id": "italian",
+  "name": "Italian",
+  "label": "Italian",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "GA3 /400 (oral 12.5% + written 37.5% = 50% of study score). Written paper total 75 also verified on pre-2020 papers (e.g. German 2016, French 2014/2019 'Structure of book' Total 75). Old-design (to 2019) oral raw total not published in anything I could read; GA max unchanged so assumed 40. ",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/italian-oral-specs-w.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/italian-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "indonesian_second_language": {
+  "id": "indonesian-second-language",
+  "name": "Indonesian Second Language",
+  "label": "Indonesian",
+  "group": "Languages",
+  "aliases": "indo",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "GA3 /400 (oral 12.5% + written 37.5% = 50% of study score). Written paper total 75 also verified on pre-2020 papers (e.g. German 2016, French 2014/2019 'Structure of book' Total 75). Old-design (to 2019) oral raw total not published in anything I could read; GA max unchanged so assumed 40. ",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/indonesianSL-oral-specs-w.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/indonesianSL-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "korean_second_language": {
+  "id": "korean-second-language",
+  "name": "Korean Second Language",
+  "label": "Korean SL",
+  "group": "Languages",
+  "aliases": "ksl korean",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "GA3 /400 (oral 12.5% + written 37.5% = 50% of study score). Written paper total 75 also verified on pre-2020 papers (e.g. German 2016, French 2014/2019 'Structure of book' Total 75). Old-design (to 2019) oral raw total not published in anything I could read; GA max unchanged so assumed 40. ",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/koreanSL-oral-specs-w.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/koreanSL-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "vietnamese_second_language": {
+  "id": "vietnamese-second-language",
+  "name": "Vietnamese Second Language",
+  "label": "Vietnamese SL",
+  "group": "Languages",
+  "aliases": "vietnamese",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "GA3 /400 (oral 12.5% + written 37.5% = 50% of study score). Written paper total 75 also verified on pre-2020 papers (e.g. German 2016, French 2014/2019 'Structure of book' Total 75). Old-design (to 2019) oral raw total not published in anything I could read; GA max unchanged so assumed 40. ",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/vietnameseSL-oral-specs-w_0.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/VietnameseSL-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "greek": {
+  "id": "greek",
+  "name": "Greek",
+  "label": "Greek",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "GA3 /400 (oral 12.5% + written 37.5% = 50% of study score). Written paper total 75 also verified on pre-2020 papers (e.g. German 2016, French 2014/2019 'Structure of book' Total 75). Old-design (to 2019) oral raw total not published in anything I could read; GA max unchanged so assumed 40. ",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/greek-oral-specs-w.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/greek-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "spanish": {
+  "id": "spanish",
+  "name": "Spanish",
+  "label": "Spanish",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "GA3 /400 (oral 12.5% + written 37.5% = 50% of study score). Written paper total 75 also verified on pre-2020 papers (e.g. German 2016, French 2014/2019 'Structure of book' Total 75). Old-design (to 2019) oral raw total not published in anything I could read; GA max unchanged so assumed 40. ",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/spanish-oral-specs-w.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/spanish-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "chinese_first_language": {
+  "id": "chinese-first-language",
+  "name": "Chinese First Language",
+  "label": "Chinese FL",
+  "group": "Languages",
+  "aliases": "cfl chinese",
+  "design_from": 2022,
+  "confidence": "medium",
+  "notes": "GA3 /200 (oral 10% + written 40% = 50%). Current (from 2022) written total 65, oral 30. Before 2022 the written paper was out of 80 (cover page Total 80; same raw total on 2014/2019/2021 papers). Oral raw total and the % weights of the pre-2022 design were not found (GA max stayed 200, so weights presumably similar); the older entry only covers written.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 30,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/chineseFL-oral-specs-w.docx",
+    "percent": 10,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/chinese-FL-written-specs-w.docx",
+    "percent": 40,
+    "older": [
+     {
+      "up_to": 2021,
+      "raw_max": 80
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "vietnamese_first_language": {
+  "id": "vietnamese-first-language",
+  "name": "Vietnamese First Language",
+  "label": "Vietnamese FL",
+  "group": "Languages",
+  "aliases": "vietnamese",
+  "design_from": 2022,
+  "confidence": "medium",
+  "notes": "GA3 /200 (oral 10% + written 40% = 50%). Current (from 2022) written total 65, oral 30. Before 2022 the written paper was out of 80 (cover page Total 80; same raw total on 2014/2019/2021 papers). Oral raw total and the % weights of the pre-2022 design were not found (GA max stayed 200, so weights presumably similar); the older entry only covers written.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 30,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/vietnameseFL-oral-specs-w.docx",
+    "percent": 10,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/vietnameseFL-written-specs.docx",
+    "percent": 40,
+    "older": [
+     {
+      "up_to": 2021,
+      "raw_max": 80
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "chinese_language,_culture_and_society": {
+  "id": "chinese-language-culture-and-society",
+  "name": "Chinese Language, Culture and Society",
+  "label": "Chinese CLCS",
+  "group": "Languages",
+  "aliases": "clcs chinese",
+  "design_from": 2023,
+  "confidence": "medium",
+  "notes": "GA3 /200 (oral 15% + written 35% = 50%). Written total 70 (specs; also 2018, 2020, 2022 papers all Total 70). Oral spec states 15% but publishes NO raw mark total (two sections ~7 + ~8 min), and 2025 oral report has none either -> raw_max null; the page could fall back to percentage/band entry. Current design 'From 2023' per the specs title; the 2018 and 2020-22 papers are the previous design (same GA max /200, same written 70).",
+  "inputs": [
+   {
+    "label": "Oral (%)",
+    "ga": 3,
+    "raw_max": 100,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/chineseLCS-oral-specs-w.docx",
+    "percent": 15,
+    "as_percent": true,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 70,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/chineseLCS-written-specs-w.docx",
+    "percent": 35,
+    "short": "Written"
+   }
+  ]
+ },
+ "latin": {
+  "id": "latin",
+  "name": "Latin",
+  "label": "Latin",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2022,
+  "confidence": "high",
+  "notes": "Single written exam, 50% of study score. 2014-2021 papers Total 100 (checked 2014, 2017, 2021), GA3 /200; from 2022 Total 95, GA3 /190 (matches catalog). Design from 2022 (2022 paper Total 95).",
+  "inputs": [
+   {
+    "label": "Exam",
+    "ga": 3,
+    "raw_max": 95,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/Latin-specs-w.docx",
+    "percent": 50,
+    "older": [
+     {
+      "up_to": 2021,
+      "raw_max": 100
+     }
+    ],
+    "short": "Exam"
+   }
+  ]
+ },
+ "arabic": {
+  "id": "arabic",
+  "name": "Arabic",
+  "label": "Arabic",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2020,
+  "confidence": "high",
+  "notes": "Arabic follows a different (Second Language-style) template: written /75 (Section 1 Parts A,B 10+10, Section 2 Part A 20 + Part B 15, Section 3 20). Verified 2014, 2019 and 2025 papers all total 75, so no change. VCAA page lists current study design exams 2020-2025.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/arabic-oral-specs-w.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 75,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/arabic-written-specs-w.docx",
+    "percent": 37.5,
+    "short": "Written"
+   }
+  ]
+ },
+ "hebrew": {
+  "id": "hebrew",
+  "name": "Hebrew",
+  "label": "Hebrew",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Hebrew-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Hebrew-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "hindi": {
+  "id": "hindi",
+  "name": "Hindi",
+  "label": "Hindi",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Hindi-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Hindi-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "khmer": {
+  "id": "khmer",
+  "name": "Khmer",
+  "label": "Khmer",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Khmer-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Khmer-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "persian": {
+  "id": "persian",
+  "name": "Persian",
+  "label": "Persian",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Persian-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Persian-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "punjabi": {
+  "id": "punjabi",
+  "name": "Punjabi",
+  "label": "Punjabi",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/punjabi/2025-CCAFL-Punjabi-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/punjabi/2025-CCAFL-Punjabi-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "turkish": {
+  "id": "turkish",
+  "name": "Turkish",
+  "label": "Turkish",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/turkish/2025-CCAFL-Turkish-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/turkish/2025-CCAFL-Turkish-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "tamil": {
+  "id": "tamil",
+  "name": "Tamil",
+  "label": "Tamil",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/tamil/2025-CCAFL-Tamil-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/tamil/2025-CCAFL-Tamil-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "russian": {
+  "id": "russian",
+  "name": "Russian",
+  "label": "Russian",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/russian/2025-CCAFL-Russian-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/russian/2025-CCAFL-Russian-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "serbian": {
+  "id": "serbian",
+  "name": "Serbian",
+  "label": "Serbian",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/serbian/2025-CCAFL-Serbian-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/serbian/2025-CCAFL-Serbian-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "sinhala": {
+  "id": "sinhala",
+  "name": "Sinhala",
+  "label": "Sinhala",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/sinhala/2025-CCAFL-Sinhala-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/Documents/exams/sinhala/2025-CCAFL-Sinhala-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "macedonian": {
+  "id": "macedonian",
+  "name": "Macedonian",
+  "label": "Macedonian",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Macedonian-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Macedonian-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "karen": {
+  "id": "karen",
+  "name": "Karen",
+  "label": "Karen",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score. Catalog starts later than 2014 as study began later.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Karen-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Karen-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "korean_first_language": {
+  "id": "korean-first-language",
+  "name": "Korean First Language",
+  "label": "Korean FL",
+  "group": "Languages",
+  "aliases": "kfl korean",
+  "design_from": 2022,
+  "confidence": "medium",
+  "notes": "First Language template: oral /30 (10%), written /65 (40%), combined GA /200 (= 50% of study score). Current study design exams from 2022 (previous design 2017-2021; 2022 written paper confirmed /65). Pre-2022 written papers were /80 (2014 and 2021 covers checked for Korean; Japanese 2021 checked). Raw total of pre-2022 oral exam not found (assume unchanged is unverified).",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 30,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/KoreanFL-oral-specs-w.docx",
+    "percent": 10,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/koreanFL-written-specs-w.docx",
+    "percent": 40,
+    "older": [
+     {
+      "up_to": 2021,
+      "raw_max": 80
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "japanese_first_language": {
+  "id": "japanese-first-language",
+  "name": "Japanese First Language",
+  "label": "Japanese FL",
+  "group": "Languages",
+  "aliases": "jfl japanese",
+  "design_from": 2022,
+  "confidence": "medium",
+  "notes": "First Language template: oral /30 (10%), written /65 (40%), combined GA /200 (= 50% of study score). Current study design exams from 2022 (previous design 2017-2021; 2022 written paper confirmed /65). Pre-2022 written papers were /80 (2014 and 2021 covers checked for Korean; Japanese 2021 checked). Raw total of pre-2022 oral exam not found (assume unchanged is unverified).",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 30,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/JapaneseFL-oral-specs-w.docx",
+    "percent": 10,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/japaneseFL-written-specs-w.docx",
+    "percent": 40,
+    "older": [
+     {
+      "up_to": 2021,
+      "raw_max": 80
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "auslan": {
+  "id": "auslan",
+  "name": "Auslan",
+  "label": "Auslan",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2027,
+  "confidence": "medium",
+  "notes": "2014-2026 exams are all on the 2002-era study design (new design Units 3-4 from 2027, single Comprehension and Production exam /65 at 37.5%, spec https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2026-06/CCAFL-Auslan-specs.docx). Sign Comprehension and Production paper is /50 (2014, 2020, 2025 cover pages all Total 50). Interactive Sign (oral conversation ~7min + presentation ~8min) has no published raw total in specs/study design/reports: raw_max null (page should let the student enter marks out of their own total or skip). Percentages 15/35 are from the VCE handbook assessment summary (sum 50, matches GA /200 total); could be dated.",
+  "inputs": [
+   {
+    "label": "Interactive Sign (%)",
+    "ga": 3,
+    "raw_max": 100,
+    "source": "https://www.vcaa.vic.edu.au/administration/vce-handbook/sections/Pages/10ScoredAssessmentVCEVETSummary.aspx",
+    "percent": 15,
+    "as_percent": true,
+    "short": "Interactive"
+   },
+   {
+    "label": "Sign Comprehension and Production",
+    "ga": 3,
+    "raw_max": 50,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-12/2025-Auslan.pdf",
+    "percent": 35,
+    "short": "Sign"
+   }
+  ]
+ },
+ "polish": {
+  "id": "polish",
+  "name": "Polish",
+  "label": "Polish",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Polish-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Polish-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "croatian": {
+  "id": "croatian",
+  "name": "Croatian",
+  "label": "Croatian",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Croatian-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Croatian-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "chin_hakha": {
+  "id": "chin-hakha",
+  "name": "Chin Hakha",
+  "label": "Chin Hakha",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score. Catalog starts later than 2014 as study began later.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-ChinHakha-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-ChinHakha-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "bosnian": {
+  "id": "bosnian",
+  "name": "Bosnian",
+  "label": "Bosnian",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Bosnian-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Bosnian-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "filipino": {
+  "id": "filipino",
+  "name": "Filipino",
+  "label": "Filipino",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Filipino-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Filipino-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "dutch": {
+  "id": "dutch",
+  "name": "Dutch",
+  "label": "Dutch",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Dutch-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Dutch-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "portuguese": {
+  "id": "portuguese",
+  "name": "Portuguese",
+  "label": "Portuguese",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/2025-CCAFL-Portuguese-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/2025-CCAFL-Portuguese-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "hungarian": {
+  "id": "hungarian",
+  "name": "Hungarian",
+  "label": "Hungarian",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Hungarian-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Hungarian-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "swedish": {
+  "id": "swedish",
+  "name": "Swedish",
+  "label": "Swedish",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/2025-CCAFL-Swedish-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-04/2025-CCAFL-Swedish-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "romanian": {
+  "id": "romanian",
+  "name": "Romanian",
+  "label": "Romanian",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score. No 2025 exam was set for Romanian (catalog ends 2024), so only the older /75 written applies to listed years.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-09/2025-CCAFL-Romanian-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-09/2025-CCAFL-Romanian-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "armenian": {
+  "id": "armenian",
+  "name": "Armenian",
+  "label": "Armenian",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score.",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Armenian-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Armenian-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ },
+ "bengali": {
+  "id": "bengali",
+  "name": "Bengali",
+  "label": "Bengali",
+  "group": "Languages",
+  "aliases": "",
+  "design_from": 2025,
+  "confidence": "high",
+  "notes": "Shared CCAFL Second Language template: oral /40 (12.5%), written /65 (37.5%), from 2025. Papers up to 2024 were written /75 (Section 1 30 + Section 2 25 + Section 3 20; 2024 paper for this language or Hebrew 2014/2019/2024 checked) with the same percentages. Oral /40 (20+20) in the older design per oral assessment criteria; unchanged assumed. GA /400 = 50% of study score. Study design for Bengali began 2022; 2022-2024 papers written /75 (2022 paper Section 1 30, Section 3 20 checked).",
+  "inputs": [
+   {
+    "label": "Oral",
+    "ga": 3,
+    "raw_max": 40,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Bengali-oral-specs.docx",
+    "percent": 12.5,
+    "short": "Oral"
+   },
+   {
+    "label": "Written",
+    "ga": 3,
+    "raw_max": 65,
+    "source": "https://vcaacorporateprod.prod.acquia-sites.com/sites/default/files/2025-03/2025-CCAFL-Bengali-written-specs.docx",
+    "percent": 37.5,
+    "older": [
+     {
+      "up_to": 2024,
+      "raw_max": 75
+     }
+    ],
+    "short": "Written"
+   }
+  ]
+ }
+}
