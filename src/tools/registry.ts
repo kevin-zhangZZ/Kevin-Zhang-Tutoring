@@ -9,6 +9,7 @@ const ExamSkipGuide = lazy(() => import('./exam-skip-guide'))
 const WorkedSolutions = lazy(() => import('./worked-solutions'))
 const ExamAnalysis = lazy(() => import('./exam-analysis'))
 const StudyScore = lazy(() => import('./study-score'))
+const ExamTimetable = lazy(() => import('./exam-timetable'))
 const ContactMe = lazy(() => import('./contact-me'))
 const MiscDemonstrations = lazy(() => import('./misc-demonstrations'))
 
@@ -64,6 +65,16 @@ export const tools: Tool[] = [
     route: '/study-score',
     component: StudyScore,
     icon: 'study-score',
+    group: 'Exams',
+  },
+  {
+    id: 'exam-timetable',
+    name: 'Exam Timetable',
+    description: 'The 2026 VCE written exams on a calendar. Pick your subjects to see when each of your exams is, and spot any clashes.',
+    tagline: 'Your 2026 VCE exams on a calendar',
+    route: '/exam-timetable',
+    component: ExamTimetable,
+    icon: 'timetable',
     group: 'Exams',
   },
   {

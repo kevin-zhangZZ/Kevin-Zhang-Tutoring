@@ -6,6 +6,7 @@ export type ToolIconName =
   | 'analysis'
   | 'study-score'
   | 'skip-guide'
+  | 'timetable'
   | 'unit-circle'
   | 'speed-maths'
   | 'demonstrations'
@@ -48,6 +49,15 @@ const paths: Record<ToolIconName, React.ReactNode> = {
       <path d="M11 12h9" opacity="0.4" strokeDasharray="2 2.2" />
       <path d="M7.5 6C3 6 3 18 7.5 18" />
       <path d="m5.8 15.8 1.9 2.2-2.2 1.8" />
+    </>
+  ),
+  // A calendar page with one exam day marked.
+  timetable: (
+    <>
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2" />
+      <path d="M3.5 9.5h17M8 3v4M16 3v4" />
+      <path d="M7.5 13h2M11 13h2M7.5 16.5h2" opacity="0.45" />
+      <rect x="14.5" y="14.8" width="2.6" height="2.6" rx="0.5" fill="currentColor" stroke="none" />
     </>
   ),
   // The circle, its axes, and a radius out to a marked angle.
