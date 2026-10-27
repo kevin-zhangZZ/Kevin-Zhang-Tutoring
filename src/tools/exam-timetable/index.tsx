@@ -1,10 +1,11 @@
 // Exam Timetable: the 2026 VCE written exams (data.ts) on a calendar, filtered to the subjects a
-// student picks. A first visit starts on DEFAULT_IDS; the pick is kept in the URL (?s=english,eal)
-// so it can be sent, and in localStorage so the menu link brings it back. ?s= with nothing after it
-// is a cleared pick, which is different from no ?s at all (the defaults).
+// student picks. The pick is kept in the URL (?s=english,eal) so it can be sent; ?s= with nothing
+// after it is a cleared pick. A student can save a pick as My Subjects (localStorage, this browser
+// only): the page then opens on it instead of DEFAULT_IDS, and a button brings it back.
 //
 // From 640px up the exam weeks are a Monday–Friday grid; on phones the same exams are a list of
-// days. Two picked exams in overlapping sessions are flagged as a clash.
+// days. Two picked exams in overlapping sessions are flagged as a clash, unless every subject is
+// picked (Show All Subjects).
 
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
@@ -15,7 +16,7 @@ import {
   type Session, type Subject,
 } from './data'
 
-const STORE_KEY = 'exam-timetable:subjects'
+const SAVED_KEY = 'exam-timetable:my-subjects'
 const FOCUS =
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900'
 const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
@@ -41,30 +42,42 @@ const shortDay = (iso: string) => toDate(iso).toLocaleDateString('en-AU', { day:
 
 // ── The pick ───────────────────────────────────────────────────────────────────────────────
 
-function readStored(): string[] | null {
+/** The student's saved subjects ("My Subjects"), as a key, or null if they haven't saved any. */
+function readSaved(): string | null {
   try {
-    const v = localStorage.getItem(STORE_KEY)
-    return v === null ? null : v.split(',').filter(Boolean)
+    return localStorage.getItem(SAVED_KEY)
   } catch {
     return null
   }
 }
 
+function writeSaved(key: string | null) {
+  try {
+    if (key === null) localStorage.removeItem(SAVED_KEY)
+    else localStorage.setItem(SAVED_KEY, key)
+    return true
+  } catch {
+    return false // private window or blocked storage
+  }
+}
+
+/** Every subject picked, written as ?s=all rather than 111 ids. */
+const ALL = 'all'
+const keyOf = (ids: Set<string>) => (ids.size === SUBJECTS.length ? ALL : [...ids].sort().join(','))
+
+function idsOf(key: string): Set<string> {
+  if (key === ALL) return new Set(SUBJECTS.map(s => s.id))
+  return new Set(key.split(',').filter(id => SUBJECT_BY_ID.has(id)))
+}
+
 function useSelection() {
   const [params, setParams] = useSearchParams()
+  const [saved, setSaved] = useState(readSaved)
   const fromUrl = params.get('s')
-  const ids = useMemo(() => {
-    const raw = fromUrl !== null ? fromUrl.split(',') : readStored() ?? DEFAULT_IDS
-    return new Set(raw.filter(id => SUBJECT_BY_ID.has(id)))
-  }, [fromUrl])
+  const ids = useMemo(() => idsOf(fromUrl ?? saved ?? DEFAULT_IDS.join(',')), [fromUrl]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const key = [...ids].sort().join(',')
+  const key = keyOf(ids)
   useEffect(() => {
-    try {
-      localStorage.setItem(STORE_KEY, key)
-    } catch {
-      /* private window: the URL still holds the pick */
-    }
     if (params.get('s') !== key) {
       const next = new URLSearchParams(params)
       next.set('s', key)
@@ -74,10 +87,16 @@ function useSelection() {
 
   const set = (next: Iterable<string>) => {
     const q = new URLSearchParams(params)
-    q.set('s', [...new Set(next)].sort().join(','))
+    q.set('s', keyOf(new Set(next)))
     setParams(q, { replace: true })
   }
-  return { ids, set }
+  /** Saves the current pick as My Subjects, or forgets them (null). False if storage is blocked. */
+  const save = (next: string | null) => {
+    const ok = writeSaved(next)
+    if (ok) setSaved(next)
+    return ok
+  }
+  return { ids, key, set, saved: saved === null ? null : keyOf(idsOf(saved)), save }
 }
 
 interface Shown {
@@ -92,6 +111,8 @@ function useShown(ids: Set<string>) {
       .map(session => ({ session, exams: session.exams.filter(e => ids.has(e.subject.id)) }))
       .filter(s => s.exams.length > 0)
     const clashes = new Set<Shown>()
+    // Showing every subject is browsing the timetable, not one student's exams: nothing clashes.
+    if (ids.size === SUBJECTS.length) return { shown, clashes }
     shown.forEach((a, i) => {
       const studies = new Set(a.exams.map(e => ALTERNATIVES.find(g => g.includes(e.subject.id))?.[0] ?? e.subject.id))
       if (studies.size > 1) clashes.add(a)
@@ -109,7 +130,7 @@ function useShown(ids: Set<string>) {
 // ── Page ───────────────────────────────────────────────────────────────────────────────────
 
 export default function ExamTimetable() {
-  const { ids, set } = useSelection()
+  const { ids, key, set, saved, save } = useSelection()
   const { shown, clashes } = useShown(ids)
   const today = toIso(new Date())
 
@@ -147,7 +168,7 @@ export default function ExamTimetable() {
       </header>
 
       <div className="rise-in" style={stagger(1)}>
-        <SubjectFilter ids={ids} set={set} />
+        <SubjectFilter ids={ids} pickKey={key} set={set} saved={saved} save={save} />
       </div>
 
       <section className="rise-in mt-8" style={stagger(2)} aria-labelledby="tt-cal">
@@ -187,8 +208,17 @@ export default function ExamTimetable() {
 
 // ── Filter ─────────────────────────────────────────────────────────────────────────────────
 
-function SubjectFilter({ ids, set }: { ids: Set<string>; set: (ids: Iterable<string>) => void }) {
+interface FilterProps {
+  ids: Set<string>
+  pickKey: string
+  set: (ids: Iterable<string>) => void
+  saved: string | null
+  save: (key: string | null) => boolean
+}
+
+function SubjectFilter({ ids, pickKey, set, saved, save }: FilterProps) {
   const [query, setQuery] = useState('')
+  const [storageBlocked, setStorageBlocked] = useState(false)
   const [browsing, setBrowsing] = useState(false)
   const q = query.trim().toLowerCase()
   const isDefault = ids.size === DEFAULT_IDS.length && DEFAULT_IDS.every(id => ids.has(id))
@@ -213,15 +243,25 @@ function SubjectFilter({ ids, set }: { ids: Set<string>; set: (ids: Iterable<str
         <h2 id="tt-filter" className="font-display text-lg font-bold text-gray-900 dark:text-white mr-auto">
           Subjects <span className="text-gray-500 dark:text-gray-400 font-medium text-[15px]">· {ids.size} picked</span>
         </h2>
+        {saved !== null && (
+          <button type="button" className={`${CHIP_BASE} ${CHIP_OFF}`} disabled={saved === pickKey} onClick={() => set(saved === 'all' ? SUBJECTS.map(s => s.id) : saved.split(',').filter(Boolean))}>
+            My Subjects
+          </button>
+        )}
         <button type="button" className={`${CHIP_BASE} ${CHIP_OFF}`} disabled={isDefault} onClick={() => set(DEFAULT_IDS)}>
           Defaults
+        </button>
+        <button type="button" className={`${CHIP_BASE} ${CHIP_OFF}`} disabled={ids.size === SUBJECTS.length} onClick={() => set(SUBJECTS.map(s => s.id))}>
+          Show All Subjects
         </button>
         <button type="button" className={`${CHIP_BASE} ${CHIP_OFF}`} disabled={ids.size === 0} onClick={() => set([])}>
           Clear Filter
         </button>
       </div>
 
-      {picked.length > 0 && (
+      {picked.length === SUBJECTS.length ? (
+        <p className="mt-3 text-[13px] text-gray-600 dark:text-gray-300">Showing every subject.</p>
+      ) : picked.length > 0 && (
         <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Picked subjects">
           {picked.map(s => (
             <li key={s.id}>
@@ -240,6 +280,38 @@ function SubjectFilter({ ids, set }: { ids: Set<string>; set: (ids: Iterable<str
           ))}
         </ul>
       )}
+
+      <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px]" aria-live="polite">
+        {saved === pickKey ? (
+          <>
+            <span className="text-emerald-700 dark:text-emerald-400 font-semibold">✓ Saved as My Subjects</span>
+            <span className="text-gray-500 dark:text-gray-400">This page opens on them in this browser.</span>
+            <button type="button" onClick={() => setStorageBlocked(!save(null))} className={`font-semibold text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white underline underline-offset-2 rounded ${FOCUS}`}>
+              Forget
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              type="button"
+              disabled={ids.size === 0}
+              onClick={() => setStorageBlocked(!save(pickKey))}
+              className={`${CHIP_BASE} ${CHIP_OFF} inline-flex items-center gap-1.5`}
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
+                <path d="M2.5 1.5h7v9L6 8 2.5 10.5z" />
+              </svg>
+              {saved === null ? 'Save as My Subjects' : 'Update My Subjects'}
+            </button>
+            <span className="text-gray-500 dark:text-gray-400">
+              {saved === null ? 'Open the page on these subjects next time.' : 'Replace your saved subjects with these.'}
+            </span>
+          </>
+        )}
+        {storageBlocked && (
+          <span className="w-full text-amber-800 dark:text-amber-300">This browser isn’t letting the site save anything (a private window?). Bookmark this page instead: the link keeps your subjects.</span>
+        )}
+      </div>
 
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <label className="relative flex-1 min-w-[12rem] max-w-sm">

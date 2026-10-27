@@ -122,7 +122,8 @@ export interface Session {
   note?: string
 }
 
-const slug = (s: string) => s.toLowerCase().replace(/\(.*?\)/g, m => (m === '(eal)' ? 'eal' : '')).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+// Brackets stay in the id: "VET Hospitality (Cookery)" is a different study from "VET Hospitality".
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 const subjectMap = new Map<string, Subject>()
 
