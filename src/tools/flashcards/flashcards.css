@@ -1,0 +1,21 @@
+/* Flashcards. Shared keyframes (pop, slide-up-in) come from components/motion/motion.css. */
+
+/* Memorise: a card that turns over. Both faces share one grid cell, so the card is as tall as
+   its taller face whatever the maths on it. */
+.fc-scene { perspective: 1200px; }
+.fc-card { display: grid; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1); }
+.fc-card.fc-flipped { transform: rotateY(180deg); }
+.fc-face { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.fc-back { transform: rotateY(180deg); }
+
+/* Cover sheet: an answer blurred until it's peeked at. */
+.fc-hidden { filter: blur(7px); user-select: none; }
+
+/* Match: a wrong pair shakes; a matched pair fades away. */
+@keyframes fc-shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.fc-shake { animation: fc-shake 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-card { transition: none; }
+  .fc-shake { animation: none; }
+}

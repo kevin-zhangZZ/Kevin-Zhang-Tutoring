@@ -5,6 +5,7 @@ import type { ToolIconName } from '../components/ToolIcon'
 // so Home and the light tools never download the worked solutions or the 3D demos.
 const UnitCircle = lazy(() => import('./unit-circle'))
 const SpeedMaths = lazy(() => import('./speed-maths'))
+const Flashcards = lazy(() => import('./flashcards'))
 const ExamSkipGuide = lazy(() => import('./exam-skip-guide'))
 const WorkedSolutions = lazy(() => import('./worked-solutions'))
 const ExamAnalysis = lazy(() => import('./exam-analysis'))
@@ -96,6 +97,16 @@ export const tools: Tool[] = [
     route: '/unit-circle',
     component: UnitCircle,
     icon: 'unit-circle',
+    group: 'Practice',
+  },
+  {
+    id: 'flashcards',
+    name: 'Flashcards',
+    description: 'Over 1,100 cards across Methods, Specialist and Chemistry: formulas, rules, integrals and definitions from the study designs, with spaced-repetition review, a cover sheet, mixed-question tests and a Match game.',
+    tagline: 'Formulas and facts to know cold',
+    route: '/flashcards',
+    component: Flashcards,
+    icon: 'flashcards',
     group: 'Practice',
   },
   {

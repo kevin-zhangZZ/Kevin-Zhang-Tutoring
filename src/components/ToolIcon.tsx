@@ -9,6 +9,7 @@ export type ToolIconName =
   | 'timetable'
   | 'unit-circle'
   | 'speed-maths'
+  | 'flashcards'
   | 'demonstrations'
   | 'contact'
   | 'home'
@@ -76,6 +77,14 @@ const paths: Record<ToolIconName, React.ReactNode> = {
       <circle cx="12" cy="13.5" r="7.5" />
       <path d="M10 2.5h4M12 2.5V6M18.5 7l1.3-1.3" />
       <path d="M12 13.5V9.5M12 13.5l2.6 1.6" />
+    </>
+  ),
+  // Two cards, the front one turned over.
+  flashcards: (
+    <>
+      <rect x="7" y="3.5" width="13" height="9.5" rx="1.5" opacity="0.45" />
+      <rect x="4" y="9" width="13" height="11.5" rx="1.5" />
+      <path d="M7.5 13.5h6M7.5 16.5h4" />
     </>
   ),
   // A square pyramid, hidden edges dashed.
