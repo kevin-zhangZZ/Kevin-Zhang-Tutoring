@@ -94,7 +94,7 @@ function Setup({ deck, pool, settings, onSettings, onStart, onExit }: {
   }
   const chosen = (Object.keys(TYPES) as QType[]).filter(t => settings.testTypes[t] && can[t])
   return (
-    <div className="flex flex-col gap-4 max-w-xl">
+    <div className="flex flex-col gap-4 max-w-xl mx-auto">
       <div><BackButton onClick={onExit} /></div>
       <div className="card p-5 sm:p-6">
         <h2 className="font-display text-xl font-bold text-gray-900 dark:text-white">Set up your test</h2>
@@ -237,7 +237,7 @@ function Round({ deck, qs, retry, onRetest, onNew, onExit }: {
   const score = results.filter(r => r.right).length
   const typedType = q.type === 'write' || q.type === 'gap'
   return (
-    <div className="flex flex-col gap-4 max-w-xl">
+    <div className="flex flex-col gap-4 max-w-xl mx-auto">
       <div className="flex items-center justify-between gap-3">
         <BackButton onClick={onExit} label="Quit" />
         <span className="text-sm text-gray-500 dark:text-gray-400 tabular-nums">{score} right</span>
@@ -304,7 +304,7 @@ function Round({ deck, qs, retry, onRetest, onNew, onExit }: {
       {answered ? (
         <div aria-live="polite" className={`flex flex-wrap items-center justify-between gap-3 rounded-xl px-4 py-3 text-sm ${answered.right ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300' : 'bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300'}`}>
           <span>
-            {answered.right ? 'Correct' : <>Answer: <b className="font-semibold">{q.type === 'gap' ? gapShown(q.card) : q.type === 'tf' ? (q.truth ? 'True' : 'False') : <FaceView face={q.answer} />}</b>{q.type === 'tf' && !q.truth && <> — it’s <FaceView face={q.answer} /></>}</>}
+            {answered.right ? 'Correct' : <>Answer: <b className="font-semibold">{q.type === 'gap' ? gapShown(q.card) : q.type === 'tf' ? (q.truth ? 'True' : 'False') : <FaceView face={q.answer} />}</b>{q.type === 'tf' && !q.truth && <>, it’s <FaceView face={q.answer} /></>}</>}
           </span>
           <span className="flex gap-2">
             {!answered.right && typedType && <button onClick={override} className={`${secondaryBtn} bg-white dark:bg-gray-900`}>I was right</button>}
@@ -312,7 +312,7 @@ function Round({ deck, qs, retry, onRetest, onNew, onExit }: {
           </span>
         </div>
       ) : q.type === 'mc' || q.type === 'tf' ? (
-        <p className="text-xs text-gray-500 dark:text-gray-400">Pick one.<Kbd>{q.type === 'mc' ? '1–4' : '1–2'}</Kbd></p>
+        <p className="text-xs text-gray-500 dark:text-gray-400">Pick one.<Kbd>{q.type === 'mc' ? '1-4' : '1-2'}</Kbd></p>
       ) : null}
     </div>
   )

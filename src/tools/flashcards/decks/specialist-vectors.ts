@@ -27,15 +27,15 @@ const rows: Row[] = [
   // Magnitude and position vectors
   ['mag', BASIC, `|${A}|`, '\\sqrt{a_1^2 + a_2^2 + a_3^2}', ['a_1^2 + a_2^2 + a_3^2', 'a_1 + a_2 + a_3', '\\sqrt{a_1 + a_2 + a_3}'], { ask: 'a = a₁i + a₂j + a₃k' }],
   ['unit', BASIC, AH, `\\dfrac{${A}}{|${A}|}`, [`|${A}|\\,${A}`, `\\dfrac{${A}}{|${A}|^2}`, `\\dfrac{1}{|${A}|}`], { tip: 'A unit vector has magnitude 1 and the same direction as a.' }],
-  ['dir-cos', BASIC, '\\cos\\alpha', `\\dfrac{a_1}{|${A}|}`, [`\\dfrac{a_1}{a_2}`, `\\dfrac{|${A}|}{a_1}`, `a_1|${A}|`], { ask: 'α is the angle between a = a₁i + a₂j + a₃k and the x-axis' }],
+  ['dir-cos', BASIC, '\\cos(\\alpha)', `\\dfrac{a_1}{|${A}|}`, [`\\dfrac{a_1}{a_2}`, `\\dfrac{|${A}|}{a_1}`, `a_1|${A}|`], { ask: 'α is the angle between a = a₁i + a₂j + a₃k and the x-axis' }],
   ['AB', BASIC, AB, `${OB} - ${OA}`, [`${OA} - ${OB}`, `${OA} + ${OB}`, `\\tfrac{1}{2}(${OA} + ${OB})`], { ask: 'in terms of position vectors', tip: 'Head minus tail.' }],
   ['midpoint', BASIC, '\\overrightarrow{OM}', `\\tfrac{1}{2}(${OA} + ${OB})`, [`\\tfrac{1}{2}(${OB} - ${OA})`, `${OA} + ${OB}`, `${OA} + \\tfrac{1}{2}${OB}`], { ask: 'M is the midpoint of AB' }],
   ['ratio', BASIC, '\\overrightarrow{OC}', `\\dfrac{n}{m + n}${OA} + \\dfrac{m}{m + n}${OB}`, [`\\dfrac{m}{m + n}${OA} + \\dfrac{n}{m + n}${OB}`, `\\dfrac{n}{m}${OA} + \\dfrac{m}{n}${OB}`, `${OA} + \\dfrac{m}{n}${AB}`], { ask: 'C lies on AB with AC : CB = m : n', tip: 'From OA + (m/(m + n))AB. Check with m = n: the midpoint.' }],
 
   // Scalar product
   ['dot-comp', DOT, `${A}\\cdot ${B}`, 'a_1b_1 + a_2b_2 + a_3b_3', ['a_1b_1 - a_2b_2 + a_3b_3', '(a_1 + a_2 + a_3)(b_1 + b_2 + b_3)', `a_1b_1${I} + a_2b_2${J} + a_3b_3${K}`], { ask: COMP }],
-  ['dot-angle', DOT, `${A}\\cdot ${B}`, `|${A}|\\,|${B}|\\cos\\theta`, [`|${A}|\\,|${B}|\\sin\\theta`, '\\cos\\theta', `|${A}| + |${B}|\\cos\\theta`], { ask: 'θ is the angle between a and b' }],
-  ['cos-angle', DOT, '\\cos\\theta', `\\dfrac{${A}\\cdot ${B}}{|${A}|\\,|${B}|}`, [`\\dfrac{|${A}\\times ${B}|}{|${A}|\\,|${B}|}`, `\\dfrac{|${A}|\\,|${B}|}{${A}\\cdot ${B}}`, `\\dfrac{${A}\\cdot ${B}}{|${A}|^2}`], { ask: 'θ is the angle between a and b' }],
+  ['dot-angle', DOT, `${A}\\cdot ${B}`, `|${A}|\\,|${B}|\\cos(\\theta)`, [`|${A}|\\,|${B}|\\sin(\\theta)`, '\\cos(\\theta)', `|${A}| + |${B}|\\cos(\\theta)`], { ask: 'θ is the angle between a and b' }],
+  ['cos-angle', DOT, '\\cos(\\theta)', `\\dfrac{${A}\\cdot ${B}}{|${A}|\\,|${B}|}`, [`\\dfrac{|${A}\\times ${B}|}{|${A}|\\,|${B}|}`, `\\dfrac{|${A}|\\,|${B}|}{${A}\\cdot ${B}}`, `\\dfrac{${A}\\cdot ${B}}{|${A}|^2}`], { ask: 'θ is the angle between a and b' }],
   ['angle-range', DOT, w('The angle θ between two vectors'), '0 \\le \\theta \\le \\pi', ['0 \\le \\theta \\le \\tfrac{\\pi}{2}', '-\\pi < \\theta \\le \\pi', '0 \\le \\theta < 2\\pi'], { oneWay: true, tip: 'Placed tail to tail; obtuse angles are allowed.' }],
   ['a-dot-a', DOT, `${A}\\cdot ${A}`, `|${A}|^2`, [`|${A}|`, '1', '0']],
   ['i-dot-j', DOT, `${I}\\cdot ${J}`, '0', ['1', K, `-${K}`], { back: { tex: '0', plain: '0' } }],
@@ -62,7 +62,7 @@ const rows: Row[] = [
     ask: `in components, ${COMP}`, tip: 'Expand the determinant along the top row: the j term takes a minus.',
     gap: { tex: `${A}\\times ${B} = (a_2b_3 - a_3b_2)${I} \\gap (a_1b_3 - a_3b_1)${J} + (a_1b_2 - a_2b_1)${K}`, answers: ['-'] },
   }],
-  ['cross-mag', CROSS, `|${A}\\times ${B}|`, `|${A}|\\,|${B}|\\sin\\theta`, [`|${A}|\\,|${B}|\\cos\\theta`, `(${A}\\cdot ${B})\\sin\\theta`, `|${A}|\\,|${B}|\\tan\\theta`], { ask: 'θ is the angle between a and b' }],
+  ['cross-mag', CROSS, `|${A}\\times ${B}|`, `|${A}|\\,|${B}|\\sin(\\theta)`, [`|${A}|\\,|${B}|\\cos(\\theta)`, `(${A}\\cdot ${B})\\sin(\\theta)`, `|${A}|\\,|${B}|\\tan(\\theta)`], { ask: 'θ is the angle between a and b' }],
   ['cross-anti', CROSS, `${B}\\times ${A}`, `-(${A}\\times ${B})`, [`${A}\\times ${B}`, `${A}\\cdot ${B}`, O], { tip: 'The vector product is not commutative.' }],
   ['cross-self', CROSS, `${A}\\times ${A}`, O, [`|${A}|^2`, '0', '1'], { tip: 'The zero vector, not the number 0.' }],
   ['cross-dir', CROSS, w('The direction of a × b'), w('Perpendicular to both a and b, by the right-hand rule'), [w('In the plane of a and b, between them'), w('Parallel to a + b'), w('Perpendicular to a only')]],

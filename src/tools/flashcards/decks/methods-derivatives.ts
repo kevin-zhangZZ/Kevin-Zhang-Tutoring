@@ -20,9 +20,9 @@ const rows: Row[] = [
   ['recip', BASIC, '\\dfrac{1}{x}', '-\\dfrac{1}{x^2}', ['\\dfrac{1}{x^2}', '\\log_e x', '-\\dfrac{1}{x}'], { tip: 'Write 1/x as x^(−1) first.' }],
   ['exp', BASIC, 'e^x', 'e^x', ['xe^{x-1}', 'e^{x-1}', '\\log_e x'], { family: 'exp' }],
   ['log', BASIC, '\\log_e x', '\\dfrac{1}{x}', ['-\\dfrac{1}{x^2}', '\\dfrac{\\log_e x}{x}', '-\\dfrac{1}{x}'], { ask: 'for x > 0', family: 'log' }],
-  ['sin', BASIC, '\\sin x', '\\cos x', ['-\\cos x', '-\\sin x', '\\sec x'], { family: 'sin' }],
-  ['cos', BASIC, '\\cos x', '-\\sin x', ['\\sin x', '-\\cos x', '\\cos x'], { family: 'cos' }],
-  ['tan', BASIC, '\\tan x', '\\dfrac{1}{\\cos^2 x}', ['-\\dfrac{1}{\\cos^2 x}', '\\dfrac{1}{\\sin^2 x}', '\\dfrac{1}{\\cos x}'], { tip: 'Also written sec²x.', family: 'tan' }],
+  ['sin', BASIC, '\\sin(x)', '\\cos(x)', ['-\\cos(x)', '-\\sin(x)', '\\sec(x)'], { family: 'sin' }],
+  ['cos', BASIC, '\\cos(x)', '-\\sin(x)', ['\\sin(x)', '-\\cos(x)', '\\cos(x)'], { family: 'cos' }],
+  ['tan', BASIC, '\\tan(x)', '\\dfrac{1}{\\cos^2(x)}', ['-\\dfrac{1}{\\cos^2(x)}', '\\dfrac{1}{\\sin^2(x)}', '\\dfrac{1}{\\cos(x)}'], { tip: 'Also written sec²(x).', family: 'tan' }],
 
   ['lin-power', LINEAR, '(ax + b)^n', 'an(ax + b)^{n-1}', ['n(ax + b)^{n-1}', 'an(ax + b)^{n+1}', '\\dfrac{n}{a}(ax + b)^{n-1}'], { tip: 'Chain rule: the derivative of the inside, a, comes out the front.' }],
   ['lin-exp', LINEAR, 'e^{ax}', 'ae^{ax}', ['\\dfrac{1}{a}e^{ax}', 'axe^{ax-1}', 'e^{ax}'], { family: 'exp' }],
@@ -49,7 +49,7 @@ const rows: Row[] = [
 const gaps: Record<string, Card['gap']> = {
   'lin-power': { tex: '\\dfrac{d}{dx}(ax + b)^n = an(ax + b)^{n \\gap 1}', answers: ['-'] },
   'lin-cos': { tex: '\\dfrac{d}{dx}\\cos(ax + b) = \\gap a\\sin(ax + b)', answers: ['-'] },
-  'cos': { tex: '\\dfrac{d}{dx}\\cos x = \\gap\\sin x', answers: ['-'] },
+  'cos': { tex: '\\dfrac{d}{dx}\\cos(x) = \\gap\\sin(x)', answers: ['-'] },
   'product': { tex: '\\dfrac{d}{dx}(uv) = u\\dfrac{dv}{dx} \\gap v\\dfrac{du}{dx}', answers: ['+'] },
   'quotient': { tex: '\\dfrac{d}{dx}\\left(\\dfrac{u}{v}\\right) = \\dfrac{v\\frac{du}{dx} \\gap u\\frac{dv}{dx}}{v^2}', answers: ['-'] },
   'recip': { tex: '\\dfrac{d}{dx}\\left(\\dfrac{1}{x}\\right) = \\gap\\dfrac{1}{x^2}', answers: ['-'] },

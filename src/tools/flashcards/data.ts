@@ -47,11 +47,11 @@ export interface Card {
   section?: string
   front: Face
   back: Face
-  /** Said under the prompt when the front alone doesn't pin down the answer ("in terms of cos x only"). */
+  /** Said under the prompt when the front alone doesn't pin down the answer ("in terms of cos(x) only"). */
   ask?: string
   /** A line on the back of the card: how to remember it or where it comes from. */
   tip?: string
-  /** Asked front → back only: the back alone has more than one right front (−sin x is sin(−x) and sin(π + x)). */
+  /** Asked front → back only: the back alone has more than one right front (−sin(x) is sin(−x) and sin(π + x)). */
   oneWay?: boolean
   /** Likely slips for the back, used first as Test distractors. */
   traps?: Face[]

@@ -33,37 +33,37 @@ const rows: Row[] = [
   ['conj-prod', CART, '\\overline{z_1 z_2}', '\\overline{z_1}\\,\\overline{z_2}', ['z_1\\overline{z_2}', '\\overline{z_1} + \\overline{z_2}', '-z_1 z_2']],
 
   // Polar form
-  ['polar', POLAR, `r${CIS}\\,\\theta`, 'r(\\cos\\theta + i\\sin\\theta)', ['r(\\sin\\theta + i\\cos\\theta)', 'r(\\cos\\theta - i\\sin\\theta)', '\\cos(r\\theta) + i\\sin(r\\theta)']],
-  ['x-polar', POLAR, 'x', 'r\\cos\\theta', ['r\\sin\\theta', '\\dfrac{\\cos\\theta}{r}', 'r\\tan\\theta'], { ask: `for ${Z} = r cis θ`, family: 'xy' }],
-  ['y-polar', POLAR, 'y', 'r\\sin\\theta', ['r\\cos\\theta', '\\dfrac{\\sin\\theta}{r}', 'r\\tan\\theta'], { ask: `for ${Z} = r cis θ`, family: 'xy' }],
-  ['tan-arg', POLAR, '\\tan\\theta', '\\dfrac{y}{x}', ['\\dfrac{x}{y}', '\\dfrac{y}{r}', '\\dfrac{x}{r}'], { ask: `for ${Z} = r cis θ`, family: 'xy', tip: 'Check the quadrant: tan⁻¹(y/x) alone is only right in quadrants 1 and 4.' }],
+  ['polar', POLAR, `r${CIS}(\\theta)`, 'r(\\cos(\\theta) + i\\sin(\\theta))', ['r(\\sin(\\theta) + i\\cos(\\theta))', 'r(\\cos(\\theta) - i\\sin(\\theta))', '\\cos(r\\theta) + i\\sin(r\\theta)']],
+  ['x-polar', POLAR, 'x', 'r\\cos(\\theta)', ['r\\sin(\\theta)', '\\dfrac{\\cos(\\theta)}{r}', 'r\\tan(\\theta)'], { ask: `for ${Z} = r cis(θ)`, family: 'xy' }],
+  ['y-polar', POLAR, 'y', 'r\\sin(\\theta)', ['r\\cos(\\theta)', '\\dfrac{\\sin(\\theta)}{r}', 'r\\tan(\\theta)'], { ask: `for ${Z} = r cis(θ)`, family: 'xy' }],
+  ['tan-arg', POLAR, '\\tan(\\theta)', '\\dfrac{y}{x}', ['\\dfrac{x}{y}', '\\dfrac{y}{r}', '\\dfrac{x}{r}'], { ask: `for ${Z} = r cis(θ)`, family: 'xy', tip: 'Check the quadrant: tan⁻¹(y/x) alone is only right in quadrants 1 and 4.' }],
   ['arg-range', POLAR, w('The principal argument Arg(z) lies in'), '(-\\pi, \\pi]', ['[-\\pi, \\pi)', '[0, 2\\pi)', '[-\\pi, \\pi]'], { oneWay: true, tip: '−π is left out, so Arg(−1) = π.' }],
   ['mod-prod', POLAR, '|z_1 z_2|', '|z_1|\\,|z_2|', ['|z_1| + |z_2|', '|z_1|^2|z_2|^2', '\\sqrt{|z_1|\\,|z_2|}']],
-  ['mult-polar', POLAR, `r_1${CIS}\\,\\theta_1 \\times r_2${CIS}\\,\\theta_2`, `r_1 r_2${CIS}(\\theta_1 + \\theta_2)`, [`r_1 r_2${CIS}(\\theta_1\\theta_2)`, `(r_1 + r_2)${CIS}(\\theta_1 + \\theta_2)`, `r_1 r_2${CIS}(\\theta_1 - \\theta_2)`], {
+  ['mult-polar', POLAR, `r_1${CIS}(\\theta_1) \\times r_2${CIS}(\\theta_2)`, `r_1 r_2${CIS}(\\theta_1 + \\theta_2)`, [`r_1 r_2${CIS}(\\theta_1\\theta_2)`, `(r_1 + r_2)${CIS}(\\theta_1 + \\theta_2)`, `r_1 r_2${CIS}(\\theta_1 - \\theta_2)`], {
     family: 'muldiv', tip: 'Multiply the moduli, add the arguments.',
-    gap: { tex: `r_1${CIS}\\,\\theta_1 \\times r_2${CIS}\\,\\theta_2 = r_1 r_2${CIS}(\\theta_1 \\gap \\theta_2)`, answers: ['+'] },
+    gap: { tex: `r_1${CIS}(\\theta_1) \\times r_2${CIS}(\\theta_2) = r_1 r_2${CIS}(\\theta_1 \\gap \\theta_2)`, answers: ['+'] },
   }],
-  ['div-polar', POLAR, `\\dfrac{r_1${CIS}\\,\\theta_1}{r_2${CIS}\\,\\theta_2}`, `\\dfrac{r_1}{r_2}${CIS}(\\theta_1 - \\theta_2)`, [`\\dfrac{r_1}{r_2}${CIS}\\left(\\dfrac{\\theta_1}{\\theta_2}\\right)`, `\\dfrac{r_1}{r_2}${CIS}(\\theta_2 - \\theta_1)`, `(r_1 - r_2)${CIS}(\\theta_1 - \\theta_2)`], {
+  ['div-polar', POLAR, `\\dfrac{r_1${CIS}(\\theta_1}){r_2${CIS}(\\theta_2})`, `\\dfrac{r_1}{r_2}${CIS}(\\theta_1 - \\theta_2)`, [`\\dfrac{r_1}{r_2}${CIS}\\left(\\dfrac{\\theta_1}{\\theta_2}\\right)`, `\\dfrac{r_1}{r_2}${CIS}(\\theta_2 - \\theta_1)`, `(r_1 - r_2)${CIS}(\\theta_1 - \\theta_2)`], {
     family: 'muldiv', tip: 'Divide the moduli, subtract the arguments.',
-    gap: { tex: `\\dfrac{r_1${CIS}\\,\\theta_1}{r_2${CIS}\\,\\theta_2} = \\dfrac{r_1}{r_2}${CIS}(\\theta_1 \\gap \\theta_2)`, answers: ['-'] },
+    gap: { tex: `\\dfrac{r_1${CIS}(\\theta_1}){r_2${CIS}(\\theta_2}) = \\dfrac{r_1}{r_2}${CIS}(\\theta_1 \\gap \\theta_2)`, answers: ['-'] },
   }],
-  ['conj-polar', POLAR, `\\overline{r${CIS}\\,\\theta}`, `r${CIS}(-\\theta)`, [`-r${CIS}\\,\\theta`, `r${CIS}(\\pi - \\theta)`, `\\dfrac{1}{r}${CIS}(-\\theta)`], { family: 'neg-theta' }],
-  ['recip-polar', POLAR, `\\dfrac{1}{r${CIS}\\,\\theta}`, `\\dfrac{1}{r}${CIS}(-\\theta)`, [`\\dfrac{1}{r}${CIS}\\,\\theta`, `r${CIS}(-\\theta)`, `-r${CIS}\\,\\theta`], { family: 'neg-theta' }],
-  ['cis-pi', POLAR, `${CIS}\\,\\pi`, '-1', ['1', 'i', '-i'], { family: 'cis-val', back: { tex: '-1', plain: '-1' } }],
+  ['conj-polar', POLAR, `\\overline{r${CIS}(\\theta)}`, `r${CIS}(-\\theta)`, [`-r${CIS}(\\theta)`, `r${CIS}(\\pi - \\theta)`, `\\dfrac{1}{r}${CIS}(-\\theta)`], { family: 'neg-theta' }],
+  ['recip-polar', POLAR, `\\dfrac{1}{r${CIS}(\\theta)}`, `\\dfrac{1}{r}${CIS}(-\\theta)`, [`\\dfrac{1}{r}${CIS}(\\theta)`, `r${CIS}(-\\theta)`, `-r${CIS}(\\theta)`], { family: 'neg-theta' }],
+  ['cis-pi', POLAR, `${CIS}(\\pi)`, '-1', ['1', 'i', '-i'], { family: 'cis-val', back: { tex: '-1', plain: '-1' } }],
   ['cis-half-pi', POLAR, `${CIS}\\,\\tfrac{\\pi}{2}`, 'i', ['-i', '1', '-1'], { family: 'cis-val', back: { tex: 'i', plain: 'i' } }],
   ['geo-i', POLAR, w('Multiplying z by i'), w('Rotates z anticlockwise by π/2 about the origin'), [w('Rotates z clockwise by π/2 about the origin'), w('Reflects z in the real axis'), w('Rotates z by π about the origin')], { family: 'geom' }],
-  ['geo-cis', POLAR, w('Multiplying z by cis α'), w('Rotates z anticlockwise by α about the origin'), [w('Rotates z clockwise by α about the origin'), w('Moves z a distance α to the right'), w('Rotates z anticlockwise by α and scales it by α')], { family: 'geom' }],
+  ['geo-cis', POLAR, w('Multiplying z by cis(α)'), w('Rotates z anticlockwise by α about the origin'), [w('Rotates z clockwise by α about the origin'), w('Moves z a distance α to the right'), w('Rotates z anticlockwise by α and scales it by α')], { family: 'geom' }],
   ['geo-conj', POLAR, w('Taking the conjugate of z'), w('Reflects z in the real axis'), [w('Reflects z in the imaginary axis'), w('Rotates z by π about the origin'), w('Rotates z anticlockwise by π/2 about the origin')], { family: 'geom' }],
 
   // De Moivre and roots
-  ['demoivre', DM, `(r${CIS}\\,\\theta)^n`, `r^n${CIS}(n\\theta)`, [`r^n${CIS}(\\theta^n)`, `nr${CIS}(n\\theta)`, `r${CIS}(n\\theta)`], {
+  ['demoivre', DM, `(r${CIS}(\\theta))^n`, `r^n${CIS}(n\\theta)`, [`r^n${CIS}(\\theta^n)`, `nr${CIS}(n\\theta)`, `r${CIS}(n\\theta)`], {
     tip: "De Moivre's theorem, proved by induction for integer n.",
-    gap: { tex: `(r${CIS}\\,\\theta)^n = r^n${CIS}(\\gap\\,\\theta)`, answers: ['n'] },
+    gap: { tex: `(r${CIS}(\\theta))^n = r^n${CIS}(\\gap\\,\\theta)`, answers: ['n'] },
   }],
-  ['roots-count', DM, `z^n = r${CIS}\\,\\theta`, 'n', ['n - 1', '2n', 'n + 1'], { ask: 'how many distinct roots (r > 0)', oneWay: true, back: { tex: 'n', plain: 'n' } }],
-  ['roots-modulus', DM, `z^n = r${CIS}\\,\\theta`, 'r^{\\frac{1}{n}}', ['r', '\\dfrac{r}{n}', 'r^n'], { ask: 'the modulus of every root', oneWay: true }],
-  ['roots-spacing', DM, `z^n = r${CIS}\\,\\theta`, '\\dfrac{2\\pi}{n}', ['\\dfrac{\\pi}{n}', '\\dfrac{\\theta}{n}', '\\dfrac{2\\pi}{n} + \\theta'], { ask: 'the angle between neighbouring roots', oneWay: true, tip: 'The roots are evenly spaced on a circle centred at the origin.' }],
-  ['roots-all', DM, `z^n = r${CIS}\\,\\theta`, `r^{\\frac{1}{n}}${CIS}\\left(\\dfrac{\\theta + 2k\\pi}{n}\\right),\\ k = 0, 1, \\ldots, n - 1`, [
+  ['roots-count', DM, `z^n = r${CIS}(\\theta)`, 'n', ['n - 1', '2n', 'n + 1'], { ask: 'how many distinct roots (r > 0)', oneWay: true, back: { tex: 'n', plain: 'n' } }],
+  ['roots-modulus', DM, `z^n = r${CIS}(\\theta)`, 'r^{\\frac{1}{n}}', ['r', '\\dfrac{r}{n}', 'r^n'], { ask: 'the modulus of every root', oneWay: true }],
+  ['roots-spacing', DM, `z^n = r${CIS}(\\theta)`, '\\dfrac{2\\pi}{n}', ['\\dfrac{\\pi}{n}', '\\dfrac{\\theta}{n}', '\\dfrac{2\\pi}{n} + \\theta'], { ask: 'the angle between neighbouring roots', oneWay: true, tip: 'The roots are evenly spaced on a circle centred at the origin.' }],
+  ['roots-all', DM, `z^n = r${CIS}(\\theta)`, `r^{\\frac{1}{n}}${CIS}\\left(\\dfrac{\\theta + 2k\\pi}{n}\\right),\\ k = 0, 1, \\ldots, n - 1`, [
     `r^{\\frac{1}{n}}${CIS}\\left(\\dfrac{\\theta}{n} + 2k\\pi\\right),\\ k = 0, 1, \\ldots, n - 1`,
     `r^{\\frac{1}{n}}${CIS}\\left(\\dfrac{\\theta + k\\pi}{n}\\right),\\ k = 0, 1, \\ldots, n - 1`,
     `r^n${CIS}\\left(\\dfrac{\\theta + 2k\\pi}{n}\\right),\\ k = 0, 1, \\ldots, n - 1`,

@@ -98,7 +98,7 @@ export default function Study({ deck, pool, dir, onExit, onTest }: {
 
   const isFresh = isNew(p, id)
   return (
-    <div className="flex flex-col gap-4 max-w-xl">
+    <div className="flex flex-col gap-4 max-w-xl mx-auto">
       <div className="flex items-center justify-between gap-3">
         <BackButton onClick={onExit} />
         <span className="text-sm text-gray-500 dark:text-gray-400">{start.ahead ? 'Studying ahead · ' : ''}{done} done</span>

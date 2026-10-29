@@ -8,7 +8,7 @@ import { SUBJECTS } from '../tools/worked-solutions/subjects'
 import { questionPath, subjectPath } from '../tools/worked-solutions/paths'
 import type { QuestionMeta } from '../tools/worked-solutions/data'
 import { Reveal, stagger } from '../components/motion/Reveal'
-import { UnitCirclePreview, SpeedPreview, AnalysisPreview, StudyScorePreview, SkipPreview, DemoPreview } from './home/previews'
+import { UnitCirclePreview, SpeedPreview, AnalysisPreview, StudyScorePreview, SkipPreview, DemoPreview, FlashcardsPreview } from './home/previews'
 import solutionLight from '../assets/home/solution-light.webp'
 import solutionDark from '../assets/home/solution-dark.webp'
 import workingLight from '../assets/home/working-light.webp'
@@ -50,7 +50,7 @@ const SUBJECT_LABEL = Object.fromEntries(SUBJECTS.map(s => [s.id, s.label])) as 
 const tool = (id: string) => tools.find(t => t.id === id)!
 
 // The tool grid: each cell is a tool with a small live version of it. Spans make the rhythm
-// (a wide row, three across, a full-width row); `tone` varies the surfaces so it isn't six white boxes.
+// (a wide row, three across, then one beside a wide one); `tone` varies the surfaces so it isn't six white boxes.
 type Tone = 'plain' | 'tint' | 'ink'
 const CELLS: Array<{ tool: Tool; preview: ReactNode; span: string; tone: Tone; row?: boolean }> = [
   { tool: tool('unit-circle'), preview: <UnitCirclePreview />, span: 'lg:col-span-2', tone: 'plain', row: true },
@@ -58,7 +58,8 @@ const CELLS: Array<{ tool: Tool; preview: ReactNode; span: string; tone: Tone; r
   { tool: tool('exam-analysis'), preview: <AnalysisPreview />, span: '', tone: 'plain' },
   { tool: tool('study-score'), preview: <StudyScorePreview />, span: '', tone: 'tint' },
   { tool: tool('exam-skip-guide'), preview: <SkipPreview />, span: '', tone: 'plain' },
-  { tool: tool('misc-demonstrations'), preview: <DemoPreview />, span: 'md:col-span-2 lg:col-span-3', tone: 'tint', row: true },
+  { tool: tool('flashcards'), preview: <FlashcardsPreview />, span: '', tone: 'plain' },
+  { tool: tool('misc-demonstrations'), preview: <DemoPreview />, span: 'md:col-span-2', tone: 'tint', row: true },
 ]
 
 const TONE: Record<Tone, { box: string; name: string; text: string }> = {

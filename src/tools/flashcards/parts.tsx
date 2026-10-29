@@ -42,27 +42,6 @@ export function Progress({ done, total, label }: { done: number; total: number; 
   )
 }
 
-/** Mastery as a ring, for the subject tiles. */
-export function Ring({ pct, size = 48 }: { pct: number; size?: number }) {
-  const r = 19, c = 2 * Math.PI * r
-  return (
-    <svg width={size} height={size} viewBox="0 0 50 50" role="img" aria-label={`${pct}% mastered`} className="flex-none">
-      <circle cx="25" cy="25" r={r} fill="none" strokeWidth="5" className="stroke-gray-200 dark:stroke-gray-700" />
-      {pct > 0 && <circle cx="25" cy="25" r={r} fill="none" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${(c * pct) / 100} ${c}`} transform="rotate(-90 25 25)" className="stroke-emerald-500 transition-[stroke-dasharray] duration-500" />}
-      <text x="25" y="29" textAnchor="middle" className="fill-gray-900 dark:fill-white text-[11px] font-semibold">{pct}%</text>
-    </svg>
-  )
-}
-
-/** Mastery as a bar, for the group rows. */
-export function MasteryBar({ pct }: { pct: number }) {
-  return (
-    <div className="h-1.5 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden" aria-hidden>
-      <div className="h-full rounded-full bg-emerald-500 transition-[width] duration-500" style={{ width: `${pct}%` }} />
-    </div>
-  )
-}
-
 export function StarButton({ id, on }: { id: string; on: boolean }) {
   return (
     <button

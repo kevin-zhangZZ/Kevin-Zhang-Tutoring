@@ -74,8 +74,8 @@ export function UnitCirclePreview() {
       </svg>
       <dl className="min-w-0 font-mono text-sm leading-7 tabular-nums whitespace-nowrap" aria-hidden>
         <div className="text-2xl font-display font-bold text-gray-900 dark:text-white leading-tight mb-1 whitespace-nowrap">θ = {a.radLabel}</div>
-        <div><dt className="inline font-semibold" style={{ color: 'var(--color-cos)' }}>cos θ</dt> <dd className="inline text-gray-700 dark:text-gray-300">= {minus(a.cosLabel)}</dd></div>
-        <div><dt className="inline font-semibold" style={{ color: 'var(--color-sin)' }}>sin θ</dt> <dd className="inline text-gray-700 dark:text-gray-300">= {minus(a.sinLabel)}</dd></div>
+        <div><dt className="inline font-semibold" style={{ color: 'var(--color-cos)' }}>cos(θ)</dt> <dd className="inline text-gray-700 dark:text-gray-300">= {minus(a.cosLabel)}</dd></div>
+        <div><dt className="inline font-semibold" style={{ color: 'var(--color-sin)' }}>sin(θ)</dt> <dd className="inline text-gray-700 dark:text-gray-300">= {minus(a.sinLabel)}</dd></div>
       </dl>
     </div>
   )
@@ -231,6 +231,61 @@ export function DemoPreview() {
         <path ref={box} fill="none" stroke="currentColor" strokeOpacity="0.22" strokeWidth="1.2" strokeDasharray="4 4" />
         <path ref={pyr} fill="none" className="stroke-blue-600 dark:stroke-blue-400" strokeWidth="2" strokeLinejoin="round" />
       </svg>
+    </div>
+  )
+}
+
+// ── Flashcards: a card turns over to its answer, gets rated Good, and the next one comes up ──
+// Plain text rather than KaTeX, so Home doesn't load the maths renderer.
+
+const CARDS: Array<{ subject: string; front: string; back: string }> = [
+  { subject: 'Specialist', front: 'sin(2x)', back: '2 sin(x) cos(x)' },
+  { subject: 'Chemistry', front: 'sulfate', back: 'SO₄²⁻' },
+  { subject: 'Methods', front: 'd/dx logₑ(x)', back: '1/x' },
+  { subject: 'Specialist', front: '∫ x√(x − 2) dx', back: 'u = x − 2' },
+  { subject: 'Chemistry', front: 'oxidation', back: 'loss of electrons' },
+]
+
+export function FlashcardsPreview() {
+  // Each card takes 4 ticks: the question, turned over, rated, then the next.
+  const [wrap, tick] = useTicker(1100)
+  const reduce = useReducedMotion()
+  const n = reduce ? 0 : Math.floor(tick / 4)
+  const phase = reduce ? 0 : tick % 4
+  const card = CARDS[n % CARDS.length]
+  const flipped = phase >= 1
+  const rated = phase >= 2
+  return (
+    <div ref={wrap} className="flex flex-col items-center gap-3 py-1" aria-hidden>
+      <div key={n} className="slide-up-in w-full max-w-[15rem] [perspective:800px]">
+        <div
+          className="relative grid h-28 transition-transform duration-500 [transform-style:preserve-3d]"
+          style={{ transform: flipped ? 'rotateY(180deg)' : undefined }}
+        >
+          {[card.front, card.back].map((text, i) => (
+            <div
+              key={i}
+              className={`[grid-area:1/1] [backface-visibility:hidden] flex flex-col items-center justify-center rounded-xl border border-gray-200 dark:border-gray-700 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.25)] ${i ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-900'}`}
+              style={i ? { transform: 'rotateY(180deg)' } : undefined}
+            >
+              <span className="text-[10px] font-semibold text-gray-400 dark:text-gray-500">{i ? 'Answer' : card.subject}</span>
+              <span className={`mt-1 font-display text-xl font-semibold ${i ? 'text-emerald-700 dark:text-emerald-400' : 'text-gray-900 dark:text-white'}`}>{text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex gap-1.5">
+        {['Again', 'Hard', 'Good', 'Easy'].map(r => (
+          <span
+            key={r}
+            className={`rounded-md px-2 py-1 text-[11px] font-semibold transition-colors ${
+              r === 'Good' && rated ? 'bg-emerald-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400'
+            }`}
+          >
+            {r}
+          </span>
+        ))}
+      </div>
     </div>
   )
 }
