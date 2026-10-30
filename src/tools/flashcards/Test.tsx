@@ -326,7 +326,7 @@ function Option({ n, state, long, onClick, children }: { n: number; state: 'open
     dim: 'border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 opacity-30',
   }[state]
   return (
-    <button onClick={onClick} disabled={state !== 'open'} className={`relative rounded-xl border flex items-center transition-all duration-150 ${long ? 'pl-8 pr-4 py-3 text-[15px] leading-snug text-left justify-start min-h-[56px] min-w-0 overflow-x-auto' : 'px-3 py-3 text-lg justify-center min-h-[64px] sm:min-h-[76px]'} ${look}`}>
+    <button onClick={onClick} disabled={state !== 'open'} className={`relative rounded-xl border flex items-center transition-all duration-150 ${long ? 'pl-8 pr-4 py-3 text-[15px] leading-snug text-left justify-start min-h-[56px] min-w-0 overflow-x-auto overflow-y-hidden' : 'px-3 py-3 text-lg justify-center min-h-[64px] sm:min-h-[76px]'} ${look}`}>
       <span className="absolute left-2.5 top-2 text-[10px] font-mono text-gray-400 hidden [@media(pointer:fine)]:inline" aria-hidden>{n + 1}</span>
       {children}
     </button>

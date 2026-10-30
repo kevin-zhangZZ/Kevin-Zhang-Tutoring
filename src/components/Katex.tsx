@@ -27,10 +27,11 @@ export default function Katex({ tex, display = false, className = '' }: KatexPro
   }, [tex, display])
 
   // Display-mode equations can render wider than their container (long vector/fraction
-  // chains); scroll them horizontally instead of silently clipping.
+  // chains); scroll them horizontally instead of silently clipping. Never vertically: a
+  // fraction can overhang the box by a pixel, which would otherwise add a vertical scroll bar.
   return (
     <span
-      className={display ? `block max-w-full overflow-x-auto ${className}` : className}
+      className={display ? `block max-w-full overflow-x-auto overflow-y-hidden ${className}` : className}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   )

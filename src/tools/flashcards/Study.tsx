@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { cardKey, pickDir, promptFor, shuffle, type Card, type Deck, type Direction, type Prompt } from './data'
 import { DAY, formatInterval, isDue, isNew, mastery, nextIntervals, rate, startOfDay, toggleStar, useProgress, type Rating } from './progress'
 import { NEW_PER_SESSION } from './Home'
-import { BackButton, FaceView, bigSize, Kbd, Progress, StarButton, isPlainKey, primaryBtn, secondaryBtn } from './parts'
+import { BackButton, FaceView, bigSize, midSize, Kbd, Progress, StarButton, isPlainKey, primaryBtn, secondaryBtn } from './parts'
 
 // Memorise: flip a card, then rate it. Again brings it back in a few cards; Hard, Good and Easy
 // send it away for longer each time, so the cards a student knows stop taking their time.
@@ -98,65 +98,76 @@ export default function Study({ deck, pool, dir, onExit, onTest }: {
 
   const isFresh = isNew(p, id)
   return (
-    <div className="flex flex-col gap-4 max-w-xl mx-auto">
+    <div className="flex flex-col gap-4 max-w-xl md:max-w-[44rem] mx-auto">
       <div className="flex items-center justify-between gap-3">
         <BackButton onClick={onExit} />
         <span className="text-sm text-gray-500 dark:text-gray-400">{start.ahead ? 'Studying ahead · ' : ''}{done} done</span>
       </div>
       <Progress done={done} total={done + pile.length} label={`${pile.length} left`} />
 
-      <div className="relative">
-        <span className="absolute right-2.5 top-2.5 z-10"><StarButton id={id} on={!!p.stars[id]} /></span>
-        <div
-          key={turn}
-          role={flipped ? undefined : 'button'}
-          tabIndex={flipped ? -1 : 0}
-          aria-label={flipped ? undefined : 'Show the answer'}
-          onClick={() => setFlipped(true)}
-          className={`fc-scene slide-up-in ${flipped ? '' : 'cursor-pointer'} rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`}
-        >
-          <div className={`fc-card ${flipped ? 'fc-flipped' : ''}`}>
-            <CardFace label={current.card.group} badge={isFresh ? 'New' : undefined}>
-              <span className="text-sm text-gray-500 dark:text-gray-400">{deck.promptLabel[current.dir]}</span>
-              <FaceView face={current.show} className={`mt-1 ${bigSize(current.show)} text-gray-900 dark:text-white`} />
-              {current.dir === 'fwd' && current.card.ask && <span className="mt-2 text-sm text-gray-500 dark:text-gray-400">{current.card.ask}</span>}
-            </CardFace>
-            <CardFace back label={current.dir === 'fwd' ? 'Answer' : 'It’s'}>
-              <FaceView face={current.show} className="text-lg leading-snug text-gray-500 dark:text-gray-400" />
-              <FaceView face={current.answer} className={`mt-3 ${bigSize(current.answer)} text-emerald-700 dark:text-emerald-400`} />
-              {current.card.ask && <span className="mt-2 text-sm text-gray-500 dark:text-gray-400">{current.card.ask}</span>}
-              {current.card.tip && <p className="mt-4 max-w-[40ch] text-[13px] leading-relaxed text-gray-500 dark:text-gray-400">{current.card.tip}</p>}
-            </CardFace>
+      {/* From tablet width the ratings stand in a column beside the card. The column is kept
+          (empty) before the flip, so the card doesn't change width when they arrive. */}
+      <div className="flex flex-col gap-4 md:grid md:grid-cols-[1fr_8rem] md:gap-3">
+        <div className="relative">
+          <span className="absolute right-2.5 top-2.5 z-10"><StarButton id={id} on={!!p.stars[id]} /></span>
+          <div
+            key={turn}
+            role={flipped ? undefined : 'button'}
+            tabIndex={flipped ? -1 : 0}
+            aria-label={flipped ? undefined : 'Show the answer'}
+            onClick={() => setFlipped(true)}
+            className={`fc-scene slide-up-in ${flipped ? '' : 'cursor-pointer'} rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`}
+          >
+            <div className={`fc-card ${flipped ? 'fc-flipped' : ''}`}>
+              <CardFace label={current.card.group} badge={isFresh ? 'New' : undefined}>
+                <span className="text-sm text-gray-500 dark:text-gray-400">{deck.promptLabel[current.dir]}</span>
+                <FaceView face={current.show} className={`mt-1 ${bigSize(current.show)} text-gray-900 dark:text-white`} />
+                {current.dir === 'fwd' && current.card.ask && <span className="mt-2 text-sm text-gray-500 dark:text-gray-400">{current.card.ask}</span>}
+              </CardFace>
+              {/* The back keeps the question in view: a band across the top asks it again, in full ink,
+                  with the answer below the hairline. */}
+              <div className={`fc-face fc-back ${faceShell} overflow-hidden bg-gray-50 dark:bg-gray-950 flex flex-col`}>
+                <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-5 pt-3.5 pb-4 text-center">
+                  <div className="text-left text-xs font-semibold text-gray-400 dark:text-gray-500">{current.card.group}</div>
+                  <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">{deck.promptLabel[current.dir]}</div>
+                  <FaceView face={current.show} className={`${midSize(current.show)} text-gray-900 dark:text-white`} />
+                  {current.dir === 'fwd' && current.card.ask && <div className="mt-1 text-sm text-gray-500 dark:text-gray-400">{current.card.ask}</div>}
+                </div>
+                <div className="relative flex-1 px-5 pt-10 pb-8 flex flex-col items-center justify-center text-center">
+                  <span className="absolute left-4 top-3.5 text-xs font-semibold text-gray-400 dark:text-gray-500">{current.dir === 'fwd' ? 'Answer' : 'It’s'}</span>
+                  <FaceView face={current.answer} className={`${bigSize(current.answer)} text-emerald-700 dark:text-emerald-400`} />
+                  {current.dir === 'rev' && current.card.ask && <span className="mt-2 text-sm text-gray-500 dark:text-gray-400">{current.card.ask}</span>}
+                  {current.card.tip && <p className="mt-4 max-w-[40ch] text-[13px] leading-relaxed text-gray-500 dark:text-gray-400">{current.card.tip}</p>}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {flipped ? (
-        <div className="grid grid-cols-4 gap-2" role="group" aria-label="How well did you know it?">
-          {RATINGS.map(({ label, tone }, g) => (
-            <button
-              key={label}
-              onClick={() => grade(g as Rating)}
-              className={`flex flex-col items-center gap-0.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 py-2.5 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 active:scale-[0.97] transition-[background-color,transform] ${tone}`}
-            >
-              <span>{label}<Kbd>{String(g + 1)}</Kbd></span>
-              <span className="text-[11.5px] font-medium text-gray-500 dark:text-gray-400">{ivls && formatInterval(ivls[g])}</span>
-            </button>
-          ))}
-        </div>
-      ) : (
-        <button onClick={() => setFlipped(true)} className={`${primaryBtn} self-center min-w-[180px] py-2.5`}>Show answer</button>
-      )}
-      <p className="text-xs text-gray-500 dark:text-gray-400">
-        Each rating shows when the card will come back. Star (<span aria-hidden>★</span>) the ones to keep an eye on.
-      </p>
+        {flipped ? (
+          <div className="grid grid-cols-4 gap-2 md:grid-cols-1 md:grid-rows-4" role="group" aria-label="How well did you know it?">
+            {RATINGS.map(({ label, tone }, g) => (
+              <button
+                key={label}
+                onClick={() => grade(g as Rating)}
+                className={`flex flex-col items-center justify-center gap-0.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 py-2.5 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 active:scale-[0.97] transition-[background-color,transform] ${tone}`}
+              >
+                <span>{label}<Kbd>{String(g + 1)}</Kbd></span>
+                <span className="text-[11.5px] font-medium text-gray-500 dark:text-gray-400">{ivls && formatInterval(ivls[g])}</span>
+              </button>
+            ))}
+          </div>
+        ) : <div className="hidden md:block" aria-hidden />}
+      </div>
     </div>
   )
 }
 
-function CardFace({ back, label, badge, children }: { back?: boolean; label: string; badge?: string; children: ReactNode }) {
+const faceShell = 'relative rounded-2xl border border-gray-200 dark:border-gray-800 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)] min-h-[280px] sm:min-h-[300px]'
+
+function CardFace({ label, badge, children }: { label: string; badge?: string; children: ReactNode }) {
   return (
-    <div className={`fc-face ${back ? 'fc-back bg-gray-50 dark:bg-gray-900' : 'bg-white dark:bg-gray-900'} relative rounded-2xl border border-gray-200 dark:border-gray-800 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)] px-5 pt-10 pb-10 min-h-[280px] sm:min-h-[300px] flex flex-col items-center justify-center text-center`}>
+    <div className={`fc-face ${faceShell} bg-white dark:bg-gray-900 px-5 pt-10 pb-10 flex flex-col items-center justify-center text-center`}>
       <span className="absolute left-4 top-3.5 text-xs font-semibold text-gray-400 dark:text-gray-500">{label}</span>
       {badge && <span className="absolute left-1/2 -translate-x-1/2 top-3.5 rounded-full bg-blue-50 dark:bg-blue-950 px-2 py-0.5 text-[11px] font-semibold text-blue-700 dark:text-blue-300">{badge}</span>}
       {children}

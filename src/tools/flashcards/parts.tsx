@@ -23,8 +23,16 @@ export function FaceView({ face, className = '' }: { face: Face; className?: str
 /** Type size for a face shown big on a card: maths and short words large, a sentence smaller so it reads as one. */
 export function bigSize(f: Face) {
   const n = f.text?.length ?? 0
-  if (f.tex !== undefined) return f.tex.length > 70 ? 'text-xl sm:text-2xl max-w-full overflow-x-auto' : 'text-3xl sm:text-4xl max-w-full overflow-x-auto'
+  // Wide maths scrolls sideways; a tall fraction pokes just past its line box, so the padding
+  // gives it room and overflow-y-hidden keeps a vertical scroll bar from ever appearing.
+  if (f.tex !== undefined) return `${f.tex.length > 70 ? 'text-xl sm:text-2xl' : 'text-3xl sm:text-4xl'} max-w-full overflow-x-auto overflow-y-hidden py-1`
   return n > 60 ? 'text-lg sm:text-xl leading-snug max-w-[34ch]' : n > 24 ? 'text-2xl sm:text-[1.7rem] leading-snug' : 'text-3xl sm:text-4xl'
+}
+
+/** Type size for the question repeated above an answer: clearly readable, a step below the answer. */
+export function midSize(f: Face) {
+  if (f.tex !== undefined) return `${f.tex.length > 70 ? 'text-lg' : 'text-xl sm:text-2xl'} max-w-full overflow-x-auto overflow-y-hidden py-0.5`
+  return (f.text?.length ?? 0) > 60 ? 'text-base leading-snug max-w-[44ch]' : 'text-lg sm:text-xl leading-snug'
 }
 
 /** A face is a sentence or a long equation: options holding one go one per row, smaller. */
