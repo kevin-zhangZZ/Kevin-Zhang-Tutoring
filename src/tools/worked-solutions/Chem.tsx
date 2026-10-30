@@ -45,8 +45,10 @@ function tokenize(eq: string): Token[] {
       continue
     }
 
+    // Only a sign touching the species before it is a charge: the " + " between species
+    // (space on the left) stays ordinary text.
     const loneSign = rest.match(/^[+-](?![a-zA-Z0-9])/)
-    if (loneSign) {
+    if (loneSign && i > 0 && !/\s/.test(eq[i - 1])) {
       tokens.push({ type: 'sup', value: loneSign[0] })
       i += 1
       continue

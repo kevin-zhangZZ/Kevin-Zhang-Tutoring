@@ -101,7 +101,7 @@ export default function Home() {
             Past VCAA exams, explained step by step
           </h1>
           <p className="rise-in mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-[40ch]" style={stagger(2)}>
-            Every Methods and Specialist question from 2014 to 2025, plus the hardest Chemistry, with full working and examiners’ comments.
+            Every Methods and Specialist question from 2014 to 2025, plus every Chemistry question from 2020 on, with full working and examiners’ comments.
           </p>
           <div className="rise-in flex flex-wrap gap-3 mt-7" style={stagger(3)}>
             {SUBJECTS.map(s => (

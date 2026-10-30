@@ -7,17 +7,18 @@ import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
+const FLAWED = (
+  <p>
+    VCAA accepted two answers here. A was the intended answer, but the report explains that
+    option D&rsquo;s wording could also be read as a true statement, so after review both{' '}
+    <b>A and D</b> were accepted as correct. Both are marked below.
+  </p>
+)
+
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 17, B: 21, C: 19, D: 43 },
   answer: ['A', 'D'],
-  flawed: (
-    <>
-      Given that the wording for option D could have been interpreted as stating that, no matter
-      how the temperature of an equilibrium is altered, the sum of n(SO₂) and n(SO₃) will always
-      equal the same value, this response was subsequently awarded as being correct in addition
-      to option A.
-    </>
-  ),
+  flawed: FLAWED,
   comment: (
     <>
       <Chem eq="2SO3(g) <=> 2SO2(g) + O2(g)" />
@@ -46,19 +47,37 @@ const ROWS: WorkingRow[] = [
     reason: <>Because everything starts as SO₃, every mole of SO₂ and O₂ that ever appears comes from the same decomposition reaction, in the fixed 2:2:1 ratio the equation demands.</>,
   },
   {
-    working: <>For every 2 mol of SO₃ that decomposes, exactly 2 mol of SO₂ and 1 mol of O₂ are produced — so <b>n(SO₂) = 2 × n(O₂)</b>, always, regardless of temperature or how far the reaction proceeds.</>,
+    working: <>For every 2 mol of SO₃ that decomposes, exactly 2 mol of SO₂ and 1 mol of O₂ are produced — so <b><i>n</i>(SO₂) = 2 × <i>n</i>(O₂)</b>, always, regardless of temperature or how far the reaction proceeds.</>,
     reason: <>This ratio comes purely from reaction stoichiometry starting from pure SO₃ — it holds no matter what K happens to be at a given temperature.</>,
   },
   {
-    working: <>Converting to mass: m(SO₂) = n(SO₂) × 64 g mol⁻¹, and m(O₂) = n(O₂) × 32 g mol⁻¹ = (n(SO₂)/2) × 32 g mol⁻¹ = n(SO₂) × 16 g mol⁻¹. So m(SO₂)/m(O₂) = 64/16 = <b>4.0</b>.</>,
-    reason: <>A: "the mass of SO₂(g) is 4.0 times the mass of O₂(g)" — true at every temperature. This is the answer VCAA originally intended.</>,
+    working: (
+      <>
+        <i>m</i> = <i>n</i> × <i>M</i>, with <i>n</i>(O₂) = ½<i>n</i>(SO₂)
+        <br />
+        <i>m</i>(SO₂) / <i>m</i>(O₂) = [<i>n</i>(SO₂) × 64.1] / [½<i>n</i>(SO₂) × 32.0]
+        <br />
+        <i>m</i>(SO₂) / <i>m</i>(O₂) = 64.1 / 16.0
+        <br />
+        <i>m</i>(SO₂) / <i>m</i>(O₂) = 4.006 ≈ <b>4.0</b>
+      </>
+    ),
+    reason: <>Data Book: <i>M</i>(S) = 32.1, <i>M</i>(O) = 16.0 g mol⁻¹, so <i>M</i>(SO₂) = 64.1 g mol⁻¹ and <i>M</i>(O₂) = 32.0 g mol⁻¹ (the report rounds these to 64 and 32). The <i>n</i>(SO₂) cancels, so the ratio is 4.0 whatever the extent of decomposition — option A is true at every temperature. This is the answer VCAA originally intended.</>,
   },
   {
-    working: <>B: 80.0% = 64/80, the ratio of the molar masses of SO₂ and SO₃ — so B holds only when n(SO₂) = n(SO₃). The fraction of SO₃ that has decomposed changes with temperature (since <i>K</i> is temperature-dependent), so the mass ratio of SO₂ to remaining SO₃ isn't fixed.</>,
-    reason: <>Not true at every temperature — the extent of decomposition genuinely varies with T. Ruled out.</>,
+    working: (
+      <>
+        B: <i>m</i>(SO₂) = 0.800 × <i>m</i>(SO₃)
+        <br />
+        <i>n</i>(SO₂) × 64.1 = 0.800 × <i>n</i>(SO₃) × 80.1
+        <br />
+        Since 64.1 / 80.1 = 0.800, this needs <i>n</i>(SO₂) = <i>n</i>(SO₃), i.e. exactly half the SO₃ decomposed.
+      </>
+    ),
+    reason: <>How far the SO₃ decomposes depends on <i>K</i>, and <i>K</i> changes with temperature, so the SO₃ is exactly half decomposed at only one temperature at most. Not true at all temperatures. Ruled out.</>,
   },
   {
-    working: <>C: n(SO₂) and n(O₂) are never equal — the 2:1 stoichiometric ratio between them is fixed by the balanced equation, and this ratio isn't 1:1.</>,
+    working: <>C: <i>n</i>(SO₂) and <i>n</i>(O₂) are never equal — the 2:1 stoichiometric ratio between them is fixed by the balanced equation, and this ratio isn't 1:1.</>,
     reason: <>A basic stoichiometry mismatch. Ruled out.</>,
   },
   {
@@ -66,25 +85,19 @@ const ROWS: WorkingRow[] = [
     reason: <>Read literally, D is false.</>,
   },
   {
-    working: <>D, read the way VCAA subsequently accepted: every mole of SO₃ that decomposes becomes exactly one mole of SO₂ (the 2SO₃ → 2SO₂ step is 1:1 for the sulfur-containing species) — so <b>n(SO₂) + n(SO₃)</b> stays fixed at the original moles of SO₃ placed in the container, no matter the temperature or extent of decomposition.</>,
+    working: <>D, read the way VCAA subsequently accepted: every mole of SO₃ that decomposes becomes exactly one mole of SO₂ (the 2SO₃ → 2SO₂ step is 1:1 for the sulfur-containing species) — so <b><i>n</i>(SO₂) + <i>n</i>(SO₃)</b> stays fixed at the original moles of SO₃ placed in the container, no matter the temperature or extent of decomposition.</>,
     reason: <>Under this "total sulfur-containing species" reading, D expresses a genuinely true, always-true equilibrium fact — just not quite the literal words on the page. VCAA judged this reading defensible enough to accept D as correct too.</>,
   },
   {
     working: <b>A is true under any reading. D is false read literally, but true under a defensible alternative reading of its wording — VCAA accepted both.</b>,
-    reason: <>Both <b>A</b> and <b>D</b> are marked as accepted.</>,
+    reason: <>Matches options <b>A</b> and <b>D</b>, both accepted by VCAA. Option <b>B</b> would need <i>n</i>(SO₂) = <i>n</i>(SO₃), and option <b>C</b> ignores the 2 : 1 mole ratio of SO₂ to O₂ in the equation.</>,
   },
 ]
 
 export default function ChemistryQ15_2024() {
   return (
     <MCQShell
-      flawed={
-        <p>
-          VCAA's report explains this one directly: option D's wording could be read two ways —
-          one false, one true — so both <b>A and D</b> were accepted as correct after review,
-          alongside the originally-intended answer A. Both are marked below.
-        </p>
-      }
+      flawed={FLAWED}
       question={
         <>
           <p className="mb-2">

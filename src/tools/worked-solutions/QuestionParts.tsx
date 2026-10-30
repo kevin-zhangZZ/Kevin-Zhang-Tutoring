@@ -366,6 +366,42 @@ export function DataBookNote({ children }: { children: ReactNode }) {
   return <WarningNote label="Data Book update:">{children}</WarningNote>
 }
 
+// One mark-carrying point of a Chemistry short-answer part: what a response had to contain to
+// earn it, with the key words a marker looks for in <b>.
+export interface MarkPoint {
+  /** Marks this point is worth (default 1). */
+  marks?: number
+  point: ReactNode
+}
+
+// How the marks for a Chemistry short-answer part are distributed (AUTHORING_GUIDE §14.2),
+// placed after the part's WorkingTable so "Hide answers" holds it back with the working.
+// `source` says where the split comes from: 'vcaa' when the report itemises the marks ("The first
+// mark was awarded for …"), 'ours' when it prints only a sample answer or nothing, so the split is
+// this site's reading of the marking — labelled as such, never passed off as VCAA's.
+export function MarkScheme({ points, source }: { points: MarkPoint[]; source: 'vcaa' | 'ours' }) {
+  return (
+    <div className="rounded-xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/60 dark:bg-emerald-950/20 px-4 py-3">
+      <div className="flex items-baseline justify-between gap-3 mb-2">
+        <p className="text-[11px] font-bold tracking-wider text-emerald-700 dark:text-emerald-300">How the Marks Are Awarded</p>
+        <span className="flex-none text-[11px] text-emerald-700/80 dark:text-emerald-300/80">
+          {source === 'vcaa' ? "From VCAA's report" : "Our reading — the report doesn't itemise the marks"}
+        </span>
+      </div>
+      <ol className="flex flex-col gap-1.5">
+        {points.map((p, i) => (
+          <li key={i} className="flex items-start gap-2.5 text-[13px] leading-relaxed text-gray-700 dark:text-gray-200">
+            <span className="flex-none mt-px rounded-md bg-emerald-600 dark:bg-emerald-700 text-white text-[10.5px] font-bold tabular-nums px-1.5 py-0.5 whitespace-nowrap min-w-[3.6rem] text-center">
+              {p.marks ?? 1} mark{(p.marks ?? 1) === 1 ? '' : 's'}
+            </span>
+            <span className="min-w-0">{p.point}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )
+}
+
 // Marks distribution + comment for one part of a short-answer question, as published in the VCAA
 // examination report (e.g. "Marks 0 1 2 | % 7 15 78 | Average 1.7"), drawn as one grey bar split
 // by mark: 0 marks palest on the left to full marks darkest on the right, each section's mark

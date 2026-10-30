@@ -17,6 +17,7 @@ const RATE_GRAPH = (
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 19, B: 22, C: 53, D: 5 },
   answer: 'B',
+  noAnswer: 0,
   comment: (
     <>
       Subjecting an equilibrium system to a temperature change impacts on both reaction rates and
@@ -44,15 +45,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Chem eq="2NO2(g) <=> N2O4(g)" className="mr-2" />,
-    reason: <>ΔH = −57.2 kJ mol⁻¹: the <b>forward</b> reaction (making colourless N₂O₄) is exothermic.</>,
+    reason: <>Δ<i>H</i> = −57.2 kJ mol⁻¹: the <b>forward</b> reaction (making colourless N₂O₄) is exothermic.</>,
   },
   {
     working: <>Read the rate–time graph from <i>t</i>₁ to <i>t</i>₂.</>,
-    reason: <>The graph shows the forward reaction's rate genuinely <b>increasing</b> from t₁ to a new, higher steady rate at t₂.</>,
+    reason: <>The graph shows the forward reaction&rsquo;s rate <b>increasing</b> from <i>t</i>₁ to a new, higher steady rate at <i>t</i>₂.</>,
   },
   {
-    working: <>A change in temperature affects the rate of <i>every</i> reaction, forward and reverse alike — a rate increase can only come from a temperature <b>increase</b> (a decrease would slow every reaction down, including the forward one).</>,
-    reason: <>This is the key reasoning that rules out a concentration or catalyst change too — only temperature affects both the forward and reverse rate constants.</>,
+    working: <>A change in temperature affects the rate of <i>every</i> reaction, forward and reverse alike. Of the changes offered (all temperature changes), only a temperature <b>increase</b> can make the forward rate go up — a decrease would slow every reaction down, including the forward one.</>,
+    reason: <>Every option says the temperature changed, so the only question is whether it went up or down. Raising the temperature gives more particles enough energy to overcome the activation energy, so <b>both</b> the forward and reverse rates increase; lowering it makes both decrease.</>,
   },
   {
     working: <>This rules out options C and D, both of which claim the temperature <b>decreased</b>.</>,
@@ -64,7 +65,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>The reverse reaction, <Chem eq="N2O4(g) -> 2NO2(g)" />, produces more of the brown gas, NO₂.</>,
-    reason: <>This is the direction favoured after the temperature rise.</>,
+    reason: <>This is the direction favoured after the temperature rise. It also explains the shape of the graph: as [NO₂] builds up, the forward reaction (which uses NO₂) speeds up further, so its rate keeps climbing after <i>t</i>₁ until the new equilibrium at <i>t</i>₂.</>,
   },
   {
     working: <b>More NO₂ present at the new equilibrium means the mixture's colour darkens.</b>,

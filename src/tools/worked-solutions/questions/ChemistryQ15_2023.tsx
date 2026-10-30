@@ -1,10 +1,13 @@
 // 2023 Chemistry Exam, MCQ 15. VCAA examination report: 41% correct. Comparing petrol-powered
 // and hydrogen-fuel-cell-powered drones on energy transformations, heat, and products, by
-// elimination against genuine combustion/fuel-cell chemistry. Question text transcribed from the
-// original paper. Solution is original.
+// checking each statement against the combustion and fuel-cell reactions. Question text transcribed from the
+// original paper; the drone image is cropped from the original VCAA exam PDF. VCAA report only.
+// Solution is original.
 
+import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import droneSrc from './chem-2023-mcq15-drone.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 41, B: 12, C: 35, D: 12 },
@@ -27,28 +30,32 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>Petrol-powered drones burn petrol (combustion) to release <b>thermal + mechanical energy</b>, producing CO₂(g) and H₂O(g). Hydrogen-fuel-cell drones react H₂ with O₂ in a fuel cell to release <b>electrical + thermal energy</b>, producing only H₂O(g).</>,
-    reason: <>Lays out what each drone actually converts energy into and what each produces — the basis for checking every option.</>,
+    working: <>Petrol drone: <Chem eq="2C8H18(l) + 25O2(g) -> 16CO2(g) + 18H2O(g)" /> (combustion of octane, a main component of petrol) — chemical energy → <b>thermal</b> energy → <b>mechanical</b> energy in the engine.</>,
+    reason: <>Write out each drone&rsquo;s overall reaction first: the products and the energy changes are what every option is testing. Petrol is burned in an engine; the hot gases drive the moving parts directly.</>,
   },
   {
-    working: <>A: CO₂(g) is a greenhouse gas, and H₂O(g) (water vapour) is also a recognised greenhouse gas. Petrol drones produce both; hydrogen drones produce H₂O(g) — so both types produce at least one greenhouse gas.</>,
-    reason: <>True for both drone types. Correct.</>,
+    working: <>Hydrogen drone: <Chem eq="2H2(g) + O2(g) -> 2H2O(g)" /> in a fuel cell — chemical energy → <b>electrical</b> energy (plus some <b>thermal</b> energy), and the electricity runs an electric motor.</>,
+    reason: <>A fuel cell is a galvanic-type cell: it converts chemical energy directly into electrical energy without burning the fuel. The only product is water.</>,
   },
   {
-    working: <>B: a fuel cell is never 100% efficient — some energy is always lost as heat in the hydrogen drone too, exactly as in the petrol drone's combustion.</>,
-    reason: <>Both produce heat, not just the petrol drone. Ruled out.</>,
+    working: <>A: petrol drone produces CO<sub>2</sub>(g) and H<sub>2</sub>O(g); hydrogen drone produces H<sub>2</sub>O(g). Both CO<sub>2</sub> and H<sub>2</sub>O vapour are <b>greenhouse gases</b>. ✓</>,
+    reason: <>Water vapour is easy to forget: like CO<sub>2</sub>, it absorbs infrared radiation emitted by the Earth, so it is a greenhouse gas. The hydrogen drone&rsquo;s only product therefore still counts, and statement A is true for both drones.</>,
   },
   {
-    working: <>C: petrol drones convert chemical energy into thermal <i>and mechanical</i> energy (the engine directly drives motion), while hydrogen drones convert chemical energy into electrical <i>and thermal</i> energy (which then powers an electric motor) — mechanical vs. electrical is a genuinely different transformation pathway.</>,
-    reason: <>The energy transformations are different, not the same. Ruled out.</>,
+    working: <>B: the hydrogen drone also produces heat. ✗</>,
+    reason: <>No energy conversion is 100% efficient. A fuel cell converts only part of the chemical energy into electrical energy; the rest is released as heat (the report lists thermal energy for both drones). So &ldquo;only petrol-powered drones&rdquo; is false.</>,
   },
   {
-    working: <>D: energy is released (not absorbed) in both reactions — combustion of petrol and the H₂/O₂ fuel-cell reaction are both <b>exothermic</b>, not endothermic.</>,
-    reason: <>Backwards — both reactions release energy. Ruled out.</>,
+    working: <>C: petrol: chemical → thermal → mechanical; hydrogen: chemical → electrical (+ thermal). Not the same. ✗</>,
+    reason: <>Both start with chemical energy, which is what makes C tempting, but the petrol drone gets its useful energy from heat in an engine, while the fuel cell gives electrical energy. The transformations are different.</>,
   },
   {
-    working: <b>Only &ldquo;they both produce greenhouse gases&rdquo; holds for both drone types.</b>,
-    reason: <>Matches option <b>A</b>. Option <b>C</b>, chosen by 35%, misses that one drone turns chemical energy into mechanical energy and the other into electrical energy.</>,
+    working: <>D: <Chem eq="2H2(g) + O2(g) -> 2H2O(g)" /> releases energy, so Δ<i>H</i> &lt; 0 — <b>exothermic</b>. ✗</>,
+    reason: <>The drone runs on the energy this reaction <i>releases</i>, so the reaction must be exothermic. It is the same overall reaction as burning hydrogen, and the Data Book gives hydrogen a molar enthalpy of combustion of −286 kJ mol<sup>−1</sup>: negative, so energy is released. An endothermic reaction would need energy put in and could not power anything.</>,
+  },
+  {
+    working: <b>Only &ldquo;They both produce greenhouse gases&rdquo; is true.</b>,
+    reason: <>Matches option <b>A</b>. Option <b>C</b> (35%) misses that one drone gives mechanical energy through heat and the other gives electrical energy. Option <b>B</b> forgets that a fuel cell also loses energy as heat. Option <b>D</b> has the energy change the wrong way round: the fuel-cell reaction releases energy.</>,
   },
 ]
 
@@ -58,6 +65,14 @@ export default function ChemistryQ15_2023() {
       question={
         <>
           <p className="mb-2">Consider two types of drone: petrol-powered and hydrogen-fuel-cell powered.</p>
+          <div className="mb-1 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+            <img loading="lazy" decoding="async"
+              src={droneSrc}
+              alt="Line drawing of a four-rotor drone with a camera underneath — from the original 2023 VCAA exam paper"
+              className="w-full max-w-[170px]"
+            />
+          </div>
+          <p className="mb-3 text-[11.5px] text-gray-500 dark:text-gray-400">Source: elnurSS/Shutterstock.com</p>
           <p>
             Which one of the following statements is correct about petrol-powered drones and
             hydrogen-fuel-cell powered drones?

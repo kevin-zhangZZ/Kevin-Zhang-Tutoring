@@ -8,5 +8,5 @@ import type { SubjectId } from './subjects'
 export const QUESTION_COUNT: Record<SubjectId, number> = {
   specialist: 564,
   methods: 535,
-  chemistry: 73,
+  chemistry: 260,
 }

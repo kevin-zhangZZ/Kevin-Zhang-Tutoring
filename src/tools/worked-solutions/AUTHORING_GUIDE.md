@@ -22,6 +22,12 @@ for the two maths subjects, one Exam for Chemistry. Currently populated:
   answer (§8). All of them were audited in Sept 2026 to the same standard as the maths —
   stems, options and figures against the paper, percentages and comments against the
   report, every answer and distractor re-derived (§14.3).
+  **From 2020 on, every question**, multiple choice and short answer (Section B, §14.2),
+  built out in Oct 2026. Questions or parts on content the 2024–2027 study design dropped
+  (coenzymes, vitamins, omega-3/6 classification, glycaemic index, essential amino acids,
+  artificial sweeteners, oxidative rancidity) are left out: a whole question goes in
+  `omitted.ts`, a part keeps its statement under an always-visible "Not in the Current
+  Study Design" Background, and both get a skip-guide row.
 
 ## 2. File, ID and image naming
 
@@ -192,7 +198,7 @@ an examiner-report comment describing a transition-matrix approach some students
 *incorrectly* used as an alternative to a tree diagram doesn't make the question itself a
 matrix question if the actual worked solution never needs one. Applied twice so far: Exam 1
 2019 Q2(c) (a full-exam buildout) and Exam 2 2019 MCQ 9 (a full-exam buildout of the
-remaining Section A questions). Chemistry has no equivalent exclusion category.
+remaining Section A questions). Chemistry's exclusions are old-study-design topics (§1).
 
 **Diagram-in-options edge case**: when the *options themselves* are diagrams (not just the
 question stem) — e.g. 5 candidate slope-field graphs as options A–E — crop each option as
@@ -964,20 +970,53 @@ replace the "own worked solution" model for short-answer questions and adapt the
 - Numeric answers in MCQ explanations are recomputed independently, including a molar-mass
   check against the Data Book.
 
-### 14.2 Short-answer questions: the report, not our own solution
+### 14.2 Short-answer questions (Section B)
 
-- **For short-answer questions, present the examination report's own answer and
-  commentary — verbatim and complete — and do not write our own solution or explanation.**
-  The report is the marking scheme; the value to the student is seeing exactly what earned
-  the marks, in VCAA's words.
-- **Highlight the key chemistry terms** in the presented answer (bold, via `<b>`) so the
-  mark-carrying vocabulary stands out — "partially oppose", "equilibrium shifts to the
-  left", "limiting reagent", "oxidant", "rate of the forward reaction" — for easier reading
-  and revision.
-- The report's calculations are shown as printed (formula → substitution → answer with
-  units), transcribed into `Chem`/`Katex` where the text extraction mangles them.
-- A `Background` box is still appropriate for the underlying principle in study-design
-  language, kept short and clearly separate from the report's text.
+Replaced Oct 2026 at KZ's request (*"for chem short answer, bold key words that students
+should include in their solutions, as well as the thinking/distribution of marks for each
+question"*). The earlier rule — report text only, no solution of our own — no longer applies.
+Exemplar: `ChemistryQ1_2025SA.tsx`.
+
+**Naming.** Section B question numbers clash with MCQ numbers, so short-answer files carry
+`SA`: file `ChemistryQ{n}_{year}SA.tsx`, id `chem-q{n}-{year}-sa`, `exam: 'Exam'`,
+`code: 'Q{n}(a–e)'`, `type: 'sa'`; images `chem-{year}sa-q{n}{part}-{description}.png`
+(`chem-2025sa-q1d-sealed-container.png`). The route is `chemistry/{year}/exam/q{n}`.
+
+**Each lettered part is a `PartCard`** (statement, marks, `topic`, `examinerReport`) holding, in
+this order:
+1. `<Background title="How to Think About It">` — the thinking: what the question is really
+   asking, which idea it tests, how to plan the answer, and how many separate ideas the mark
+   count calls for ("two marks means two ideas: state the difference, then explain it"). Two to
+   four sentences. Name the trap the report describes.
+2. `<WorkingTable>` — the model answer. *Working* is what a full-mark student writes, with the
+   **mark-carrying key words in `<b>`** ("**limiting reactant**", "**partially oxidised**",
+   "**rate of the forward reaction increases**", "**oxidising agent**"). Explanation parts:
+   one row per idea, in full sentences a student could copy. Calculation parts: §14.3's
+   three-line style (formula → substitution with units → answer with units), the mole ratio on
+   its own line, intermediate values unrounded (0.2045… mol) and sig figs stated on the final
+   bold row. *Reasoning* is the why for that line, and names the mark it earns where useful
+   ("Mark 2: the reason for the difference").
+3. `<MarkScheme source="vcaa"|"ours" points={[{ marks?, point }]} />` (from `QuestionParts`)
+   — how the marks are distributed, one entry per mark (or `marks: 2` for a two-mark point),
+   key words in `<b>`. `source="vcaa"` only when the report itemises the marks ("The first
+   mark was awarded for …"); otherwise `"ours"`, built from the sample answer, the mark
+   distribution and the marking conventions, and labelled as our reading by the component.
+   Never present our reading as VCAA's.
+4. `examinerReport` — marks distribution and average, and `comment` = the report's text for
+   that part **verbatim and complete**, including its sample answer and mark statements (for
+   Chemistry the report's answer is part of what students study). No added bold in VCAA's
+   text. Chemistry symbols the extraction loses (Δ, −, →, ⇌, °, ÷, superscripts) are restored
+   from the rendered report page.
+
+The stem box, stem text between parts, cropped figures and tables follow §12.3 (a table is
+transcribed as an HTML table, not cropped). Where a report slip would mislead (a wrong value,
+a mis-stated unit), keep it verbatim in `comment`, explain it in the working's reasoning, and
+mention it in the top comment and in chat (§12.2). Data Book item numbers and values that
+differ from the 2026 Data Book get a `DataBookNote` (§14.4) — e.g. the 2025 paper's "item 13"
+(molar enthalpies of combustion) is item 12 in 2026.
+
+Chemistry pages always show the Detailed view, so the Concise/Detailed split (§15) doesn't
+apply; still keep each reason short and put the longer explanation in "How to Think About It".
 
 ### 14.3 Multiple-choice questions: our own explanation
 

@@ -4,7 +4,6 @@
 // transcribed from the original paper; the graph is cropped directly from the original VCAA
 // exam PDF, not a redrawing. Solution is original.
 
-import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import graphSrc from './chem-2020-mcq9-calibration-graph.png'
@@ -24,8 +23,15 @@ const EXAMINER: MCQExaminerStats = {
       However, the temperature continues to rise to 21.2 °C – a more accurate indicator of the
       thermal energy generated from the current flow.
       <br />
-      Calibration Factor = Electrical Energy / Change in temperature = <i>VIt</i> / Δ<i>T</i> = 5.4 x
-      2.7 x 180 / (21.2 – 18.0) = 2624 J / 3.2 °C = 820 J °C⁻¹
+      Calibration Factor = Electrical Energy / Change in temperature
+      <br />
+      = <i>VIt</i> / Δ<i>T</i>
+      <br />
+      = 5.4 x 2.7 x 180 / (21.2 – 18.0)
+      <br />
+      = 2624 J / 3.2 °C
+      <br />
+      = 820 J °C⁻¹
       <br />
       This calibration factor is higher than the true value because it does not allow for energy loss
       due to the quality of the insulation.
@@ -41,29 +47,42 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>Read the graph: the current runs from 60 s to 240 s.</>,
-    reason: <>Current was applied from 60 s to 240 s; the temperature keeps <i>rising</i> after 240 s before finally levelling off at 21.2 °C — heat takes time to fully mix through the water.</>,
-  },
-  {
-    working: <Chem eq="Calibration factor = Electrical Energy / Change in temperature = VIt / T" />,
-    reason: <>Formula relating the known electrical energy input to the resulting temperature rise.</>,
-  },
-  {
-    working: <Chem eq="T = 21.2 - 18.0 = 3.2" className="mr-1" />,
-    reason: <>Use the true plateau temperature (21.2 °C), <i>not</i> the ≈21.1 °C reading right when the current stopped — the system hadn't finished equilibrating yet.</>,
+    working: <>Calibration factor: CF = <i>E</i> / Δ<i>T</i>, where <i>E</i> = <i>VIt</i></>,
+    reason: <>The calibration factor is the energy needed to raise the calorimeter&rsquo;s temperature by 1 °C. In electrical calibration a known amount of electrical energy, <i>E</i> = <i>VIt</i> (Data Book), is put in and the temperature rise it causes is measured. The 350 mL of water is not needed — the calibration factor already includes the water and the calorimeter.</>,
   },
   {
     working: (
       <>
-        <span className="block">Calibration factor = (5.4 × 2.7 × 180) / 3.2</span>
-        <span className="block">= 2624 J / 3.2 °C</span>
+        <span className="block"><i>E</i> = <i>VIt</i></span>
+        <span className="block"><i>E</i> = 5.4 V × 2.7 A × 180 s</span>
+        <span className="block"><i>E</i> = 2624.4 J</span>
       </>
     ),
-    reason: <>Substitute <Chem eq="V=5.4" /> V, <Chem eq="I=2.7" /> A, <Chem eq="t=180" /> s.</>,
+    reason: <><i>t</i> is the time the current flowed, 180 s (from 60 s to 240 s) — not 240 s or 300 s read off the time axis.</>,
   },
   {
-    working: <b>= 820 J °C⁻¹</b>,
-    reason: <>Matches option <b>B</b>. Option <b>C</b>, 847 J °C⁻¹, uses Δ<i>T</i> = 3.1 °C, the reading when the current stopped; option <b>D</b>, 875 J °C⁻¹, uses Δ<i>T</i> = 3.0 °C, an inaccurate reading of the graph (both as the report says).</>,
+    working: (
+      <>
+        <span className="block">Δ<i>T</i> = <i>T</i><sub>max</sub> − <i>T</i><sub>initial</sub></span>
+        <span className="block">Δ<i>T</i> = 21.2 °C − 18.0 °C</span>
+        <span className="block">Δ<i>T</i> = 3.2 °C</span>
+      </>
+    ),
+    reason: <>The temperature keeps <i>rising</i> after the current stops at 240 s (≈21.1 °C) and peaks at 21.2 °C at about 255–270 s: the heat takes time to spread evenly through the water. Use the <b>maximum</b> temperature, 21.2 °C, not the reading when the current stopped. After the peak the temperature falls slowly as heat is lost to the surroundings.</>,
+  },
+  {
+    working: (
+      <>
+        <span className="block">CF = <i>E</i> / Δ<i>T</i></span>
+        <span className="block">CF = 2624.4 J / 3.2 °C</span>
+        <span className="block">CF = 820.1 J °C⁻¹</span>
+      </>
+    ),
+    reason: <>Units: joules per degree Celsius, J °C⁻¹.</>,
+  },
+  {
+    working: <b>CF ≈ 820 J °C⁻¹ (8.2 × 10² J °C⁻¹)</b>,
+    reason: <>Matches option <b>B</b>. Two significant figures, set by 5.4 V, 2.7 A and 3.2 °C. Option <b>C</b>, 847 J °C⁻¹, uses Δ<i>T</i> = 3.1 °C, the reading when the current stopped; option <b>D</b>, 875 J °C⁻¹, uses Δ<i>T</i> = 3.0 °C, an inaccurate reading of the graph (both as the report says). Option <b>A</b>, 125 J °C⁻¹, is 2624.4 J divided by the final temperature, 21 °C, instead of the temperature <i>change</i>.</>,
   },
 ]
 

@@ -2,9 +2,10 @@
 // paper. Reading a concentration–time graph in which every concentration doubles at once
 // (a halved volume), then relating the rates of HI and H₂ production at equilibrium. Question
 // text transcribed from the original paper; the graph is cropped from the original VCAA exam
-// PDF, and the report's copy of it from the report PDF. The report's comment contains three
-// slips (t₁ for t₂; "2 mole H₂ is formed" for HI; "consumption" for formation in the reverse
-// reaction) — kept verbatim and explained in the working. Solution is original.
+// PDF, and the report's copy of it from the report PDF. The report's comment contains four
+// slips (t₁ for t₂; "½H₂(g) + I₂(g)" with the ½ missing from I₂; "2 mole H₂ is formed" for HI;
+// "consumption" for formation in the reverse reaction) — kept verbatim and explained in the
+// working. Solution is original.
 
 import Katex from '../../../components/Katex'
 import Chem from '../Chem'
@@ -28,7 +29,7 @@ const EXAMINER: MCQExaminerStats = {
       concentration of all species, but has no effect on the amounts of H₂, I₂ and HI present.
       <br />
       Because there are the same number of particles on both sides of the equation{' '}
-      <Chem eq="1/2 H2(g) + 1/2 I2(g) <=> HI(g)" /> the system is not pushed out of equilibrium
+      <Chem eq="½H2(g) + ½I2(g) <=> HI(g)" /> the system is not pushed out of equilibrium
       as a result of concentration increase due to volume decrease.
       <br />
       When the volume decreases, the concentrations of all reactants and products are
@@ -36,7 +37,7 @@ const EXAMINER: MCQExaminerStats = {
       <i>t</i>₃ than at <i>t</i>₁. However, the rates are always equal, since a change in
       concentration has no impact on the position of equilibrium.
       <br />
-      For <Chem eq="1/2 H2(g) + I2(g) <=> HI(g)" />, irrespective of the equilibrium
+      For <Chem eq="½H2(g) + I2(g) <=> HI(g)" />, irrespective of the equilibrium
       concentration:
       <br />
       In the forward reaction, the rate at which HI is produced is double the rate of
@@ -83,7 +84,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <><b>D</b> — true. In the forward reaction HI forms twice as fast as H₂ is used up (coefficients 1 and ½). At equilibrium the reverse reaction forms H₂ exactly as fast as the forward reaction uses it, so HI is produced at double the rate H₂ is produced.</>,
-    reason: <>This holds at any equilibrium, whatever the concentrations — which is the point the report makes. (The report&rsquo;s comment says the jump is at <i>t</i>₁ and writes &ldquo;2 mole H₂ is formed&rdquo; and, for the reverse reaction, &ldquo;consumption&rdquo; of H₂ or I₂; these are slips for <i>t</i>₂, HI and formation.)</>,
+    reason: <>This holds at any equilibrium, whatever the concentrations — which is the point the report makes. (The report&rsquo;s comment says the jump is at <i>t</i>₁ and writes &ldquo;2 mole H₂ is formed&rdquo; and, for the reverse reaction, &ldquo;consumption&rdquo; of H₂ or I₂; these are slips for <i>t</i>₂, HI and formation. Its second equation, &ldquo;½H₂(g) + I₂(g) ⇌ HI(g)&rdquo;, has also lost the ½ in front of I₂.)</>,
   },
   {
     working: <b>The rate of production of HI at t₃ is double the rate of production of H₂ at t₃.</b>,
@@ -99,7 +100,7 @@ export default function ChemistryQ27_2021() {
           <p className="mb-2 italic">Use the following information to answer Questions 27 and 28.</p>
           <p className="mb-2">Hydrogen, H₂, and iodine, I₂, react to form hydrogen iodide, HI.</p>
           <p className="mb-2">
-            <Chem eq="1/2 H2(g) + 1/2 I2(g) <=> HI(g)" /> &nbsp;&nbsp;&nbsp; Δ<i>H</i> = +25.9 kJ mol⁻¹
+            <Chem eq="½H2(g) + ½I2(g) <=> HI(g)" /> &nbsp;&nbsp;&nbsp; Δ<i>H</i> = +25.9 kJ mol⁻¹
           </p>
           <p className="mb-2">
             The graph below shows the concentrations of H₂, I₂ and HI in a sealed container. One

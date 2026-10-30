@@ -1,10 +1,13 @@
 // 2024 Chemistry Exam, MCQ 2. VCAA examination report: 40% correct. Which statement about
 // glucose oxidation and energy comparisons is correct, by elimination against genuine
 // biochemistry and thermochemistry facts. Question text transcribed from the original paper
-// (rendered from page images — the 2024 exam PDF has no extractable text). Solution is original.
+// (rendered from page images — the 2024 exam PDF has no extractable text). The working uses the
+// 2026 Data Book's glucose value (−2803 kJ mol⁻¹; the report used −2840) — a note says so; the
+// answer is unchanged. VCAA report only. Solution is original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
+import { DataBookNote } from '../QuestionParts'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
@@ -32,8 +35,20 @@ const ROWS: WorkingRow[] = [
     reason: <>Not genuinely reversible in the body. Ruled out.</>,
   },
   {
-    working: <>B: from the Data Book, the energy of combustion of glucose is <b>16 kJ g⁻¹</b> (or 2840 kJ mol⁻¹ ÷ 180 g mol⁻¹ = 15.8 kJ g⁻¹), while that of hydrogen is 286 kJ mol⁻¹ ÷ 2 g mol⁻¹ = <b>143 kJ g⁻¹</b> — about 9 times as much energy per gram as glucose.</>,
-    reason: <>Glucose provides less energy per gram. Correct.</>,
+    working: <>
+      B: energy per gram of glucose = |Δ<i>H</i><sub>c</sub>| ÷ <i>M</i><br />
+      = 2803 kJ mol⁻¹ ÷ 180.0 g mol⁻¹<br />
+      = <b>15.6 kJ g⁻¹</b>
+    </>,
+    reason: <>Data Book (molar enthalpies of combustion): Δ<i>H</i><sub>c</sub>(glucose) = −2803 kJ mol⁻¹; <i>M</i>(C₆H₁₂O₆) = 6(12.0) + 12(1.0) + 6(16.0) = 180.0 g mol⁻¹. The Data Book&rsquo;s energy content of carbohydrates, 16 kJ g⁻¹, gives the same comparison.<DataBookNote>the 2026 Data Book gives −2803 kJ mol⁻¹ for glucose (item 12); the Data Book used for the 2024 exam gave −2840 kJ mol⁻¹ (item 13), which is why the report has 2840 / 180 = 15.8 kJ / g. The answer is unchanged.</DataBookNote></>,
+  },
+  {
+    working: <>
+      energy per gram of hydrogen = |Δ<i>H</i><sub>c</sub>| ÷ <i>M</i><br />
+      = 286 kJ mol⁻¹ ÷ 2.0 g mol⁻¹<br />
+      = <b>143 kJ g⁻¹</b>
+    </>,
+    reason: <>Data Book: Δ<i>H</i><sub>c</sub>(H₂) = −286 kJ mol⁻¹; <i>M</i>(H₂) = 2 × 1.0 = 2.0 g mol⁻¹. Hydrogen releases about 9 times as much energy per gram as glucose, so glucose provides <b>less</b> energy per gram. B is correct. (Compare per <b>gram</b>, not per mole: per mole, glucose releases more, because each molecule is much heavier.)</>,
   },
   {
     working: <>C: <Chem eq="6CO2 + 6H2O -> C6H12O6 + 6O2" /> is <b>photosynthesis</b> — glucose is a <i>product</i> here, not a reactant, so it isn't the molecule being oxidised or reduced in this equation at all.</>,
@@ -45,7 +60,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>Only the energy-per-gram comparison between glucose and hydrogen combustion holds up.</b>,
-    reason: <>Matches option <b>B</b>. Option <b>D</b>, chosen by 25%, has it backwards: in cellular respiration glucose is combusted and oxygen is the oxidising agent.</>,
+    reason: <>Matches option <b>B</b>. Option <b>D</b>, chosen by 25%, has it backwards: in cellular respiration glucose is combusted and oxygen is the oxidising agent. Option <b>A</b>, chosen by 20%, fails because the reverse of glucose oxidation is photosynthesis, which the body cannot carry out.</>,
   },
 ]
 

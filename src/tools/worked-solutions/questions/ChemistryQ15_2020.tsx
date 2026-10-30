@@ -1,7 +1,7 @@
 // 2020 Chemistry Exam, MCQ 15. VCAA examination report: 25% correct. Which statement about the
 // Haber process equilibrium is correct — testing the distinction between rate, activation
 // energy and equilibrium position. Question text transcribed from the original paper. Solution
-// is original.
+// is original. VCAA report only.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
@@ -10,6 +10,7 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 14, B: 25, C: 53, D: 8 },
   answer: 'B',
+  noAnswer: 0,
   comment: (
     <>
       Option A: Incorrect. A catalyst increases the proportion of collisions which are successful (by
@@ -39,27 +40,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Chem eq="N2(g) + 3H2(g) <=> 2NH3(g)" className="mr-2" />,
-    reason: <>ΔH = −92.3 kJ mol⁻¹ — the forward reaction is exothermic, so it has a lower activation energy than the reverse.</>,
+    reason: <>Δ<i>H</i> = −92.3 kJ mol⁻¹ — the forward reaction is exothermic: the products sit 92.3 kJ mol⁻¹ below the reactants on an energy profile, so <i>E</i><sub>a</sub>(reverse) = <i>E</i><sub>a</sub>(forward) + 92.3 kJ mol⁻¹. The forward reaction has the lower activation energy.</>,
   },
   {
     working: <>A: a catalyst provides an alternative pathway with lower activation energy — it doesn't change how <i>often</i> particles collide, only what fraction of those collisions succeed.</>,
-    reason: <>Ruled out.</>,
+    reason: <>Ruled out — a catalyst changes the pathway, not how fast the particles move or how often they meet.</>,
   },
   {
-    working: <>B: increasing the temperature increases the average kinetic energy of <i>all</i> particles, which increases the rate of the forward reaction (and every other reaction too).</>,
-    reason: <>This is universally true, regardless of whether the reaction is exo- or endothermic — matches option <b>B</b>.</>,
+    working: <>B: increasing the temperature increases the average kinetic energy of the particles, so collisions are more frequent and a <b>greater proportion</b> of them have energy ≥ <i>E</i><sub>a</sub> ⇒ the rate of the forward reaction increases.</>,
+    reason: <>This holds for the exothermic forward reaction <b>and</b> the endothermic reverse reaction — both speed up. Don&rsquo;t confuse <b>rate</b> with <b>position of equilibrium</b>: by Le Chatelier&rsquo;s principle, heating shifts this equilibrium to the left (it favours the endothermic reverse reaction, which speeds up <i>more</i>), lowering the yield of NH<sub>3</sub> — but the forward rate still increases. ✓</>,
   },
   {
     working: <>C: a catalyst lowers the activation energies of the forward and reverse reactions by the <b>same absolute amount</b> — since the forward reaction already has a smaller activation energy here, that fixed decrease is a <i>larger proportion</i> of it, not the same proportion.</>,
-    reason: <>Ruled out.</>,
+    reason: <>Ruled out. For example, if <i>E</i><sub>a</sub>(forward) = 100 kJ mol⁻¹ and <i>E</i><sub>a</sub>(reverse) = 192.3 kJ mol⁻¹, a catalyst lowering both by 40 kJ mol⁻¹ cuts the forward barrier by 40% but the reverse by only about 21%.</>,
   },
   {
     working: <>D: since the forward reaction is exothermic, its activation energy is <b>lower</b> than the reverse reaction's, not greater.</>,
     reason: <>Ruled out — states the relationship backwards.</>,
   },
   {
-    working: <b>Only the effect of temperature on the forward rate holds up unconditionally.</b>,
-    reason: <>Matches option <b>B</b>. Option <b>C</b>, chosen by more than half, confuses &ldquo;the same amount&rdquo; with &ldquo;the same proportion&rdquo;.</>,
+    working: <b>Only statement B is correct: raising the temperature increases the rate of the forward reaction.</b>,
+    reason: <>Matches option <b>B</b>. Option <b>C</b>, chosen by 53%, confuses &ldquo;the same amount&rdquo; with &ldquo;the same proportion&rdquo;. Option <b>A</b> (14%) says a catalyst makes collisions more frequent — it makes a greater proportion of them successful instead. Option <b>D</b> reverses the activation-energy relationship for an exothermic reaction.</>,
   },
 ]
 

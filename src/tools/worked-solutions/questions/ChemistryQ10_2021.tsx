@@ -58,7 +58,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <><b>D</b> — two <i>different</i> cells. Any difference in current could come from differences between the cells (concentrations, electrode size or spacing, temperature), not from the polishing.</>,
-    reason: <>Measuring current directly looks like the better choice, which is why 80% chose it — but a direct measurement in an uncontrolled comparison is not a valid test.</>,
+    reason: <>Measuring the current directly looks attractive — D was chosen by 80% — but a direct measurement in an uncontrolled comparison is not a valid test. Validity depends on controlling variables, not on how directly the dependent variable is measured.</>,
   },
   {
     working: <><b>A</b> — reading about the structure of polished Zn is not a test of this cell. <b>B</b> — the conductivity of a polished Zn electrode on its own, with nothing to compare it with, says nothing about the cell&rsquo;s current.</>,

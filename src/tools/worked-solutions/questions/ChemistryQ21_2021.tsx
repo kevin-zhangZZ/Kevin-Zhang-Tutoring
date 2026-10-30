@@ -2,10 +2,12 @@
 // electroplating cell would reduce the amount of nickel deposited, reasoned from the
 // half-equations at each electrode. Question text transcribed from the original paper; the cell
 // diagram is cropped from the original VCAA exam PDF. The report's comment writes Ni(NO₃)₃(aq)
-// for Ni(NO₃)₂(aq) — kept verbatim and explained in the working. Solution is original.
+// for Ni(NO₃)₂(aq) — kept verbatim and explained in the working. Ni²⁺/Ni E° −0.24 V (2026) vs
+// −0.25 V (2021 Data Book) noted in a DataBookNote. Solution is original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
+import { DataBookNote } from '../QuestionParts'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import cellSrc from './chem-2021-mcq21-cell.png'
 
@@ -51,7 +53,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>A: with a Cu anode instead of Ni, the anode reaction becomes <Chem eq="Cu(s) -> Cu2+(aq) + 2e-" /> — no fresh Ni²⁺ is produced at all.</>,
-    reason: <>Cathode reduction (<Chem eq="Ni2+ + 2e- -> Ni(s)" />) keeps consuming the existing Ni²⁺ without it being replaced, so the Ni²⁺ concentration — and the rate of Ni deposition — steadily falls.</>,
+    reason: (
+      <>
+        Two effects, both cutting the Ni deposited. (1) The cathode keeps consuming Ni²⁺ (<Chem eq="Ni2+ + 2e- -> Ni(s)" />) without the anode replacing it, so the amount of Ni²⁺ available falls. (2) The Cu²⁺ ions made at the anode move into the electrolyte, and Cu²⁺ is a <b>stronger oxidising agent</b> than Ni²⁺ (<i>E</i>° = +0.34 V for Cu²⁺/Cu, above −0.24 V for Ni²⁺/Ni in the electrochemical series), so Cu²⁺ is reduced at the cathode in preference to Ni²⁺: Cu, not Ni, plates onto the Pt.
+        <DataBookNote>the 2026 Data Book gives −0.24 V for Ni²⁺/Ni; the Data Book used for the 2021 exam gave −0.25 V. Ni²⁺ stays well below Cu²⁺ either way, so the answer is unchanged.</DataBookNote>
+      </>
+    ),
   },
   {
     working: <>B: switching from molten <Chem eq="Ni(NO3)2(l)" /> to 1 M aqueous <Chem eq="Ni(NO3)2(aq)" /> doesn't change which half-reactions occur at either electrode: Ni²⁺ is still a stronger oxidising agent than water, and Ni a stronger reducing agent than water.</>,
@@ -59,15 +66,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>C: replacing the inert Pt cathode with Pb(s) doesn't change the half-reactions occurring, since Ni²⁺ is still the strongest oxidising agent present and gets reduced there.</>,
-    reason: <>Ruled out.</>,
+    reason: <>The cathode is where reduction happens, so the cathode metal itself is not consumed; it is just a surface for Ni to plate onto. Ruled out.</>,
   },
   {
     working: <>D: swapping the anion (<Chem eq="NO3-" /> for <Chem eq="Cl-" />) has no effect on the Ni half-reactions at either electrode.</>,
-    reason: <>Ruled out.</>,
+    reason: <>At the anode, Ni(s) is a far stronger reducing agent than Cl⁻ (Cl₂/Cl⁻ is +1.36 V, high in the series), so Ni is still the species oxidised and Ni²⁺ is still replaced as fast as it is used. Ruled out.</>,
   },
   {
-    working: <b>Only replacing the Ni electrode with Cu cuts off the supply of Ni²⁺ ions being replenished.</b>,
-    reason: <>Matches option <b>A</b>.</>,
+    working: <b>Only replacing the Ni electrode with Cu cuts off the supply of Ni²⁺ (and adds Cu²⁺, which plates out instead).</b>,
+    reason: <>Matches option <b>A</b>. Options <b>B</b>, <b>C</b> and <b>D</b> each change the cell but leave the half-reactions the same, so Ni²⁺ is still replaced at the anode as fast as it is plated at the cathode (the report&rsquo;s point). Option <b>B</b> lowers the concentration of Ni²⁺ in the electrolyte, which is not the same as cutting the supply.</>,
   },
 ]
 

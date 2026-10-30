@@ -32,7 +32,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>A catalyst works by opening up an alternative reaction pathway with a <b>lower activation energy</b> — it changes nothing about the reactants or products themselves.</>,
-    reason: <>Core fact about how catalysts work.</>,
+    reason: <>Core fact about how catalysts work. On an energy profile this means the <b>peak is lower</b>, while the reactant and product energy levels, and so Δ<i>H</i> = <i>H</i>(products) − <i>H</i>(reactants), stay exactly where they were (see the report&rsquo;s diagram below).</>,
   },
   {
     working: <>A: since the identities (and so the energies) of the reactants and products are unchanged, the energy of the products stays exactly the same.</>,
@@ -43,12 +43,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Ruled out — the shape does change.</>,
   },
   {
-    working: <>C: the horizontal position ("progress of reaction") of the peak isn't what moves — its <i>height</i> drops. The reaction rate increases because the barrier is lower, not because the peak has shifted sideways.</>,
+    working: <>C: the horizontal axis of an energy profile is the progress of the reaction (reaction pathway), not time, so the sideways position of the peak says nothing about rate. What a catalyst changes is the peak&rsquo;s <i>height</i>: the reaction is faster because the barrier is lower.</>,
     reason: <>Ruled out — misdescribes what actually changes.</>,
   },
   {
     working: <>D: a catalyst lowers the activation energy of the forward and reverse reactions by the <b>same absolute amount</b> (the same number of kJ mol⁻¹) — not by the same proportion of each.</>,
-    reason: <>Since the forward and reverse activation energies start out different sizes, an equal absolute drop is a <i>different</i> proportion of each. Ruled out.</>,
+    reason: <>Since the forward and reverse activation energies start out different sizes, an equal absolute drop is a <i>different</i> proportion of each. For example, if the forward <i>E</i><sub>a</sub> = 100 kJ mol⁻¹ and Δ<i>H</i> = −60 kJ mol⁻¹, the reverse <i>E</i><sub>a</sub> = 160 kJ mol⁻¹; lowering both by 40 kJ mol⁻¹ is a 40% drop forward but only a 25% drop in reverse. Ruled out.</>,
   },
   {
     working: <b>Only &ldquo;the energy of the products will remain the same&rdquo; holds up.</b>,

@@ -11,6 +11,7 @@ import tableSrc from './chem-2020-mcq16-table.png'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 20, B: 25, C: 35, D: 20 },
   answer: 'A',
+  noAnswer: 0,
   comment: (
     <>
       Boiling points of molecular compounds such as X, Y and Z are related to the strength of the
@@ -47,7 +48,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>Z (an ester) has a <b>C=O</b> but <b>no O–H</b> — only dispersion forces and (weaker) dipole-dipole attraction are available.</>,
-    reason: <>No hydrogen bonding possible for Z.</>,
+    reason: <>Hydrogen bonding needs an H atom bonded directly to O, N or F. Every H in Z is bonded to C, so Z molecules <b>cannot hydrogen bond to each other</b>, even though Z contains oxygen atoms.</>,
   },
   {
     working: <>With the weakest intermolecular attraction of the three, Z should have the <b>lowest</b> boiling point — well below both X (97 °C) and Y (118 °C).</>,
@@ -55,7 +56,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>31 °C is the only option well below 97 °C — consistent with a molecule with no hydrogen bonding.</b>,
-    reason: <>Matches option <b>A</b> (methyl methanoate&rsquo;s real boiling point is about 32 °C). Options B, C and D all sit near or above the hydrogen-bonded X and Y, as though Z also hydrogen bonded.</>,
+    reason: <>Matches option <b>A</b> (methyl methanoate&rsquo;s real boiling point is about 32 °C). Option <b>C</b> (114 °C, chosen by 35%) and option <b>B</b> (101 °C) put Z between X and Y, and option <b>D</b> (156 °C) puts it above both — each treats Z as if it hydrogen bonded at least as strongly as an alcohol. Same molar mass does not mean similar boiling points: the type of intermolecular force decides.</>,
   },
 ]
 

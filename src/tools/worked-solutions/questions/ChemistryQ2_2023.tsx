@@ -48,7 +48,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>Only the heat-production statement is always true of both cell types.</b>,
-    reason: <>Matches option <b>A</b>. Option <b>C</b>, the most popular answer, fails because galvanic cells can have porous electrodes too (the report&rsquo;s point).</>,
+    reason: <>Matches option <b>A</b>. Option <b>C</b>, chosen by 42% (more than chose A), fails because galvanic cells can have porous electrodes too (the report&rsquo;s point) — porous electrodes are typical of fuel cells, but not exclusive to them. Option <b>D</b> (13%) mixes up the two paths for charge: <b>electrons</b> travel through the external circuit, <b>ions</b> through the electrolyte (and salt bridge).</>,
   },
 ]
 

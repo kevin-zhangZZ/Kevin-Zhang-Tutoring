@@ -55,4 +55,7 @@ export const OMITTED: OmittedQuestion[] = [
   { subject: 'specialist', year: 2023, exam: 'NHT Exam 2', code: 'MCQ 15', reason: 'Mechanics' },
   { subject: 'specialist', year: 2023, exam: 'NHT Exam 2', code: 'Q5', reason: 'Mechanics' },
   { subject: 'specialist', year: 2023, exam: 'NHT Exam 1', code: 'Q4', reason: 'Mechanics' },
+  { subject: 'chemistry', year: 2022, exam: 'Exam', code: 'MCQ 9', reason: 'Omega-3/omega-6 fatty acids' },
+  { subject: 'chemistry', year: 2022, exam: 'Exam', code: 'MCQ 21', reason: 'Coenzymes' },
+  { subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 5', reason: 'Coenzymes' },
 ]

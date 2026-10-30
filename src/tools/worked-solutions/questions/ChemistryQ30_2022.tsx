@@ -2,7 +2,7 @@
 // half-cells by oxidising strength using only given reactivity clues, then picking the pairing
 // that produces the largest cell voltage. Question text transcribed from the original paper;
 // the four cell diagrams (options) are cropped from the original VCAA exam PDF. Solution is
-// original.
+// original. The report's last line has a missing bracket ("Cr³⁺aq)"), kept verbatim.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
@@ -19,7 +19,6 @@ const opt = (src: string, alt: string) => (
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 34, B: 24, C: 23, D: 18 },
   answer: 'A',
-  noAnswer: 1,
   comment: (
     <>
       Based on the information supplied in terms of the standard electrode potentials, I₂, a
@@ -38,37 +37,43 @@ const EXAMINER: MCQExaminerStats = {
       <br />
       The cell producing the highest potential difference will be the cell containing the
       strongest oxidising agent, HBrO(aq), and the strongest reducing agent, Cr³⁺(aq).
+      <br />
+      i.e., the half-cells HBrO(aq)/Br₂(aq) and HCrO₄⁻(aq)/Cr³⁺aq).
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>"I₂ reacts with BrO₃⁻ and HBrO but not with HCrO₄⁻" — I₂ is oxidised by BrO₃⁻ and HBrO, but not by HCrO₄⁻.</>,
-    reason: <>So <Chem eq="BrO3-" /> and <Chem eq="HBrO" /> sit <b>above</b> the <Chem eq="IO3-/I2" /> half-cell, and <Chem eq="HCrO4-" /> sits <b>below</b> it, in oxidising strength.</>,
+    working: <>A species reacts only if the oxidising agent is <b>higher</b> in the electrochemical series than the reducing agent it reacts with.</>,
+    reason: <>The ranking is built from this rule. Each half-equation is written as a reduction, so the oxidising agent is on the left (e.g. <Chem eq="BrO3-" />) and its conjugate reducing agent on the right (e.g. <Chem eq="Br-" />). A reaction happens when an oxidising agent on the left meets a reducing agent on the right of a half-equation that sits <b>lower</b> in the series.</>,
   },
   {
-    working: <>"Br⁻ reacts with HBrO but not with IO₃⁻" — Br⁻ is oxidised by HBrO, but not by IO₃⁻.</>,
-    reason: <>So <Chem eq="HBrO" /> sits <b>above</b> the <Chem eq="BrO3-/Br-" /> half-cell, and <Chem eq="IO3-" /> is too weak to oxidise <Chem eq="Br-" /> — meaning <Chem eq="BrO3-/Br-" /> sits <b>above</b> <Chem eq="IO3-/I2" />.</>,
+    working: <>I₂ reacts with BrO₃⁻ and HBrO → BrO₃⁻/Br⁻ and HBrO/Br₂ are <b>above</b> IO₃⁻/I₂.<br />I₂ does not react with HCrO₄⁻ → HCrO₄⁻/Cr³⁺ is <b>below</b> IO₃⁻/I₂.</>,
+    reason: <>I₂ is the reducing agent of the <Chem eq="IO3-/I2" /> half-equation (it is oxidised to <Chem eq="IO3-" />). It is oxidised by <Chem eq="BrO3-" /> and <Chem eq="HBrO" />, so they are stronger oxidising agents than <Chem eq="IO3-" />; <Chem eq="HCrO4-" /> can&rsquo;t oxidise it, so it is a weaker oxidising agent than <Chem eq="IO3-" />.</>,
+  },
+  {
+    working: <>Br⁻ reacts with HBrO → HBrO/Br₂ is <b>above</b> BrO₃⁻/Br⁻.<br />Br⁻ does not react with IO₃⁻ → IO₃⁻/I₂ is <b>below</b> BrO₃⁻/Br⁻.</>,
+    reason: <>Br⁻ is the reducing agent of the <Chem eq="BrO3-/Br-" /> half-equation. <Chem eq="HBrO" /> oxidises it, so <Chem eq="HBrO" /> is the stronger oxidising agent; <Chem eq="IO3-" /> can&rsquo;t, so <Chem eq="IO3-" /> is the weaker one. This fixes the order of the top two half-cells, which the first clue left open.</>,
   },
   {
     working: (
       <div className="flex flex-col gap-1">
-        <span>1. HBrO(aq)/Br₂(aq) — strongest oxidising agent</span>
-        <span>2. BrO₃⁻(aq)/Br⁻(aq)</span>
-        <span>3. IO₃⁻(aq)/I₂(aq)</span>
-        <span>4. HCrO₄⁻(aq)/Cr³⁺(aq) — weakest oxidising agent</span>
+        <span><Chem eq="HBrO(aq) + H+(aq) + e- <=> 1/2 Br2(aq) + H2O(l)" /> — highest (strongest oxidising agent, HBrO)</span>
+        <span><Chem eq="BrO3-(aq) + 6H+(aq) + 6e- <=> Br-(aq) + 3H2O(l)" /></span>
+        <span><Chem eq="2IO3-(aq) + 12H+(aq) + 10e- <=> I2(aq) + 6H2O(l)" /></span>
+        <span><Chem eq="HCrO4-(aq) + 7H+(aq) + 3e- <=> Cr3+(aq) + 4H2O(l)" /> — lowest (strongest reducing agent, Cr³⁺)</span>
       </div>
     ),
-    reason: <>Combining both clues gives a complete ranking, from strongest to weakest oxidising agent.</>,
+    reason: <>Combining both clues gives the full electrochemical-series order, highest <i>E</i>° at the top. The strongest reducing agent is the one on the right of the <b>lowest</b> half-equation.</>,
   },
   {
-    working: <>The largest cell voltage comes from pairing the <b>strongest oxidising agent</b> with the <b>strongest reducing agent</b> — i.e. the half-cell at the very top with the half-cell at the very bottom of the ranking.</>,
-    reason: <>Standard principle for maximising cell voltage.</>,
+    working: <>Largest potential difference = top half-cell paired with bottom half-cell: HBrO(aq)/Br₂(aq) with HCrO₄⁻(aq)/Cr³⁺(aq).</>,
+    reason: <>Cell potential difference = <i>E</i>°(cathode) − <i>E</i>°(anode), so it is largest when the two half-cells are furthest apart in the series — the strongest oxidising agent reacting with the strongest reducing agent.</>,
   },
   {
-    working: <b>HBrO(aq)/Br₂(aq) paired with HCrO₄⁻(aq)/Cr³⁺(aq) spans the widest gap in oxidising strength.</b>,
-    reason: <>Matches option <b>A</b>: the strongest oxidising agent, HBrO(aq), with the strongest reducing agent, Cr³⁺(aq). Options <b>B</b>, <b>C</b> and <b>D</b> each leave out at least one of these two half-cells.</>,
+    working: <b>The HBrO(aq)/Br₂(aq) | HCrO₄⁻(aq)/Cr³⁺(aq) cell produces the highest potential difference.</b>,
+    reason: <>Matches option <b>A</b>. Option <b>B</b> (24%) has the bottom half-cell but pairs it with BrO₃⁻/Br⁻, the second-highest, so it misses that HBrO is a stronger oxidising agent than BrO₃⁻ (the second clue). Option <b>D</b> has the top half-cell but IO₃⁻/I₂, which is above HCrO₄⁻/Cr³⁺. Option <b>C</b> pairs the two middle half-cells, so it has neither the strongest oxidising agent nor the strongest reducing agent.</>,
   },
 ]
 

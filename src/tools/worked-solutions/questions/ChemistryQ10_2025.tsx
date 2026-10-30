@@ -2,8 +2,10 @@
 // VCAA's report explains the flaw directly: statement I turned out to be true as well as
 // statements II and III, but no option offered "I, II and III" as a combination. Question text
 // transcribed from the original paper; the flow chart of steps is cropped from the original VCAA
-// exam PDF. Solution is original.
+// exam PDF. The report prints no percentages for this question (percentages: {}). Solution is
+// original.
 
+import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import stepsSrc from './chem-2025-mcq10-steps.png'
@@ -13,13 +15,9 @@ const EXAMINER: MCQExaminerStats = {
   answer: ['A', 'B', 'C', 'D'],
   flawed: (
     <>
-      Statement II is clearly a correct statement as only hydrolysis and fermentation require
-      enzymes to occur. Statement III is also correct, as during hydrolysis, glucose is formed
-      (among other possibilities). Statement I caused issues and confusion: fermentation of
-      glucose to form ethanol and carbon dioxide involves <b>both</b> a reduction and an
-      oxidation process — the oxidation number of carbon changes from 0 to −2 as ethanol is
-      formed, and also from 0 to +4 as carbon dioxide is formed. Since there was no option for
-      I, II and III being correct, all four options were accepted.
+      VCAA&rsquo;s report explains this one directly: all three statements — I, II, <b>and</b> III
+      — turned out to be true, but none of the four options on offer combines all three. Since
+      no listed option could be fully correct, VCAA accepted all four.
     </>
   ),
   comment: (
@@ -41,28 +39,69 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>The production steps given are: finely chopped and heated → <b>hydrolysis</b> → <b>fermentation</b> → distillation.</>,
-    reason: <>Sets up which steps each statement is actually asking about.</>,
+    working: (
+      <>
+        Finely chopped and heated — physical, no enzyme
+        <br />
+        Hydrolysis — <b>enzyme-catalysed</b>
+        <br />
+        Fermentation — <b>enzyme-catalysed</b> (enzymes in yeast)
+        <br />
+        Distillation — physical separation, no enzyme
+        <br />
+        → exactly two steps use enzymes: <b>II is true</b>.
+      </>
+    ),
+    reason: <>Go through the four steps one at a time. Enzymes are biological catalysts for chemical reactions; chopping, heating and distilling are physical processes, so only hydrolysis and fermentation need them (the report: &ldquo;only hydrolysis and fermentation require enzymes&rdquo;).</>,
   },
   {
-    working: <>II: "Enzymes catalyse only two of the steps shown." Hydrolysis (breaking sucrose down into glucose and fructose) and fermentation (glucose into ethanol) are both enzyme-catalysed biological processes. Chopping/heating is mechanical/thermal, and distillation is a purely physical separation — neither uses an enzyme.</>,
-    reason: <>Exactly two of the four steps (hydrolysis and fermentation) are enzyme-catalysed. True.</>,
+    working: (
+      <>
+        <Chem eq="C12H22O11(aq) + H2O(l) -> C6H12O6(aq) + C6H12O6(aq)" />
+        <br />
+        sucrose + water → glucose + fructose: <b>III is true</b>.
+      </>
+    ),
+    reason: <>Hydrolysis uses water to break a large molecule into smaller ones. The main sugar in sugar cane is sucrose, a disaccharide, which hydrolyses into glucose and fructose (both C₆H₁₂O₆); any cellulose present hydrolyses to glucose too. Either way glucose is a product.</>,
   },
   {
-    working: <>III: "Glucose is a product of the hydrolysis step." Hydrolysis breaks down the sugar in sugar cane, mainly sucrose, using water; glucose is among the products (with fructose).</>,
-    reason: <>True — this is exactly what the hydrolysis step is for.</>,
+    working: <>Fermentation: <Chem eq="C6H12O6(aq) -> 2C2H5OH(aq) + 2CO2(g)" /></>,
+    reason: <>To test statement I, write the fermentation equation and track the oxidation number of carbon — oxidation is an <b>increase</b> in oxidation number.</>,
   },
   {
-    working: <>I: "Oxidation occurs during fermentation." Fermentation converts glucose (C₆H₁₂O₆) into ethanol (C₂H₅OH) and carbon dioxide (CO₂). Tracking the oxidation number of carbon: it starts at 0 (averaged across glucose's carbons), averages −2 across ethanol's two carbons, and ends at +4 in CO₂.</>,
-    reason: <>Carbon atoms end up at both a lower and a higher oxidation state than they started at — this is a disproportionation reaction.</>,
+    working: (
+      <>
+        Glucose, <Chem eq="C6H12O6" />: 6<i>x</i> + 12(+1) + 6(−2) = 0 → <i>x</i> = 0
+        <br />
+        Ethanol, <Chem eq="C2H6O" />: 2<i>x</i> + 6(+1) + 1(−2) = 0 → <i>x</i> = −2
+        <br />
+        Carbon dioxide, <Chem eq="CO2" />: <i>x</i> + 2(−2) = 0 → <i>x</i> = +4
+      </>
+    ),
+    reason: <>H is +1 and O is −2, and the oxidation numbers in a neutral molecule add to zero. These are average values for carbon across each molecule — enough to see which way carbon goes.</>,
   },
   {
-    working: <>Since some carbon atoms are reduced (0 → −2, forming ethanol) while others are oxidised (0 → +4, forming CO₂), fermentation genuinely involves <b>both</b> processes at once — so statement I ("oxidation occurs during fermentation") is also true.</>,
-    reason: <>This is the crux of the flaw: I is actually correct, alongside II and III.</>,
+    working: (
+      <>
+        C: 0 → +4 (in CO₂) — <b>oxidised</b>
+        <br />
+        C: 0 → −2 (in ethanol) — <b>reduced</b>
+        <br />
+        → oxidation does occur during fermentation: <b>I is true</b>.
+      </>
+    ),
+    reason: <>Some of glucose&rsquo;s carbon is oxidised and some is reduced in the same reaction, so fermentation involves <b>both</b> oxidation and reduction (the report&rsquo;s point). It is easy to assume fermentation &ldquo;isn&rsquo;t a redox reaction&rdquo; because there is no separate oxidising agent, but the oxidation numbers show otherwise.</>,
   },
   {
-    working: <b>All three statements (I, II, and III) are true — but no option among A–D offers "I, II and III" as a combination, so no single listed option can correctly capture the full truth.</b>,
-    reason: <>A genuine gap in the option set, not an error in any one option's own wording — VCAA accepted all four since none of the four given combinations was fully correct.</>,
+    working: <b>I, II and III are all true — but no option offers &ldquo;I, II and III&rdquo;.</b>,
+    reason: (
+      <>
+        No option is fully correct, so VCAA accepted all four (A, B, C and D) — any option
+        chosen earned the mark. Option <b>D</b> (II and III) is the closest, but it leaves out statement
+        I; options <b>B</b> and <b>C</b> each leave out a true statement too, and <b>A</b> leaves
+        out two.
+      </>
+    ),
   },
 ]
 
@@ -73,7 +112,7 @@ export default function ChemistryQ10_2025() {
         <p>
           VCAA's report explains this one directly: all three statements — I, II, <b>and</b> III
           — turned out to be true, but none of the four options on offer combines all three. Since
-          no listed option could be fully correct, VCAA accepted all four after review. All four
+          no listed option could be fully correct, VCAA accepted all four. All four
           are marked below.
         </p>
       }
@@ -90,10 +129,10 @@ export default function ChemistryQ10_2025() {
             />
           </div>
           <p className="mb-2">Consider the following statements:</p>
-          <div className="flex flex-col gap-1 mb-2">
-            <span>I. Oxidation occurs during fermentation.</span>
-            <span>II. Enzymes catalyse only two of the steps shown.</span>
-            <span>III. Glucose is a product of the hydrolysis step.</span>
+          <div className="grid grid-cols-[2.5em_1fr] gap-y-1 mb-2 pl-2">
+            <span>I</span><span>Oxidation occurs during fermentation.</span>
+            <span>II</span><span>Enzymes catalyse only two of the steps shown.</span>
+            <span>III</span><span>Glucose is a product of the hydrolysis step.</span>
           </div>
           <p>Which of the statements about the production of bioethanol is/are correct?</p>
         </>

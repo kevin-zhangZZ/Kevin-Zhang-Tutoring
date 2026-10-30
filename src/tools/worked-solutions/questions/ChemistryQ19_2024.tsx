@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>A: C₆H₁₂ is also the formula of the straight-chain hexenes, e.g. hex-1-ene, <Chem eq="CH2=CHCH2CH2CH2CH3" /> (a C=C double bond in place of the ring). C₆H₆ is also the formula of hexa-1,5-diyne, <Chem eq="HC≡CCH2CH2C≡CH" /> (the report&rsquo;s example).</>,
-    reason: <>Both have structural isomers that are not cyclic. Correct.</>,
+    reason: <>Both have structural isomers that are not cyclic. Correct. (Alkynes such as the report&rsquo;s hexa-1,5-diyne are no longer on the current study design; a C₆H₆ isomer with only C=C double bonds also exists — hexa-1,2,4,5-tetraene, <Chem eq="CH2=C=CHCH=C=CH2" /> — so the statement holds without alkynes.)</>,
   },
   {
     working: <>B: benzene&rsquo;s carbon–carbon bonds, with their delocalised electrons, are stronger (and shorter) than the C–C single bonds in cyclohexane.</>,

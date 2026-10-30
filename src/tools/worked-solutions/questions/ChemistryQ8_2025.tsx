@@ -1,10 +1,12 @@
-// 2025 Chemistry Exam, MCQ 8. VCAA examination report: 29% correct — the hardest MCQ on this
-// paper. Comparing the potential difference of four different metal–air cells by combining each
+// 2025 Chemistry Exam, MCQ 8. VCAA examination report: 29% correct — the second-hardest MCQ on
+// this paper (after MCQ 7, 24%). Comparing the potential difference of four different metal–air cells by combining each
 // metal's standard reduction potential with the air electrode's potential in the given
 // electrolyte. Question text transcribed from the original paper; the zinc–air cell diagram and
 // the four cell diagrams (options) are cropped from the original VCAA exam PDF. The working uses
 // the 2026 Data Book's E° values; where they differ from the report's (Mg²⁺/Mg, Al³⁺/Al), a note
-// says so. Solution is original.
+// says so. The report's 3.10 V for cell C is a slip for 3.11 V (0.40 + 2.71; Na⁺/Na is −2.71 V
+// in both Data Books) — kept verbatim in the comment and explained in the working. Solution is
+// original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
@@ -50,8 +52,8 @@ const ROWS: WorkingRow[] = [
     reason: <>A weaker reducing agent than Mg, with the lower-potential alkaline air electrode.<DataBookNote>the 2026 Data Book gives −1.68 V for Al³⁺/Al; the Data Book used for the 2025 exam gave −1.66 V, which is why the report has 2.06 V.</DataBookNote></>,
   },
   {
-    working: <>C — Na, alkaline electrolyte: <i>E</i>°(Na⁺/Na) = −2.71 V, so 0.40 − (−2.71) = <b>3.11 V</b> (the report gives 3.10 V).</>,
-    reason: <>Na is the strongest reducing agent of the four, but the alkaline air electrode is 0.83 V lower than the acidic one.</>,
+    working: <>C — Na, alkaline electrolyte: <i>E</i>°(Na⁺/Na) = −2.71 V, so 0.40 − (−2.71) = <b>3.11 V</b>.</>,
+    reason: <>Na is the strongest reducing agent of the four, but the alkaline air electrode is 0.83 V lower than the acidic one. The report&rsquo;s &ldquo;3.10 V&rdquo; is a slip: Na⁺/Na is −2.71 V in both the 2025 and 2026 Data Books, so 0.40 − (−2.71) = 3.11 V. It doesn&rsquo;t affect the answer.</>,
   },
   {
     working: <>D — Zn, acidic electrolyte: <i>E</i>°(Zn²⁺/Zn) = −0.76 V, so 1.23 − (−0.76) = <b>1.99 V</b>.</>,

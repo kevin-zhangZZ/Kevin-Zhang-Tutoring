@@ -1,6 +1,9 @@
 // 2022 Chemistry Exam, MCQ 12. VCAA examination report: 42% correct. Why enzymes are commonly
-// ineffective in acidic conditions, by elimination against genuine facts about protein
-// chemistry. Question text transcribed from the original paper. Solution is original.
+// ineffective in acidic conditions: H⁺ protonates side groups, changing the charges that hold the
+// active site's shape; the other options are eliminated against facts about protein chemistry.
+// Question text transcribed from the original paper. VCAA report only (no second source).
+// Solution is original. Working revised Oct 2026 (step-by-step charges; zwitterion note for the
+// current study design).
 
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
@@ -28,28 +31,32 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>An enzyme's activity depends on its precise 3D shape, which in turn depends on the pattern of charges and bonds (ionic bonds, hydrogen bonds) holding its structure together.</>,
-    reason: <>Basic set-up for evaluating each option.</>,
+    working: <>An enzyme works only while its <b>active site</b> keeps its exact 3D shape. That shape (the tertiary structure) is held by interactions between amino acid side groups — including <b>ionic interactions</b> between charged groups such as –NH₃⁺ and –COO⁻, and hydrogen bonds.</>,
+    reason: <>Start from what makes an enzyme work, then ask what H⁺ ions can do to it. Anything that changes the side groups&rsquo; charges changes which groups attract or repel each other.</>,
   },
   {
-    working: <>A: excess H⁺ in acidic conditions protonates basic side groups (like –NH₂ becoming –NH₃⁺), adding positive charges that weren't there before and disrupting the ionic bonds and shape that held the enzyme's active site together.</>,
-    reason: <>Correct — this is how low pH denatures enzymes.</>,
+    working: <>In acid, excess H⁺ <b>protonates</b> side groups:<br />–NH₂ + H⁺ → –NH₃⁺ (becomes positive)<br />–COO⁻ + H⁺ → –COOH (loses its negative charge)</>,
+    reason: <>Basic side groups (amine) gain a positive charge and ionised carboxyl side groups lose their negative charge. Either way the <b>charges on the enzyme change</b>.</>,
   },
   {
-    working: <>B: zwitterions require both a positive <i>and</i> a negative charge to form on the same molecule — an acidic (H⁺-rich) environment pushes toward extra positive charges, not the balanced pairing a zwitterion needs.</>,
-    reason: <>Ruled out.</>,
+    working: <>The ionic interactions between side groups are disrupted, the tertiary structure changes (<b>denaturation</b>) and the active site loses its shape, so the substrate can no longer bind.</>,
+    reason: <>This is option <b>A</b>: acids make enzymes ineffective because they change the charges on the enzyme.</>,
   },
   {
-    working: <>C: esterification requires an alcohol and a carboxylic acid reacting together under specific conditions — acids alone don't esterify or break proteins into smaller molecules.</>,
-    reason: <>Ruled out.</>,
+    working: <>B: a zwitterion carries a positive <i>and</i> a negative charge (–NH₃⁺ and –COO⁻) on the same molecule. Acid converts –COO⁻ to –COOH, so it removes the negative charge — it does not form zwitterions.</>,
+    reason: <>The current study design mentions zwitterions under changes in pH: an amino acid is a zwitterion near neutral pH, and in acid it becomes a cation (–NH₃⁺ and –COOH). Acid destroys the zwitterion form rather than creating it. Ruled out.</>,
   },
   {
-    working: <>D: acids don't chemically react with carboxyl (–COOH) groups — carboxyl groups are already acidic themselves; if anything, more H⁺ suppresses their own ionisation rather than reacting with them.</>,
-    reason: <>Ruled out.</>,
+    working: <>C: esterification is the condensation reaction between a carboxylic acid and an <b>alcohol</b>. Adding acid does not esterify a protein, and esterification joins molecules rather than splitting them into smaller ones.</>,
+    reason: <>Breaking a protein into smaller molecules is <b>hydrolysis</b> of peptide bonds, not esterification. Ruled out.</>,
   },
   {
-    working: <b>Only the charge-disruption explanation is chemically sound.</b>,
-    reason: <>Matches option <b>A</b>. Option <b>D</b>, the most popular wrong answer, fails because acids do not react with carboxyl groups (the report&rsquo;s point).</>,
+    working: <>D: a carboxyl group, –COOH, is already protonated — H⁺ has nothing to react with there. (Acid only protonates the ionised form, –COO⁻, which is a change of charge — option A.)</>,
+    reason: <>Ruled out: acids do not react with carboxyl groups (the report&rsquo;s point).</>,
+  },
+  {
+    working: <b>Acids change the charges on the enzymes.</b>,
+    reason: <>Matches option <b>A</b>. Option <b>D</b>, the most popular wrong answer, fails because acids do not react with carboxyl groups; option <b>B</b> gets the zwitterion idea backwards, since acid removes the negative charge a zwitterion needs.</>,
   },
 ]
 

@@ -14,6 +14,10 @@
 // and the questions it kept despite force or momentum wording (noted in worked-solutions/data.ts)
 // are the tips. Keep the two files in step when either changes.
 //
+// Chemistry 2021–2024 rows come the same way from the Oct 2026 full Chemistry buildout: the
+// parts each page shows under "Not in the Current Study Design", and the three whole questions in
+// omitted.ts. (2020 had nothing left out.)
+//
 // Each row is either a skip or a tip ("doable with a tip"). The page works it out from the note
 // (a note that says "doable" makes a tip); set `status` when that would get it wrong. A question
 // that is partly skipped and partly doable is two rows (e.g. 2016 Specialist Exam 2 Q5).
@@ -186,6 +190,21 @@ export const audits: SubjectAudit[] = [
       { year: 2018, exam: 'Exam', question: 'SAQ4b', topic: 'Coenzymes' },
       { year: 2018, exam: 'Exam', question: 'SAQ4d', topic: 'Antioxidants' },
       { year: 2018, exam: 'Exam', question: 'Entire SAQ10', topic: 'Metabolism of fats' },
+      { year: 2021, exam: 'Exam', question: 'SAQ3a', topic: 'Essential amino acids' },
+      { year: 2021, exam: 'Exam', question: 'SAQ3d.i', topic: 'Omega-3/omega-6 fatty acids' },
+      { year: 2021, exam: 'Exam', question: 'SAQ5b', topic: 'Vitamins' },
+      { year: 2021, exam: 'Exam', question: 'SAQ5d', topic: 'Coenzymes' },
+      { year: 2021, exam: 'Exam', question: 'SAQ9a', topic: 'Aspartame (artificial sweeteners)' },
+      { year: 2022, exam: 'Exam', question: 'MCQ 9', topic: 'Omega-3/omega-6 fatty acids' },
+      { year: 2022, exam: 'Exam', question: 'MCQ 21', topic: 'Coenzymes' },
+      { year: 2022, exam: 'Exam', question: 'SAQ4b', topic: 'Vitamins and antioxidants (oxidative rancidity)' },
+      { year: 2022, exam: 'Exam', question: 'SAQ6d', topic: 'Glycaemic index (GI)' },
+      { year: 2023, exam: 'Exam', question: 'MCQ 5', topic: 'Coenzymes' },
+      { year: 2023, exam: 'Exam', question: 'SAQ1a', topic: 'Omega-3 fatty acids' },
+      { year: 2023, exam: 'Exam', question: 'SAQ1b', topic: 'Oxidative rancidity' },
+      { year: 2023, exam: 'Exam', question: 'SAQ2b', topic: 'Glycaemic index (GI)' },
+      { year: 2023, exam: 'Exam', question: 'SAQ2c.i', topic: 'Essential amino acids' },
+      { year: 2024, exam: 'Exam', question: 'SAQ3c.iii', topic: 'Bond enthalpies' },
     ],
     notFound: [
       {

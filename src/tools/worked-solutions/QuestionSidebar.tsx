@@ -519,7 +519,7 @@ function ExamSection({
 
       {subject === 'chemistry' && (
         <p className="text-[11px] text-gray-500 dark:text-gray-400 px-1 leading-snug mb-0.5">
-          The multiple-choice questions students found hardest, plus any VCAA later flagged.
+          Every question from 2020 on, multiple choice and short answer; earlier years, the multiple-choice questions students found hardest, plus any VCAA later flagged.
         </p>
       )}
 

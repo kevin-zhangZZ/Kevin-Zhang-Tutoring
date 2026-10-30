@@ -1,10 +1,12 @@
 // 2022 Chemistry Exam, MCQ 28. VCAA examination report: 42% correct. Identifying which of four
 // alcohols matches a ¹³C NMR spectrum with 5 signals, one in the C=C region. Question text
 // transcribed from the original paper; the spectrum and the four skeletal structures are cropped
-// from the original VCAA exam PDF. Solution is original.
+// from the original VCAA exam PDF. The report's ¹³C table reference (Table 15, 110–140 ppm) is
+// from the 2022 Data Book; a DataBookNote gives the 2026 values. Solution is original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
+import { DataBookNote } from '../QuestionParts'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import spectrumSrc from './chem-2022-mcq28-spectrum.png'
 import optASrc from './chem-2022-mcq28-optA.png'
@@ -36,7 +38,7 @@ const EXAMINER: MCQExaminerStats = {
       <br />
       B. <Chem eq="CH3CH2CH=CHCH2CH2OH" />: 6 carbon environments, C=C.
       <br />
-      C. <Chem eq="CHCCH2CH2CH2OH" />: 5 carbon environments, no C=C
+      C. <Chem eq="CH≡CCH2CH2CH2OH" />: 5 carbon environments, no C=C
       <br />
       D. <Chem eq="CH2=CHCH2CH2CH2OH" />: 5 carbon environments and C=C
     </>
@@ -45,8 +47,8 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>The spectrum shows <b>5 signals</b> (near 138, 115, 62, 32 and 30 ppm), one of them close to <b>140 ppm</b> — in the Data Book&rsquo;s range for a C=C carbon, R₂C=CR₂ 110–140 ppm.</>,
-    reason: <>The compound must have exactly 5 carbon environments and a C=C double bond.</>,
+    working: <>The spectrum shows <b>5 signals</b> (near 138, 115, 62, 32 and 30 ppm), one of them close to <b>140 ppm</b> — in the Data Book&rsquo;s range for a C=C carbon, R₂C=CR₂ 110–150 ppm.</>,
+    reason: <>Each signal is one carbon environment, so the compound must have exactly 5 carbon environments; a signal near 140 ppm (and the one near 115 ppm) can only come from C=C carbons — no other type of carbon in these options falls in the Data Book&rsquo;s 110–150 ppm range.<DataBookNote>the 2026 Data Book lists ¹³C-NMR data as item 22 and gives R₂C=CR₂ as 110–150 ppm; the Data Book used for the 2022 exam had it as Table 15 with 110–140 ppm, which is what the report quotes. The answer is unchanged.</DataBookNote></>,
   },
   {
     working: <>A: 2-methylbutan-1-ol, <Chem eq="CH3CH2CH(CH3)CH2OH" /> — 5 carbon environments, but <b>no C=C</b>.</>,

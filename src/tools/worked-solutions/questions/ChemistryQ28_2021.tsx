@@ -4,6 +4,7 @@
 // transcribed from the original paper; the graph (shared with Question 27) is cropped from the
 // original VCAA exam PDF. Solution is original.
 
+import Katex from '../../../components/Katex'
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
@@ -20,7 +21,7 @@ const EXAMINER: MCQExaminerStats = {
       If the rate of the reverse reaction at <i>t</i>₅ is higher following the temperature change at{' '}
       <i>t</i>₄, the temperature must have increased.
       <br />
-      According to <Chem eq="1/2 H2(g) + 1/2 I2(g) <=> HI(g)" />; Δ<i>H</i> = +25.9 kJ mol⁻¹, the
+      According to <Chem eq="½H2(g) + ½I2(g) <=> HI(g)" />; Δ<i>H</i> = +25.9 kJ mol⁻¹, the
       endothermic forward reaction is favoured, so the total chemical energy of the system will
       have increased.
       <br />
@@ -38,28 +39,32 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Chem eq="1/2 H2(g) + 1/2 I2(g) <=> HI(g)" className="mr-2" />,
+    working: <Chem eq="½H2(g) + ½I2(g) <=> HI(g)" className="mr-2" />,
     reason: <>ΔH = +25.9 kJ mol⁻¹: the forward reaction is endothermic.</>,
   },
   {
     working: <>The equilibrium <b>constant</b> only ever changes in response to a <b>temperature</b> change — nothing else (concentration, volume, catalyst) alters K.</>,
-    reason: <>Since the question states K changed at <Chem eq="t4" />, temperature must be what changed.</>,
+    reason: <>Since the question states K changed at <i>t</i>₄, temperature must be what changed.</>,
   },
   {
     working: <>A temperature <b>increase</b> speeds up every reaction — both forward and reverse rates rise. A temperature <b>decrease</b> would do the opposite, slowing the reverse reaction down.</>,
-    reason: <>Given the reverse rate at <Chem eq="t5" /> is <i>higher</i> than before, the temperature must have <b>increased</b>.</>,
+    reason: <>Given the reverse rate at <i>t</i>₅ is <i>higher</i> than before, the temperature must have <b>increased</b>.</>,
   },
   {
-    working: <>Since the forward reaction is endothermic, a temperature increase shifts the equilibrium <b>toward the products</b> (favouring the direction that absorbs the added heat).</>,
-    reason: <>Le Chatelier's principle — this also increases the equilibrium constant K, confirming the earlier deduction.</>,
+    working: <>Forward reaction endothermic + temperature <b>increased</b> → equilibrium shifts <b>to the right</b> (towards HI).</>,
+    reason: <>Le Chatelier&rsquo;s principle: the system partially opposes the rise in temperature by favouring the direction that absorbs heat — the endothermic forward reaction.</>,
   },
   {
-    working: <>Favouring the endothermic forward reaction means more energy has been <b>absorbed</b> into the system overall.</>,
-    reason: <>The total chemical energy of the system increases.</>,
+    working: <><Katex tex="K = \dfrac{[\mathrm{HI}]}{[\mathrm{H_2}]^{1/2}[\mathrm{I_2}]^{1/2}}" /><br />More HI, less H₂ and I₂ at the new equilibrium → <i>K</i> <b>increases</b>.</>,
+    reason: <>For an endothermic forward reaction, <i>K</i> always increases with temperature, because the products sit on top of the expression.</>,
+  },
+  {
+    working: <>More of the reactants have been converted into the higher-energy product HI, with heat absorbed from the surroundings → the <b>total chemical energy</b> of the system <b>increases</b>.</>,
+    reason: <>&ldquo;Chemical energy&rdquo; is the enthalpy stored in the substances. ΔH = +25.9 kJ mol⁻¹ means each mole of HI holds 25.9 kJ more chemical energy than the ½ mol H₂ and ½ mol I₂ it came from, so a shift towards HI stores more energy in the system.</>,
   },
   {
     working: <b>Equilibrium constant: increase. Total chemical energy: increase.</b>,
-    reason: <>Matches option <b>A</b>. Options <b>C</b> and <b>D</b>, 60% between them, assume the temperature fell because the reverse (exothermic) rate was higher — as the report says.</>,
+    reason: <>Matches option <b>A</b>. Options <b>C</b> and <b>D</b>, 60% between them, come from assuming the temperature fell because the reverse (exothermic) rate was higher — the reasoning the report describes. But a lower temperature slows <i>both</i> reactions, so the reverse rate could not end up higher. (After the temperature rise the shift to the right does slow the reverse reaction a little, but the report notes it is still faster at the new equilibrium than before <i>t</i>₄.)</>,
   },
 ]
 
@@ -71,7 +76,7 @@ export default function ChemistryQ28_2021() {
           <p className="mb-2 italic">Use the following information to answer Questions 27 and 28.</p>
           <p className="mb-2">Hydrogen, H₂, and iodine, I₂, react to form hydrogen iodide, HI.</p>
           <p className="mb-2">
-            <Chem eq="1/2 H2(g) + 1/2 I2(g) <=> HI(g)" /> &nbsp;&nbsp;&nbsp; Δ<i>H</i> = +25.9 kJ mol⁻¹
+            <Chem eq="½H2(g) + ½I2(g) <=> HI(g)" /> &nbsp;&nbsp;&nbsp; Δ<i>H</i> = +25.9 kJ mol⁻¹
           </p>
           <p className="mb-2">
             The graph below shows the concentrations of H₂, I₂ and HI in a sealed container. One

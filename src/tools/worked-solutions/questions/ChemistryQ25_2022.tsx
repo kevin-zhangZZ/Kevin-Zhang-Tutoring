@@ -1,7 +1,10 @@
 // 2022 Chemistry Exam, MCQ 25. VCAA examination report: 33% correct. Which statements about
-// biodiesel versus petrodiesel are correct. Question text transcribed from the original paper.
-// Solution is original.
+// biodiesel versus petrodiesel are correct (hygroscopic nature, crystallising temperature,
+// origin, sulfur dioxide on combustion). Question text transcribed from the original paper.
+// The report's "hydroscopic" (statement I) is kept verbatim; it is a slip for "hygroscopic".
+// VCAA report only. Solution is original.
 
+import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
@@ -29,24 +32,24 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>I: Biodiesel molecules contain <b>polar ester groups</b>, giving them a stronger affinity for water than the mostly non-polar hydrocarbons in petrodiesel.</>,
-    reason: <><b>Biodiesel</b> is the more hygroscopic one — statement I has it backwards. Incorrect.</>,
+    working: <>I: <b>Hygroscopic</b> = tends to absorb water (e.g. moisture from the air). <br />Biodiesel molecules contain <b>polar ester groups</b>, which attract water; petrodiesel is non-polar hydrocarbons. <br />So <b>biodiesel</b> is the more hygroscopic fuel. Statement I is <b>incorrect</b>.</>,
+    reason: <>Biodiesel is made of fatty acid methyl esters (R–COO–CH₃). The C=O and C–O bonds are polar, so water molecules are attracted to them; the hydrocarbon molecules in petrodiesel have no polar groups. Statement I has the two fuels the wrong way round.</>,
   },
   {
-    working: <>II: Biodiesel's polar ester groups give it dipole-dipole attraction on top of dispersion forces, stronger than petrodiesel's dispersion-forces-only attraction.</>,
-    reason: <>Stronger intermolecular attraction means the molecules settle into a solid at a higher temperature: biodiesel forms crystals (solidifies) at a higher temperature than petrodiesel. Correct.</>,
+    working: <>II: Biodiesel: <b>dipole–dipole</b> forces (ester groups) + dispersion forces. <br />Petrodiesel: dispersion forces only. <br />Stronger intermolecular forces → biodiesel <b>solidifies (forms crystals) at a higher temperature</b>. Statement II is <b>correct</b>.</>,
+    reason: <>The stronger the attraction between molecules, the less cooling it takes for them to lock into a solid. This is why biodiesel can turn cloudy and gel in cold weather when petrodiesel is still liquid.</>,
   },
   {
-    working: <>III: Biodiesel is produced from recently-living plant oils and animal fats; petrodiesel is a fossil fuel, formed from decomposing organic material over millions of years.</>,
-    reason: <>Correct — this is exactly the distinction between a biofuel and a fossil fuel.</>,
+    working: <>III: Biodiesel — from plant oils and animal fats (recently living). <br />Petrodiesel — from crude oil, formed from plant and animal remains over millions of years. <br />Both are derived from plants and animals. Statement III is <b>correct</b>.</>,
+    reason: <>The difference between them is the <i>timescale</i> (renewable biofuel vs fossil fuel), not the original source: crude oil is itself decomposed plant and animal material.</>,
   },
   {
-    working: <>IV: Petrodiesel, being derived from long-decomposed organic (protein-containing) matter, contains sulfur impurities that biodiesel — made from fresh oils/fats — largely lacks.</>,
-    reason: <>More sulfur in the fuel means more <b>SO₂</b> is produced on combustion. Correct.</>,
+    working: <>IV: Crude oil contains <b>sulfur</b> compounds (from decomposed animal protein), so petrodiesel contains more sulfur than biodiesel. <br />More sulfur → more <Chem eq="SO2" /> on combustion. Statement IV is <b>correct</b>.</>,
+    reason: <>Sulfur in a fuel burns to sulfur dioxide, e.g. <Chem eq="S(s) + O2(g) -> SO2(g)" />, a cause of acid rain. Biodiesel from fresh oils and fats contains very little sulfur.</>,
   },
   {
     working: <b>Statements II, III and IV are correct; only I is wrong.</b>,
-    reason: <>Matches option <b>D</b>. Option <b>B</b>, the most popular wrong answer, leaves out statement II.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b> (31%) leaves out statement II — biodiesel&rsquo;s stronger dipole–dipole attraction means it crystallises at the <i>higher</i> temperature. Options <b>A</b> (25%) and <b>C</b> both include statement I, which reverses which fuel is hygroscopic. (The report&rsquo;s &ldquo;hydroscopic&rdquo; in its comment on statement I is a slip for &ldquo;hygroscopic&rdquo;.)</>,
   },
 ]
 

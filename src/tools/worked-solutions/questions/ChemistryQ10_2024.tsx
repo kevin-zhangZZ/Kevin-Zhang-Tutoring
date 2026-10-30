@@ -3,24 +3,27 @@
 // were accepted as correct" — no further reasoning. Question text transcribed from the original
 // paper (rendered from page images — the 2024 exam PDF has no extractable text). The reasoning
 // below for why each of I and II is genuinely arguable both ways is original analysis, not VCAA's
-// own — flagged clearly as such since VCAA gave no published explanation for this one.
+// own — flagged clearly as such since VCAA gave no published explanation for this one. The H₂O₂
+// E° is the 2026 Data Book's (+1.76 V; +1.77 V in the 2024 Data Book), noted where used.
 
+import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
+import { DataBookNote } from '../QuestionParts'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const FLAWED = (
+  <p>
+    VCAA&rsquo;s report gives no explanation beyond &ldquo;As a result of psychometric analysis and
+    review, all four options were accepted as correct.&rdquo; All four options are marked as
+    correct below because VCAA accepted every one. The worked solution is this site&rsquo;s own
+    analysis of where the ambiguity probably came from, not VCAA&rsquo;s reasoning.
+  </p>
+)
 
 const EXAMINER: MCQExaminerStats = {
   percentages: {},
   answer: ['A', 'B', 'C', 'D'],
-  flawed: (
-    <>
-      VCAA's report gives no reasoning for this one beyond: "As a result of psychometric
-      analysis and review, all four options were accepted as correct." Unlike most flagged
-      questions, VCAA didn't publish an explanation of what went wrong — the analysis in the
-      worked solution is this site's own attempt to reconstruct why both statements turned
-      out to be genuinely arguable, clearly marked as independent reasoning rather than VCAA's
-      own words.
-    </>
-  ),
+  flawed: FLAWED,
   comment: (
     <>
       As a result of psychometric analysis and review, all four options were accepted as correct.
@@ -30,49 +33,83 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>Two independent statements are being judged, so there are 4 possible combinations of true/false — matching the 4 options (I only, II only, both, neither). For VCAA to accept all four, <i>both</i> statements must have been genuinely arguable either way, not just one.</>,
-    reason: <>The structure of the question means it can only fall apart if there's real ambiguity in both I and II, not just one of them.</>,
+    working: <>Judge each statement on its own: I true or false, II true or false. The four options are the four combinations.</>,
+    reason: (
+      <>
+        For VCAA to accept all four options, <i>both</i> statements must be arguable either way.
+        Everything below is this site&rsquo;s own analysis — VCAA published no reasoning.
+      </>
+    ),
   },
   {
-    working: <>Statement I: "Bioethanol fuel is sustainable because it results in no net release of carbon dioxide into the atmosphere." The standard VCE-taught argument is that CO₂ released burning bioethanol was previously absorbed by the sugar cane during photosynthesis, making combustion "carbon neutral" — supporting I as true.</>,
-    reason: <>This is the textbook simple model, and the one most students would have been taught to apply directly.</>,
+    working: (
+      <>
+        Statement I — the case for <b>true</b>: the CO₂ released when bioethanol burns was absorbed
+        from the atmosphere by the crop (e.g. sugar cane) during photosynthesis, so burning it adds
+        no <i>new</i> CO₂ — it is &ldquo;carbon neutral&rdquo;. The crop can be regrown, so the fuel
+        is renewable.
+      </>
+    ),
+    reason: <>This is the simple model most students are taught for biofuels.</>,
   },
   {
-    working: <>But a more complete life-cycle view complicates this: growing, harvesting, transporting and processing sugar cane typically uses fossil-fuel-powered machinery, fertilisers, and energy — all of which release additional CO₂ that isn't reabsorbed by the crop. Under this reading, there <i>is</i> a net release of CO₂ once the whole production chain is considered, not just the combustion step — making I arguably false.</>,
-    reason: <>Both readings of "sustainable" (combustion-only vs. whole life-cycle) are defensible chemistry — this is plausibly where the ambiguity in statement I came from.</>,
+    working: (
+      <>
+        Statement I — the case for <b>false</b>: growing, harvesting, transporting and fermenting the
+        crop and distilling the ethanol use energy (often from fossil fuels) and fertilisers, which
+        release CO₂ that the crop never absorbed. Over the whole life cycle there <i>is</i> a net
+        release of CO₂. &ldquo;Sustainable&rdquo; also means more than zero net CO₂ (renewable supply,
+        land and water use), so the reason given in I is incomplete.
+      </>
+    ),
+    reason: <>Whether I is true depends on whether only combustion or the whole production chain is counted.</>,
   },
   {
-    working: <>Statement II: "Hydrogen peroxide, H₂O₂, can be used as an oxidising agent in fuel cells." H₂O₂ genuinely can act as an oxidant — it has a strongly positive reduction potential and is used as the oxidant in some specialised (e.g. direct H₂O₂/borohydride) fuel cells, reduced to H₂O at the cathode instead of the more familiar O₂.</>,
-    reason: <>A real, if less commonly taught, category of fuel cell — supporting II as true if the broader chemistry is considered valid.</>,
+    working: (
+      <>
+        Statement II — the case for <b>true</b>: H₂O₂ is a strong oxidising agent,{' '}
+        <Chem eq="H2O2(aq) + 2H+(aq) + 2e- <=> 2H2O(l)" />, <i>E</i>° = +1.76 V, well above O₂
+        (+1.23 V), and some fuel cells (e.g. direct borohydride–H₂O₂ cells) do use it at the
+        cathode instead of O₂.
+      </>
+    ),
+    reason: (
+      <>
+        Data Book electrochemical series: a high <i>E</i>° means H₂O₂ is readily reduced, so it can
+        act as the oxidising agent.
+        <DataBookNote>the 2026 Data Book gives +1.76 V for H₂O₂/H₂O; the Data Book used for the 2024 exam gave +1.77 V (and +0.68 V, now +0.70 V, for O₂/H₂O₂). Either way H₂O₂ is a stronger oxidising agent than O₂.</DataBookNote>
+      </>
+    ),
   },
   {
-    working: <>But VCE Chemistry's fuel-cell coverage centres on O₂ as the oxidant (as in hydrogen and ethanol fuel cells studied in the course) — a student restricting "fuel cells" to what the study design actually covers could reasonably judge II unsupported by anything taught, and so false in context.</>,
-    reason: <>Whether II counts as "correct" plausibly depends on whether students are expected to draw on chemistry beyond the specific fuel cells named in the course.</>,
+    working: (
+      <>
+        Statement II — the case for <b>false</b>: the fuel cells in the VCE course use O₂ (from air)
+        as the oxidising agent; H₂O₂ is not a standard fuel-cell oxidant, and it can also act as a
+        reducing agent (<Chem eq="O2(g) + 2H+(aq) + 2e- <=> H2O2(aq)" />, +0.70 V), so a student
+        could reasonably judge II unsupported.
+      </>
+    ),
+    reason: <>Whether II counts as correct depends on how far beyond the course&rsquo;s fuel cells a student is expected to reason.</>,
   },
   {
-    working: <b>With both I and II genuinely arguable true or false depending on how strictly "sustainable" and "fuel cell" are read, all four combinations (A: I only, B: II only, C: both, D: neither) become defensible — consistent with VCAA accepting every option.</b>,
-    reason: <>Independent reconstruction of the likely source of ambiguity — VCAA itself gave no published reasoning for this question.</>,
+    working: <b>Both I and II can be argued true or false, so every option (A: I only, B: II only, C: both, D: neither) is defensible — consistent with VCAA accepting all four.</b>,
+    reason: <>Independent reconstruction of the likely source of the ambiguity — VCAA itself gave no published reasoning for this question.</>,
   },
 ]
 
 export default function ChemistryQ10_2024() {
   return (
     <MCQShell
-      flawed={
-        <p>
-          VCAA's report gives no explanation beyond "as a result of psychometric analysis and
-          review, all four options were accepted as correct" — an unusually bare statement even
-          among flagged questions. All four options are marked below since VCAA accepted every
-          one. The worked solution below is this site's own reconstruction of where the
-          ambiguity likely came from, clearly separate from anything VCAA actually published.
-        </p>
-      }
+      flawed={FLAWED}
       question={
         <>
           <p className="mb-2">Consider the following statements regarding fuels.</p>
-          <div className="flex flex-col gap-1 mb-2">
-            <span>I. Bioethanol fuel is sustainable because it results in no net release of carbon dioxide into the atmosphere.</span>
-            <span>II. Hydrogen peroxide, H₂O₂, can be used as an oxidising agent in fuel cells.</span>
+          <div className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 mb-2 pl-2">
+            <span>I</span>
+            <span>Bioethanol fuel is sustainable because it results in no net release of carbon dioxide into the atmosphere.</span>
+            <span>II</span>
+            <span>Hydrogen peroxide, <Chem eq="H2O2" />, can be used as an oxidising agent in fuel cells.</span>
           </div>
           <p>Which of the statements regarding fuels is/are correct?</p>
         </>

@@ -33,28 +33,48 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>Combustion of <Chem eq="C4H10" /> produces many small, highly dispersed product molecules (CO₂ and H₂O gas) — for the reverse reaction to occur, an enormous number of these scattered molecules would all need to collide simultaneously, in exactly the right orientation, with enough energy.</>,
-    reason: <>Sets up why the reverse reaction is practically never observed, regardless of energetics.</>,
+    working: <>Irreversible ⇒ the reaction goes essentially to completion and the <b>reverse reaction does not occur to any noticeable extent</b>.</>,
+    reason: <>Start from what &ldquo;irreversible&rdquo; means. Every reaction is reversible in principle; we call one irreversible when the reverse reaction is so slow that it can be ignored. So the question is really asking: <i>why is the reverse of combustion so slow?</i></>,
   },
   {
-    working: <>A: being exothermic only describes the energy released — plenty of reversible equilibrium reactions are also exothermic in the forward direction (e.g. the Haber process), so exothermicity alone doesn't make a reaction irreversible.</>,
-    reason: <>Exothermic ≠ irreversible. Ruled out.</>,
+    working: (
+      <>
+        <Chem eq="2C4H10(g) + 13O2(g) -> 8CO2(g) + 10H2O(l)" />
+        <br />
+        Reverse: 8CO₂ + 10H₂O → 2C₄H₁₀ + 13O₂
+      </>
+    ),
+    reason: <>For the reverse reaction to happen, 18 small, scattered product molecules would have to collide together, in exactly the right orientation, with enough energy. The probability of such a collision is so small that, in practice, it never happens (the report&rsquo;s reasoning).</>,
   },
   {
-    working: <>B: products being less stable than reactants would actually make the forward reaction <i>endothermic</i>, not exothermic — this gets the energetics of combustion backwards. Combustion products (CO₂, H₂O) are lower in energy (more stable) than the fuel and O₂.</>,
-    reason: <>Factually backwards. Ruled out.</>,
+    working: (
+      <>
+        <i>E</i><sub>a</sub>(reverse) = <i>E</i><sub>a</sub>(forward) + |Δ<i>H</i>|
+        <br />
+        |Δ<i>H</i>| = 2877 kJ per mol of butane
+        <br />
+        For the equation as written (2 mol butane): |Δ<i>H</i>| = 2 × 2877 = 5754 kJ
+        <br />
+        ⇒ <i>E</i><sub>a</sub>(reverse) is enormous ⇒ almost no collisions have enough energy
+      </>
+    ),
+    reason: <>A second way to see it, from an energy profile: the products of combustion sit far below the reactants, so climbing back over the hump needs the forward activation energy <i>plus</i> all the energy released. Data Book: molar enthalpy of combustion of butane = −2877 kJ mol⁻¹. Both arguments say the same thing — the reverse rate is negligible — which is exactly option C.</>,
   },
   {
-    working: <>C: the reverse reaction requires many product molecules to collide together at once, in a very specific arrangement — the probability of this happening is astronomically small, so in practice the reverse reaction simply never occurs.</>,
-    reason: <>The genuine, correct reason — a kinetic (collision-probability) argument, not a thermodynamic one. Correct.</>,
+    working: <>A — exothermic does not mean irreversible: many reversible equilibria have an exothermic forward reaction (e.g. <Chem eq="N2(g) + 3H2(g) <=> 2NH3(g)" />, Δ<i>H</i> &lt; 0).</>,
+    reason: <>Every equilibrium has an exothermic direction and an endothermic direction (the report&rsquo;s point), so being exothermic alone can&rsquo;t explain irreversibility. Ruled out.</>,
   },
   {
-    working: <>D: combustion is not treated as an equilibrium system at all, so Le Chatelier's principle (which describes how equilibria shift in response to changes like reactant supply) doesn't apply here — there's no equilibrium position to "favour".</>,
-    reason: <>Misapplies an equilibrium concept to a non-equilibrium reaction. Ruled out.</>,
+    working: <>B — false: combustion is exothermic, so the products (CO₂, H₂O) are <b>lower</b> in energy, i.e. <b>more</b> stable, than the reactants.</>,
+    reason: <>The statement gets the energetics backwards (the report: &ldquo;The products are more stable than the reactants in an exothermic process&rdquo;). Ruled out.</>,
   },
   {
-    working: <b>Only the collision-probability argument correctly explains why the combustion of butane is irreversible.</b>,
-    reason: <>Matches option <b>C</b>. Option <b>D</b>, chosen by as many students as <b>C</b>, applies Le Chatelier&rsquo;s principle to a reaction that isn&rsquo;t an equilibrium (the report&rsquo;s point).</>,
+    working: <>D — Le Chatelier&rsquo;s principle applies only to a system at equilibrium; combustion is not an equilibrium process.</>,
+    reason: <>Even for a real equilibrium, adding more of a reactant only shifts the position — it never makes the reaction irreversible. Ruled out.</>,
+  },
+  {
+    working: <b>The rate of the reverse reaction is so slow that it can be ignored.</b>,
+    reason: <>Matches option <b>C</b>. Option <b>D</b>, chosen by as many students as <b>C</b> (32% each), applies Le Chatelier&rsquo;s principle to a reaction that isn&rsquo;t an equilibrium — the report notes this is &ldquo;not a valid response&rdquo;. <b>A</b> mistakes exothermic for irreversible, and <b>B</b> reverses the relative stability of reactants and products.</>,
   },
 ]
 

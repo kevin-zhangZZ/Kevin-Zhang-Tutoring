@@ -1,7 +1,9 @@
 // 2020 Chemistry Exam, MCQ 28. VCAA examination report: 22% correct. Comparing the
 // Maxwell-Boltzmann distributions and chemical energy of the product gases from combusting
 // equal moles of two C₂H₄O₂ isomers with different heats of combustion. Question text
-// transcribed from the original paper. Solution is original.
+// transcribed from the original paper. VCAA report only. Solution is original. The report's
+// comment is kept verbatim with two slips: its equation has 3O₂ (it balances with 2O₂) and it
+// says "ethanoic acid and ethanoic acid" for the two isomers; both are explained in the final row.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
@@ -26,7 +28,7 @@ const EXAMINER: MCQExaminerStats = {
       of the particles increases and the distribution flattens and broadens.
       <br />
       The temperature of the product mixture after combustion depends on the amount of heat energy
-      released. Since methyl methanoate (-973 kJ mol⁻¹) releases more energy per mole its product
+      released. Since methyl methanoate (−973 kJ mol⁻¹) releases more energy per mole its product
       mixture will be at the higher temperature and it will have a broader Maxwell-Boltzmann
       distribution. Ethanoic acid releases less energy per mol so its product mixture is at a lower
       temperature, and it will have a narrower Maxwell-Boltzmann distribution.
@@ -61,11 +63,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>A higher-temperature gas sample has a <b>broader</b> Maxwell-Boltzmann distribution (more spread in particle speeds/energies).</>,
-    reason: <>Standard Maxwell-Boltzmann property.</>,
+    reason: <>Temperature measures the average kinetic energy of the particles. At a higher temperature more particles have high energies, so the peak moves to the right and drops, and the curve spreads out (flattens and broadens). Both vessels hold the same number of product molecules (0.2 mol CO₂ + 0.2 mol H₂O), so the area under both curves is the same — only the shape changes. See the report&rsquo;s sketch below: <i>T</i>₂ &gt; <i>T</i>₁.</>,
   },
   {
     working: <b>Ethanoic acid's products, having received less energy, end up cooler — a narrower distribution than methyl methanoate's products.</b>,
-    reason: <>Matches option <b>B</b>: narrower distribution, identical chemical energy of the products. Options C and D, chosen by nearly two-thirds, confuse the chemical energy of the products with the heat released. (The report&rsquo;s equation has 3O₂ — it balances with 2O₂ — and says &ldquo;ethanoic acid and ethanoic acid&rdquo; for the two isomers.)</>,
+    reason: <>Matches option <b>B</b>: narrower distribution, identical chemical energy of the products. Options C and D, chosen by nearly two-thirds, confuse the chemical energy of the products with the heat released. Option <b>A</b> (13%) gets the chemical energy right but reverses the breadth: the cooler products give the <i>narrower</i> distribution. (The report&rsquo;s equation has 3O₂ — it balances with 2O₂ — and says &ldquo;ethanoic acid and ethanoic acid&rdquo; for the two isomers.)</>,
   },
 ]
 

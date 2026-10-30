@@ -10,7 +10,6 @@ import structuresSrc from './chem-2025-mcq27-structures.png'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 41, B: 21, C: 13, D: 24 },
   answer: 'A',
-  noAnswer: 1,
   comment: (
     <>
       Geranial is an aldehyde and is readily oxidised by acidified dichromate and a colour change
@@ -77,7 +76,7 @@ export default function ChemistryQ27_2025() {
           </div>
           <p>
             Which one of the following laboratory tests could be used to confirm that a sample is
-            pure geranial and not pure linalool?
+            pure geranial and <b>not</b> pure linalool?
           </p>
         </>
       }

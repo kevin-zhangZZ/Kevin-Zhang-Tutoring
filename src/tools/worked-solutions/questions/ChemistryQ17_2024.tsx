@@ -37,7 +37,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>B: iron and nickel impurities in the blister copper are stronger reducing agents than copper, so they are oxidised at the anode and enter the solution as Fe²⁺ and Ni²⁺ ions — they dissolve, they don't fall as solid metal. It is silver, a weaker reducing agent than copper, that is not oxidised and falls to the bottom as the anode dissolves.</>,
-    reason: <>Iron goes into solution, not to the bottom as a solid. Ruled out.</>,
+    reason: <>Electrochemical series (Data Book): <i>E</i>°(Fe²⁺/Fe) = −0.44 V and <i>E</i>°(Ni²⁺/Ni) = −0.24 V are below <i>E</i>°(Cu²⁺/Cu) = +0.34 V, so Fe and Ni are stronger reducing agents than Cu and are oxidised in preference to it; <i>E</i>°(Ag⁺/Ag) = +0.80 V is above it, so Ag is not oxidised and drops off as the anode wears away. Iron goes into solution, not to the bottom as a solid. Ruled out.</>,
   },
   {
     working: <>C: the pure copper product builds up on the cathode as a solid coating over time — it's collected once electrolysis is complete, not continuously "removed as it forms" during the process.</>,

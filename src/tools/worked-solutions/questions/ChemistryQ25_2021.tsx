@@ -57,11 +57,11 @@ const ROWS: WorkingRow[] = [
     reason: <>The reverse rate is the only one that changes at the instant of the change. (The report&rsquo;s comment calls these &ldquo;concentration-time graphs&rdquo;; the graph plots rate against time.)</>,
   },
   {
-    working: <>Only concentrations that appear in the reverse rate expression (i.e. the <b>products</b>, C and D) can jump the reverse rate instantly while leaving the forward rate — which depends only on reactant concentrations — completely untouched at that instant.</>,
-    reason: <>This points to a sudden <b>addition of product(s)</b> at <Chem eq="t1" />.</>,
+    working: <>The forward rate depends on collisions between reactant particles (A and B); the reverse rate depends on collisions between product particles (C and D). Only a sudden rise in the concentration of <b>products</b> makes the reverse rate jump while the forward rate is unchanged at that instant.</>,
+    reason: <>Collision theory: rate depends on the frequency of successful collisions, which rises with concentration. Adding C or D at <i>t</i>₁ increases only the reverse collision frequency, so this points to a sudden <b>addition of product(s)</b> at <i>t</i>₁.</>,
   },
   {
-    working: <>A: adding an inert gas like argon changes neither concentration, so neither rate would move at all.</>,
+    working: <>A: argon is unreactive. Added to the container at constant volume, it doesn&rsquo;t change the concentration of A, B, C or D, so neither rate would change at all.</>,
     reason: <>Ruled out.</>,
   },
   {
@@ -69,12 +69,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Ruled out.</>,
   },
   {
-    working: <>D: the equilibrium constant only changes with <b>temperature</b> — but a temperature change would instantly affect <i>both</i> rates (every reaction speeds up or slows down together), not just the reverse one.</>,
+    working: <>D: the equilibrium constant only changes with <b>temperature</b>. The forward reaction is endothermic (Δ<i>H</i> &gt; 0), so <i>K</i> increases only if the temperature is raised — but a temperature rise makes <i>both</i> rates jump at once (more particles have energy ≥ <i>E</i><sub>a</sub>), not just the reverse one. Adding product leaves <i>K</i> unchanged.</>,
     reason: <>Ruled out.</>,
   },
   {
-    working: <>Since product was added at t₁, the system responds by partially consuming the excess (reverse rate exceeds forward for a while), but settles at a <b>new equilibrium with more product overall</b> than existed just before t₁.</>,
-    reason: <>Matches option <b>C</b>. Option <b>B</b> would make the forward rate drop instantly; option <b>D</b> needs a temperature rise, which would make both rates jump (both as the report says).</>,
+    working: <>Product was added at <i>t</i>₁. Between <i>t</i>₁ and <i>t</i>₂ the reverse rate is greater than the forward rate, so some of the added product is used up — but the system only <b>partially opposes</b> the change, so at <i>t</i>₂ there is <b>more product</b> than just before <i>t</i>₁.</>,
+    reason: <>Le Chatelier&rsquo;s principle: the system partially opposes the change. The graph agrees — the reverse rate at <i>t</i>₂ is higher than before <i>t</i>₁, which needs a higher concentration of products. Matches option <b>C</b>. Option <b>B</b> would make the forward rate drop instantly; option <b>D</b> needs a temperature rise, which would make both rates jump (both points the report makes).</>,
   },
 ]
 

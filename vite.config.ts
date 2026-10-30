@@ -9,7 +9,7 @@ const port = process.env.PORT ? Number(process.env.PORT) : undefined
 
 // The worked-solutions chunk a question file belongs to (see manualChunks below).
 function paperChunk(id: string): string | undefined {
-  const m = id.match(/\/worked-solutions\/questions\/(Methods|Specialist|Chemistry)Q\d+_(\d{4})(NHT)?(Exam[12])?\.tsx$/)
+  const m = id.match(/\/worked-solutions\/questions\/(Methods|Specialist|Chemistry)Q\d+_(\d{4})(NHT)?(Exam[12]|SA)?\.tsx$/)
   if (!m) return
   const subject = { Methods: 'meth', Specialist: 'spec', Chemistry: 'chem' }[m[1]]
   const year = m[3] ? `${m[2]}nht` : m[2]

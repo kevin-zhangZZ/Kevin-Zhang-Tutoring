@@ -10,7 +10,6 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 29, B: 39, C: 10, D: 21 },
   answer: 'A',
-  noAnswer: 1,
   comment: (
     <>
       The product at the cathode is produced by the reduction of the strongest oxidising agent
@@ -42,11 +41,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>At an inert Pt cathode, the species that gets reduced is whichever <b>oxidising agent present is strongest</b> — so identify all the possible oxidants in each electrolyte first.</>,
-    reason: <>The reduction at the cathode always favours the strongest available oxidant.</>,
+    reason: <>Reduction always happens at the cathode (&ldquo;<b>R</b>ed <b>Cat</b>&rdquo;). The strongest oxidant is the one <b>highest</b> on the left of the electrochemical series (largest <i>E</i>°). In an <b>aqueous</b> solution water is also a possible oxidant; a <b>molten</b> salt (l) contains no water at all.</>,
   },
   {
-    working: <>A: KI(aq) — the only oxidants present are K⁺(aq) and H₂O(l). K⁺ is an extremely weak oxidising agent, so <b>H₂O</b> is reduced: <Chem eq="2H2O(l) + 2e- -> H2(g) + 2OH-(aq)" />.</>,
-    reason: <>Produces <b>H₂ gas</b>.</>,
+    working: <>A: KI(aq) — oxidants present are K⁺(aq) (<i>E</i>° = −2.94 V) and H₂O(l) (<i>E</i>° = −0.83 V). H₂O is higher in the series, so <b>H₂O</b> is reduced:<br /><Chem eq="2H2O(l) + 2e- -> H2(g) + 2OH-(aq)" /></>,
+    reason: <>Produces <b>H₂ gas</b> at the cathode. E° values from the Data Book&rsquo;s electrochemical series. (I⁻ is a reductant, not an oxidant — it is oxidised to I₂ at the anode.)</>,
   },
   {
     working: <>B: NaCl(l) (molten) — the only oxidant present is Na⁺(l), reduced to Na(l), a liquid metal.</>,
@@ -57,12 +56,12 @@ const ROWS: WorkingRow[] = [
     reason: <>No gas produced. Ruled out.</>,
   },
   {
-    working: <>D: CuSO₄(aq) — oxidants present are Cu²⁺(aq) and H₂O(l). Cu²⁺ is the stronger oxidant, so it's reduced instead: <Chem eq="Cu2+(aq) + 2e- -> Cu(s)" />.</>,
-    reason: <>Produces solid copper, not a gas. Ruled out.</>,
+    working: <>D: CuSO₄(aq) — oxidants present are Cu²⁺(aq) (<i>E</i>° = +0.34 V) and H₂O(l) (<i>E</i>° = −0.83 V). Cu²⁺ is the stronger oxidant, so it&rsquo;s reduced instead:<br /><Chem eq="Cu2+(aq) + 2e- -> Cu(s)" /></>,
+    reason: <>Produces solid copper, not a gas. (A gas, O₂, does form in this cell — but at the <b>anode</b>, where water is oxidised.) Ruled out.</>,
   },
   {
     working: <b>Only KI(aq) forces water to be reduced at the cathode, releasing H₂ gas.</b>,
-    reason: <>Matches option <b>A</b>. Option <b>B</b>, the most popular answer, does produce a gas, but Cl₂ forms at the anode; at the cathode molten NaCl gives liquid sodium.</>,
+    reason: <>Matches option <b>A</b>. Option <b>B</b>, the most popular answer, does produce a gas, but Cl₂ forms at the <b>anode</b> (oxidation of Cl⁻); at the cathode molten NaCl gives liquid sodium. The question asks specifically about the cathode, so check which electrode each product forms at.</>,
   },
 ]
 
