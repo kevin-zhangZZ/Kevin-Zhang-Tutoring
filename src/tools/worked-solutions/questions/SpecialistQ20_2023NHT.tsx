@@ -20,8 +20,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{sd}(Z)=\sqrt{v\left(p^2+q^2\right)}}" />,
-    reason: <>Matches option <b>B</b>. The standard deviation is the square root of the variance. Check with <Katex tex="p=1,\ q=0" />: <Katex tex="Z=X" /> and the formula gives <Katex tex="\sqrt v" /> ✓.</>,
-    more: <>Option A treats <Katex tex="v" /> as the standard deviation, squaring it again. Option E forgets to square <Katex tex="p" /> and <Katex tex="q" />. Option D, <Katex tex="(p+q)\sqrt v" />, adds the standard deviations <Katex tex="p\sqrt v+q\sqrt v" /> instead of the variances.</>,
+    reason: <>Matches option <b>B</b>. The standard deviation is the square root of the variance.</>,
+    more: <>Check with <Katex tex="p=1,\ q=0" />: <Katex tex="Z=X" /> and the formula gives <Katex tex="\sqrt v" /> ✓. Option A treats <Katex tex="v" /> as the standard deviation, squaring it again. Option E forgets to square <Katex tex="p" /> and <Katex tex="q" />. Option D, <Katex tex="(p+q)\sqrt v" />, adds the standard deviations <Katex tex="p\sqrt v+q\sqrt v" /> instead of the variances.</>,
   },
 ]
 

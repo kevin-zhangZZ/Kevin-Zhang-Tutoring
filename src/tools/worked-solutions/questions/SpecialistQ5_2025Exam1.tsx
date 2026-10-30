@@ -47,8 +47,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>The <Katex tex="\underset{\sim}{j}" /> component of <Katex tex="\underset{\sim}{r_P}" /> is the constant <Katex tex="-1" />; set it equal to that of <Katex tex="\underset{\sim}{r_Q}(1)" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{c = -4}" />,
-    reason: <>As required. The <Katex tex="\underset{\sim}{i}" /> components then give <Katex tex="1+a = b+2" />, i.e. <Katex tex="b = a-1" /> — a relation part b. will need.</>,
+    working: <Katex display tex="\boxed{c = -4} \quad \text{As required.}" />,
+    reason: <>Subtract 3 from both sides. The <Katex tex="\underset{\sim}{i}" /> components then give <Katex tex="1+a = b+2" />, i.e. <Katex tex="b = a-1" /> — a relation part b. will need.</>,
   },
 ]
 
@@ -66,9 +66,9 @@ const ROWS_B: WorkingRow[] = [
     reason: <>The velocities are at right angles at collision (given), so their dot product is zero. <Katex tex="\underset{\sim}{v_P}(1)" /> has no <Katex tex="\underset{\sim}{j}" /> component, so only the <Katex tex="\underset{\sim}{i}" /> components contribute.</>,
   },
   {
-    working: <Katex display tex="b = a-1 \implies (3+2a)(a+1) = 0" />,
-    reason: <>One equation, two unknowns — so use the collision itself: matching <Katex tex="\underset{\sim}{i}" /> components at <Katex tex="t=1" /> (part a.) give <Katex tex="1+a=b+2" />.</>,
-    more: <>This is the second fact the report says students needed. Replacing <Katex tex="b+2" /> by <Katex tex="a+1" /> leaves an equation in <Katex tex="a" /> alone, already factorised.</>,
+    working: <Katex display tex="\begin{aligned} \underset{\sim}{i}\text{ at } t=1: \quad 1+a &= b+2 \\ \implies (3+2a)(1+a) &= 0 \end{aligned}" />,
+    reason: <>One equation, two unknowns — so use the collision itself: matching <Katex tex="\underset{\sim}{i}" /> components at <Katex tex="t=1" /> (part a.) give <Katex tex="1+a=b+2" />. Replace <Katex tex="b+2" /> by <Katex tex="1+a" /> in the dot product.</>,
+    more: <>This is the second fact the report says students needed. The substitution leaves an equation in <Katex tex="a" /> alone, already factorised.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -\tfrac32 \ \text{ or } \ a = -1}" />,

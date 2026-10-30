@@ -33,7 +33,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dV}{dh}=\frac{\pi h^2}{4},\qquad \frac{dV}{dt}=5-k\sqrt h" />,
-    reason: <>The volume changes at the rate in minus the rate out.</>,
+    reason: <>Differentiate <Katex tex="V=\tfrac{\pi}{12}h^3" /> with respect to <Katex tex="h" />. The volume changes at the rate in minus the rate out.</>,
   },
   {
     working: <Katex display tex="\frac{dh}{dt}=\frac{dV}{dt}\div\frac{dV}{dh}=\left(5-k\sqrt h\right)\times\frac{4}{\pi h^2}" />,

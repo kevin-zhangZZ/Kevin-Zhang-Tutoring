@@ -116,8 +116,9 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="x=3" /> is the only stationary point, so the gradient can&apos;t change sign anywhere else: test
-        one point on each side. Pick <Katex tex="x" /> making <Katex tex="x+6" /> a perfect square (here 4) so the
+        The nature depends on the sign of <Katex tex="\tfrac{dy}{dx}" /> either side of <Katex tex="x=3" />.
+        As <Katex tex="x=3" /> is the only stationary point, the gradient can&apos;t change sign anywhere else, so
+        test one point on each side. Pick <Katex tex="x" /> making <Katex tex="x+6" /> a perfect square (here 4) so the
         root is exact.
       </>
     ),

@@ -252,7 +252,7 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="= -\tfrac{2000}{\pi}\left(\tfrac{\sqrt3}{2}-1\right) = \tfrac{1000\left(2-\sqrt3\right)}{\pi}" />
       </>
     ),
-    reason: <>An antiderivative of <Katex tex="\cos(ax)" /> is <Katex tex="\tfrac1a\sin(ax)" />, with <Katex tex="\tfrac1a=\tfrac{100}{\pi}" />. Then <Katex tex="\sin\tfrac{2\pi}{3}=\tfrac{\sqrt3}{2}" /> and <Katex tex="\sin\tfrac\pi2=1" />.</>,
+    reason: <>An antiderivative of <Katex tex="\cos(ax)" /> is <Katex tex="\tfrac1a\sin(ax)" />, with <Katex tex="\tfrac1a=\tfrac{100}{\pi}" />, so the coefficient is <Katex tex="-20\times\tfrac{100}{\pi}=-\tfrac{2000}{\pi}" />. Then <Katex tex="\sin\tfrac{2\pi}{3}=\tfrac{\sqrt3}{2}" /> and <Katex tex="\sin\tfrac\pi2=1" />.</>,
   },
   {
     working: <Katex display tex="A = \tfrac{2000}{3}+\tfrac{2000\left(2-\sqrt3\right)}{\pi} = 837.248\ldots" />,

@@ -101,14 +101,15 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Not needed to choose the option, but it confirms D: multiply both sides by the denominator, then substitute each zero
-        so that two of the three terms vanish.
+        so that two of the three terms vanish. As <Katex tex="b<0" />, <Katex tex="|b|=-b" />, so{' '}
+        <Katex tex="\tfrac{1}{2a|b|}=-\tfrac{1}{2ab}" />.
       </>
     ),
     more: (
       <>
         At <Katex tex="x=\pm\sqrt{|b|}" />, <Katex tex="x^2+b=|b|+b=0" />, which removes the <Katex tex="A" /> term. All three
         constants come out as real numbers, with the <Katex tex="a" /> sitting inside them, which is why D has no{' '}
-        <Katex tex="\tfrac1a" /> in front. (Using <Katex tex="|b|=-b" />: <Katex tex="\tfrac{1}{2a|b|}=-\tfrac{1}{2ab}" />.)
+        <Katex tex="\tfrac1a" /> in front.
       </>
     ),
   },
@@ -208,7 +209,7 @@ export default function SpecialistQ7_2020() {
             </p>
             <p>
               Deal with the sign first: <Katex tex="b=-|b|" />, so <Katex tex="x^2+b=x^2-|b|=\big(x-\sqrt{|b|}\big)\big(x+\sqrt{|b|}\big)" />.
-              A number check catches the slip at once: try <Katex tex="b=-4" /> as in the working, where{' '}
+              A number check catches the slip at once: try <Katex tex="b=-4" /> as in the Background above, where{' '}
               <Katex tex="\sqrt{|b|}=2" /> and <Katex tex="\sqrt b" /> doesn&apos;t exist.
             </p>
           </WrongMethod>

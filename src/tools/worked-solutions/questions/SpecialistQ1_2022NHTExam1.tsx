@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d}{dx}\left(x^2e^{y-1}\right)=2xe^{y-1}+x^2e^{y-1}\frac{dy}{dx}" />,
-    reason: <>A product of <Katex tex="x^2" /> and <Katex tex="e^{y-1}" />, so use the product rule. Differentiating <Katex tex="e^{y-1}" /> with respect to <Katex tex="x" /> needs the chain rule: <Katex tex="e^{y-1}\cdot\tfrac{dy}{dx}" />.</>,
+    reason: <>The relation can't be rearranged into <Katex tex="y=\ldots" />, so differentiate every term with respect to <Katex tex="x" />, treating <Katex tex="y" /> as a function of <Katex tex="x" /> (implicit differentiation). This term is a product of <Katex tex="x^2" /> and <Katex tex="e^{y-1}" />, so use the product rule. Differentiating <Katex tex="e^{y-1}" /> with respect to <Katex tex="x" /> needs the chain rule: <Katex tex="e^{y-1}\cdot\tfrac{dy}{dx}" />.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\left(4ye^{x}\right)=4e^{x}\frac{dy}{dx}+4ye^{x}" />,

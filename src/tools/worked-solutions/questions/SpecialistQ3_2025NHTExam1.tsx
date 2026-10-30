@@ -27,11 +27,11 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} &\text{Want } P(k+1): \\ &2^3+\dots+(2k)^3+\big(2(k+1)\big)^3 \\ &\quad=2(k+1)^2(k+2)^2 \end{aligned}" />,
     reason: <>Write down the target by replacing <Katex tex="n" /> with <Katex tex="k+1" /> on both sides: <Katex tex="2(k+1)^2\big((k+1)+1\big)^2" />. Knowing where you are heading tells you how to factorise below.</>,
-    more: <>The sum for <Katex tex="k+1" /> is the sum for <Katex tex="k" /> plus exactly one new term, the <Katex tex="(k+1)" />th even number cubed: <Katex tex="\big(2(k+1)\big)^3=8(k+1)^3" />.</>,
+    more: <>The sum for <Katex tex="k+1" /> is the sum for <Katex tex="k" /> plus exactly one new term, the <Katex tex="(k+1)" />th even number cubed, <Katex tex="\big(2(k+1)\big)^3" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} &\text{LHS of } P(k+1) \\ &= 2^3+\dots+(2k)^3+\big(2(k+1)\big)^3 \\ &=2k^2(k+1)^2+8(k+1)^3 \end{aligned}" />,
-    reason: <>Replace the first <Katex tex="k" /> terms with <Katex tex="2k^2(k+1)^2" />, using the inductive hypothesis. This is the step that makes it a proof by induction.</>,
+    reason: <>Replace the first <Katex tex="k" /> terms with <Katex tex="2k^2(k+1)^2" />, using the inductive hypothesis. This is the step that makes it a proof by induction. The new last term simplifies as <Katex tex="\big(2(k+1)\big)^3=2^3(k+1)^3=8(k+1)^3" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} &=2(k+1)^2\big(k^2+4(k+1)\big) \\ &=2(k+1)^2\left(k^2+4k+4\right) \end{aligned}" />,

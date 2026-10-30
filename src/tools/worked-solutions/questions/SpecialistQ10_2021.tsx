@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = 0: \ y-2x=0 \iff y=2x" />,
-    reason: <>A final check: the dashes are horizontal where <Katex tex="\tfrac{dy}{dx}=0" />. For D that is the line <Katex tex="y=2x" />, through <Katex tex="(0.5, 1)" /> and <Katex tex="(1, 2)" />, and that is where the flat dashes run in the diagram.</>,
+    reason: <>A final check: the dashes are horizontal where <Katex tex="\tfrac{dy}{dx}=0" />. For D that is the line <Katex tex="y=2x" />, through <Katex tex="(0.5, 1)" /> and <Katex tex="(1, 2)" />, and that is where the flat dashes run in the exam's diagram.</>,
     more: <>Option B, <Katex tex="2x-y" />, is flat along the same line, but it is D with every sign flipped, which the corner checks already ruled out. So the flat-dash line alone can't separate B from D; the signs can.</>,
   },
   {

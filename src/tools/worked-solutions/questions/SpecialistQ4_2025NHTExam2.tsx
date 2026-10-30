@@ -89,11 +89,11 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered}\tfrac{a}{2}(10)^2 + 20(10) + 20 = 2-5\cos(10) \\ \implies a = \tfrac{-218-5\cos(10)}{50}\end{gathered}" />,
-    reason: <><Katex tex="\underset{\sim}{i}" />: <Katex tex="50a+220=2-5\cos(10)" />. Calculator in radians.</>,
+    reason: <><Katex tex="\underset{\sim}{i}" />: the left side simplifies to <Katex tex="50a+220=2-5\cos(10)" />, so subtract 220 and divide by 50. Calculator in radians.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}\tfrac{b}{2}(10)^2 + 30(10) + 30 = 1-6\sin(10) \\ \implies b = \tfrac{-329-6\sin(10)}{50}\end{gathered}" />,
-    reason: <><Katex tex="\underset{\sim}{j}" />: <Katex tex="50b+330=1-6\sin(10)" />.</>,
+    reason: <><Katex tex="\underset{\sim}{j}" />: the left side simplifies to <Katex tex="50b+330=1-6\sin(10)" />, so subtract 330 and divide by 50.</>,
   },
   {
     working: <Katex display tex="\boxed{a \approx -4.3, \quad b \approx -6.5, \quad c = -0.3}" />,
@@ -118,9 +118,9 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="t = 4.2113\ldots" />
       </>
     ),
-    reason: <>Minimise <Katex tex="D" /> over the duck&apos;s domain. Equivalently solve <Katex tex="D'(t)=0" />: <Katex tex="\tfrac{d}{dt}D^2 = 348\cos(t)-180\sin(t)+22\sin(t)\cos(t)=0" />.</>,
+    reason: <>Minimise <Katex tex="D" /> over the duck&apos;s whole domain <Katex tex="0\le t\le10" />, and give the CAS that domain: the motion repeats every <Katex tex="2\pi" /> seconds, so without it the CAS could return a closest time outside the domain (such as <Katex tex="4.21-2\pi\approx-2.07" />).</>,
     more: <>
-      That derivative is zero at <Katex tex="t\approx1.12,\ 4.21,\ 7.40" /> in <Katex tex="[0,10]" />: 1.12 and 7.40 (one period apart) are the <em>farthest</em> point, 4.21 the closest. The next closest moment, <Katex tex="4.21+2\pi\approx10.49" />, is past <Katex tex="t=10" />. Endpoints: <Katex tex="D(0)=\sqrt{1370}\approx37.0" />, <Katex tex="D(10)\approx29.2" />, both more than <Katex tex="D(4.21)\approx28.4" />.
+      Without fMin, solve <Katex tex="D'(t)=0" />. Since <Katex tex="D" /> is positive, this is the same as <Katex tex="\tfrac{d}{dt}D^2=0" />, which avoids the square root: <Katex tex="\tfrac{d}{dt}D^2 = 348\cos(t)-180\sin(t)+22\sin(t)\cos(t)=0" />. That derivative is zero at <Katex tex="t\approx1.12,\ 4.21,\ 7.40" /> in <Katex tex="[0,10]" />: 1.12 and 7.40 (one period apart) are the <em>farthest</em> point, 4.21 the closest. The next closest moment, <Katex tex="4.21+2\pi\approx10.49" />, is past <Katex tex="t=10" />. Endpoints: <Katex tex="D(0)=\sqrt{1370}\approx37.0" />, <Katex tex="D(10)\approx29.2" />, both more than <Katex tex="D(4.21)\approx28.4" />.
       <span className="block mt-2 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
         <img loading="lazy" decoding="async" src={closestSrc}
           alt="This site's own explanatory graph, not from the VCAA paper: the duck's elliptical path centred at (2, 1), the drone's starting point (20, 30), and a dashed line of about 28.4 m from it to the closest point on the ellipse, reached at t ≈ 4.2"
@@ -130,7 +130,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t \approx 4.2 \text{ s}}" />,
-    reason: <>Correct to one decimal place. At that moment the duck is at about <Katex tex="(4.4,\ 6.3)" />, the point on the ellipse nearest the top right, where the drone started.</>,
+    reason: <>Correct to one decimal place. At that moment the duck is at about <Katex tex="(4.4,\ 6.3)" />, the point on the ellipse nearest the drone&apos;s starting point <Katex tex="(20,30)" />.</>,
   },
 ]
 

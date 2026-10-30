@@ -24,7 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}t=2:\ \ & 7-\tfrac{25}{2}(2) = -18\\ & 2^3-\tfrac{13}{2}(2)^2 = -18 \ \checkmark\\[4pt] t=3:\ \ & 7-\tfrac{25}{2}(3) = -30.5\\ & 3^3-\tfrac{13}{2}(3)^2 = -31.5 \ \times\end{aligned}" />,
-    reason: <>Each pair is A&rsquo;s <Katex tex="\underset{\sim}{i}" /> component, then B&rsquo;s. At <Katex tex="t=2" /> they agree too, so the particles are at the same point, <Katex tex="(-18,\,4)" />. At <Katex tex="t=3" /> they are at the same height but 1 m apart horizontally.</>,
+    reason: <>Each pair is A&rsquo;s <Katex tex="\underset{\sim}{i}" /> component, then B&rsquo;s. At <Katex tex="t=2" /> they agree too, so the particles are at the same point, <Katex tex="(-18,\,4)" />. At <Katex tex="t=3" /> they are at the same height but 1 unit apart horizontally.</>,
   },
   {
     working: <Katex display tex="\boxed{t=2}" />,

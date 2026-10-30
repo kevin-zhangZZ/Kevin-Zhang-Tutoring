@@ -132,7 +132,7 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x+1 = 0 \implies \text{vertical asymptote } x = -1" />,
-    reason: <>The only vertical asymptote: after the <Katex tex="(x-1)" /> cancelled in part a., <Katex tex="x+1" /> is the only factor left in the denominator.</>,
+    reason: <>The only vertical asymptote: after the <Katex tex="(x-1)" /> cancelled in part a., <Katex tex="x+1" /> is the only factor left in the denominator. So <Katex tex="x=1" /> is <em>not</em> an asymptote: it is the hole filled in part b.</>,
     more: (
       <>
         The report notes a number of students included an incorrect vertical asymptote{' '}

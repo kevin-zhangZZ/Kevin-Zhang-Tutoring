@@ -29,7 +29,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(R=3)=\frac{27}{125}}" />,
-    reason: <>Sanity check: about 0.22. Red is the likelier colour, but needing it three times in a row should still be well under a half.</>,
+    reason: <>Cube the top and the bottom: <Katex tex="3^3=27" /> and <Katex tex="5^3=125" />.</>,
+    more: <>Sanity check: about 0.22. Red is the likelier colour, but needing it three times in a row should still be well under a half.</>,
   },
 ]
 
@@ -69,11 +70,12 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="=\frac{27}{125}\times\frac{125}{81}=\frac{27}{81}" />,
+    reason: <>Dividing by a fraction means multiplying by its reciprocal, so the 125s cancel.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(R=3\mid R\ge2)=\frac{1}{3}}" />,
-    reason: <>Sanity check: a conditional probability must be at least the unconditional one (knowing <Katex tex="R\ge2" /> makes 3 reds more likely), and <Katex tex="\tfrac13>\tfrac{27}{125}\approx0.22" /> ✓.</>,
-    more: <>Another way to see it: the counts 54 and 27 are in the ratio 2 : 1, so given that it is either two reds or three reds, three reds has 1 chance in 3.</>,
+    reason: <>Simplify: 81 is 3 lots of 27, so <Katex tex="\tfrac{27}{81}=\tfrac13" />.</>,
+    more: <>Sanity check: the answer is <Katex tex="\Pr(R=3)" /> divided by <Katex tex="\Pr(R\ge2)" />, which is less than 1, so it must come out bigger than <Katex tex="\Pr(R=3)" />. It does: <Katex tex="\tfrac13>\tfrac{27}{125}\approx0.22" /> ✓. Another way to see it: the counts 54 and 27 are in the ratio 2 : 1, so given that it is either two reds or three reds, three reds has 1 chance in 3.</>,
   },
 ]
 

@@ -3,7 +3,8 @@
 // Solution is original.
 // Oct 2026 Concise/Detailed pass (no widget: 60% correct, not a qualifying part): option analysis moved
 // to the last row's `more`; row 3's `more` shows why a lower limit of 0 adds a negative area (C, D, E's 15);
-// CAS line (row 5) and a second-piece note added as `more`; the last `more` says C is both slips at once.
+// CAS line (row 5) and a second-piece note added as `more`; the last `more` says C is most likely both slips at once
+// (softened to "most likely" in the Oct 30 review: the report gives no reason for C).
 // Numbers re-checked in sympy.
 
 import Katex from '../../../components/Katex'
@@ -70,7 +71,7 @@ const ROWS: WorkingRow[] = [
       <>
         Options <b>D</b> and <b>E</b> are the two roots of <Katex tex="(k-1)^2=15" />, which comes from integrating
         from <Katex tex="0" /> (explained above); <b>E</b> is negative, so it can&apos;t even be a value of{' '}
-        <Katex tex="X" />. Option <b>C</b>, the most popular wrong answer, makes that slip <em>and</em> a second one:
+        <Katex tex="X" />. Option <b>C</b>, the most popular wrong answer, most likely makes that slip <em>and</em> a second one:
         from <Katex tex="(k-1)^2=15" /> it takes <Katex tex="k-1=\sqrt{15}" /> and then subtracts the{' '}
         <Katex tex="1" /> instead of adding it, giving <Katex tex="k=\sqrt{15}-1" />. Option <b>A</b> is the same sign
         slip on the correct <Katex tex="(k-1)^2=14" />. Substituting back catches a sign slip:{' '}

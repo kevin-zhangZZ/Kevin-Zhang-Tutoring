@@ -7,6 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import reportGraphSrc from './meth-2024nht-mcq20-report-graph.png'
 
@@ -57,13 +58,13 @@ const ROWS: WorkingRow[] = [
     reason: <>Starting exactly on the left-hand peak also works: <Katex tex="g(0)=\tfrac14" /> is the largest value <Katex tex="f" /> ever takes.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}&f(-a)=f(1-a)\\ &a^2(1-a^2)\\ &\quad=(1-a)^2\big(1-(1-a)^2\big)\\ &\Rightarrow\ a=\tfrac12\end{aligned}" />,
-    reason: <>Now start the window just right of the left peak, on the falling side. The window then climbs back up the middle rise, so its right end <Katex tex="f(1-a)" /> competes. The left end still wins while <Katex tex="f(-a)\ge f(1-a)" />; the cut-off is where they are equal.</>,
-    more: <>Both <Katex tex="-a" /> and <Katex tex="1-a" /> are then on the same rise <Katex tex="\left[0,\tfrac{\sqrt2}{2}\right]" /> after reflecting <Katex tex="-a" /> to <Katex tex="a" /> (<Katex tex="f" /> is even), so <Katex tex="f(a)\ge f(1-a)" /> means <Katex tex="a\ge 1-a" />, i.e. <Katex tex="a\ge\tfrac12" />. At <Katex tex="a=\tfrac12" /> the window is <Katex tex="\left[-\tfrac12,\tfrac12\right]" />, symmetric, so <Katex tex="g(0)=g(1)=\tfrac{3}{16}" />. This is the report&apos;s <Katex tex="g(0)=g(1)" />. The equation&apos;s other solutions, <Katex tex="a=0" /> and <Katex tex="a=1" />, also make the ends equal (both 0), but each of those windows contains a peak, so they fail.</>,
+    working: <Katex display tex="\begin{aligned}&f(-a)=f(1-a)\\ &a^2-a^4=(1-a)^2-(1-a)^4\\ &\big(a^2-(1-a)^2\big)\big(1-a^2-(1-a)^2\big)=0\\ &(2a-1)\times 2a(1-a)=0\\ &a=\tfrac12\quad(a=0,\,1\text{ rejected})\end{aligned}" />,
+    reason: <>Now start the window just right of the left peak, on the falling side. The window then climbs back up the middle rise, so its right end <Katex tex="f(1-a)" /> competes. The left end still wins while <Katex tex="f(-a)\ge f(1-a)" />; the cut-off is where they are equal. Solve with <Cas fn="solve">solve(f(−a)=f(1−a), a)</Cas>, or by hand: with <Katex tex="p=a" />, <Katex tex="q=1-a" />, factor <Katex tex="p^2-q^2-(p^4-q^4)=(p^2-q^2)(1-p^2-q^2)" />. Reject <Katex tex="a=0" /> and <Katex tex="a=1" />: those windows contain a peak.</>,
+    more: <>Both <Katex tex="-a" /> and <Katex tex="1-a" /> are then on the same rise <Katex tex="\left[0,\tfrac{\sqrt2}{2}\right]" /> after reflecting <Katex tex="-a" /> to <Katex tex="a" /> (<Katex tex="f" /> is even), so <Katex tex="f(a)\ge f(1-a)" /> means <Katex tex="a\ge 1-a" />, i.e. <Katex tex="a\ge\tfrac12" />. At <Katex tex="a=\tfrac12" /> the window is <Katex tex="\left[-\tfrac12,\tfrac12\right]" />, symmetric, so <Katex tex="g(0)=g(1)=\tfrac{3}{16}" />. This is the report&apos;s <Katex tex="g(0)=g(1)" />. The rejected roots <Katex tex="a=0" /> and <Katex tex="a=1" /> also make the ends equal (both 0), but their windows <Katex tex="[0,1]" /> and <Katex tex="[-1,0]" /> each contain a peak of height <Katex tex="\tfrac14" />, so the ends are not the maximum.</>,
   },
   {
     working: <Katex display tex="\tfrac12\le a\le\tfrac{\sqrt2}{2}" />,
-    reason: <>So the window may start anywhere from the left peak (<Katex tex="a=\tfrac{\sqrt2}{2}" />) to <Katex tex="-\tfrac12" /> (<Katex tex="a=\tfrac12" />). Every other start fails: left of the left peak, or between <Katex tex="-\tfrac12" /> and the right peak, <Katex tex="f" /> rises from the left end somewhere in the window.</>,
+    reason: <>So the window may start anywhere from the left peak (<Katex tex="a=\tfrac{\sqrt2}{2}" />) to <Katex tex="-\tfrac12" /> (<Katex tex="a=\tfrac12" />). Every other start fails: left of the left peak, or between <Katex tex="-\tfrac12" /> and the right peak, <Katex tex="f" /> climbs above its left-end value somewhere in the window.</>,
     more: <>Starting left of <Katex tex="-\tfrac{\sqrt2}{2}" /> (<Katex tex="a>\tfrac{\sqrt2}{2}" />), <Katex tex="f" /> is increasing at the left end, so a point just inside is higher. Starting in <Katex tex="\left(-\tfrac12,\tfrac{\sqrt2}{2}\right)" />, either <Katex tex="f" /> is increasing at the left end, or the window reaches a right end higher than <Katex tex="f(-a)" />.</>,
   },
   {

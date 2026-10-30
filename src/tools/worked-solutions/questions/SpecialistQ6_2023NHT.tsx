@@ -22,11 +22,12 @@ const ROWS: WorkingRow[] = [
     reason: <>To get Cartesian form, substitute <Katex tex="z=x+yi" /> and square both sides (both are non-negative distances).</>,
   },
   {
-    working: <Katex display tex="-2x+1-4y+4=4x+4-2y+1" />,
-    reason: <>Expand; the <Katex tex="x^2" /> and <Katex tex="y^2" /> terms cancel on both sides, which is why the locus is a line, not a circle.</>,
+    working: <Katex display tex="\begin{aligned}&x^2-2x+1+y^2-4y+4\\ &\quad=x^2+4x+4+y^2-2y+1\\ &-2x-4y+5=4x-2y+5\end{aligned}" />,
+    reason: <>Expand each bracket. The <Katex tex="x^2" /> and <Katex tex="y^2" /> terms are the same on both sides and cancel, which is why the locus is a line, not a circle.</>,
   },
   {
     working: <Katex display tex="-6x=2y \implies y=-3x" />,
+    reason: <>The constant 5 cancels too. Collect the <Katex tex="x" /> terms on the left and the <Katex tex="y" /> terms on the right, then divide by 2.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\text{midpoint}&=\left(-\tfrac12,\ \tfrac32\right):\ \ -3\left(-\tfrac12\right)=\tfrac32\ \checkmark\\ \text{gradients}&:\ \tfrac{2-1}{1-(-2)}=\tfrac13,\quad \tfrac13\times(-3)=-1\ \checkmark\end{aligned}" />,

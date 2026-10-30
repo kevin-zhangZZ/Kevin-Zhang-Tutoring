@@ -129,11 +129,11 @@ const ROWS_B: WorkingRow[] = [
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="\begin{aligned} f''(x) &= \left(2-2x\right)e^{-x}-\left(2x-x^2\right)e^{-x} \\ &= \left(x^2-4x+2\right)e^{-x} \end{aligned}" />,
-    reason: <>A point of inflection is where the concavity changes, i.e. where <Katex tex="f''" /> changes sign. Differentiate part a.&apos;s <Katex tex="f'(x)" /> with the product rule again.</>,
+    working: <Katex display tex="\begin{aligned} f''(x) &= \left(2-2x\right)e^{-x}-\left(2x-x^2\right)e^{-x} \\ &= \left(2-2x-2x+x^2\right)e^{-x} \\ &= \left(x^2-4x+2\right)e^{-x} \end{aligned}" />,
+    reason: <>A point of inflection is where the concavity changes, i.e. where <Katex tex="f''" /> changes sign. Differentiate part a.&apos;s <Katex tex="f'(x)" /> with the product rule again, then take out <Katex tex="e^{-x}" /> and collect like terms (watch the sign on the second bracket).</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} x^2-4x+2 = 0 &\implies x = 2\pm\sqrt2 \\ &\implies x = 0.5857\ldots,\ 3.4142\ldots \end{aligned}" />,
+    working: <Katex display tex="\begin{aligned} x^2-4x+2 = 0 &\implies x = \frac{4\pm\sqrt{16-8}}{2} = 2\pm\sqrt2 \\ &\implies x = 0.5857\ldots,\ 3.4142\ldots \end{aligned}" />,
     reason: <><Katex tex="e^{-x}>0" />, so <Katex tex="f''" /> has the sign of the upright parabola <Katex tex="x^2-4x+2" />: positive, negative, positive. It changes sign at both roots, so both are points of inflection.</>,
     more: <>A zero of <Katex tex="f''" /> on its own is not enough: <Katex tex="f''" /> must change sign there. Part e. turns on exactly that. On CAS, <Cas fn="solve">solve(x^2−4x+2=0, x)</Cas> gives the same roots.</>,
   },

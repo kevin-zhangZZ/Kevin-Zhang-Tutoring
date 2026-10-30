@@ -36,7 +36,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(D=1\mid D\le1)=\frac{\Pr(D=1)}{\Pr(D\le1)}" />,
-    reason: <>&ldquo;It is known that&rdquo; is a given condition. Exactly one defective is already inside &ldquo;at most one&rdquo;, so the intersection is just <Katex tex="\Pr(D=1)" />.</>,
+    reason: <>Let <Katex tex="D" /> be the number of defective products selected. &ldquo;It is known that&rdquo; is a given condition, so this is a conditional probability. Exactly one defective is already inside &ldquo;at most one&rdquo;, so the intersection is just <Katex tex="\Pr(D=1)" />.</>,
   },
   {
     working: <Katex display tex="\Pr(D=1)=\tfrac{6}{10}\cdot\tfrac49+\tfrac{4}{10}\cdot\tfrac69=\tfrac{48}{90}=\tfrac{8}{15}" />,
@@ -48,6 +48,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{8/15}{2/3}=\frac{8}{15}\cdot\frac32" />,
+    reason: <>Dividing by a fraction is multiplying by its reciprocal; then cancel.</>,
   },
   {
     working: <Katex display tex="\boxed{\tfrac45}" />,

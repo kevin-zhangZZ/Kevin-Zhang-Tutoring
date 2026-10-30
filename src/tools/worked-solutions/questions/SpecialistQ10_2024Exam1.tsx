@@ -32,11 +32,11 @@ const ROWS: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\underset{\sim}{d_1}\times\underset{\sim}{d_2} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & 2 & 1\\-1 & 3 & 2\end{vmatrix} = \underset{\sim}{i}-3\underset{\sim}{j}+5\underset{\sim}{k}"
+        tex="\begin{aligned}\underset{\sim}{d_1}\times\underset{\sim}{d_2} &= \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & 2 & 1\\-1 & 3 & 2\end{vmatrix}\\ &= (4-3)\underset{\sim}{i}-\big(2-(-1)\big)\underset{\sim}{j}+\big(3-(-2)\big)\underset{\sim}{k}\\ &= \underset{\sim}{i}-3\underset{\sim}{j}+5\underset{\sim}{k}\end{aligned}"
       />
     ),
-    reason: <>A cross product is perpendicular to both directions, so it points along the common perpendicular, where the shortest gap is measured.</>,
-    more: <>Expanding the determinant along the top row:{' '}<Katex tex="\underset{\sim}{i}\,(2\cdot2-1\cdot3)-\underset{\sim}{j}\,(1\cdot2-1\cdot(-1))+\underset{\sim}{k}\,(1\cdot3-2\cdot(-1))" />. Mind the minus sign on the middle term. Check: dotting the answer with <Katex tex="\underset{\sim}{d_1}" /> gives <Katex tex="1-6+5=0" />, and with <Katex tex="\underset{\sim}{d_2}" /> gives <Katex tex="-1-9+10=0" />.</>,
+    reason: <>A cross product is perpendicular to both directions, so it points along the common perpendicular, where the shortest gap is measured. Expand along the top row: each bracket is the 2×2 determinant left when you cover that entry's row and column, and the middle term takes a minus sign.</>,
+    more: <>Written out in full:{' '}<Katex tex="\underset{\sim}{i}\,(2\cdot2-1\cdot3)-\underset{\sim}{j}\,(1\cdot2-1\cdot(-1))+\underset{\sim}{k}\,(1\cdot3-2\cdot(-1))" />. Check: dotting the answer with <Katex tex="\underset{\sim}{d_1}" /> gives <Katex tex="1-6+5=0" />, and with <Katex tex="\underset{\sim}{d_2}" /> gives <Katex tex="-1-9+10=0" />.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{d_1}\times\underset{\sim}{d_2}\right| = \sqrt{1+9+25} = \sqrt{35}" />,

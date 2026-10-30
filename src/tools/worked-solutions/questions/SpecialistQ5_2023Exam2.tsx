@@ -301,6 +301,9 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="9t = -18 \implies t = -2" />,
+    reason: <>
+      The left side must equal the plane&apos;s right side, <Katex tex="-18" />. Divide by 9.
+    </>,
     more: <>
       <Katex tex="t" /> is negative because <Katex tex="\psi" /> lies on the{' '}
       <Katex tex="-\underset{\sim}{n}" /> side of <Katex tex="O" /> (the right-hand side <Katex tex="-18" /> is

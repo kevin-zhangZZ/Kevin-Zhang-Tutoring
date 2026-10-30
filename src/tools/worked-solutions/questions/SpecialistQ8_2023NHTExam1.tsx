@@ -54,7 +54,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A=\log_e\!\left(2+\sqrt3\right)-\frac{\pi}{3}}" />,
-    reason: <><Katex tex="\log_e(1)=0" />. Sanity check: <Katex tex="\log_e(3.73\ldots)\approx1.317" /> and <Katex tex="\tfrac{\pi}{3}\approx1.047" />, so <Katex tex="A\approx0.27" />. The shaded region is a thin sliver under a curve rising from 0 to 1 at <Katex tex="x=\tfrac{\pi}{3}\approx1.05" />, so it should be well under half of <Katex tex="1.05\times1" />: 0.27 is plausible, and positive ✓.</>,
+    reason: <>The lower terminal contributes nothing, since <Katex tex="\log_e(1)=0" />. Leave the answer exact: this is a technology-free exam.</>,
+    more: <>Sanity check: <Katex tex="\log_e(3.73\ldots)\approx1.317" /> and <Katex tex="\tfrac{\pi}{3}\approx1.047" />, so <Katex tex="A\approx0.27" />. The curve rises from 0 at the origin to 1 at <Katex tex="x=\tfrac{\pi}{3}\approx1.05" /> and bends below the straight line joining those points, so the area should be less than that triangle, <Katex tex="\tfrac12\times1.05\times1\approx0.52" />. 0.27 is positive and below 0.52 ✓.</>,
   },
 ]
 

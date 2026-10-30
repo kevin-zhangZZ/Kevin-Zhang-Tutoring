@@ -32,8 +32,8 @@ const ROWS: WorkingRow[] = [
     more: <>This gives the one extra equation needed to find the one unknown, <Katex tex="a" />.</>,
   },
   {
-    working: <Katex display tex="a-2 = 2a-3 \implies \boxed{a = 1}" />,
-    reason: <>Matches option <b>B</b>. Check: the tangent is then <Katex tex="y=x" />, which passes through the origin.</>,
+    working: <Katex display tex="\begin{gathered} a-2 = 2a-3 \\ 3-2 = 2a-a \\ \boxed{a = 1} \end{gathered}" />,
+    reason: <>Expand both sides (<Katex tex="-(2-a)=a-2" /> and <Katex tex="(3-2a)(-1)=2a-3" />), then collect the <Katex tex="a" /> terms on one side. Matches option <b>B</b>. Check: the tangent is then <Katex tex="y=x" />, which passes through the origin.</>,
     more: <>At <Katex tex="a=1" /> the curve is <Katex tex="y=x^3-x^2+1" />, the point of contact is <Katex tex="(1,1)" /> and the gradient is <Katex tex="3-2=1" />. Option C, <Katex tex="a=\tfrac32" />, is the value that makes the gradient <Katex tex="3-2a" /> zero, but that tangent is the horizontal line <Katex tex="y=\tfrac12" />, which misses the origin. Option D, <Katex tex="a=2" />, comes from dropping the <Katex tex="+1" /> when finding the <Katex tex="y" />-coordinate (<Katex tex="1-a" /> instead of <Katex tex="2-a" />).</>,
   },
 ]

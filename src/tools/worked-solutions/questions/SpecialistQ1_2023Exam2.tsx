@@ -173,8 +173,12 @@ const ROWS_CII: WorkingRow[] = [
     reason: <>Expanding makes the second derivative immediate.</>,
   },
   {
+    working: <Katex display tex="f'(x) = -3x^2+4x-1" />,
+    reason: <>Differentiate term by term (the same derivative as part b., multiplied out).</>,
+  },
+  {
     working: <Katex display tex="f''(x) = -6x+4 = 0 \implies x = \frac23" />,
-    reason: <>A point of inflection needs <Katex tex="f''=0" /> and a change of concavity; since <Katex tex="f''" /> is linear, it changes sign here.</>,
+    reason: <>Differentiate again. A point of inflection needs <Katex tex="f''=0" /> and a change of concavity; since <Katex tex="f''" /> is linear, it changes sign here.</>,
   },
   {
     working: <Katex display tex="f\!\left(\frac23\right) = -\frac23\left(-\frac13\right)^2 = -\frac23\cdot\frac19 = -\frac{2}{27}" />,

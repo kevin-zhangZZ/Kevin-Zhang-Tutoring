@@ -223,7 +223,7 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="= \frac{64a^{12}+48a^8b^2+12a^4b^4+b^6}{3a^2b^3}" />
       </>
     ),
-    reason: <>Line minus parabola, because the line is on top across the shaded region. CAS may show the result as <Katex tex="\tfrac{(4a^4+b^2)^3}{3a^2b^3}" />, an equivalent form.</>,
+    reason: <>Line minus parabola, because the line is on top across the shaded region. Evaluate the integral on CAS with the integral template, between the two terminals just found. CAS may show the result as <Katex tex="\tfrac{(4a^4+b^2)^3}{3a^2b^3}" />, an equivalent form.</>,
     more: <>The report notes some students did not subtract <Katex tex="g(x)" /> and integrated <Katex tex="y_n" /> alone: that also counts the area under the parabola, down to the <Katex tex="x" />-axis, which is not shaded. Others had incorrect terminals: they are the two solutions from the previous row, <Katex tex="-b" /> and <Katex tex="\tfrac{8a^4}{b}+b" />.</>,
   },
   {

@@ -45,8 +45,9 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\frac{dy}{dx} = e^x\cos(3x)+e^x\cdot\bigl(-3\sin(3x)\bigr)" />,
     reason: (
       <>
-        Product rule <Katex tex="u'v+uv'" /> with <Katex tex="u=e^x" />,{' '}
-        <Katex tex="v=\cos(3x)" />. Chain rule: <Katex tex="\tfrac{d}{dx}\cos(3x)=-3\sin(3x)" />.
+        Product rule <Katex tex="u'v+uv'" /> with <Katex tex="u=e^x" /> (so{' '}
+        <Katex tex="u'=e^x" />) and <Katex tex="v=\cos(3x)" />. Chain rule:{' '}
+        <Katex tex="v'=\tfrac{d}{dx}\cos(3x)=-3\sin(3x)" />.
       </>
     ),
     more: (

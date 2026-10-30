@@ -43,7 +43,10 @@ const ROWS: WorkingRow[] = [
     ),
     more: (
       <>
-        No substitution is needed here. If you do substitute <Katex tex="u=x^2+1" />, change the terminals too:{' '}
+        No substitution is needed here. Substituting <Katex tex="u=x^2+1" /> into the whole
+        integrand does not work: <Katex tex="du=2x\,dx" /> covers the <Katex tex="2x" /> but
+        leaves the <Katex tex="+1" /> with nothing to match, so split the fraction first. If you
+        do substitute in the <Katex tex="2x" /> piece, change the terminals too:{' '}
         <Katex tex="x=0" /> gives <Katex tex="u=1" /> and <Katex tex="x=1" /> gives{' '}
         <Katex tex="u=2" />, so the integral becomes{' '}
         <Katex tex="\int_1^2\tfrac{1}{u}\,du" />. Forgetting to change the terminals (or mixing{' '}

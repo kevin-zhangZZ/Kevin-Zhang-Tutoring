@@ -90,8 +90,12 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Isolate the sine and the cosine so the parameter can be eliminated.</>,
   },
   {
+    working: <Katex display tex="\begin{aligned} \sin^2(t)+\cos^2(t) &= 1 \\ \left(\frac{x-50}{50}\right)^2+\left(\frac{y-40}{40}\right)^2 &= 1 \end{aligned}" />,
+    reason: <>Square both and add them. The identity <Katex tex="\sin^2(t)+\cos^2(t)=1" /> holds for every <Katex tex="t" />, so substituting removes the parameter.</>,
+  },
+  {
     working: <Katex display tex="\boxed{\frac{(x-50)^2}{2500}+\frac{(y-40)^2}{1600}=1}" />,
-    reason: <>Square and add: <Katex tex="\sin^2(t)+\cos^2(t)=1" /> removes <Katex tex="t" />. An ellipse centred at <Katex tex="(50,40)" /> with semi-axes 50 across and 40 up.</>,
+    reason: <>Write each square as one denominator: <Katex tex="50^2=2500" />, <Katex tex="40^2=1600" />. An ellipse centred at <Katex tex="(50,40)" /> with semi-axes 50 across and 40 up.</>,
     more: <>Check against the graph in part b.: it runs from <Katex tex="x=0" /> to <Katex tex="x=100" /> and from <Katex tex="y=0" /> to <Katex tex="y=80" />, which is exactly centre <Katex tex="(50,40)" /> plus or minus 50 and 40.</>,
   },
 ]
@@ -204,7 +208,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a = \frac{70-50\sin(t)}{t}" />,
-    reason: <>Rearrange the <Katex tex="\underset{\sim}{i}" /> equation for <Katex tex="a" />, so that each meeting time gives the dolphin speed that puts it at Larry&apos;s <Katex tex="x" />-coordinate at that moment.</>,
+    reason: <>Rearrange the <Katex tex="\underset{\sim}{i}" /> equation for <Katex tex="a" />, so that each meeting time gives the value of <Katex tex="a" /> that puts the dolphin at Larry&apos;s <Katex tex="x" />-coordinate at that moment.</>,
   },
   {
     working: <Katex display tex="\boxed{a \approx 13.78 \quad \text{or} \quad a \approx 26.56}" />,

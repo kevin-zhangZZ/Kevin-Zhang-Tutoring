@@ -44,8 +44,8 @@ const ROWS_A: WorkingRow[] = [
     more: <>The report notes some students made arithmetic errors in calculating the product of the decimals, <Katex tex="4\times0.9\times0.1" />. Keeping fractions avoids miscounting decimal places; as a check, <Katex tex="0.9\times0.1=0.09" /> (two decimal places) and <Katex tex="4\times0.09=0.36" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\mathrm{sd}(X) = \sqrt{\frac{36}{100}} = \frac{6}{10} = \frac35}" />,
-    reason: <>Standard deviation is the square root of the variance. Both 36 and 100 are perfect squares, so the root is exact.</>,
+    working: <Katex display tex="\boxed{\mathrm{sd}(X) = \sqrt{\frac{36}{100}} = \frac{6}{10} = \frac35 = 0.6}" />,
+    reason: <>Standard deviation is the square root of the variance. Both 36 and 100 are perfect squares, so the root is exact: <Katex tex="\sqrt{36}=6" /> over <Katex tex="\sqrt{100}=10" />.</>,
     more: <>The report notes some students found the variance instead of the standard deviation, i.e. stopped at <Katex tex="0.36" />. Sanity check: almost every trial succeeds, so <Katex tex="X" /> is nearly always 3 or 4 — a small spread like <Katex tex="0.6" /> fits.</>,
   },
 ]

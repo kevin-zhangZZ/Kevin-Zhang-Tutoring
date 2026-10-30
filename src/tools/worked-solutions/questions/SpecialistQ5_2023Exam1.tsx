@@ -46,8 +46,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Make <Katex tex="\log_e(x)" /> the part you <em>differentiate</em>: its derivative{' '}
       <Katex tex="\tfrac1x" /> is simple, and once it is multiplied by <Katex tex="v" /> (a power
       of <Katex tex="x" />) it just lowers the power, leaving a plain power of <Katex tex="x" /> to
-      integrate. Its antiderivative is not a standard one, so it is a poor choice for{' '}
-      <Katex tex="\tfrac{dv}{dx}" />.</>,
+      integrate. The other way round is a poor choice: <Katex tex="\log_e(x)" /> has no
+      standard antiderivative, so it should not be <Katex tex="\tfrac{dv}{dx}" />.</>,
     more: <>Swapping the roles (<Katex tex="u=x^2" />, <Katex tex="\tfrac{dv}{dx}=\log_e(x)" />) is
       the mix-up the report describes. You would first need{' '}
       <Katex tex="v=\int\log_e(x)\,dx=x\log_e(x)-x" />, which takes an integration by parts of its

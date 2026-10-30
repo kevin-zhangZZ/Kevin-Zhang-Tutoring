@@ -45,6 +45,8 @@ const ROWS: WorkingRow[] = [
         <Katex tex="(e^u-e^{-u})^2\ne e^{2u}+e^{-2u}" />, which leaves <Katex tex="\sqrt{e^{2u}+e^{-2u}+4}" /> unsimplified.
         Option D keeps the <Katex tex="x" />-terminal <Katex tex="\tfrac32" />. Option A&apos;s integrand is{' '}
         <Katex tex="(e^u-e^{-u})(e^u+e^{-u})=x\tfrac{dx}{du}" />, as if <Katex tex="\sqrt{4+x^2}" /> were just <Katex tex="x" />.
+        Option B loses the middle <Katex tex="+2" /> and has the wrong upper terminal: at{' '}
+        <Katex tex="u=\log_e\tfrac12" />, <Katex tex="x=\tfrac12-2=-\tfrac32" />, not <Katex tex="\tfrac32" />.
       </>
     ),
   },

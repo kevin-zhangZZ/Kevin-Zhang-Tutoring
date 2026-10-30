@@ -157,8 +157,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(2t) = 2\sin(2t) \implies \tan(2t) = \frac12" />,
-    reason: <>Divide both sides by <Katex tex="2\cos(2t)" /> to get a single trigonometric function.</>,
-    more: <>This is safe: if <Katex tex="\cos(2t)" /> were 0, the equation would force <Katex tex="\sin(2t)=0" /> too, but <Katex tex="\sin(2t)" /> and <Katex tex="\cos(2t)" /> are never both 0.</>,
+    reason: <>Divide both sides by <Katex tex="2\cos(2t)" /> to get a single trigonometric function. This is safe: if <Katex tex="\cos(2t)" /> were 0, the equation would force <Katex tex="\sin(2t)=0" /> too, but <Katex tex="\sin(2t)" /> and <Katex tex="\cos(2t)" /> are never both 0.</>,
   },
   {
     working: <Katex display tex="2t = \arctan\!\left(\frac12\right)+k\pi, \quad k\in Z" />,

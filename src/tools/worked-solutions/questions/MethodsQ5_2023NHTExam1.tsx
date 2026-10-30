@@ -39,6 +39,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="=\left[\frac{x^3}{6}+\frac{cx^2}{4}\right]_{-d}^{d}" />,
+    reason: <>Antidifferentiate term by term (add one to the power, divide by the new power): <Katex tex="\tfrac{x^2}{2}\to\tfrac{x^3}{6}" /> and <Katex tex="\tfrac{c}{2}x\to\tfrac{c}{2}\cdot\tfrac{x^2}{2}=\tfrac{cx^2}{4}" />.</>,
   },
   {
     working: <Katex display tex="=\left(\frac{d^3}{6}+\frac{cd^2}{4}\right)-\left(-\frac{d^3}{6}+\frac{cd^2}{4}\right)=\frac{d^3}{3}" />,
@@ -56,8 +57,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{c=2,\quad d=\frac{1}{2}}" />,
-    reason: <>Check against the conditions: <Katex tex="c=2\ge1" /> ✓. With these values <Katex tex="f(x)=\tfrac{x+2}{2}" /> on <Katex tex="\left[-\tfrac12,\tfrac12\right]" />, which runs from <Katex tex="\tfrac34" /> up to <Katex tex="\tfrac54" />: never negative, and its area is <Katex tex="1\times1=1" /> (average height 1, width 1) ✓.</>,
-    more: <>Does a small positive mean make sense? The density slopes upward, so slightly more probability sits right of 0 than left, nudging the mean just above the centre of <Katex tex="\left[-\tfrac12,\tfrac12\right]" />: <Katex tex="\tfrac{1}{24}\approx0.04" /> ✓.</>,
+    reason: <>Check against the condition in the stem: <Katex tex="c=2\ge1" /> ✓.</>,
+    more: <>Full check: with these values <Katex tex="f(x)=\tfrac{x+2}{2}" /> on <Katex tex="\left[-\tfrac12,\tfrac12\right]" />, which runs from <Katex tex="\tfrac34" /> up to <Katex tex="\tfrac54" />: never negative, and its area is <Katex tex="1\times1=1" /> (average height 1, width 1) ✓. Does a small positive mean make sense? The density slopes upward, so slightly more probability sits right of 0 than left, nudging the mean just above the centre of <Katex tex="\left[-\tfrac12,\tfrac12\right]" />: <Katex tex="\tfrac{1}{24}\approx0.04" /> ✓.</>,
   },
 ]
 

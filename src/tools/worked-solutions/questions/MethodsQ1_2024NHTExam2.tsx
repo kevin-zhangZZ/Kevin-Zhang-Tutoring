@@ -93,14 +93,15 @@ const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)-(-px) = x^3-px+px = x^3" />,
     reason: <>Area between two curves is the integral of (upper − lower). For <Katex tex="0<x<p" />, <Katex tex="x^3>0" />, so <Katex tex="f" /> is above the tangent line throughout.</>,
-    more: <>The bounds are where the region starts and stops: the curve and line meet at the origin (the point of tangency), and the region is closed off on the right by <Katex tex="x=p" />.</>,
   },
   {
     working: <Katex display tex="A = \int_0^p \left(f(x)+px\right)dx = \int_0^p x^3\,dx" />,
-    reason: <>The <Katex tex="-px" /> in <Katex tex="f" /> and the <Katex tex="+px" /> from subtracting the line cancel.</>,
+    reason: <>The region starts at the origin, where the curve meets its tangent (<Katex tex="x^3=0" /> only at <Katex tex="x=0" />), and is closed off on the right by <Katex tex="x=p" />. So the terminals are <Katex tex="0" /> and <Katex tex="p" />.</>,
+    more: <>The <Katex tex="-px" /> in <Katex tex="f" /> and the <Katex tex="+px" /> from subtracting the line cancel, which is why the integrand is just <Katex tex="x^3" />.</>,
   },
   {
     working: <Katex display tex="= \left[\frac{x^4}{4}\right]_0^p = \frac{p^4}{4}-0" />,
+    reason: <>Antidifferentiate (<Katex tex="x^3\to\tfrac{x^4}{4}" />), then upper terminal minus lower terminal.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{p^4}{4}}" />,

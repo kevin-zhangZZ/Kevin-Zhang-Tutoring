@@ -56,7 +56,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}&\text{Need: } \sum_{i=1}^{k+1}(i+1)^2 = \\ &\tfrac16(k+1)\left(2(k+1)^2+9(k+1)+13\right)\end{aligned}" />,
     reason: <>Replace <Katex tex="n" /> by <Katex tex="k+1" /> in <Katex tex="P(n)" /> to see the target. This is only the goal: the proof works on its left side alone.</>,
-    more: <>The report lists assuming equality at the beginning of the inductive step among the common errors: students wrote this equation as if it were already true and then worked on both sides at once. That assumes what you are trying to prove. Label it as the goal (or keep it in your head), then transform the left side until it becomes the right side.</>,
+    more: <>The report lists assuming equality at the beginning of the inductive step among the common errors, that is, writing this equation as if it were already true and working from it. That assumes what you are trying to prove. Label it as the goal (or keep it in your head), then transform the left side until it becomes the right side.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\text{LHS} &= \sum_{i=1}^{k+1}(i+1)^2 \\ &= \sum_{i=1}^{k}(i+1)^2+\bigl((k+1)+1\bigr)^2\end{aligned}" />,
@@ -116,9 +116,9 @@ export default function SpecialistQ7_2025Exam1() {
             must also be true for <Katex tex="n=k+1" />.
           </p>
           <p>
-            The algebra here is one expansion and one factorisation. Most lost marks were for
-            how the proof was written: all three errors the report lists are about structure,
-            not algebra.
+            The algebra here is one expansion and one factorisation. The three common errors
+            the report lists are all about how the proof is written (the base case, the
+            assumption, the inductive step), not about the algebra.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

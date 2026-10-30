@@ -33,16 +33,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_e(2p)+\log_e(p-2)=1+\frac{p}{p-2},\quad p>2" />,
-    reason: <><Katex tex="p\left(\tfrac1p+\tfrac{1}{p-2}\right)=1+\tfrac{p}{p-2}" />. This mixes logs and a rational function, so it has no algebraic solution: solve it numerically on CAS.</>,
-    more: <>On CAS: define <Katex tex="f(x)=\log_e(2x)+\log_e(x-2)" />, then <Cas fn="nSolve" /> the equation <Katex tex="f(x)=x\cdot\tfrac{d}{dx}f(x)" /> for <Katex tex="x" /> with the restriction <Katex tex="x>2" />.</>,
+    reason: <>Substitute <Katex tex="y(p)" /> and <Katex tex="y'(p)" /> into <Katex tex="y(p)=p\,y'(p)" />; the right side simplifies as <Katex tex="p\left(\tfrac1p+\tfrac{1}{p-2}\right)=1+\tfrac{p}{p-2}" />. This mixes logs and a rational function, so it has no algebraic solution: solve it numerically on CAS.</>,
   },
   {
     working: <Katex display tex="p=4.1931\ldots" />,
+    reason: <>On CAS: define <Katex tex="f(x)=\log_e(2x)+\log_e(x-2)" />, then <Cas fn="nSolve" /> the equation <Katex tex="f(x)=x\cdot\tfrac{d}{dx}f(x)" /> for <Katex tex="x" /> with the restriction <Katex tex="x>2" />. There is only one solution in the domain.</>,
   },
   {
     working: <Katex display tex="\boxed{x\approx 4.19}" />,
-    reason: <>Matches option <b>D</b>. Check: <Katex tex="y(4.1931\ldots)\approx 2.912" /> and the gradient there is <Katex tex="\approx 0.6945" />; <Katex tex="0.6945\times 4.1931\approx 2.912" />, so the tangent does pass through the origin.</>,
-    more: <>Option <b>C</b>, 2.91, is the <Katex tex="y" />-coordinate of the point of contact, not the <Katex tex="x" />-coordinate. Option <b>A</b> comes from combining the logs first (see below).</>,
+    reason: <>Round to two decimal places. Matches option <b>D</b>.</>,
+    more: <>Check: <Katex tex="y(4.1931\ldots)\approx 2.912" /> and the gradient there is <Katex tex="\approx 0.6945" />; <Katex tex="0.6945\times 4.1931\approx 2.912" />, so the tangent does pass through the origin. Option <b>C</b>, 2.91, is the <Katex tex="y" />-coordinate of the point of contact, not the <Katex tex="x" />-coordinate. Option <b>A</b> comes from combining the logs first (see below).</>,
   },
 ]
 

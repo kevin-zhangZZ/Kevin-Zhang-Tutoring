@@ -28,7 +28,7 @@ const ROWS: WorkingRow[] = [
     reason: <><Katex tex="\Pr(X<10)=0.2" />, so 10 sits at the standard <Katex tex="z" />-score with area 0.2 to its left (<Cas fn="invNorm" />). It is negative since 10 is below the mean.</>,
   },
   {
-    working: <Katex display tex="\frac{10-14}{\sigma} = -0.8416 \implies \sigma = \frac{4}{0.8416} = 4.7527" />,
+    working: <Katex display tex="\begin{aligned} \frac{10-14}{\sigma} &= -0.8416\ldots \\ \sigma &= \frac{4}{0.8416\ldots} \approx 4.7527 \end{aligned}" />,
     reason: <>Standardise <Katex tex="x=10" /> with <Katex tex="z=\frac{x-\mu}{\sigma}" />, then solve for <Katex tex="\sigma" />.</>,
     more: <>Keep full precision (store <Katex tex="\sigma" /> in the CAS). Rounding <Katex tex="\sigma" /> to 4.8 gives 0.338 instead of 0.337 — harmless here, but early rounding can cost the mark when options are close.</>,
   },

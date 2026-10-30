@@ -198,7 +198,12 @@ const ROWS_B: WorkingRow[] = [
     more: <>The report notes that arithmetic errors often cost students this mark, so take it slowly.</>,
   },
   {
-    working: <Katex display tex="\boxed{\tfrac{47}{18}\underset{\sim}{i}-\tfrac{5}{9}\underset{\sim}{j}+\tfrac{7}{18}\underset{\sim}{k}}" />,
+    working: (
+      <>
+        <Katex display tex="= \tfrac{47}{18}\underset{\sim}{i}-\tfrac{10}{18}\underset{\sim}{j}+\tfrac{7}{18}\underset{\sim}{k}" />
+        <Katex display tex="\boxed{\tfrac{47}{18}\underset{\sim}{i}-\tfrac{5}{9}\underset{\sim}{j}+\tfrac{7}{18}\underset{\sim}{k}}" />
+      </>
+    ),
     reason: (
       <>
         Simplify <Katex tex="-\tfrac{10}{18}=-\tfrac59" />. Check it is perpendicular: its dot product with{' '}

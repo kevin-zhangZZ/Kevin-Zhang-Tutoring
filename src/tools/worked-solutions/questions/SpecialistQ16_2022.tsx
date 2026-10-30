@@ -41,6 +41,10 @@ const ROWS: WorkingRow[] = [
     reason: <><Katex tex="\theta" /> is the angle <em>between</em> the two forces. Both act on the particle, so they start from the same point, and that tail-to-tail angle is exactly the one in <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\cos(\theta)" />.</>,
   },
   {
+    working: <Katex display tex="10^2 = 5^2+7^2+2\times5\times7\cos(\theta)" />,
+    reason: <>Substitute the three magnitudes, <Katex tex="\left|\underset{\sim}{F_1}+\underset{\sim}{F_2}\right|=10" />, <Katex tex="\left|\underset{\sim}{F_1}\right|=5" /> and <Katex tex="\left|\underset{\sim}{F_2}\right|=7" />, and the dot product from the row above into the expansion.</>,
+  },
+  {
     working: <Katex display tex="\boxed{100 = 25+49+2\times5\times7\cos(\theta)}" />,
     reason: <>Matches option <b>A</b>: a plus sign, because <Katex tex="\theta" /> is the angle between the forces, not an angle of the force triangle.</>,
     more: (

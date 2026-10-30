@@ -24,7 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex={`\\dot{${RV}}(t)=16t^{-\\frac12}${I}+12t${J}-6e^{2t-8}${K}`} />,
-    reason: <>Differentiate each component separately to get the velocity. For <Katex tex="e^{2t-8}" />, the chain rule brings down the <Katex tex="2" />: <Katex tex="-3\times2=-6" />.</>,
+    reason: <>Differentiate each component separately to get the velocity (the dot means <Katex tex="\tfrac{d}{dt}" />). Power rule: <Katex tex="32\times\tfrac12t^{-\frac12}=16t^{-\frac12}" /> and <Katex tex="6\times2t=12t" />. For <Katex tex="e^{2t-8}" />, the chain rule brings down the <Katex tex="2" />: <Katex tex="-3\times2=-6" />.</>,
   },
   {
     working: <Katex display tex={`\\ddot{${RV}}(t)=-8t^{-\\frac32}${I}+12${J}-12e^{2t-8}${K}`} />,
@@ -45,7 +45,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{34\ \text{N}}" />,
-    reason: <>An integer, as the question asks. Check: the force is <Katex tex={`2\\ddot{${RV}}(4)=-2${I}+24${J}-24${K}`} />, and <Katex tex="\sqrt{4+576+576}=\sqrt{1156}=34" /> ✓.</>,
+    reason: <>An integer, as the question asks.</>,
+    more: <>Check: the force is <Katex tex={`2\\ddot{${RV}}(4)=-2${I}+24${J}-24${K}`} />, and <Katex tex="\sqrt{4+576+576}=\sqrt{1156}=34" /> ✓.</>,
   },
 ]
 

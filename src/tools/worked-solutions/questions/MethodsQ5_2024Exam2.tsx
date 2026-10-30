@@ -233,7 +233,7 @@ const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{\text{Area} = 2\int_0^{\pi}\left[\sin\bigl(2\sin(x)\bigr)-\sin\bigl(\sin(2x)\bigr)\right]dx}" />,
     reason: <>Replacing <Katex tex="x" /> by <Katex tex="2\pi-x" /> negates both curves, so the graph has half-turn symmetry about <Katex tex="(\pi,0)" />: the two pieces are equal. Double the first. One integral, as required.</>,
-    more: <>The symmetry: replacing <Katex tex="x" /> by <Katex tex="2\pi-x" /> flips the sign of both <Katex tex="\sin(x)" /> and <Katex tex="\sin(2x)" />, so both compositions satisfy <Katex tex="h(2\pi-x)=-h(x)" />. The report notes many students wrote two definite integrals; <Katex tex="\int_0^{\pi}+\int_{\pi}^{2\pi}" /> gives the right area but is not a single integral. The report also accepts <Katex tex="2\int_{\pi}^{2\pi}\left[(f\circ g)(x)-(g\circ f)(x)\right]dx" /> and <Katex tex="\int_0^{2\pi}\left|(g\circ f)(x)-(f\circ g)(x)\right|dx" />. An optional shortcut: on <Katex tex="[0,\pi]" />, <Katex tex="f\circ g" /> completes one full cycle, its hump above the axis cancelling its trough below, so <Katex tex="\int_0^{\pi}\sin\bigl(\sin(2x)\bigr)dx=0" /> and the area is also <Katex tex="2\int_0^{\pi}\sin\bigl(2\sin(x)\bigr)dx" />, i.e. <Katex tex="2\int_0^{\pi}(g\circ f)(x)\,dx" />, which is in the report's list of accepted answers too.</>,
+    more: <>Why the curves are negated: replacing <Katex tex="x" /> by <Katex tex="2\pi-x" /> flips the sign of both <Katex tex="\sin(x)" /> and <Katex tex="\sin(2x)" />, so both compositions satisfy <Katex tex="h(2\pi-x)=-h(x)" />. The report notes many students wrote two definite integrals; <Katex tex="\int_0^{\pi}+\int_{\pi}^{2\pi}" /> gives the right area but is not a single integral. The report also accepts <Katex tex="2\int_{\pi}^{2\pi}\left[(f\circ g)(x)-(g\circ f)(x)\right]dx" /> and <Katex tex="\int_0^{2\pi}\left|(g\circ f)(x)-(f\circ g)(x)\right|dx" />. An optional shortcut: on <Katex tex="[0,\pi]" />, <Katex tex="f\circ g" /> completes one full cycle, its hump above the axis cancelling its trough below, so <Katex tex="\int_0^{\pi}\sin\bigl(\sin(2x)\bigr)dx=0" /> and the area is also <Katex tex="2\int_0^{\pi}\sin\bigl(2\sin(x)\bigr)dx" />, i.e. <Katex tex="2\int_0^{\pi}(g\circ f)(x)\,dx" />, which is in the report's list of accepted answers too.</>,
   },
 ]
 
@@ -302,14 +302,14 @@ export default function MethodsQ5_2024Exam2() {
           <Background>
             <p>
               The whole question is a contrast between the two orders of composition.{' '}
-              <Katex tex="(g\circ f)(x)=\sin\bigl(2\sin x\bigr)" /> has inner values spanning{' '}
+              <Katex tex="(g\circ f)(x)=\sin\bigl(2\sin(x)\bigr)" /> has inner values spanning{' '}
               <Katex tex="[-2,2]" />, which is wide enough to contain{' '}
               <Katex tex="\pm\tfrac{\pi}{2}" />, so it reaches the full height{' '}
               <Katex tex="\pm1" /> and has extra turning points.{' '}
-              <Katex tex="(f\circ g)(x)=\sin\bigl(\sin 2x\bigr)" /> has inner values only in{' '}
+              <Katex tex="(f\circ g)(x)=\sin\bigl(\sin(2x)\bigr)" /> has inner values only in{' '}
               <Katex tex="[-1,1]" />, which never reaches <Katex tex="\tfrac{\pi}{2}" /> — so it
               peaks at only <Katex tex="\sin(1)" />, and the factor{' '}
-              <Katex tex="\cos\bigl(\sin 2x\bigr)" /> in its derivative can never vanish.
+              <Katex tex="\cos\bigl(\sin(2x)\bigr)" /> in its derivative can never vanish.
             </p>
             <p>
               That one inequality, <Katex tex="1<\tfrac{\pi}{2}<2" />, drives parts a.ii., b.ii.

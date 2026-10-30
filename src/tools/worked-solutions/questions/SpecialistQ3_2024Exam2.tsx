@@ -152,7 +152,7 @@ const ROWS_CI: WorkingRow[] = [
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}&\frac{4}{\sqrt5}\int\frac{du}{240+u^2} \\ &= \frac{4}{\sqrt5\,\sqrt{240}}\arctan\!\left(\frac{u}{\sqrt{240}}\right)+c\end{aligned}" />,
-    reason: <>Formula sheet: <Katex tex="\int\tfrac{a}{a^2+u^2}\,du=\arctan\!\left(\tfrac{u}{a}\right)" />, so divide by <Katex tex="a" />; here <Katex tex="a=\sqrt{240}=4\sqrt{15}" />.</>,
+    reason: <>Formula sheet: <Katex tex="\int\tfrac{a}{a^2+u^2}\,du=\arctan\!\left(\tfrac{u}{a}\right)" />. Our integrand has 1 on top, not <Katex tex="a" />, so divide by <Katex tex="a" />: <Katex tex="\int\tfrac{1}{a^2+u^2}\,du=\tfrac{1}{a}\arctan\!\left(\tfrac{u}{a}\right)" />. Here <Katex tex="a^2=240" />, so <Katex tex="a=\sqrt{240}=4\sqrt{15}" />.</>,
   },
   {
     working: <Katex display tex="\frac{4}{\sqrt5\cdot4\sqrt{15}} = \frac{1}{\sqrt{75}} = \frac{1}{5\sqrt3}" />,

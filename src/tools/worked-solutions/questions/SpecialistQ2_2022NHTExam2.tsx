@@ -88,7 +88,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\tan(\alpha)=\frac{1}{\sqrt3} \implies \alpha=\frac{\pi}{6}, \quad \text{third quadrant}" />,
-    reason: <>Real and imaginary parts are both negative, so the direction is in the third quadrant. The reference angle <Katex tex="\alpha" /> comes from the sizes of the parts.</>,
+    reason: <>Real and imaginary parts are both negative, so the direction is in the third quadrant. The reference angle <Katex tex="\alpha" /> (the acute angle to the real axis) comes from the sizes of the parts: <Katex tex="\tan(\alpha)=\frac{|\text{Im}|}{|\text{Re}|}=\frac{1}{\sqrt3}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\theta = -\pi+\frac{\pi}{6} = -\frac{5\pi}{6}}" />,

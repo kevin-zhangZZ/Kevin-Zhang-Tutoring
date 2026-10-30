@@ -100,14 +100,14 @@ const ROWS_C: WorkingRow[] = [
       <>
         <Katex tex="x\in R" />, so give every solution, not just a few. Solve for the whole angle <Katex tex="2x" /> first. Sine is positive in quadrants 1 and 2, giving{' '}
         <Katex tex="\tfrac\pi3" /> and <Katex tex="\pi-\tfrac\pi3" />; adding any number of full turns,{' '}
-        <Katex tex="2k\pi" />, gives the same sine.
+        <Katex tex="2k\pi" />, gives the same sine. Here <Katex tex="k\in Z" /> means <Katex tex="k" /> is any integer:{' '}
+        <Katex tex="\dots,-2,-1,0,1,2,\dots" />.
       </>
     ),
     more: (
       <>
         With no interval given there are infinitely many solutions, so you write this general form rather than
-        listing a few; the report notes some students gave only specific solutions within a period.{' '}
-        <Katex tex="k\in Z" /> means <Katex tex="k" /> is any integer: <Katex tex="\dots,-2,-1,0,1,2,\dots" />.
+        listing a few; the report notes some students gave only specific solutions within a period.
       </>
     ),
   },
@@ -127,8 +127,8 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="\boxed{x = \tfrac\pi6+k\pi \ \text{ or } \ x = \tfrac\pi3+k\pi, \quad k\in Z}" />,
     reason: (
       <>
-        State <Katex tex="k\in Z" />: <Katex tex="k" /> can be any integer (positive, negative or 0), each step moving one
-        period, <Katex tex="\pi" />. A fractional <Katex tex="k" /> gives non-solutions.
+        State <Katex tex="k\in Z" /> with the answer: each step of <Katex tex="k" /> (positive, negative or 0) moves one
+        period, <Katex tex="\pi" />, so every solution is caught. A fractional <Katex tex="k" /> gives non-solutions.
       </>
     ),
     more: (

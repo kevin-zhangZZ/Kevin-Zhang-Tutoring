@@ -109,8 +109,8 @@ const ROWS_B: WorkingRow[] = [
     reason: <><Katex tex="|z-c|=r" /> is every point at distance <Katex tex="r" /> from <Katex tex="c" />. Here <Katex tex="z+2-i\sqrt3=z-\left(-2+i\sqrt3\right)" />, so <Katex tex="c=-2+i\sqrt3" />, matching the centre the question gives.</>,
   },
   {
-    working: <Katex display tex="\begin{gathered} z=iy: \ 4+\left(y-\sqrt3\right)^2 = 12 \\ \implies y = \sqrt3\pm2\sqrt2 \end{gathered}" />,
-    reason: <>The imaginary-axis intercepts. On that axis <Katex tex="z=iy" />, so the real part inside is 2 and the imaginary part <Katex tex="y-\sqrt3" />; square, then <Katex tex="\left(y-\sqrt3\right)^2=8" /> and <Katex tex="\sqrt8=2\sqrt2" />.</>,
+    working: <Katex display tex="\begin{gathered} z=iy: \ \left|2+i\left(y-\sqrt3\right)\right| = 2\sqrt3 \\ \implies 4+\left(y-\sqrt3\right)^2 = 12 \\ \implies \left(y-\sqrt3\right)^2 = 8 \\ \implies y = \sqrt3\pm2\sqrt2 \end{gathered}" />,
+    reason: <>The imaginary-axis intercepts. On that axis <Katex tex="z=iy" />, so the real part inside is 2 and the imaginary part <Katex tex="y-\sqrt3" />. Square both sides, then take both square roots: <Katex tex="\sqrt8=\sqrt{4\times2}=2\sqrt2" />.</>,
     more: <>As decimals, <Katex tex="\sqrt3+2\sqrt2\approx4.56" /> and <Katex tex="\sqrt3-2\sqrt2\approx-1.10" />, which tells you where to put them on the grid.</>,
   },
   {

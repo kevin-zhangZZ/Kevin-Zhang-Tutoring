@@ -49,16 +49,16 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="u = x^3,\ u' = 3x^2;\qquad v = \log_e(x),\ v' = \frac1x" />,
-    reason: <><Katex tex="f" /> is a quotient, so use <Katex tex="\left(\tfrac uv\right)'=\tfrac{u'v-uv'}{v^2}" /> (on the formula sheet).</>,
+    reason: <><Katex tex="f" /> is a quotient, so use <Katex tex="\left(\tfrac uv\right)'=\tfrac{u'v-uv'}{v^2}" /> (on the formula sheet). The derivative of <Katex tex="\log_e(x)" /> is <Katex tex="\tfrac1x" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}f'(x) &= \frac{3x^2\log_e(x) - x^3\cdot\frac1x}{\left(\log_e(x)\right)^2}\\ &= \frac{x^2\left(3\log_e(x)-1\right)}{\left(\log_e(x)\right)^2}\end{aligned}" />,
-    reason: <><Katex tex="x^3\cdot\tfrac1x=x^2" />, then take out the common factor <Katex tex="x^2" /> in the numerator.</>,
+    reason: <>Substitute into <Katex tex="\tfrac{u'v-uv'}{v^2}" />. Simplify <Katex tex="x^3\cdot\tfrac1x=x^2" />, then take out the common factor <Katex tex="x^2" /> in the numerator.</>,
     more: <>The product rule on <Katex tex="x^3\left(\log_e(x)\right)^{-1}" /> gives the equivalent form <Katex tex="\tfrac{3x^2}{\log_e(x)}-\tfrac{x^2}{\left(\log_e(x)\right)^2}" />, which VCAA also shows. The order of the numerator matters: <Katex tex="u'v-uv'" />, not <Katex tex="uv'-u'v" />, or the sign flips.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}f'(e) &= \frac{e^2\left(3\log_e(e)-1\right)}{\left(\log_e(e)\right)^2}\\ &= \frac{e^2(3-1)}{1^2}\end{aligned}" />,
-    reason: <>The question asks for the value at <Katex tex="x=e" />, so substitute. The key fact is <Katex tex="\log_e(e)=1" />.</>,
+    reason: <>The question asks for the value at <Katex tex="x=e" />, so substitute. The key fact is <Katex tex="\log_e(e)=1" />, because <Katex tex="e^1=e" />.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(e) = 2e^2}" />,

@@ -41,7 +41,7 @@ const ROWS: WorkingRow[] = [
     more: (
       <>
         Option C (the most common wrong answer) rounds 37.5 down, but <Katex tex="n=37" /> leaves the standard
-        deviation just above 0.08 (previous row): with a &ldquo;smallest <Katex tex="n" /> such that&rdquo;
+        deviation just above 0.08 (see the check in the working above): with a &ldquo;smallest <Katex tex="n" /> such that&rdquo;
         condition, always round <em>up</em>. Option A puts <Katex tex="n" /> outside the square
         root: <Katex tex="\tfrac{\sqrt{0.24}}{n}<0.08" /> gives <Katex tex="n>6.1" />, so 7. Option B (27) is below 37.5, so
         it fails: <Katex tex="\sqrt{\tfrac{0.24}{27}}\approx0.094>0.08" />.

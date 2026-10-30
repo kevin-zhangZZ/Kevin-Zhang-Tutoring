@@ -137,9 +137,11 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="h(25k) = 2\sin\!\left(\tfrac{4\pi\times25k}{25}\right)+\tfrac15\sin(3\pi\times25k)+3" />,
+    reason: <>Substitute <Katex tex="t=25k" /> into each term of <Katex tex="h(t)" />.</>,
   },
   {
     working: <Katex display tex="= 2\sin(4k\pi)+\tfrac15\sin(75k\pi)+3" />,
+    reason: <>Simplify each angle: <Katex tex="\tfrac{4\pi\times25k}{25}=4k\pi" /> and <Katex tex="3\pi\times25k=75k\pi" />.</>,
   },
   {
     working: <Katex display tex="= 2(0)+\tfrac15(0)+3 = 3" />,
@@ -158,7 +160,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="T = \tfrac{25}{2}m = \tfrac23 n \implies 75m = 4n" />,
-    reason: <><Katex tex="h" /> repeats only when <em>both</em> terms repeat at the same time, so the period is the smallest whole number of each period that agree (positive integers <Katex tex="m" />, <Katex tex="n" />).</>,
+    reason: <><Katex tex="h" /> repeats only when <em>both</em> terms repeat at the same time, so the period <Katex tex="T" /> is the smallest time that is a whole number <Katex tex="m" /> of the first period and also a whole number <Katex tex="n" /> of the second (<Katex tex="m" />, <Katex tex="n" /> positive integers). Multiply both sides by 6 to clear the fractions.</>,
   },
   {
     working: <Katex display tex="m=4,\ n=75 \implies T = 4\times\tfrac{25}{2} = \boxed{50}" />,

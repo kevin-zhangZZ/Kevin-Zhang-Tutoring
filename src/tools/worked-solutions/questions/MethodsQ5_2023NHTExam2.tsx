@@ -70,7 +70,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-\frac{53\pi}{18} - \frac{49\pi}{18} - \frac{41\pi}{18} - \frac{37\pi}{18} = -\frac{180\pi}{18}" />,
-    reason: <>Four solutions: the interval is <Katex tex="\tfrac{5\pi}{3}" /> long, two and a half periods, and the line <Katex tex="y=0" /> crosses the graph twice in each full period.</>,
+    reason: <>Add the four solutions found above, two from each family. (The interval is <Katex tex="\tfrac{5\pi}{3}" /> long, two and a half periods, and <Katex tex="f(x)=0" /> has two solutions in each full period, so four is the expected count.)</>,
   },
   {
     working: <Katex display tex="\boxed{-10\pi}" />,
@@ -159,8 +159,8 @@ const ROWS_E: WorkingRow[] = [
     reason: <>Each cosine lies between <Katex tex="-1" /> and 1, so the bracket is at most 2, and <Katex tex="h(a)=\tfrac23\times2" /> only when the first cosine is 1 and the second is <Katex tex="-1" /> at the same time.</>,
   },
   {
-    working: <Katex display tex="\begin{gathered}\cos(k\pi) = 1 \iff k \text{ is even} \\ \text{then } \cos(3a) = -1 \text{ at } a = \frac{\pi}{3} \in \left[0,\ \frac{\pi}{2}\right]\end{gathered}" />,
-    reason: <>With <Katex tex="k" /> even, <Katex tex="\cos(3a-k\pi)=\cos(3a)" />, which is <Katex tex="-1" /> at <Katex tex="a=\tfrac{\pi}{3}" />, inside the domain, as in part d.i.</>,
+    working: <Katex display tex="\begin{gathered}\cos(k\pi) = 1 \iff k \text{ is an even integer} \\ \text{then } \cos(3a) = -1 \text{ at } a = \frac{\pi}{3} \in \left[0,\ \frac{\pi}{2}\right]\end{gathered}" />,
+    reason: <>Cosine is 1 only at whole turns, <Katex tex="k\pi = 0,\ \pm 2\pi,\ \pm 4\pi,\ \ldots" />, so <Katex tex="k" /> must be an even integer. Then <Katex tex="\cos(3a-k\pi)=\cos(3a)" />, which is <Katex tex="-1" /> at <Katex tex="a=\tfrac{\pi}{3}" />, inside the domain, as in part d.i.</>,
   },
   {
     working: <Katex display tex="\boxed{k = 2n, \quad n \in Z^+}" />,

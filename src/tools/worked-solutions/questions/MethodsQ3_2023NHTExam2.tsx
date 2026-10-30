@@ -49,7 +49,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \text{Area} &= 2\sqrt{\frac43} \times 4\left(\frac43\right)^{\frac32} \\ &= \frac{4}{\sqrt3} \times \frac{32}{3\sqrt3}\end{aligned}" />,
-    reason: <><Katex tex="\left(\tfrac43\right)^{3/2}=\tfrac{4}{3}\sqrt{\tfrac43}=\tfrac{8}{3\sqrt3}" />.</>,
+    reason: <>Substitute <Katex tex="a=4" />, so <Katex tex="\tfrac a3=\tfrac43" />. Width: <Katex tex="2\sqrt{\tfrac43}=2\times\tfrac{2}{\sqrt3}=\tfrac{4}{\sqrt3}" />. Height: <Katex tex="\left(\tfrac43\right)^{3/2}=\tfrac{4}{3}\sqrt{\tfrac43}=\tfrac{8}{3\sqrt3}" />, then multiply by 4.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = \frac{128}{9}}" />,
@@ -98,7 +98,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \sqrt{\frac{4a}{3} + \frac{16a^3}{27}} = \sqrt{\frac{36a + 16a^3}{27}}" />,
-    reason: <><Katex tex="\left(\tfrac a3\right)^{3/2}" /> squared is <Katex tex="\left(\tfrac a3\right)^3=\tfrac{a^3}{27}" />. Put both terms over 27.</>,
+    reason: <>Square each part: <Katex tex="4\times\tfrac a3=\tfrac{4a}{3}" />, and <Katex tex="16\left(\left(\tfrac a3\right)^{3/2}\right)^2=16\left(\tfrac a3\right)^3=\tfrac{16a^3}{27}" />. Put both terms over 27.</>,
   },
   {
     working: <Katex display tex="= \frac{2\sqrt{4a^3 + 9a}}{3\sqrt3} = \frac{2\sqrt{3\left(4a^3+9a\right)}}{9}" />,
@@ -163,8 +163,8 @@ export default function MethodsQ3_2023NHTExam2() {
               coordinates.
             </p>
             <p>
-              The turning points are given on the graph, so parts b.–f. need no new calculus until
-              f.: the rectangle&apos;s width and height are just differences of those coordinates.
+              The turning points are given on the graph, so parts b.–e. need no new calculus (only
+              f. differentiates again): the rectangle&apos;s width and height are just differences of those coordinates.
               Keeping <Katex tex="\tfrac a3" /> together and using index laws keeps the algebra
               short.
             </p>

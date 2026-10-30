@@ -26,12 +26,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x_2=2-\frac{f(2)}{f'(2)}=2-\frac{3.2662\ldots}{7.4710\ldots}=1.5628\ldots" />,
-    reason: <>Keep every value unrounded and feed it straight into the next step.</>,
-    more: <><Katex tex="f(2)=\log_e(5)-4+2^{5/2}=\log_e(5)-4+4\sqrt2" /> and <Katex tex="f'(2)=\tfrac25+5\sqrt2" />. On CAS, <Cas fn="define" /> <Katex tex="f(x)" /> and <Katex tex="g(x)=x-\tfrac{f(x)}{f'(x)}" /> (with <Cas fn="derivative" />), then evaluate <Katex tex="g(0)" />, <Katex tex="g(\text{ans})" />, <Katex tex="g(\text{ans})" />, pressing enter once per step.</>,
+    reason: <>Substitute <Katex tex="x=2" />: <Katex tex="f(2)=\log_e(5)-4+2^{5/2}=\log_e(5)-4+4\sqrt2" /> and <Katex tex="f'(2)=\tfrac25+5\sqrt2" />. Keep every value unrounded and feed it straight into the next step.</>,
   },
   {
     working: <Katex display tex="x_3=1.5628\ldots-\frac{0.4704\ldots}{5.3690\ldots}=1.47518\ldots" />,
-    reason: <>Third iteration. <Katex tex="x_3=1.475180\ldots" />, which rounds to <Katex tex="1.4752" />.</>,
+    reason: <>Third iteration, the same formula applied to <Katex tex="x_2" />. <Katex tex="x_3=1.475180\ldots" />, which rounds to <Katex tex="1.4752" />.</>,
+    more: <>Fastest on CAS: <Cas fn="define" /> <Katex tex="f(x)" /> and <Katex tex="g(x)=x-\tfrac{f(x)}{f'(x)}" /> (with <Cas fn="derivative" />), then evaluate <Katex tex="g(0)" />, <Katex tex="g(\text{ans})" />, <Katex tex="g(\text{ans})" />, pressing enter once per step: the three answers are <Katex tex="x_1" />, <Katex tex="x_2" />, <Katex tex="x_3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{x_3\approx 1.4752}" />,

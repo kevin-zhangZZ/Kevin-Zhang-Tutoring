@@ -23,8 +23,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a=\frac{c^2}{b}}" />,
-    reason: <>Matches option <b>D</b>.</>,
-    more: <>Option C writes <Katex tex="2\log_5(c)" /> as <Katex tex="\log_5(2c)" />. Options A and B turn the sum of logs into the log of a sum, <Katex tex="\log_5(a+b)" />, which is not a log law.</>,
+    reason: <>Divide both sides of <Katex tex="ab=c^2" /> by <Katex tex="b" /> (allowed, since <Katex tex="b>0" />). Matches option <b>D</b>.</>,
+    more: <>Option C writes <Katex tex="2\log_5(c)" /> as <Katex tex="\log_5(2c)" />. Options A and B turn the sum of logs into the log of a sum, <Katex tex="\log_5(a+b)" />, which is not a log law (A also uses <Katex tex="2c" /> in place of <Katex tex="c^2" />). Option E makes the <Katex tex="2c" /> slip and then divides the wrong way round.</>,
   },
 ]
 

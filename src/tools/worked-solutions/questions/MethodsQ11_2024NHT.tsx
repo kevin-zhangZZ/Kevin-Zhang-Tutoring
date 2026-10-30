@@ -42,8 +42,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t\approx 103.49\quad\text{or}\quad t\approx 246.51" />,
-    reason: <>The two solutions in <Katex tex="0\le t\le 365" />, either side of the minimum at 175 (and symmetric about it: <Katex tex="175\mp 71.508\ldots" />).</>,
-    more: <>On CAS: <Cas fn="solve">solve(12−3cos(2π/365·(t−175))=11, t) | 0≤t≤365</Cas>. By hand, <Katex tex="\tfrac{2\pi}{365}(t-175)=\pm\cos^{-1}\!\left(\tfrac13\right)" />, so <Katex tex="t=175\mp\tfrac{365}{2\pi}\cos^{-1}\!\left(\tfrac13\right)=175\mp 71.508\ldots" />.</>,
+    reason: <>On CAS: <Cas fn="solve">solve(12−3cos(2π/365·(t−175))=11, t) | 0≤t≤365</Cas>. These are the two solutions in <Katex tex="0\le t\le 365" />, either side of the minimum at <Katex tex="t=175" /> (and symmetric about it: <Katex tex="175\mp 71.508\ldots" />).</>,
+    more: <>By hand, <Katex tex="\tfrac{2\pi}{365}(t-175)=\pm\cos^{-1}\!\left(\tfrac13\right)" />, so <Katex tex="t=175\mp\tfrac{365}{2\pi}\cos^{-1}\!\left(\tfrac13\right)=175\mp 71.508\ldots" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&h(t)\ge 11\ \text{for}\\ &t\le 103.49\ldots\ \text{or}\ t\ge 246.51\ldots\end{aligned}" />,

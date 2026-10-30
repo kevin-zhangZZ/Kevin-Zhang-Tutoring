@@ -218,8 +218,8 @@ const ROWS_CIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered}g\!\left(\tfrac12+\tfrac{\sqrt3}{2}\right) = \left(\tfrac34-\tfrac94\right)^2 = \tfrac94, \\ g'\!\left(\tfrac12+\tfrac{\sqrt3}{2}\right) = -3\sqrt3\end{gathered}" />,
-    reason: <>Substitute <Katex tex="u=\tfrac{\sqrt3}{2}" /> into <Katex tex="g=\left(u^2-\tfrac94\right)^2" /> and <Katex tex="g'=2\left(u^2-\tfrac94\right)\cdot 2u=4u^3-9u" />.</>,
-    more: <>Since <Katex tex="u=x-\tfrac12" /> has <Katex tex="\tfrac{du}{dx}=1" />, differentiating with respect to <Katex tex="u" /> gives the same gradient as with respect to <Katex tex="x" />. Here <Katex tex="u^2=\tfrac34" />, so <Katex tex="g'=2\left(-\tfrac32\right)\left(\sqrt3\right)=-3\sqrt3" />. The same value comes from substituting into <Katex tex="g'(x)=4x^3-6x^2-6x+4" /> from part c.i., or from <Cas fn="derivative" /> on CAS.</>,
+    reason: <>Substitute <Katex tex="u=\tfrac{\sqrt3}{2}" /> into <Katex tex="g=\left(u^2-\tfrac94\right)^2" /> and <Katex tex="g'=2\left(u^2-\tfrac94\right)\cdot 2u=4u^3-9u" /> (chain rule; this equals <Katex tex="g'(x)" /> because <Katex tex="u=x-\tfrac12" /> just shifts <Katex tex="x" />).</>,
+    more: <>Formally, <Katex tex="\tfrac{du}{dx}=1" />, so the extra chain-rule factor is 1. Here <Katex tex="u^2=\tfrac34" />, so <Katex tex="g'=2\left(-\tfrac32\right)\left(\sqrt3\right)=-3\sqrt3" />. The same value comes from substituting into <Katex tex="g'(x)=4x^3-6x^2-6x+4" /> from part c.i., or from <Cas fn="derivative" /> on CAS.</>,
   },
   {
     working: <Katex display tex="y - \tfrac94 = -3\sqrt3\left(x-\tfrac12-\tfrac{\sqrt3}{2}\right)" />,
@@ -244,7 +244,7 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered}h'(x) = 4x^3-10x = 2x\left(2x^2-5\right) \\ \implies x = 0,\ \pm\sqrt{\tfrac52}\end{gathered}" />,
-    reason: <>Differentiate term by term and solve <Katex tex="h'(x)=0" />. A positive quartic has minima at the outer two, so <Katex tex="x=0" /> is the local maximum.</>,
+    reason: <>Differentiate term by term and solve <Katex tex="h'(x)=0" />. With a positive leading coefficient the quartic is W-shaped, so the outer two are minima and <Katex tex="x=0" /> is the local maximum.</>,
   },
   {
     working: <Katex display tex="h(0) = 4 \implies \text{local maximum } (0,4)" />,

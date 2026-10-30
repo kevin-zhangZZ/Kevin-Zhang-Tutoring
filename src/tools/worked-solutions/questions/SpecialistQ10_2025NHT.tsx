@@ -18,6 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dy}{dx}=x^2\ \Rightarrow\ S=2\pi\int_0^1\frac{x^3}{3}\sqrt{1+x^4}\,dx" />,
+    reason: <>Differentiate the curve, then put <Katex tex="y=\tfrac13x^3" /> and <Katex tex="\left(\tfrac{dy}{dx}\right)^2=\left(x^2\right)^2=x^4" /> into the formula.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&u=1+x^4,\quad \frac{du}{dx}=4x^3\ \Rightarrow\ x^3\,dx=\tfrac14\,du\\&x=0\to u=1,\quad x=1\to u=2\end{aligned}" />,
@@ -25,6 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="S=\frac{2\pi}{3}\cdot\frac14\int_1^2 u^{\frac12}\,du=\frac{\pi}{6}\left[\frac23u^{\frac32}\right]_1^2" />,
+    reason: <>Replace <Katex tex="x^3\,dx" /> by <Katex tex="\tfrac14\,du" /> and <Katex tex="\sqrt{1+x^4}" /> by <Katex tex="u^{\frac12}" />; the constants combine as <Katex tex="\tfrac{2\pi}{3}\cdot\tfrac14=\tfrac{\pi}{6}" />. Then antidifferentiate: add 1 to the power and divide by the new power.</>,
   },
   {
     working: <Katex display tex="=\frac{\pi}{9}\left(2^{\frac32}-1\right)=\frac{\pi}{9}\left(2\sqrt2-1\right)" />,

@@ -359,8 +359,8 @@ const ROWS_H: WorkingRow[] = [
     more: <>Why they meet only once: <Katex tex="y=\tfrac{n}{e}" /> is the tangent to <Katex tex="y=\log_e(n)" /> at <Katex tex="n=e" /> (gradient <Katex tex="\tfrac1e" />, through <Katex tex="(e,\,1)" />), and the concave-down log curve lies below its tangent everywhere else, so the two never meet again.</>,
   },
   {
-    working: <Katex display tex="f''(e) = e^e-e(e-1)\,e^{e-2} = e^{e-1} > 0" />,
-    reason: <>With <Katex tex="n=e" />, <Katex tex="f''(x)=e^x-e(e-1)x^{e-2}" />. It is positive at <Katex tex="x=e" />, so the stationary point <Katex tex="(e,\,0)" /> is a local minimum, as required.</>,
+    working: <Katex display tex="\begin{aligned} f(x) &= e^x-x^e \\ f'(x) &= e^x-e\,x^{e-1} \\ f''(x) &= e^x-e(e-1)\,x^{e-2} \\ f''(e) &= e^e-(e-1)\,e^{e-1} \\ &= e^{e-1}\bigl(e-(e-1)\bigr) = e^{e-1} > 0 \end{aligned}" />,
+    reason: <>Check it really is a local minimum: with <Katex tex="n=e" />, differentiate twice (power rule on <Katex tex="x^e" />). At <Katex tex="x=e" />, <Katex tex="e\cdot e^{e-2}=e^{e-1}" />, so take out the common factor <Katex tex="e^{e-1}" />. <Katex tex="f''(e)>0" /> means concave up, so the stationary point <Katex tex="(e,\,0)" /> is a local minimum, as required.</>,
   },
   {
     working: <Katex display tex="\boxed{n = e}" />,

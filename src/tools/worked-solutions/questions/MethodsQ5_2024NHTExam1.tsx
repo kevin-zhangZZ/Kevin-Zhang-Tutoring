@@ -27,12 +27,13 @@ const ROWS_A: WorkingRow[] = [
     reason: <>The sample proportion is centred on the population proportion: on average, samples get it right.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}\text{sd}(\hat P)&=\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.9\times0.1}{100}}\\ &=\sqrt{\frac{0.09}{100}}=\frac{0.3}{10}\end{aligned}" />,
+    working: <Katex display tex="\begin{aligned}\text{sd}(\hat P)&=\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.9\times0.1}{100}}\\ &=\sqrt{\frac{0.09}{100}}=\frac{0.3}{10}=0.03\end{aligned}" />,
     reason: <>The formula is on the formula sheet. <Katex tex="\sqrt{0.09}=0.3" /> and <Katex tex="\sqrt{100}=10" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{E}(\hat P)=0.9,\quad \text{sd}(\hat P)=0.03}" />,
-    reason: <>VCAA also writes the sd as <Katex tex="\tfrac{3}{100}" />. Sanity check: a typical sample proportion is within a few hundredths of 0.9 (about 87 to 93 seeds in 100), which is plausible.</>,
+    reason: <>VCAA also writes the sd as <Katex tex="\tfrac{3}{100}" />; both forms are exact.</>,
+    more: <>Sanity check: a typical sample proportion is within a few hundredths of 0.9 (about 87 to 93 seeds in 100), which is plausible.</>,
   },
 ]
 
@@ -56,7 +57,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(\hat P>0.93)\approx0.16}" />,
-    reason: <>Correct to two decimal places, as asked. Sanity check: about 68% of a normal distribution is within one sd of the mean, leaving about 16% in each tail.</>,
+    reason: <>Correct to two decimal places, as asked.</>,
+    more: <>Sanity check: about 68% of a normal distribution is within one sd of the mean, leaving about 16% in each tail.</>,
   },
 ]
 

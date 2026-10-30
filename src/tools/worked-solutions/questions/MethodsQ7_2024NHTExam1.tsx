@@ -27,7 +27,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}\Pr(X<4\mid X\ge2)&=\frac{\Pr(X<4\cap X\ge2)}{\Pr(X\ge2)}\\ &=\frac{\Pr(2\le X\le3)}{\Pr(X\ge2)}\end{aligned}" />,
-    reason: <>The conditional probability formula <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />. Both conditions hold for <Katex tex="X=2" /> and <Katex tex="X=3" /> only.</>,
+    reason: <>The conditional probability formula <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />. Here <Katex tex="A" /> is <Katex tex="X<4" /> and <Katex tex="B" /> is the given condition <Katex tex="X\ge2" />. <Katex tex="X" /> takes only whole-number values, so both hold for <Katex tex="X=2" /> and <Katex tex="X=3" /> only.</>,
   },
   {
     working: <Katex display tex="\Pr(2\le X\le3)=\frac{2}{9}+\frac{2}{27}=\frac{6+2}{27}=\frac{8}{27}" />,
@@ -35,7 +35,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X\ge2)=1-\Pr(X=1)=1-\frac23=\frac13" />,
-    reason: <><Katex tex="X\ge2" /> has infinitely many values, so don&apos;t add them up. Use the complement: the only value it leaves out is <Katex tex="X=1" />.</>,
+    reason: <><Katex tex="X\ge2" /> has infinitely many values, so don&apos;t add them up. Use the complement (all probabilities add to 1, so subtract the values you don&apos;t want): the only value <Katex tex="X\ge2" /> leaves out is <Katex tex="X=1" />.</>,
     more: <>This relies on the probabilities adding to 1, which they do: <Katex tex="\tfrac23+\tfrac29+\tfrac2{27}+\ldots" /> is a geometric series with sum <Katex tex="\tfrac{2/3}{1-1/3}=1" />. You aren&apos;t expected to show this; it is given that the rule is a probability mass function.</>,
   },
   {

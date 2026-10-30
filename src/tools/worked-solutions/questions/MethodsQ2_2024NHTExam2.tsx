@@ -90,7 +90,7 @@ const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{22 \text{ times}}" />,
     reason: <><Katex tex="k=0,1,\ldots,21" /> is 22 values. The count includes the start, <Katex tex="t=0" />, which is in the domain.</>,
-    more: <>Dividing 30 by the period gives 21.48 complete swings, and rounding that down to 21 misses the visit at <Katex tex="t=0" />. Counting the solutions of <Katex tex="\theta(t)=\tfrac\pi3" /> on <Katex tex="[0,30]" /> (by CAS or by listing <Katex tex="k" />) avoids that trap.</>,
+    more: <>To check by CAS, solve <Katex tex="\theta(t)=\tfrac\pi3" /> for <Katex tex="t\in[0,30]" /> and count the solutions: there are 22, starting with <Katex tex="t=0" />.</>,
   },
 ]
 

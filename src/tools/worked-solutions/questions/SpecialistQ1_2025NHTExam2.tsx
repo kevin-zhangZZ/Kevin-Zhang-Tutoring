@@ -68,7 +68,7 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\begin{gathered}f'(x)=1+\frac{1}{(x+1)^2}>1 \\ \text{so } f'(x)\ne0\end{gathered}}" />,
-    reason: <>A non-zero square is positive, so <Katex tex="f'(x)>1" />: the equation <Katex tex="f'(x)=0" /> has no real solutions, so there are no stationary points. As required.</>,
+    reason: <>Since <Katex tex="x\ne-1" />, <Katex tex="(x+1)^2>0" />, so <Katex tex="\tfrac{1}{(x+1)^2}>0" /> and <Katex tex="f'(x)>1" />: the equation <Katex tex="f'(x)=0" /> has no real solutions, so there are no stationary points. As required.</>,
     more: <>VCAA writes it as the equation <Katex tex="0=1+\tfrac{1}{(x+1)^2}" />, &ldquo;which has no real solutions for <Katex tex="x" />&rdquo;. Either way, the conclusion must be stated: a &lsquo;show that&rsquo; is not finished at the formula for <Katex tex="f'(x)" />.</>,
   },
 ]

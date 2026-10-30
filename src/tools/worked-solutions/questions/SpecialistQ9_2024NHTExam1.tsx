@@ -33,10 +33,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&\frac{d}{dP}\left(0.5P-0.001P^2\right) \\ &=0.5-0.002P=\frac12-\frac{P}{500}\end{aligned}" />,
+    reason: <>Differentiate term by term with respect to <Katex tex="P" />: <Katex tex="\tfrac{d}{dP}(0.5P)=0.5" /> and <Katex tex="\tfrac{d}{dP}(0.001P^2)=0.002P" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{d^2P}{dt^2}=0.05P\left(10-\frac{P}{50}\right)\left(\frac12-\frac{P}{500}\right)}" />,
-    reason: <>The product of the two factors, which is VCAA&apos;s form. Equivalent forms are accepted, for example <Katex tex="\dfrac{P(P-250)(P-500)}{500\,000}" />.</>,
+    reason: <>Multiply the derivative just found by <Katex tex="\tfrac{dP}{dt}" />, kept in its given factorised form, as the chain rule above says. This is VCAA&apos;s form. Equivalent forms are accepted, for example <Katex tex="\dfrac{P(P-250)(P-500)}{500\,000}" />.</>,
     more: <>Check the sign: for <Katex tex="100\le P<250" /> the last factor is positive, so the graph is concave up (the growth is speeding up), and for <Katex tex="250<P<500" /> it is negative (concave down). That matches the printed graph either side of <Katex tex="A" />.</>,
   },
 ]
@@ -48,8 +49,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <><b>A is when the kangaroo population is growing at its fastest rate (when the population is 250, half of the carrying capacity of 500).</b></>,
-    reason: <>The question says &ldquo;in the context of the growth of the kangaroo population&rdquo;, so the answer must talk about the rate of growth of the population, not just &ldquo;the concavity changes&rdquo;. VCAA&apos;s sample answer: the rate of growth is at a maximum, or half the carrying capacity is reached.</>,
-    more: <>From part a., <Katex tex="\tfrac{d^2P}{dt^2}=0" /> when <Katex tex="\tfrac12-\tfrac P{500}=0" />, that is <Katex tex="P=250" />. The carrying capacity 500 is where <Katex tex="\tfrac{dP}{dt}=0" />: the population levels off there.</>,
+    reason: <>The question says &ldquo;in the context of the growth of the kangaroo population&rdquo;, so the answer must talk about the rate of growth of the population, not just &ldquo;the concavity changes&rdquo;. The 250 comes from part a.: <Katex tex="\tfrac{d^2P}{dt^2}=0" /> when <Katex tex="\tfrac12-\tfrac P{500}=0" />, that is <Katex tex="P=250" />. The carrying capacity, 500, is the population where <Katex tex="\tfrac{dP}{dt}=0" />, so the population levels off there.</>,
+    more: <>VCAA&apos;s sample answer: the rate of growth is at a maximum, or half the carrying capacity is reached.</>,
   },
 ]
 
@@ -100,7 +101,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A\left(\log_e(16),\ 250\right)}" />,
-    reason: <>VCAA accepts equivalent forms such as <Katex tex="\left(2\log_e(4),250\right)" /> or <Katex tex="\left(4\log_e(2),250\right)" />. Graph check: <Katex tex="\log_e16\approx2.77" />, and <Katex tex="A" /> is printed a little before <Katex tex="t=3" />, at <Katex tex="P=250" /> ✓.</>,
+    reason: <>The <Katex tex="t" />-coordinate comes first, then <Katex tex="P" />. Equivalent forms such as <Katex tex="\left(2\log_e(4),250\right)" /> or <Katex tex="\left(4\log_e(2),250\right)" /> are equally correct.</>,
+    more: <>Graph check: <Katex tex="\log_e16\approx2.77" />, and <Katex tex="A" /> is printed a little before <Katex tex="t=3" />, at <Katex tex="P=250" /> ✓.</>,
   },
 ]
 

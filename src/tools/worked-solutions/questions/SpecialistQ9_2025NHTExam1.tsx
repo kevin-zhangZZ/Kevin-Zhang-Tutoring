@@ -36,12 +36,12 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} w=\sqrt x,\ \ x&=w^2,\ \ dx=2w\,dw \\ x=1:\ w=1,&\quad x=3:\ w=\sqrt3 \end{aligned}" />,
-    reason: <>The remaining integral has <Katex tex="\sqrt x" /> in it, so substitute <Katex tex="w=\sqrt x" /> to get rid of the root, and change the terminals.</>,
+    reason: <>The remaining integral has <Katex tex="\sqrt x" /> in it, so substitute <Katex tex="w=\sqrt x" /> to get rid of the root. Then <Katex tex="x=w^2" />, so <Katex tex="\tfrac{dx}{dw}=2w" />, giving <Katex tex="dx=2w\,dw" />. The terminals are <Katex tex="x" />-values, so change each to a <Katex tex="w" />-value using <Katex tex="w=\sqrt x" />.</>,
     more: <>The report calls this variable <Katex tex="u" />; any letter works. We use <Katex tex="w" /> so it doesn&apos;t clash with the <Katex tex="u" /> of the integration by parts.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \frac12\int_1^3\frac{\sqrt x}{1+x}\,dx&=\frac12\int_1^{\sqrt3}\frac{w}{1+w^2}\cdot2w\,dw \\ &=\int_1^{\sqrt3}\frac{w^2}{1+w^2}\,dw \end{aligned}" />,
-    reason: <>The <Katex tex="\tfrac12" /> and the 2 cancel.</>,
+    reason: <>Replace <Katex tex="\sqrt x" /> by <Katex tex="w" />, <Katex tex="1+x" /> by <Katex tex="1+w^2" /> and <Katex tex="dx" /> by <Katex tex="2w\,dw" />, and use the new terminals. The <Katex tex="\tfrac12" /> and the 2 cancel.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \int_1^{\sqrt3}\frac{w^2}{1+w^2}\,dw&=\int_1^{\sqrt3}\left(1-\frac{1}{1+w^2}\right)dw \\ &=\Big[w-\arctan(w)\Big]_1^{\sqrt3} \end{aligned}" />,
@@ -57,7 +57,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\int_1^3\arctan\left(\sqrt x\right)dx=\frac{5\pi}{6}+1-\sqrt3}" />,
-    reason: <><Katex tex="\tfrac{9\pi}{12}+\tfrac{\pi}{12}=\tfrac{10\pi}{12}=\tfrac{5\pi}{6}" />. Sanity check: <Katex tex="\approx2.618+1-1.732\approx1.886" />. The integrand rises from <Katex tex="\tfrac{\pi}{4}\approx0.79" /> to <Katex tex="\tfrac{\pi}{3}\approx1.05" /> over an interval of width 2, so the integral must be between about 1.57 and 2.09 ✓.</>,
+    reason: <><Katex tex="\tfrac{3\pi}{4}+\tfrac{\pi}{12}=\tfrac{9\pi}{12}+\tfrac{\pi}{12}=\tfrac{10\pi}{12}=\tfrac{5\pi}{6}" />.</>,
+    more: <>Sanity check: <Katex tex="\approx2.618+1-1.732\approx1.886" />. The integrand rises from <Katex tex="\tfrac{\pi}{4}\approx0.79" /> to <Katex tex="\tfrac{\pi}{3}\approx1.05" /> over an interval of width 2, so the integral must be between about 1.57 and 2.09 ✓.</>,
   },
 ]
 

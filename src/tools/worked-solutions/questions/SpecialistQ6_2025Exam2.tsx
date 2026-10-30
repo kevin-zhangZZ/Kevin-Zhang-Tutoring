@@ -118,7 +118,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="z = 1.9599\ldots \text{ for } 95\%" />,
-    reason: <>By <Cas fn="invNorm" /> with area 0.975 — the 5% left outside a 95% interval is split into two tails of 2.5%.</>,
+    reason: <>By <Cas fn="invNorm" /> with area 0.975, μ = 0, σ = 1 — the 5% left outside a 95% interval is split into two tails of 2.5%.</>,
     more: <>The middle 95% of <Katex tex="Z" /> runs from <Katex tex="-z" /> to <Katex tex="z" />, so the area to the left of <Katex tex="z" /> is <Katex tex="0.95+0.025=0.975" />. Using area 0.95 instead gives <Katex tex="z\approx1.645" />, the 90% value. The rounded 1.96 is the standard value for 95%; it gives the same interval to one decimal place.</>,
   },
   {
@@ -157,7 +157,7 @@ const ROWS_D: WorkingRow[] = [
     reason: <>The requirement: the margin of error is no more than 1 mL. σ = 5 is known and z = 1.96 as in part b., so n is the only unknown.</>,
   },
   {
-    working: <Katex display tex="\sqrt{n} \ge 1.96\times5 = 9.8 \implies n \ge 96.04" />,
+    working: <Katex display tex="\sqrt{n} \ge 1.96\times5 = 9.8 \implies n \ge 9.8^2 = 96.04" />,
     reason: <>Multiplying both sides by <Katex tex="\sqrt{n}" />, then squaring (both sides positive).</>,
     more: <>With the unrounded <Katex tex="z=1.95996\ldots" /> the bound is <Katex tex="n\ge96.036\ldots" />; either way the answer is 97. CAS can also solve <Katex tex="1.96\times\tfrac{5}{\sqrt{n}}=1" /> for <Katex tex="n" /> directly.</>,
   },
@@ -236,7 +236,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="c = 750-2.32634\times\frac{5}{\sqrt{50}} = 750-1.64498\ldots" />,
-    reason: <>Unstandardising back to millilitres.</>,
+    reason: <>Unstandardising back to millilitres: <Katex tex="c=\mu+z\,\tfrac{\sigma}{\sqrt{n}}" /> with <Katex tex="\mu=750" /> and the negative <Katex tex="z" />, so c lies below 750.</>,
   },
   {
     working: <Katex display tex="\boxed{c \approx 748.355 \text{ mL}}" />,
@@ -262,7 +262,7 @@ const ROWS_H: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr\left(\overline{X}\ge748.355\ldots\right) = 0.11329\ldots" />,
-    reason: <>By <Cas fn="normCdf" /> with lower = the stored critical value, upper ∞, μ = 747.5, σ = 5/√50.</>,
+    reason: <>By <Cas fn="normCdf" /> with lower = the unrounded critical value 748.355… from part g., upper ∞, μ = 747.5, σ = 5/√50.</>,
     more: <>Typing the rounded 748.355 gives 0.11330…; both round to 0.113.</>,
   },
   {

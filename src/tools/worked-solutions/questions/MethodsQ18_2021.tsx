@@ -43,6 +43,10 @@ const ROWS: WorkingRow[] = [
     reason: <>Expanded (ready to differentiate later): <Katex tex="(2x-1)(2x+1) = 4x^2-1" />, then multiply by <Katex tex="3x-1" />.</>,
   },
   {
+    working: <Katex display tex="\begin{aligned}f'(x)&=36x^2-8x-3=0\\ x&=\tfrac{2\pm\sqrt{31}}{18}\approx-0.20,\ 0.42\end{aligned}" />,
+    reason: <>The cubic's turning points, by the quadratic formula: the hump is at <Katex tex="x\approx-0.20" /> and the dip at <Katex tex="x\approx0.42" />.</>,
+  },
+  {
     working: <Katex display tex="g'(x) = 1\times\log_e(-x) + x\times\frac{1}{x} = \log_e(-x)+1" />,
     reason: <>Product rule. By the chain rule, <Katex tex="\tfrac{d}{dx}\log_e(-x) = \tfrac{-1}{-x} = \tfrac1x" />.</>,
   },
@@ -59,7 +63,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="k=-1: \quad f(x+1) = g(x)" />,
     reason: <><Katex tex="g" /> only exists for <Katex tex="x<0" />, but the cubic's dip is at <Katex tex="x\approx0.42" />, so translate the cubic left to put its hump and dip over <Katex tex="g" />. Try <Katex tex="k=-1" />: on CAS, <Cas fn="solve">solve(f(x+1) = g(x), x)</Cas>.</>,
-    more: <><Katex tex="f'(x)=36x^2-8x-3=0" /> gives <Katex tex="x=\tfrac{2\pm\sqrt{31}}{18}" />: the hump is at <Katex tex="x\approx-0.20" /> and the dip at <Katex tex="x\approx0.42" />. With <Katex tex="k=0" /> the dip and the climb after it are over <Katex tex="x>0" />, where <Katex tex="g" /> doesn't exist.</>,
+    more: <>With <Katex tex="k=0" /> the dip and the climb after it are over <Katex tex="x>0" />, where <Katex tex="g" /> doesn't exist.</>,
   },
   {
     working: <Katex display tex="x \approx -1.561,\ -0.758,\ -0.397" />,

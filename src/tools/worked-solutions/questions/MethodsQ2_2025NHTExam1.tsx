@@ -23,20 +23,19 @@ const REPORT: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} g(0)=9 &\implies a(0)^3+b(0)^2+c=9 \\ &\implies c=9 \end{aligned}" />,
-    reason: <>The graph of <Katex tex="g" /> passes through <Katex tex="(0,9)" />, its <Katex tex="y" />-intercept. Setting <Katex tex="x=0" /> kills every term except <Katex tex="c" />.</>,
+    reason: <>The graph of <Katex tex="g" /> passes through <Katex tex="(0,9)" />, its <Katex tex="y" />-intercept. Setting <Katex tex="x=0" /> makes every term except <Katex tex="c" /> zero.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} g(6)=9 &\implies 216a+36b+9=9 \\ &\implies 216a+36b=0 \\ &\implies b=-6a \quad (1)\end{aligned}" />,
-    reason: <>Three unknowns need three facts. The second: <Katex tex="g" /> passes through <Katex tex="(6,9)" />. <Katex tex="6^3=216" /> and <Katex tex="6^2=36" />; dividing <Katex tex="216a+36b=0" /> by 36 gives <Katex tex="6a+b=0" />.</>,
+    working: <Katex display tex="\begin{aligned} g(6)=9 &\implies 216a+36b+9=9 \\ &\implies 216a+36b=0 \\ &\implies 6a+b=0 \\ &\implies b=-6a \quad (1)\end{aligned}" />,
+    reason: <>Three unknowns need three facts. The second: <Katex tex="g" /> passes through <Katex tex="(6,9)" />. <Katex tex="6^3=216" /> and <Katex tex="6^2=36" />; divide by 36, then make <Katex tex="b" /> the subject so it can be substituted later.</>,
   },
   {
     working: <Katex display tex="g'(x)=3ax^2+2bx, \qquad h'(x)=\frac{x}{2}" />,
     reason: <>The third fact is about gradients, so differentiate both functions. <Katex tex="h(x)=\tfrac14x^2" /> gives <Katex tex="h'(x)=\tfrac{2x}{4}=\tfrac x2" />.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} g'(6)=h'(6) &\implies 108a+12b=3 \\ &\implies 36a+4b=1 \quad (2)\end{aligned}" />,
-    reason: <>&ldquo;The same gradient at this point&rdquo; means the derivatives are equal at <Katex tex="x=6" />: <Katex tex="3a(36)+2b(6)=\tfrac62" />. Divide through by 3.</>,
-    more: <>Note what is <em>not</em> used: <Katex tex="g(6)=h(6)" /> on its own just repeats the point <Katex tex="(6,9)" /> (both graphs pass through it). The new information is the matching gradient, so one of the two equations must involve the derivative, as the report says.</>,
+    working: <Katex display tex="\begin{aligned} g'(6)=h'(6) &\implies 3a(6)^2+2b(6)=\frac62 \\ &\implies 108a+12b=3 \\ &\implies 36a+4b=1 \quad (2)\end{aligned}" />,
+    reason: <>&ldquo;The same gradient at this point&rdquo; means the derivatives are equal at <Katex tex="x=6" />, so substitute <Katex tex="x=6" /> into both. Then divide through by 3.</>,
   },
   {
     working: <Katex display tex="36a+4(-6a)=1 \implies 12a=1 \implies a=\frac{1}{12}" />,
@@ -102,8 +101,9 @@ export default function MethodsQ2_2025NHTExam1() {
           title="Use g(6) = h(6) as the second equation"
           working={<Katex display tex="216a+36b+9=\frac{36}{4}=9" />}
         >
-          That is the same equation as <Katex tex="g(6)=9" />, written a second way, so it gives no new information and{' '}
-          <Katex tex="a" /> and <Katex tex="b" /> can&apos;t be separated. Each condition in the stem gives one equation: through{' '}
+          Both graphs pass through <Katex tex="(6,9)" />, so this is the same equation as <Katex tex="g(6)=9" />, written a
+          second way. It gives no new information and <Katex tex="a" /> and <Katex tex="b" /> can&apos;t be separated; the new
+          information is the matching gradient, which is why one of the two equations must involve the derivative. Each condition in the stem gives one equation: through{' '}
           <Katex tex="(0,9)" />, through <Katex tex="(6,9)" />, and equal gradients at <Katex tex="x=6" />.
         </WrongMethod>
         <ReportShelf stats={REPORT} maxMarks={3} />

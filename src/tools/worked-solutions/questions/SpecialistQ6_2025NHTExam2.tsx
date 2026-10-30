@@ -81,7 +81,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2 \times 2.5758 \times \frac{10}{\sqrt n} \le 0.4 \times 2 \times 2.5758 \times \frac{10}{\sqrt{150}}" />,
-    reason: <>Decreasing the width by at least 60% leaves at most 40% of the part c. width.</>,
+    reason: <>Decreasing the width by at least 60% leaves at most 40% of the width found in part c.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}\frac{1}{\sqrt n} \le \frac{0.4}{\sqrt{150}} \implies \sqrt n \ge \frac{\sqrt{150}}{0.4} \\ \implies n \ge \frac{150}{0.16} = 937.5\end{gathered}" />,
@@ -104,7 +104,7 @@ const ROWS_F: WorkingRow[] = [
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\bar L \sim \mathrm{N}\!\left(3200,\ \left(\tfrac{450}{\sqrt{100}}\right)^2\right) = \mathrm{N}\!\left(3200,\ 45^2\right)" />,
-    reason: <>Assuming <Katex tex="H_0" /> is true, the mean of a sample of 100 tyres is normal with standard deviation <Katex tex="\tfrac{\sigma}{\sqrt n}=45" />.</>,
+    reason: <>Let <Katex tex="\bar L" /> be the mean life of a random sample of 100 tyres. Assuming <Katex tex="H_0" /> is true, <Katex tex="\bar L" /> is normal with mean 3200 and standard deviation <Katex tex="\tfrac{\sigma}{\sqrt n}=45" />.</>,
   },
   {
     working: (
@@ -390,7 +390,7 @@ export default function SpecialistQ6_2025NHTExam2() {
           working={<Katex display tex="\begin{gathered}k = \text{invNorm}(0.95,\ 3350,\ 45) \approx 3424 \\ \implies \Pr(\bar L<3424 \mid \mu=3350) = 0.95\end{gathered}" />}
         >
           The cut-off belongs to the test, and the test is designed under <Katex tex="H_0" />:{' '}
-          <Katex tex="\mu=3200" />. Using 3350 for both steps just returns 0.95, the confidence level,
+          <Katex tex="\mu=3200" />. Using 3350 for both steps just returns 0.95 (that is, 1 − 0.05),
           which can&apos;t be the chance of missing a real increase.
         </WrongMethod>
       </PartCard>

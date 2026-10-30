@@ -88,7 +88,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{h(x) = 4(x-2)^2-4}" />,
     reason: <>The 2 inside the bracket is squared too: <Katex tex="\bigl(2(x-2)\bigr)^2 = 2^2(x-2)^2 = 4(x-2)^2" />.</>,
-    more: <>A common slip is writing <Katex tex="2(x-2)^2" />. Expanded, <Katex tex="h(x)=4x^2-16x+12" />; either form is fine.</>,
+    more: <>A common slip is writing <Katex tex="2(x-2)^2" />, which squares the <Katex tex="x-2" /> but not the 2; the report's general comments flag exactly this. Expanded, <Katex tex="h(x)=4x^2-16x+12" />; either form is fine.</>,
   },
   {
     working: <Katex display tex="f(x) = 0: \ x^2 = 4 \implies x = \pm 2" />,

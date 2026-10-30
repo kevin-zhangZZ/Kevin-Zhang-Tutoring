@@ -173,10 +173,11 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\int_{-4}^{0} f(x)\,dx = \left[\tfrac{1}{16}(x+2)^4+2x\right]_{-4}^{0}" />,
-    reason: <>The part of the tile in the second quadrant is bounded by <Katex tex="f" />, the <Katex tex="x" />-axis and the <Katex tex="y" />-axis. <Katex tex="f\ge0" /> on <Katex tex="[-4,0]" />, so its area is this integral.</>,
+    reason: <>The part of the tile in the second quadrant is bounded by <Katex tex="f" />, the <Katex tex="x" />-axis and the <Katex tex="y" />-axis. <Katex tex="f\ge0" /> on <Katex tex="[-4,0]" />, so its area is this integral. The antiderivative of <Katex tex="\tfrac14(x+2)^3" /> is <Katex tex="\tfrac14\cdot\tfrac{(x+2)^4}{4}=\tfrac{1}{16}(x+2)^4" />.</>,
   },
   {
     working: <Katex display tex="= \left(\tfrac{16}{16}+0\right)-\left(\tfrac{16}{16}-8\right) = 8" />,
+    reason: <>Top limit minus bottom limit: <Katex tex="(0+2)^4=16" /> and <Katex tex="(-4+2)^4=16" />, so this quarter of the tile has area 8.</>,
   },
   {
     working: <Katex display tex="A = 4\times8" />,

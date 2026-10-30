@@ -33,8 +33,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Use the given point to find <Katex tex="c" />.</>,
   },
   {
-    working: <Katex display tex="-\frac{1}{4}+c=\frac{5}{4}\implies c=\frac{6}{4}=\frac{3}{2}" />,
-    reason: <><Katex tex="(3-4)^4=(-1)^4=1" />: an even power, so positive.</>,
+    working: <Katex display tex="-\frac{1}{4}+c=\frac{5}{4}\implies c=\frac{5}{4}+\frac{1}{4}=\frac{6}{4}=\frac{3}{2}" />,
+    reason: <><Katex tex="(3-4)^4=(-1)^4=1" />: an even power, so positive. Then add <Katex tex="\tfrac14" /> to both sides.</>,
     more: <>The report notes some students included the constant but did not then calculate its value correctly. The usual slip here is <Katex tex="(-1)^4=-1" />, which gives <Katex tex="c=\tfrac{5}{4}-\tfrac14=1" />.</>,
   },
   {

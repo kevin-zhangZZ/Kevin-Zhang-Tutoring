@@ -94,6 +94,7 @@ const ROWS_BIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered} w = 2.4908\ldots \\ A(2.4908\ldots) = 15.5220\ldots \end{gathered}" />,
+    reason: <>This is the only stationary point, and the area is 0 at both ends (<Katex tex="w=0" />, and <Katex tex="w=3\log_e(4)" />, where <Katex tex="e^{w/3}=4" /> and <Katex tex="e^{w/2}=8" />, so <Katex tex="l=12-8-4=0" />: both top corners are at <Katex tex="(4,g(4))" />), so it is the maximum.</>,
   },
   {
     working: <Katex display tex="\boxed{w = 2.49, \quad A_{\max} = 15.52 \text{ m}^2}" />,
@@ -146,8 +147,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A_p \text{ is decreasing for } w \ge 2.6383\ldots" />,
-    reason: <>Without the timber limit, <Katex tex="A_p" /> would peak at <Katex tex="w\approx1.38" />, which is not allowed. On the allowed widths, all to the right of that peak, the area only falls as <Katex tex="w" /> grows, so the maximum is at the smallest allowed width.</>,
-    more: <>Check by evaluating: <Katex tex="A_p(2.64)\approx19.88" />, <Katex tex="A_p(3)\approx17.18" />, <Katex tex="A_p(3.5)\approx11.62" />.</>,
+    reason: <>Without the timber limit, <Katex tex="A_p" /> would peak at <Katex tex="w\approx1.38" /> (solve <Katex tex="A_p'(w)=0" /> on CAS), which is not allowed. On the allowed widths, all to the right of that peak, the area only falls as <Katex tex="w" /> grows, so the maximum is at the smallest allowed width.</>,
+    more: <>Check by evaluating: <Katex tex="A_p(2.64)\approx19.87" />, <Katex tex="A_p(3)\approx17.18" />, <Katex tex="A_p(3.5)\approx11.62" />.</>,
   },
   {
     working: <Katex display tex="A_p(2.6383\ldots) = 19.882\ldots" />,

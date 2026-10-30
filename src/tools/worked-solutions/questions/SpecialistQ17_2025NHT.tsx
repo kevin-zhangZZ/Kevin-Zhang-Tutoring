@@ -21,6 +21,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{u}\times\underset{\sim}{v}\right|=\sqrt{25+25+25}=5\sqrt3" />,
+    reason: <>The magnitude is the square root of the sum of the squares of the components: <Katex tex="\sqrt{(-5)^2+(-5)^2+(-5)^2}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A=\frac{5\sqrt3}{2}}" />,

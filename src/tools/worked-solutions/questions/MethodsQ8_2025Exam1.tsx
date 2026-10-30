@@ -55,8 +55,8 @@ const ROWS_A: WorkingRow[] = [
     more: <>The report notes some students raised the power to 2 but then divided by 2 instead of 6 — forgetting the inner derivative <Katex tex="-3" />. Differentiate your answer to check: <Katex tex="-\tfrac{1}{16}\times2(4-3x)\times(-3)=\tfrac38(4-3x)" />. Expanding first also works: <Katex tex="\int\left(\tfrac32-\tfrac98x\right)dx=\tfrac32x-\tfrac{9}{16}x^2" />, though that route gives fractional coefficients to clear later.</>,
   },
   {
-    working: <Katex display tex="\left[-\frac{(4-3x)^2}{16}\right]_k^{4/3} = 0+\frac{(4-3k)^2}{16}" />,
-    reason: <>At <Katex tex="x=\tfrac43" /> the bracket <Katex tex="(4-3x)" /> is zero, so the upper limit contributes 0 and only the <Katex tex="k" /> term remains.</>,
+    working: <Katex display tex="\begin{aligned}\left[-\frac{(4-3x)^2}{16}\right]_k^{4/3} &= 0-\left(-\frac{(4-3k)^2}{16}\right)\\ &= \frac{(4-3k)^2}{16}\end{aligned}" />,
+    reason: <>Upper limit minus lower limit. At <Katex tex="x=\tfrac43" /> the bracket <Katex tex="(4-3x)" /> is zero, so the upper limit gives 0; subtracting the negative lower-limit value makes it positive.</>,
   },
   {
     working: <Katex display tex="\frac{(4-3k)^2}{16} = \frac{9}{16} \implies (4-3k)^2 = 9" />,
@@ -86,7 +86,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_0^{4/3}f(x)\,dx = 1" />,
-    reason: <><Katex tex="f" /> is a probability density function and <Katex tex="\left[0,\tfrac43\right]" /> is its whole support, so this integral is the total probability, 1 — no calculation needed.</>,
+    reason: <><Katex tex="f" /> is a probability density function and <Katex tex="\left[0,\tfrac43\right]" /> is the whole interval where it is non-zero, so this integral is the total probability, 1 — no calculation needed.</>,
     more: <>The report notes the students who recognised the total probability is 1 were generally successful. Integrating directly confirms it, using part a's antiderivative: <Katex tex="\left[-\tfrac{(4-3x)^2}{16}\right]_0^{4/3}=0+\tfrac{16}{16}=1" />.</>,
   },
   {

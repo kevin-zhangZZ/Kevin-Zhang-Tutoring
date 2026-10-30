@@ -146,10 +146,10 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1-\frac{2}{x-2} = 3 \implies \frac{-2}{x-2} = 2" />,
-    reason: <>Find where the curve meets the line <Katex tex="y=3" />.</>,
+    reason: <>Find where the curve meets the line <Katex tex="y=3" />: replace <Katex tex="\ge" /> with <Katex tex="=" /> and subtract 1 from both sides.</>,
   },
   {
-    working: <Katex display tex="x-2 = -1 \implies x = 1" />,
+    working: <Katex display tex="-2 = 2(x-2) \implies x-2 = -1 \implies x = 1" />,
     reason: (
       <>
         Multiply both sides by <Katex tex="x-2" /> and divide by 2. This gives only one endpoint: the lower bound.

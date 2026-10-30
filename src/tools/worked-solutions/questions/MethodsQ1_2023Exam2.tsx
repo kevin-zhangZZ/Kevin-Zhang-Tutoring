@@ -114,8 +114,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f\!\left(\frac{1-\sqrt7}{3}\right) = \frac{14\sqrt7-20}{27} = \frac{2\left(7\sqrt7-10\right)}{27}" />,
-    reason: <>Substitute each <Katex tex="x" />-value back into <Katex tex="f" /> for the <Katex tex="y" />-coordinate, keeping the surds exact. About <Katex tex="0.631" />: this is the left-hand turning point, which the graph shows is the local maximum.</>,
-    more: <>On CAS, <Cas fn="define">Define f(x)=x·(x−2)·(x+1)</Cas> first, then evaluate <Katex tex="f\!\left(\tfrac{1-\sqrt7}{3}\right)" />: the exact surd form comes straight out. Use the decimals only to check which point is the maximum, not as the answer.</>,
+    reason: <>Substitute each <Katex tex="x" />-value back into <Katex tex="f" /> for the <Katex tex="y" />-coordinate, keeping the surds exact: on CAS, <Cas fn="define">Define f(x)=x·(x−2)·(x+1)</Cas>, then evaluate <Katex tex="f\!\left(\tfrac{1-\sqrt7}{3}\right)" />. About <Katex tex="0.631" />: this is the left-hand turning point, which the graph shows is the local maximum.</>,
+    more: <>The exact surd form comes straight out of the CAS. Use the decimals only to check which point is the maximum, not as the answer.</>,
   },
   {
     working: <Katex display tex="f\!\left(\frac{1+\sqrt7}{3}\right) = \frac{-14\sqrt7-20}{27} = -\frac{2\left(7\sqrt7+10\right)}{27}" />,
@@ -237,7 +237,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="b = \frac{2\pm\sqrt{4+24}}{6} = \frac{1\pm\sqrt7}{3}" />,
-    reason: <>Quadratic formula. Both values are real, so there are two possible values of <Katex tex="b" />. They match the stationary <Katex tex="x" />-values from part b., the starting point of the report&apos;s method 2.</>,
+    reason: <>Quadratic formula. Both values are real, so there are two possible values of <Katex tex="b" />. They match the stationary <Katex tex="x" />-values from part b.: the report&apos;s method 2 (using transformations) starts from those turning points.</>,
     more: (
       <>
         <p>

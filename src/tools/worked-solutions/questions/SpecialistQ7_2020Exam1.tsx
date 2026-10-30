@@ -103,7 +103,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="4\left[\arctan(x)\right]_1^{\sqrt3} = 4\left(\tfrac\pi3-\tfrac\pi4\right)" />,
-    reason: <><Katex tex="\tan\tfrac\pi3=\sqrt3" /> and <Katex tex="\tan\tfrac\pi4=1" />, exact values worth knowing cold.</>,
+    reason: <>Substitute the limits, upper minus lower: <Katex tex="\arctan(\sqrt3)=\tfrac\pi3" /> because <Katex tex="\tan\tfrac\pi3=\sqrt3" />, and <Katex tex="\arctan(1)=\tfrac\pi4" /> because <Katex tex="\tan\tfrac\pi4=1" />, exact values worth knowing cold.</>,
   },
   {
     working: <Katex display tex="= 4\cdot\tfrac{\pi}{12} = \tfrac\pi3" />,

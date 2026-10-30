@@ -30,9 +30,8 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\cos(x-y)-\cos(x+y) = 2\sin(x)\sin(y)" />,
-    reason: <>Every option separates <Katex tex="x" /> from <Katex tex="y" />, so the bracket must become a product. Expand both with the compound-angle formulas: the <Katex tex="\cos(x)\cos(y)" /> terms cancel and the <Katex tex="\sin(x)\sin(y)" /> terms double.</>,
-    more: <>The formulas are <Katex tex="\cos(x-y)=\cos(x)\cos(y)+\sin(x)\sin(y)" /> and <Katex tex="\cos(x+y)=\cos(x)\cos(y)-\sin(x)\sin(y)" />.</>,
+    working: <Katex display tex="\begin{aligned} &\cos(x-y)-\cos(x+y) \\ &= \big(\cos(x)\cos(y)+\sin(x)\sin(y)\big) \\ &\quad -\big(\cos(x)\cos(y)-\sin(x)\sin(y)\big) \\ &= 2\sin(x)\sin(y) \end{aligned}" />,
+    reason: <>Every option separates <Katex tex="x" /> from <Katex tex="y" />, so the bracket must become a product. Expand both with the compound-angle formulas (on the formula sheet): the <Katex tex="\cos(x)\cos(y)" /> terms cancel and the <Katex tex="\sin(x)\sin(y)" /> terms double.</>,
   },
   {
     working: <Katex display tex="e^{x-y} = e^x e^{-y}" />,

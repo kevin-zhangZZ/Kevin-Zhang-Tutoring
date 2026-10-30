@@ -3,7 +3,8 @@
 // y = f(−2(x + 1)). Question text transcribed from the original paper; the stem graph and the
 // five option graphs are cropped from the original VCAA exam PDF. Solution is original; the answer
 // D agrees with the report's key. Feature positions on the stem graph read from the 300 dpi crop
-// (local maximum at x = −1 under the printed tick; touching point near x = −0.5).
+// (local maximum at x = −1 under the printed tick; touching point near x = −0.5; minimum near x = −1.75, measured against the
+// tick: y-axis at px 309, x = −1 tick at px 208, minimum at px 132).
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'

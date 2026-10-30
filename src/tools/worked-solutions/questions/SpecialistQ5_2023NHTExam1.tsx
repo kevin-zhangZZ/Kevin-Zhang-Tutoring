@@ -33,7 +33,7 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Write the right side in polar form: <Katex tex="-8i" /> sits on the negative imaginary axis, 8 units from the origin.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}&z=r\,\text{cis}(\theta)\\ \implies &r^3\,\text{cis}(3\theta)\\ &\ =8\,\text{cis}\!\left(-\tfrac{\pi}{2}+2k\pi\right)\end{aligned}" />,
+    working: <Katex display tex="\begin{aligned}z&=r\,\text{cis}(\theta)\\ \implies z^3&=r^3\,\text{cis}(3\theta)\\ &=8\,\text{cis}\!\left(-\tfrac{\pi}{2}+2k\pi\right)\end{aligned}" />,
     reason: <>By de Moivre&apos;s theorem, cubing <Katex tex="z" /> cubes the modulus and triples the argument. The argument of <Katex tex="-8i" /> is only fixed up to whole turns, so add <Katex tex="2k\pi" />: this is where the three different roots come from.</>,
   },
   {
@@ -42,7 +42,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\theta=-\frac{\pi}{6},\ \frac{\pi}{2},\ -\frac{5\pi}{6}" />,
-    reason: <>Taking <Katex tex="k=-1" /> keeps every argument inside <Katex tex="(-\pi,\pi]" />.</>,
+    reason: <>Substitute <Katex tex="k=0,1,-1" /> in turn. Using <Katex tex="k=-1" /> rather than <Katex tex="k=2" /> keeps every argument inside <Katex tex="(-\pi,\pi]" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}2\,\text{cis}\!\left(-\tfrac{\pi}{6}\right)&=2\left(\tfrac{\sqrt3}{2}-\tfrac12i\right)=\sqrt3-i\\2\,\text{cis}\!\left(\tfrac{\pi}{2}\right)&=2(0+i)=2i\\2\,\text{cis}\!\left(-\tfrac{5\pi}{6}\right)&=2\left(-\tfrac{\sqrt3}{2}-\tfrac12i\right)=-\sqrt3-i\end{aligned}" />,
@@ -51,7 +51,7 @@ const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{z=\sqrt3-i,\quad z=-\sqrt3-i,\quad z=2i}" />,
     reason: <>Quick check on the easiest one: <Katex tex="(2i)^3=8i^3=-8i" /> ✓.</>,
-    more: <>VCAA writes the roots as <Katex tex="-2\,\text{cis}\!\left(\tfrac{\pi}{6}+\tfrac{2k\pi}{3}\right)" />, using <Katex tex="-8=8\,\text{cis}(\pi)" /> to absorb the minus sign; it is the same three numbers. The other two roots also check: <Katex tex="(\sqrt3-i)^2=2-2\sqrt3i" />, and <Katex tex="(2-2\sqrt3i)(\sqrt3-i)=2\sqrt3-2i-6i+2\sqrt3i^2=-8i" /> ✓.</>,
+    more: <>VCAA writes the roots as <Katex tex="-2\,\text{cis}\!\left(\tfrac{\pi}{6}+\tfrac{2k\pi}{3}\right)" />, writing <Katex tex="-8i=-8\,\text{cis}\!\left(\tfrac{\pi}{2}\right)" /> and taking the real cube root <Katex tex="-2" /> of <Katex tex="-8" />. Since <Katex tex="-\text{cis}(\varphi)=\text{cis}(\varphi-\pi)" />, those are the same three numbers. The other two roots also check: <Katex tex="(\sqrt3-i)^2=2-2\sqrt3i" />, and <Katex tex="(2-2\sqrt3i)(\sqrt3-i)=2\sqrt3-2i-6i+2\sqrt3i^2=-8i" /> ✓.</>,
   },
 ]
 
@@ -80,11 +80,11 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{equilateral triangle, side } 2\sqrt3" />,
-    reason: <>From part b.: the three roots are equally spaced on a circle, so every side has the length just found.</>,
+    reason: <>From part b: the three roots are equally spaced on a circle, so every side has the length just found.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}A&=\tfrac12\times2\sqrt3\times2\sqrt3\\ &\quad\times\sin\!\left(\tfrac{\pi}{3}\right)\\ &=\tfrac12\times12\times\tfrac{\sqrt3}{2}\end{aligned}" />,
-    reason: <>Area <Katex tex="=\tfrac12ab\sin(C)" />, with two sides of <Katex tex="2\sqrt3" /> and the <Katex tex="60^\circ" /> angle between them.</>,
+    reason: <>Area <Katex tex="=\tfrac12ab\sin(C)" />, with two sides of <Katex tex="2\sqrt3" /> and the angle between them, <Katex tex="\tfrac{\pi}{3}" /> (<Katex tex="60^\circ" />), because every angle of an equilateral triangle is <Katex tex="60^\circ" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A=3\sqrt3}" />,

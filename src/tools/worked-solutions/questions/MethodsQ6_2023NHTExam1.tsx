@@ -86,7 +86,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x)=3+2\cdot\frac{1}{x-1}=3+2\,g(x-1)" />,
-    reason: <>Write <Katex tex="f" /> in terms of that block: <Katex tex="\tfrac{2}{x-1}" /> is 2 lots of <Katex tex="\tfrac{1}{x-1}" />.</>,
+    reason: <>Write <Katex tex="f" /> in terms of <Katex tex="g(x-1)" />: <Katex tex="\tfrac{2}{x-1}" /> is 2 lots of <Katex tex="\tfrac{1}{x-1}" />.</>,
   },
   {
     working: <Katex display tex="h\bigl(g(x-1)\bigr)=3+2\,g(x-1)" />,

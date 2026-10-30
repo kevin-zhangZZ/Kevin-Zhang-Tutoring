@@ -70,8 +70,9 @@ const ROWS: WorkingRow[] = [
     ),
     more: (
       <>
-        Adding or subtracting <Katex tex="2\pi" /> gives the same direction, so these four are all the possibilities,
-        and <Katex tex="\tfrac{k\pi}{2}" /> over all integers <Katex tex="k" /> describes exactly these four directions.
+        Listing <Katex tex="\tfrac{k\pi}{2}" /> for <Katex tex="k=0,1,2,3" /> gives <Katex tex="0,\ \tfrac{\pi}{2},\ \pi,\ \tfrac{3\pi}{2}" />,
+        and <Katex tex="\tfrac{3\pi}{2}" /> is the same direction as <Katex tex="-\tfrac{\pi}{2}" />. So <Katex tex="\tfrac{k\pi}{2}" /> over
+        all integers <Katex tex="k" /> describes exactly these four directions, and nothing else.
       </>
     ),
   },

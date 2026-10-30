@@ -47,8 +47,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y_3 = \left(1+h^2\right)+h(2h)\left(1+h^2\right)^2" />,
-    reason: <>Gradient at <Katex tex="(x_2,y_2)=\left(2h,1+h^2\right)" />. This is <Katex tex="y_3" /> in terms of <Katex tex="h" />, and it must equal <Katex tex="1.126528" />.</>,
-    more: <>Expanded, <Katex tex="y_3=1+3h^2+4h^4+2h^6" /> (the report's form), a degree-6 equation. On CAS, <Cas fn="solve" /> with <Katex tex="h>0" /> gives <Katex tex="h=0.2" /> directly; in a multiple-choice question, substituting an option is just as quick.</>,
+    reason: <>Gradient at <Katex tex="(x_2,y_2)=\left(2h,1+h^2\right)" />. This is <Katex tex="y_3" /> in terms of <Katex tex="h" />, and it must equal <Katex tex="1.126528" />. Solve this equation for <Katex tex="h>0" /> with <Cas fn="solve" />, or test an option as in the next line.</>,
+    more: <>Expanded, <Katex tex="y_3=1+3h^2+4h^4+2h^6" /> (the report's form), a degree-6 equation, so solving it by hand is not practical. CAS gives <Katex tex="h=0.2" /> directly; in a multiple-choice question, substituting an option is just as quick.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} h=0.2 &\implies h^2=0.04 \\ y_3 &= 1.04+2(0.04)(1.04)^2 \\ &= 1.04+0.086528 \\ &= 1.126528 \end{aligned}" />,

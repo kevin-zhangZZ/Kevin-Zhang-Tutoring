@@ -32,7 +32,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Write the volume in terms of <Katex tex="h" /> alone, so it can be differentiated with respect to <Katex tex="h" />.</>,
   },
   {
-    working: <Katex display tex="\frac{dV}{dh}=\frac{\pi h^2}{4}" />,
+    working: <Katex display tex="\frac{dV}{dh}=\frac{3\pi h^2}{12}=\frac{\pi h^2}{4}" />,
+    reason: <>Differentiate <Katex tex="V" /> with respect to <Katex tex="h" /> using the power rule.</>,
   },
   {
     working: <Katex display tex="\frac{dV}{dt}=-0.5\sqrt h" />,
@@ -45,7 +46,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{\frac{dh}{dt}=-\frac{2}{\pi h^{1.5}}}" />,
     reason: <>Matches option <b>E</b>. The rate is negative, as it must be for a cone that is emptying.</>,
-    more: <>Option D drops the minus sign. Option A multiplies <Katex tex="\tfrac{dV}{dh}" /> by <Katex tex="\tfrac{dV}{dt}" /> instead of dividing: <Katex tex="\tfrac{\pi h^2}{4}\times(-0.5\sqrt h)=-\tfrac{\pi h^{2.5}}{8}" />. Option C, <Katex tex="\tfrac{4}{\pi h^2}" />, is <Katex tex="\tfrac{dh}{dV}" />, which leaves out the flow rate altogether.</>,
+    more: <>Option D drops the minus sign. Option B is the reciprocal of the answer: it divides the wrong way round, <Katex tex="\tfrac{dV}{dh}\div\tfrac{dV}{dt}=\tfrac{\pi h^2}{4}\div(-0.5\sqrt h)=-\tfrac{\pi h^{1.5}}{2}" />. Option A multiplies <Katex tex="\tfrac{dV}{dh}" /> by <Katex tex="\tfrac{dV}{dt}" /> instead of dividing: <Katex tex="\tfrac{\pi h^2}{4}\times(-0.5\sqrt h)=-\tfrac{\pi h^{2.5}}{8}" />. Option C, <Katex tex="\tfrac{4}{\pi h^2}" />, is <Katex tex="\tfrac{dh}{dV}" />, which leaves out the flow rate altogether.</>,
   },
 ]
 

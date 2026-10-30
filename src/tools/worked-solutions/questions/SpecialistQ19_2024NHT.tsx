@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Cas fn="normCdf">normCdf(0, ∞, −1, √(3.69)) = 0.30133…</Cas>,
-    reason: <><Cas fn="normCdf" /> takes the lower bound, upper bound, mean and <em>standard deviation</em>.</>,
+    reason: <><Cas fn="normCdf" /> takes the lower bound, upper bound, mean and <em>standard deviation</em>. We want the difference above 0, so the bounds are 0 and <Katex tex={String.raw`\infty`} />.</>,
     more: <>Sanity check: the mean difference is <Katex tex="-1" />, about half a standard deviation below 0, so variety B wins less than half the time, but often enough that the answer is well above 0.1.</>,
   },
   {

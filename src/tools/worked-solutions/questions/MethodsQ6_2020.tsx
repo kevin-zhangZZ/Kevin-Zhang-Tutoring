@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = 0 \text{ at exactly two points}" />,
     reason: <>The height of the <Katex tex="f'" /> graph is the gradient of <Katex tex="f" />, so the stationary points of <Katex tex="f" /> are where the printed curve meets the <Katex tex="x" />-axis. It crosses twice.</>,
-    more: <>The later dip stays <em>above</em> the axis, so it is not a third zero: it only bends the graph of <Katex tex="f" />, as the step after next explains.</>,
+    more: <>The later dip stays <em>above</em> the axis, so it is not a third zero: it only bends the graph of <Katex tex="f" />, as the last step before the answer explains.</>,
   },
   {
     working: <Katex display tex="f'>0,\ \text{then } f'<0,\ \text{then } f'>0" />,

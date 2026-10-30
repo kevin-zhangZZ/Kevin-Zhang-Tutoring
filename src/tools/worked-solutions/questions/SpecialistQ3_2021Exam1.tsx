@@ -71,7 +71,7 @@ const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="\bar X \sim \mathrm{N}\!\left(200,\ \frac{10^2}{36}\right) \implies \mathrm{sd}\!\left(\bar X\right) = \frac{10}{6} = \frac53" />,
     reason: <>Assume <Katex tex="H_0" /> is true, so <Katex tex="\mu = 200" />. The sample mean of <Katex tex="n = 36" /> normal lifetimes is normal with standard deviation <Katex tex="\tfrac{\sigma}{\sqrt n}" />.</>,
-    more: <>Use<Katex tex="\tfrac{\sigma}{\sqrt n}" />, not <Katex tex="\sigma = 10" />: averages of 36 globes vary much less than single globes do.</>,
+    more: <>Use <Katex tex="\tfrac{\sigma}{\sqrt n}" />, not <Katex tex="\sigma = 10" />: averages of 36 globes vary much less than single globes do.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} p &= \Pr\!\left(\bar X \le 195 \mid \mu = 200\right) \\ &= \Pr\!\left(Z \le \frac{195-200}{5/3}\right) \end{aligned}" />,

@@ -57,6 +57,9 @@ const ROWS: WorkingRow[] = [
       Because the answer is a constant, testing one allowed point is a fast check:{' '}
       <Katex tex="z=i" /> gives <Katex tex="\dfrac{1}{1-i}=\dfrac{1+i}{2}" />, real part <Katex tex="\tfrac{1}{2}" />.
       Option <b>A</b> (<Katex tex="-\tfrac{1}{2}" />) is the real part of <Katex tex="\dfrac{1}{z-1}" />, a sign slip.
+      Option <b>B</b> (<Katex tex="0" />, the most common wrong answer) may come from a related fact: on the unit circle{' '}
+      <Katex tex="\dfrac{1+z}{1-z}" /> has real part 0. That is a different expression; in fact{' '}
+      <Katex tex="\dfrac{1+z}{1-z}=\dfrac{2}{1-z}-1" />, whose real part is <Katex tex="2\cdot\tfrac{1}{2}-1=0" /> by this question's result.
       Option <b>D</b> (<Katex tex="\tfrac{\sqrt3}{2}" />) is the imaginary part when <Katex tex="z=\operatorname{cis}\left(\tfrac{\pi}{3}\right)" />, not the real part.
     </>,
   },

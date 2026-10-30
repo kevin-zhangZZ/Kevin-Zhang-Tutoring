@@ -15,6 +15,7 @@ const REPORT_A: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dy}{dx}=4x^3-12x" />,
+    reason: <>Differentiate term by term with the power rule; the constant <Katex tex="4" /> differentiates to <Katex tex="0" />.</>,
   },
   {
     working: <Katex display tex="\frac{d^2y}{dx^2}=12x^2-12=12(x-1)(x+1)" />,
@@ -27,11 +28,12 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x=\pm1:\quad y=1-6+4=-1" />,
-    reason: <>The question asks for coordinates, so substitute back into the original function (not the derivative). Both give the same <Katex tex="y" />, because the function is even.</>,
+    reason: <>The question asks for coordinates, so substitute back into the original function (not the derivative). Both give the same <Katex tex="y" />, because only even powers of <Katex tex="x" /> appear, so <Katex tex="x=-1" /> and <Katex tex="x=1" /> give equal values.</>,
   },
   {
     working: <Katex display tex="\boxed{(-1,-1)\ \text{and}\ (1,-1)}" />,
-    reason: <>Symmetry check: <Katex tex="y=x^4-6x^2+4" /> contains only even powers of <Katex tex="x" />, so its graph is symmetric about the <Katex tex="y" />-axis, and its inflection points must come as a mirror pair.</>,
+    reason: <>Write both points as coordinate pairs.</>,
+    more: <>Symmetry check: those even powers make the graph symmetric about the <Katex tex="y" />-axis, so its inflection points must come as a mirror pair, as these do.</>,
   },
 ]
 

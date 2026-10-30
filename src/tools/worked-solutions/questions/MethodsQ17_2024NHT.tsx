@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="B\subseteq A" />,
-    reason: <>The part of <Katex tex="B" /> inside <Katex tex="A" /> carries all of <Katex tex="B" />&apos;s probability, so <Katex tex="B" /> sits inside <Katex tex="A" />.</>,
+    reason: <><Katex tex="A\cap B" /> is the part of <Katex tex="B" /> inside <Katex tex="A" />, and it carries all of <Katex tex="B" />&apos;s probability, so <Katex tex="B" /> sits inside <Katex tex="A" />.</>,
     more: <>Think of a Venn diagram: if any of <Katex tex="B" /> poked outside <Katex tex="A" />, then <Katex tex="\Pr(A\cap B)" /> would be smaller than <Katex tex="\Pr(B)" />. (Strictly, a piece of <Katex tex="B" /> with zero probability could lie outside <Katex tex="A" />; the report and the options ignore that technicality.)</>,
   },
   {

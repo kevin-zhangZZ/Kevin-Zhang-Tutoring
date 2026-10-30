@@ -75,11 +75,13 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v=10-4(t-4)" />,
-    reason: <>Velocity changes by <Katex tex="-4" /> m/s every second <b>after</b> <Katex tex="t=4" />, i.e. over <Katex tex="t-4" /> seconds. (Equivalently: <Katex tex="v=\int-4\,dt=-4t+c" />, with <Katex tex="10=-16+c" /> giving <Katex tex="c=26" />.)</>,
+    reason: <>Velocity changes by <Katex tex="-4" /> m/s every second <b>after</b> <Katex tex="t=4" />, i.e. over <Katex tex="t-4" /> seconds.</>,
+    more: <>Equivalently (the report's method): with acceleration <Katex tex="-4" />, write <Katex tex="v=u-4t" /> for some constant <Katex tex="u" />. Then <Katex tex="v=10" /> at <Katex tex="t=4" /> gives <Katex tex="10=u-16" />, so <Katex tex="u=26" />.</>,
   },
   {
     working: <Katex display tex="\boxed{v=26-4t}\quad (4\le t\le7)" />,
-    reason: <>As required. Check: at <Katex tex="t=7" />, <Katex tex="v=26-28=-2" />, the velocity at the end of stage 2 ✓.</>,
+    reason: <>Expand: <Katex tex="10-4t+16=26-4t" />. As required.</>,
+    more: <>Check: at <Katex tex="t=7" />, <Katex tex="v=26-28=-2" />, the velocity at the end of stage 2 ✓.</>,
   },
 ]
 
@@ -110,7 +112,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} 0\le t\le4:\ a&=\frac{10}{4}=\frac52 \\ x_{\text{car}}&=\frac12\cdot\frac52t^2=\frac54t^2 \end{aligned}" />,
-    reason: <>In stage 1 the car accelerates uniformly from rest to 10 m/s in 4 s. From rest at <Katex tex="O" />, <Katex tex="x=\tfrac12at^2" />.</>,
+    reason: <>We want the <b>first</b> meeting, so try the first stage. In stage 1 the car accelerates uniformly from rest to 10 m/s in 4 s; from rest at <Katex tex="O" />, <Katex tex="x=\tfrac12at^2" />.</>,
     more: <>Why stage 1? Both start at <Katex tex="O" />, but the car starts from rest while the train is already moving, so the train is ahead at first. The car catches up while it is still speeding up: at <Katex tex="t=4" /> it is at 20 m, the train only at <Katex tex="\tfrac{40}{3}\approx13.3" /> m. So the first meeting is before <Katex tex="t=4" />.</>,
   },
   {
@@ -123,7 +125,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t=\frac83\text{ s}}" />,
-    reason: <>Sanity check: both are at <Katex tex="\tfrac{10}{3}\times\tfrac83=\tfrac{80}{9}\approx8.9" /> m, and <Katex tex="\tfrac54\left(\tfrac83\right)^2=\tfrac{80}{9}" /> ✓.</>,
+    reason: <>The first time after the start that the two displacements are equal.</>,
+    more: <>Sanity check: both are at <Katex tex="\tfrac{10}{3}\times\tfrac83=\tfrac{80}{9}\approx8.9" /> m, and <Katex tex="\tfrac54\left(\tfrac83\right)^2=\tfrac{80}{9}" /> ✓.</>,
   },
   {
     working: (

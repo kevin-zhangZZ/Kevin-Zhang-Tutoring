@@ -119,16 +119,17 @@ const ROWS_A: WorkingRow[] = [
     ),
     reason: (
       <>
-        Totals go in the margins, and &ldquo;both&rdquo; goes where row <Katex tex="O" /> meets
-        column <Katex tex="F" />. The answer is the cell under it, since the <Katex tex="F" /> column
-        adds up to <Katex tex="\tfrac{3}{20}" />.
+        Totals go in the margins (the <Katex tex="O'" /> total is{' '}
+        <Katex tex="1-\tfrac{17}{20}=\tfrac{3}{20}" />), and &ldquo;both&rdquo; goes where row{' '}
+        <Katex tex="O" /> meets column <Katex tex="F" />. The answer is the cell under it, since the{' '}
+        <Katex tex="F" /> column adds up to <Katex tex="\tfrac{3}{20}" />.
       </>
     ),
     more: (
       <>
         The report notes students who scored the mark generally used a Venn diagram or a table. The{' '}
-        <Katex tex="O'" /> total is <Katex tex="1-\tfrac{17}{20}=\tfrac{3}{20}" />; it happens to
-        equal <Katex tex="\Pr(F)" />, but it is a different total.
+        <Katex tex="O'" /> total happens to equal <Katex tex="\Pr(F)" />, but it is a different
+        total: don't mix up the row and column margins.
       </>
     ),
   },

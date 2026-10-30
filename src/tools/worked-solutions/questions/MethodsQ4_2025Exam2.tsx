@@ -352,7 +352,7 @@ const ROWS_FII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&\text{sign of } p\sin(p): \ + \text{ on } (0,\pi), \\ &- \text{ on } (\pi,2\pi), \ + \text{ on } \left(2\pi,\tfrac{5\pi}{2}\right)\end{aligned}" />,
-    reason: <>Increasing then decreasing at <Katex tex="\pi" />: a maximum. Decreasing then increasing at <Katex tex="2\pi" />: a minimum.</>,
+    reason: <>So <Katex tex="t(0)" /> is increasing then decreasing at <Katex tex="p=\pi" />: a maximum. It is decreasing then increasing at <Katex tex="p=2\pi" />: a minimum.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}p=\pi&: \ -\pi(-1)+0+1 = \pi+1 \\ p=2\pi&: \ -2\pi(1)+0+1 = 1-2\pi\end{aligned}" />,

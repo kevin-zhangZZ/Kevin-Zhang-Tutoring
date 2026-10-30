@@ -85,8 +85,10 @@ const ROWS: WorkingRow[] = [
       <>
         This is the step behind option B, which 34% of students chose: it is the larger stationary point, but
         the larger <Katex tex="x" /> gives the local minimum, not the larger volume. The second derivative
-        confirms which is which: <Katex tex="V''(x)=24x-4(a+b)" />, and substituting the two solutions gives{' '}
-        <Katex tex="V''=\mp4\sqrt{a^2-ab+b^2}" />. At the <Katex tex="-" /> solution{' '}
+        confirms which is which: <Katex tex="V''(x)=24x-4(a+b)" />, and substituting{' '}
+        <Katex tex="x=\tfrac{a+b\pm\sqrt{a^2-ab+b^2}}{6}" /> gives{' '}
+        <Katex tex="24x=4(a+b)\pm4\sqrt{a^2-ab+b^2}" />, so{' '}
+        <Katex tex="V''=\pm4\sqrt{a^2-ab+b^2}" />. At the <Katex tex="-" /> solution{' '}
         <Katex tex="V''<0" /> (concave down, a maximum); at the <Katex tex="+" /> solution{' '}
         <Katex tex="V''>0" /> (a minimum).
       </>

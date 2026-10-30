@@ -66,10 +66,10 @@ const ROWS_B: WorkingRow[] = [
       </div>
     ),
     reason: <>The region is bounded by the <Katex tex="y" />-axis, the <Katex tex="x" />-axis, the line <Katex tex="x=1" /> and the middle branch from part a.</>,
-    more: <>The interval <Katex tex="[0,1]" /> sits between the asymptotes, where the graph is continuous and above the <Katex tex="x" />-axis, so the area is simply the definite integral, with no splitting and no sign change.</>,
   },
   {
     working: <Katex display tex="\text{Area} = \int_0^1 \frac{9}{(x+1)(x-2)^2}\,dx" />,
+    reason: <>The interval <Katex tex="[0,1]" /> sits between the asymptotes, where the graph is continuous and above the <Katex tex="x" />-axis (part a), so the area is simply the definite integral, with no splitting and no sign change.</>,
   },
   {
     working: <Katex display tex="\frac{9}{(x+1)(x-2)^2} = \frac{A}{x+1}+\frac{B}{x-2}+\frac{C}{(x-2)^2}" />,

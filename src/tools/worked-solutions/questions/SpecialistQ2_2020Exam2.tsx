@@ -243,8 +243,8 @@ const ROWS_E: WorkingRow[] = [
     more: <>On CAS, <Cas fn="solve" /> on these two squared equations together, for <Katex tex="m" /> and <Katex tex="n" />, finishes in one step; the report notes students familiar with CAS used it effectively. By hand is quick too, as below.</>,
   },
   {
-    working: <Katex display tex="5+4m+2n = 10n+25 \implies m-2n = 5" />,
-    reason: <>Expanding the first: <Katex tex="m^2" /> and <Katex tex="n^2" /> cancel, as <Katex tex="x^2" /> and <Katex tex="y^2" /> did in part a., leaving a linear equation.</>,
+    working: <Katex display tex="\begin{gathered}4m+2n+5 = 10n+25 \\ \implies 4m-8n = 20 \implies m-2n = 5\end{gathered}" />,
+    reason: <>Expanding the first: <Katex tex="m^2" /> and <Katex tex="n^2" /> cancel, as <Katex tex="x^2" /> and <Katex tex="y^2" /> did in part a., leaving a linear equation. Then divide by 4.</>,
     more: <>The report notes many students set up suitable equations but fewer were then able to proceed further: expanding and cancelling is the step that unlocks it. Geometrically, this equation is a straight line of possible centres: the perpendicular bisector of the segment joining <Katex tex="u" /> and <Katex tex="-5i" />.</>,
   },
   {

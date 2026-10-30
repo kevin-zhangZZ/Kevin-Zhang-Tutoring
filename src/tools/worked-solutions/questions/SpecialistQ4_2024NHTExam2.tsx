@@ -113,6 +113,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{\sqrt{625\pi^2+324}}{30} = 2.6858\ldots" />,
+    reason: <>Write both squares over 900, <Katex tex="\left(\tfrac{25\pi}{30}\right)^2=\tfrac{625\pi^2}{900}" /> and <Katex tex="\left(\tfrac35\right)^2=\tfrac{324}{900}" />, then use <Katex tex="\sqrt{900}=30" />.</>,
   },
   {
     working: <Katex display tex="\boxed{2.69 \text{ m s}^{-1}}" />,
@@ -138,8 +139,8 @@ const ROWS_E: WorkingRow[] = [
         <Cas fn="fMin">fMin(d(t), t) | 0 ≤ t ≤ 60</Cas>
       </>
     ),
-    reason: <>Define the distance, then ask for the <Katex tex="t" /> that minimises it, in radian mode. fMin gives <Katex tex="t\approx25.76" />.</>,
-    more: <>Restricting to the first turn is safe: the tree top is only 8 m up, and after the first turn the drone is already above 36 m and still climbing, so later passes are further away (the next local minimum is about 42.8 m). Check the endpoint too: <Katex tex="d(0)=\sqrt{(-10)^2+50^2+(-8)^2}\approx51.6" />.</>,
+    reason: <>Define the distance, then ask for the <Katex tex="t" /> that minimises it, in radian mode. fMin gives <Katex tex="t\approx25.76" />. Searching only the first turn, <Katex tex="0\le t\le60" />, is enough: after that the drone is above 36 m and still climbing, far above the 8 m tree top.</>,
+    more: <>Every later pass is further away: the next local minimum, on the second turn, is about 42.8 m. Check the endpoint too: <Katex tex="d(0)=\sqrt{(-10)^2+50^2+(-8)^2}\approx51.6" />.</>,
   },
   {
     working: <Katex display tex="d(25.76\ldots) = 7.874\ldots" />,

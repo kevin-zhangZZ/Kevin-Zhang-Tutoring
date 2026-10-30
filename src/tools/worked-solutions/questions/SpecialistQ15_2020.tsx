@@ -4,7 +4,8 @@
 // itute and with the NBEASTK and Dr U video walkthroughs. Checked in sympy: r = (1 + t²)i +
 // (1 + t²/2)j. Distractors checked: A (10%) is the path with r(0) = i + j left out (r = t²i +
 // (t²/2)j gives y = x/2 exactly); D (23%) is y = 1 + t²/2 with t = x − 1 substituted for t
-// (= (x − 1)²/2 + 1 exactly). C (18%) is D's parabola shifted; no clean slip found for C or B.
+// (= (x − 1)²/2 + 1 exactly). C (18%) is D's parabola shifted; no clean slip found for C. B is
+// r(0) subtracted (x = t² − 1, y = t²/2 − 1 gives y = x/2 − 1/2 exactly; Oct 2026: added to last row).
 // 41% chose a parabola (C or D), which the straight-line fact in the Background rules out.
 // Interactive diagram (§15): interactives/spec-2020-mcq15-path.tsx plays the motion with v and a
 // drawn at the particle (always parallel, so the path is straight); toggles add a starting push
@@ -126,6 +127,12 @@ const ROWS: WorkingRow[] = [
           give <Katex tex="y=\tfrac12" />, <Katex tex="0" /> and <Katex tex="3" />). It does not
           rule out D, which also passes through <Katex tex="(1, 1)" />; only the straight-line
           fact from the previous step does.
+        </p>
+        <p>
+          Option B is the right line through the wrong point: subtracting the starting position
+          instead of adding it gives <Katex tex="x=t^2-1" />, <Katex tex="y=\tfrac{t^2}{2}-1" />,
+          and then <Katex tex="y=\tfrac{x}{2}-\tfrac12" />. Write <Katex tex="\underset{\sim}{r}(0)" />{' '}
+          straight from the question as the constant, and check it at <Katex tex="t=0" />.
         </p>
       </>
     ),

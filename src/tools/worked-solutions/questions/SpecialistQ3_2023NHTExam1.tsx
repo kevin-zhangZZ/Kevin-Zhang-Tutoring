@@ -126,7 +126,7 @@ const ROWS_B: WorkingRow[] = [
     reason: <>The only real solution is negative, which is why there is no stationary point on the printed <Katex tex="x>0" /> branch.</>,
   },
   {
-    working: <Katex display tex="f\!\left(-\tfrac12\right)=\frac{1}{3\left(-\frac12\right)}-\frac{4}{3}\cdot\frac14=-\frac23-\frac13=-1" />,
+    working: <Katex display tex="\begin{aligned}f\!\left(-\tfrac12\right)&=\frac{1}{3\left(-\frac12\right)}-\frac{4}{3}\left(-\tfrac12\right)^2\\ &=-\frac23-\frac43\cdot\frac14=-\frac23-\frac13=-1\end{aligned}" />,
     reason: <>Substitute back into <Katex tex="f(x)" /> for the <Katex tex="y" />-coordinate.</>,
   },
   {

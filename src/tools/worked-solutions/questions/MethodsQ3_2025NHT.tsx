@@ -26,6 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2(-3)+3(a-b)=3(a-b)-6" />,
+    reason: <>Put both pieces back into the split from the first line, then take out the common factor 3 to match the options.</>,
   },
   {
     working: <Katex display tex="\boxed{3(a-b-2)}" />,

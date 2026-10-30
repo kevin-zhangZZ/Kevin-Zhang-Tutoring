@@ -17,6 +17,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="u=\sin(x),\quad \frac{du}{dx}=\cos(x)" />,
+    reason: <>So <Katex tex="\cos(x)\,dx" /> becomes <Katex tex="du" />: the <Katex tex="\cos(x)" /> set aside is used up by the change of variable.</>,
   },
   {
     working: <Katex display tex="\cos^2(x)=1-\sin^2(x)=1-u^2" />,
@@ -28,6 +29,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&\int_0^{\frac{\pi}{2}}\sin^2(x)\left(1-\sin^2(x)\right)\cos(x)\,dx\\ &\quad=\int_0^1 u^2(1-u^2)\,du\\ &\quad=\int_0^1\left(u^2-u^4\right)du\end{aligned}" />,
+    reason: <>Replace <Katex tex="\sin(x)" /> by <Katex tex="u" />, <Katex tex="\cos(x)\,dx" /> by <Katex tex="du" />, and the terminals <Katex tex="0,\ \tfrac{\pi}{2}" /> by <Katex tex="0,\ 1" />. Then expand the brackets.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_0^1\left(u^2-u^4\right)du,\ \ u=\sin(x)}" />,

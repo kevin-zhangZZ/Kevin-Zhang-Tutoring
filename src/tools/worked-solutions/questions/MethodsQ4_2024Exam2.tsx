@@ -181,7 +181,7 @@ const ROWS_BIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X>18) = \int_{18}^{30}f(x)\,dx = 0.52480" />,
-    reason: <>Integrate from the mean to 30. It is not 0.5: the mean of a skewed distribution is not its median. (The report's 0.468 is <Katex tex="\Pr(X>23)/0.5" />.)</>,
+    reason: <>Integrate from the mean to 30. It is not 0.5: exactly half the probability lies above the median, and for a lopsided (skewed) density like this one the mean is not the median.</>,
     more: <>The report notes some students incorrectly used 0.5 in the denominator. Its printed example has a slip: the numerator should be <Katex tex="\Pr(X>23)" />, since <Katex tex="\tfrac{0.2339}{0.5}=0.468" /> while <Katex tex="\tfrac{0.5248}{0.5}=1.050" />. It also notes some tried to use the normal distribution: <Katex tex="X" /> is not normal — its density is given, so every probability comes from integrating <Katex tex="f" />.</>,
   },
   {

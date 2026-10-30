@@ -18,8 +18,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Every part of the integral must change to <Katex tex="\theta" />, including the <Katex tex="dx" />.</>,
   },
   {
-    working: <Katex display tex="1+x^2=1+\tan^2(\theta)=\sec^2(\theta)" />,
-    reason: <>The Pythagorean identity <Katex tex="1+\tan^2(\theta)=\sec^2(\theta)" /> is the reason this substitution suits <Katex tex="1+x^2" />.</>,
+    working: <Katex display tex="\begin{aligned}1+x^2&=1+\tan^2(\theta)=\sec^2(\theta)\\ (1+x^2)^2&=\sec^4(\theta)\end{aligned}" />,
+    reason: <>The Pythagorean identity <Katex tex="1+\tan^2(\theta)=\sec^2(\theta)" /> is the reason this substitution suits <Katex tex="1+x^2" />. Square it for the denominator.</>,
   },
   {
     working: <Katex display tex="x=-1\Rightarrow\theta=-\tfrac{\pi}{4},\qquad x=1\Rightarrow\theta=\tfrac{\pi}{4}" />,

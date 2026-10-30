@@ -18,7 +18,7 @@ const REPORT: SAExaminerStats = {}
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} z&=x+iy \\ 3\sqrt{x^2+(y+1)^2}&=\sqrt{x^2+y^2} \end{aligned}" />,
-    reason: <><Katex tex="z+i=x+(y+1)i" />, so <Katex tex="|z+i|=\sqrt{x^2+(y+1)^2}" />, and <Katex tex="|z|=\sqrt{x^2+y^2}" />. This is the distance from <Katex tex="z" /> to <Katex tex="-i" /> and the distance from <Katex tex="z" /> to <Katex tex="0" />.</>,
+    reason: <><Katex tex="z+i=x+(y+1)i" />, so <Katex tex="|z+i|=\sqrt{x^2+(y+1)^2}" />, and <Katex tex="|z|=\sqrt{x^2+y^2}" />. These are the distance from <Katex tex="z" /> to <Katex tex="-i" /> and the distance from <Katex tex="z" /> to <Katex tex="0" />.</>,
     more: <>Read as distances, the equation says <Katex tex="z" /> is three times as far from <Katex tex="0" /> as from <Katex tex="-i" />. Equal distances (a ratio of 1) would give a straight line, the perpendicular bisector; any other fixed ratio gives a circle, as the algebra will show.</>,
   },
   {
@@ -49,8 +49,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{centre }\left(0,-\tfrac98\right),\ \text{radius }\tfrac38}" />,
-    reason: <>Compare with <Katex tex="(x-h)^2+(y-k)^2=r^2" />: <Katex tex="h=0" />, <Katex tex="k=-\tfrac98" />, <Katex tex="r=\sqrt{\tfrac9{64}}=\tfrac38" />. As a complex number the centre is <Katex tex="-\tfrac98i" />. Check: the circle crosses the imaginary axis at <Katex tex="-\tfrac34i" /> and <Katex tex="-\tfrac32i" />, and <Katex tex="\left|-\tfrac34i\right|=\tfrac34=3\left|\tfrac14i\right|" /> ✓.</>,
-    more: <>The other crossing checks too: <Katex tex="\left|-\tfrac32i\right|=\tfrac32=3\left|-\tfrac12i\right|" /> ✓. The centre is not at <Katex tex="-i" />, the point in the question, but a little past it: don't be tempted to read the centre straight off <Katex tex="|z+i|" />.</>,
+    reason: <>Compare with <Katex tex="(x-h)^2+(y-k)^2=r^2" />: <Katex tex="h=0" />, <Katex tex="k=-\tfrac98" />, <Katex tex="r=\sqrt{\tfrac9{64}}=\tfrac38" />. As a complex number the centre is <Katex tex="-\tfrac98i" />.</>,
+    more: <>Check: the circle crosses the imaginary axis at centre ± radius, <Katex tex="-\tfrac34i" /> and <Katex tex="-\tfrac32i" />, and both satisfy the original equation: <Katex tex="\left|-\tfrac34i\right|=\tfrac34=3\left|\tfrac14i\right|" /> ✓ and <Katex tex="\left|-\tfrac32i\right|=\tfrac32=3\left|-\tfrac12i\right|" /> ✓. The centre is not at <Katex tex="-i" />, the point in the question, but a little past it: don't be tempted to read the centre straight off <Katex tex="|z+i|" />.</>,
   },
 ]
 

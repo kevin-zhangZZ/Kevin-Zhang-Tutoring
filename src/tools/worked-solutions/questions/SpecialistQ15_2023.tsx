@@ -115,9 +115,17 @@ const ROWS: WorkingRow[] = [
           </li>
         </ul>
         <p>
-          The examiner&apos;s report reaches the same answer geometrically: its equilateral triangle is another way to
-          see the <Katex tex="120^\circ" /> angle between <Katex tex="\underset{\sim}{a}" /> and{' '}
-          <Katex tex="\underset{\sim}{b}" />, and the cosine rule then gives <Katex tex="\sqrt3" />.
+          The examiner&apos;s report reaches the same answer geometrically. Placing{' '}
+          <Katex tex="\underset{\sim}{b}" /> head-to-tail after <Katex tex="\underset{\sim}{a}" /> makes a triangle
+          with sides <Katex tex="\underset{\sim}{a}" />, <Katex tex="\underset{\sim}{b}" /> and{' '}
+          <Katex tex="\underset{\sim}{a}+\underset{\sim}{b}" />, all of length 1, so it is equilateral and its
+          angles are <Katex tex="60^\circ" />. The <Katex tex="60^\circ" /> in the report&apos;s diagram is an
+          angle inside that triangle; placed tail-to-tail, <Katex tex="\underset{\sim}{a}" /> and{' '}
+          <Katex tex="\underset{\sim}{b}" /> are <Katex tex="180^\circ-60^\circ=120^\circ" /> apart, the same
+          angle the dot product gave. In the second diagram, <Katex tex="\underset{\sim}{a}" /> followed
+          by <Katex tex="-\underset{\sim}{b}" /> has a <Katex tex="120^\circ" /> angle inside the triangle, between two
+          sides of length 1, so the cosine rule gives the third side,{' '}
+          <Katex tex="|\underset{\sim}{a}-\underset{\sim}{b}|=\sqrt3" />.
         </p>
       </>
     ),

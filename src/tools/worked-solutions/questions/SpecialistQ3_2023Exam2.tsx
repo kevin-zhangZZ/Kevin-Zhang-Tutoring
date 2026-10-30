@@ -176,7 +176,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}(k-1)^2 &= 49 \implies k-1 = \pm7 \\ k &= 8 \ \text{ (rejecting } k=-6)\end{aligned}" />,
-    reason: <>Multiply by 2 and add 1. The solid runs from <Katex tex="x=2" /> to <Katex tex="x=k" />, so <Katex tex="k>2" />.</>,
+    reason: <>Multiply both sides by 2 and add 1 to get <Katex tex="(k-1)^2=49" />. Taking the square root gives both signs, so <Katex tex="k=1\pm7" />. The solid runs from <Katex tex="x=2" /> to <Katex tex="x=k" />, so <Katex tex="k>2" />.</>,
     more: <>On CAS, <Cas fn="solve">solve</Cas> the first line for <Katex tex="k" /> (using the integral template): it gives the same two values, and you still apply <Katex tex="k>2" /> yourself.</>,
   },
   {

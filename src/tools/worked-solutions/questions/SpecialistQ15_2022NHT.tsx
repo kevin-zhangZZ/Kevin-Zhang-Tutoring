@@ -22,6 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m = 2\ \text{tonnes} = 2000\ \mathrm{kg}" />,
+    reason: <>One tonne is 1000 kg, and the mass must be in kilograms for the force to come out in newtons.</>,
   },
   {
     working: <Katex display tex="F_{\text{net}} = ma = 2000\times\frac{125}{54} = 4629.6\ldots\ \mathrm{N}" />,

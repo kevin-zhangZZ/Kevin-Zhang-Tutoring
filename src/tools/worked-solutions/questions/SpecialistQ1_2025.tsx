@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{contrapositive: } \lnot Q \implies \lnot P" />,
-    reason: <>Swap the hypothesis and conclusion and negate both. The contrapositive is always logically equivalent to the original.</>,
+    reason: <>Swap the hypothesis and conclusion and negate both (<Katex tex="\lnot" /> means "not"). The contrapositive is always logically equivalent to the original.</>,
     more: <>Why it is equivalent: if I did have a tiger, the original statement says I would have a cat. So having no cat rules out having a tiger.</>,
   },
   {

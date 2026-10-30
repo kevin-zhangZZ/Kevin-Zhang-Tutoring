@@ -18,10 +18,11 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X=3)=\binom{5}{3}\left(\tfrac12\right)^3\left(\tfrac12\right)^2" />,
     reason: <>Binomial formula <Katex tex="\Pr(X=x)=\binom{n}{x}p^x(1-p)^{n-x}" />. The <Katex tex="\binom{5}{3}" /> counts which three of the five dice are the odd ones.</>,
-    more: <>Each particular arrangement, such as odd-odd-odd-even-even, has probability <Katex tex="\left(\tfrac12\right)^5=\tfrac{1}{32}" />, and there are <Katex tex="\binom53=10" /> different arrangements. On CAS: <Cas fn="binomPdf">binomPdf(5, 0.5, 3)</Cas>.</>,
+    more: <>Each particular arrangement, such as odd-odd-odd-even-even, has the same probability, so multiply that probability by the number of arrangements. On CAS: <Cas fn="binomPdf">binomPdf(5, 0.5, 3)</Cas>.</>,
   },
   {
     working: <Katex display tex="\Pr(X=3)=10\times\frac{1}{32}=\frac{10}{32}" />,
+    reason: <>Evaluate: <Katex tex="\binom53=\frac{5!}{3!\,2!}=10" /> arrangements, each with probability{' '}<Katex tex="\left(\tfrac12\right)^3\left(\tfrac12\right)^2=\left(\tfrac12\right)^5=\tfrac{1}{32}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X=3)=0.3125}" />,

@@ -33,7 +33,7 @@ const EXAM: SAExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="V = \pi\int_a^b y^2\,dx = \pi\int_1^{\sqrt3}\frac{\arctan(x)}{1+x^2}\,dx" />,
+    working: <Katex display tex="V = \pi\int_1^{\sqrt3} y^2\,dx =\pi\int_1^{\sqrt3}\frac{\arctan(x)}{1+x^2}\,dx" />,
     reason: <>Volume about the <Katex tex="x" />-axis is <Katex tex="\pi\int y^2\,dx" />. Squaring removes the square root straight away.</>,
     more: <>Keep the <Katex tex="\pi" /> out the front on every line from here on. The report lists a missing factor of <Katex tex="\pi" /> among the common errors — usually from writing <Katex tex="\int y^2\,dx" /> on line one, or dropping the <Katex tex="\pi" /> part-way through.</>,
   },
@@ -69,12 +69,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{\pi}{2}\left(\frac{\pi^2}{9}-\frac{\pi^2}{16}\right) = \frac{\pi^3}{2}\cdot\frac{16-9}{144}" />,
-    reason: <>Squaring the terminals: <Katex tex="\left(\tfrac{\pi}{3}\right)^2=\tfrac{\pi^2}{9}" />, <Katex tex="\left(\tfrac{\pi}{4}\right)^2=\tfrac{\pi^2}{16}" />; then a common denominator of 144.</>,
+    reason: <>Take the <Katex tex="\tfrac12" /> out with the <Katex tex="\pi" /> to get <Katex tex="\tfrac{\pi}{2}" />, then substitute upper minus lower: <Katex tex="\left(\tfrac{\pi}{3}\right)^2=\tfrac{\pi^2}{9}" /> and <Katex tex="\left(\tfrac{\pi}{4}\right)^2=\tfrac{\pi^2}{16}" />. Over the common denominator <Katex tex="144" /> the bracket is <Katex tex="\tfrac{16\pi^2-9\pi^2}{144}=\tfrac{7\pi^2}{144}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{7\pi^3}{288} \ \text{ cubic units}}" />,
-    reason: <>So <Katex tex="a=7" />, <Katex tex="b=3" />, <Katex tex="c=288" />, all positive integers, as the required form asks.</>,
-    more: <>Check: <Katex tex="\tfrac{7\pi^3}{288}\approx 0.754" />, a sensible size: <Katex tex="y" /> falls from about <Katex tex="0.63" /> to <Katex tex="0.51" />, so the solid sits between cylinders of volume <Katex tex="\pi(0.51)^2(\sqrt3-1)\approx0.60" /> and <Katex tex="\pi(0.63)^2(\sqrt3-1)\approx0.91" />.</>,
+    reason: <>Multiply out: <Katex tex="\tfrac{\pi^3}{2}\cdot\tfrac{7}{144}=\tfrac{7\pi^3}{288}" />. So <Katex tex="a=7" />, <Katex tex="b=3" />, <Katex tex="c=288" />, all positive integers, as the required form asks.</>,
+    more: <>Check: <Katex tex="\tfrac{7\pi^3}{288}\approx 0.754" />, a sensible size: <Katex tex="y" /> falls from about <Katex tex="0.63" /> to <Katex tex="0.51" />, so the solid sits between two cylinders of length <Katex tex="\sqrt3-1" />: one using <Katex tex="y^2=\tfrac{\pi}{12}" /> (at <Katex tex="x=\sqrt3" />), volume <Katex tex="\pi\cdot\tfrac{\pi}{12}(\sqrt3-1)\approx0.60" />, and one using <Katex tex="y^2=\tfrac{\pi}{8}" /> (at <Katex tex="x=1" />), volume <Katex tex="\pi\cdot\tfrac{\pi}{8}(\sqrt3-1)\approx0.90" />.</>,
   },
 ]
 

@@ -39,7 +39,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr\!\left(|D|<3\right) = \Pr(-3<D<3)" />,
-    reason: <>"Differ by less than 3 seconds" means <Katex tex="|T_1-T_2|<3" />. Either machine could be the faster one, so <Katex tex="D" /> can be negative too. The report&rsquo;s comment writes this step with its brackets misplaced; the working here is the correct form.</>,
+    reason: <>"Differ by less than 3 seconds" means <Katex tex="|T_1-T_2|<3" />. Either machine could be the faster one, so <Katex tex="D" /> can be negative too.</>,
+    more: <>The report&rsquo;s comment writes this step with its brackets misplaced; the working here is the correct form.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\Pr(-3<D<3) &= \Pr\!\left(-\frac{3}{5\sqrt2}<Z<\frac{3}{5\sqrt2}\right)\\ &= 0.32862\ldots\end{aligned}" />,

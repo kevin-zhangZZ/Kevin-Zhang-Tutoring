@@ -28,8 +28,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="E(X)=\int_2^6 x\,f(x)\,dx=\tfrac{62}{15}\approx4.13" />,
-    reason: <>The mean: integrate <Katex tex="x f(x)" /> over the domain.</>,
-    more: <>On CAS, define <Katex tex="f(x)" /> with <Katex tex="a=\tfrac1{64}" /> and evaluate the definite integrals directly; by hand each is just a polynomial integral like the one above. A mean a little above 4, the middle of <Katex tex="[2,6]" />, fits a density that is zero at both ends and peaks around <Katex tex="x\approx4.3" />.</>,
+    reason: <>The mean: integrate <Katex tex="x f(x)" /> over the domain. On CAS, define <Katex tex="f(x)" /> with <Katex tex="a=\tfrac1{64}" /> and evaluate the definite integral directly.</>,
+    more: <>By hand each of these integrals is just a polynomial integral like the one above. A mean a little above 4, the middle of <Katex tex="[2,6]" />, fits a density that is zero at both ends and peaks around <Katex tex="x\approx4.3" />.</>,
   },
   {
     working: <Katex display tex="E(X^2)=\int_2^6 x^2 f(x)\,dx=\tfrac{268}{15}" />,

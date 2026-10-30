@@ -65,7 +65,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{gathered} g \text{ has an inverse} \\ \iff g \text{ is one-to-one on its domain} \end{gathered}" />,
-    reason: <>So <Katex tex="(-\infty,a]" /> must stop at the turning point: past the minimum, <Katex tex="g" /> turns back up and repeats <Katex tex="y" />-values. Hence find the turning point.</>,
+    reason: <>To the left of the minimum <Katex tex="g" /> is decreasing, so each <Katex tex="y" />-value occurs once; past the minimum <Katex tex="g" /> turns back up and repeats <Katex tex="y" />-values. So the largest <Katex tex="a" /> is the <Katex tex="x" />-coordinate of the minimum: find the turning point.</>,
   },
   {
     working: <Katex display tex="g'(x) = 2e^{2x}-8e^x = 2e^x\left(e^x-4\right)" />,
@@ -89,8 +89,8 @@ const ROWS_B: WorkingRow[] = [
     ),
   },
   {
-    working: <Katex display tex="2e^x>0 \ \text{always} \implies e^x = 4" />,
-    reason: <><Katex tex="2e^x" /> is never zero, so <Katex tex="g'(x)=0" /> only when <Katex tex="e^x-4=0" />.</>,
+    working: <Katex display tex="\begin{gathered} g'(x)=0:\ 2e^x\left(e^x-4\right)=0 \\ 2e^x>0 \ \text{always} \implies e^x = 4 \end{gathered}" />,
+    reason: <>Stationary points are where <Katex tex="g'(x)=0" />. <Katex tex="2e^x" /> is never zero, so the product is zero only when <Katex tex="e^x-4=0" />.</>,
   },
   {
     working: <Katex display tex="x = \log_e(4)" />,
@@ -99,8 +99,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \log_e(4) \ \left(= 2\log_e(2)\right)}" />,
-    reason: <>For <Katex tex="x<\log_e 4" />, <Katex tex="e^x<4" /> so <Katex tex="g'(x)<0" />: <Katex tex="g" /> is strictly decreasing, so one-to-one. The endpoint is included: the minimum value is reached only once.</>,
-    more: <>The minimum value is <Katex tex="g(\log_e 4)=4^2-8(4)+7=-9" />. For any <Katex tex="a>\log_e 4" />, a <Katex tex="y" />-value just above <Katex tex="-9" /> would be reached once on each side of the minimum, so <Katex tex="g" /> would fail the horizontal line test.</>,
+    reason: <>For <Katex tex="x<\log_e(4)" />, <Katex tex="e^x<4" /> so <Katex tex="g'(x)<0" />: <Katex tex="g" /> is strictly decreasing, so one-to-one. The endpoint is included: the minimum value is reached only once.</>,
+    more: <>The minimum value is <Katex tex="g(\log_e(4))=4^2-8(4)+7=-9" />. For any <Katex tex="a>\log_e(4)" />, a <Katex tex="y" />-value just above <Katex tex="-9" /> would be reached once on each side of the minimum, so <Katex tex="g" /> would fail the horizontal line test.</>,
   },
 ]
 

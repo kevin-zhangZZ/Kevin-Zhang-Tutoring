@@ -27,9 +27,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{E}(X)=\sum x\Pr(X=x)" />,
+    reason: <>The mean of a discrete random variable: multiply each value by its probability, then add the products.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\mathrm{E}(X)&=6\cdot\tfrac26+(-3)\cdot\tfrac36+9\cdot\tfrac16\\&=2-1.5+1.5\end{aligned}" />,
+    reason: <>Each product: <Katex tex="6\cdot\tfrac26=2" />, <Katex tex="(-3)\cdot\tfrac36=-1.5" /> and <Katex tex="9\cdot\tfrac16=1.5" />. Keep the minus sign on the <Katex tex="-3" /> points.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(X)=2}" />,

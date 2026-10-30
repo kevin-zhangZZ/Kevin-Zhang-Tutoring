@@ -32,8 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}\text{A: } f'' &= -e^x < 0\\ \text{C: } f'' &= -3\sin(x) \le 0\end{aligned}" />,
-    reason: <>Both concave down on <Katex tex="[0,1]" />, so both underestimate.</>,
-    more: <>For <b>C</b>, <Katex tex="\sin(x)\ge0" /> for <Katex tex="0\le x\le1" /> because <Katex tex="1\lt\pi" />, so <Katex tex="-3\sin(x)\le0" /> there.</>,
+    reason: <>Both concave down on <Katex tex="[0,1]" />, so both underestimate. (For <b>C</b>, <Katex tex="\sin(x)\ge0" /> on <Katex tex="[0,1]" /> because <Katex tex="1\lt\pi" />.)</>,
   },
   {
     working: <Katex display tex="\text{D: } f' = \frac{1}{x+3},\quad f'' = \frac{-1}{(x+3)^2} < 0" />,

@@ -132,7 +132,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 2 \iff 5x-11=0 \iff x = \tfrac{11}{5}" />,
     reason: <>Using part a.&apos;s form. So the right branch crosses <Katex tex="y=2" /> at <Katex tex="x=2.2" />, rises to the maximum, then falls back towards <Katex tex="y=2" /> from above (a graph may cross a horizontal asymptote at finite <Katex tex="x" />).</>,
-    more: <>Crossing is allowed: a graph only has to approach a horizontal asymptote as <Katex tex="x\to\pm\infty" />. It can cross it at finite values of <Katex tex="x" />.</>,
+    more: <>So the right branch meets its asymptote at <Katex tex="(2.2,\ 2)" />. That point need not be labelled, but it matters for the shape: a sketch that keeps the right branch below <Katex tex="y=2" /> all the way cannot reach the maximum at <Katex tex="y\approx2.51" />.</>,
   },
   {
     working: (

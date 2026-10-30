@@ -65,7 +65,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} x&=-3.0934\ldots: & f&=1.4796\ldots \\ x&=0.3434\ldots: & f&=-2.9196\ldots \end{aligned}" />,
-    reason: <>Substitute back into <Katex tex="f" />. The first is a local minimum just under the asymptote <Katex tex="y=2" />; the second is the local maximum of the middle branch.</>,
+    reason: <>Substitute back into <Katex tex="f" /> and round: <Katex tex="(-3.09,\ 1.48)" /> and <Katex tex="(0.34,\ -2.92)" />. The quadratic <Katex tex="16x^2+44x-17" /> is negative between its roots, so <Katex tex="f'" /> (minus that, over a positive) changes from negative to positive at the first point, a local minimum just under <Katex tex="y=2" />, and from positive to negative at the second, the local maximum of the middle branch.</>,
     more: <>The middle branch runs from <Katex tex="-\infty" /> (just right of <Katex tex="x=-\tfrac12" />) up to this maximum and back down to <Katex tex="-\infty" /> (just left of <Katex tex="x=2" />), so it has to turn somewhere in between.</>,
   },
   {
@@ -75,7 +75,7 @@ const ROWS_C: WorkingRow[] = [
         <Katex display tex="x=-4.8992\ldots, \quad f=1.5355\ldots" />
       </>
     ),
-    reason: <>An inflection point is where <Katex tex="f''" /> changes sign. <Katex tex="f''(x)=0" /> leads to a cubic with only one real root, and <Katex tex="f''" /> does change sign there, so there is exactly one inflection point.</>,
+    reason: <>An inflection point is where <Katex tex="f''" /> changes sign. <Katex tex="f''(x)=0" /> leads to a cubic with only one real root, and <Katex tex="f''" /> does change sign there, so there is exactly one inflection point. Rounded, it is <Katex tex="(-4.90,\ 1.54)" />.</>,
     more: <>This one is easy to miss. Left of the minimum the curve rises towards <Katex tex="y=2" /> as <Katex tex="x\to-\infty" />, so it approaches the asymptote from below, curving down far away but curving up near the minimum. The bend switches over at <Katex tex="x\approx-4.90" />.</>,
   },
   {

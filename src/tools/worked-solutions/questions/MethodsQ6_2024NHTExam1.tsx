@@ -48,8 +48,8 @@ function TrapeziaOverlay() {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="h=\frac{\frac{2\pi}{3}-\frac{\pi}{6}}{3}=\frac{\frac{\pi}{2}}{3}=\frac{\pi}{6}" />,
-    reason: <>Three trapezia of equal width across <Katex tex="\left[\tfrac\pi6,\tfrac{2\pi}3\right]" />: the strip edges are <Katex tex="x=\tfrac\pi6,\tfrac\pi3,\tfrac\pi2,\tfrac{2\pi}3" />, the gridlines on the graph.</>,
+    working: <Katex display tex="w=\frac{\frac{2\pi}{3}-\frac{\pi}{6}}{3}=\frac{\frac{\pi}{2}}{3}=\frac{\pi}{6}" />,
+    reason: <>The width <Katex tex="w" /> of each strip is the interval's length divided by 3, for three trapezia of equal width across <Katex tex="\left[\tfrac\pi6,\tfrac{2\pi}3\right]" />. The strip edges are <Katex tex="x=\tfrac\pi6,\tfrac\pi3,\tfrac\pi2,\tfrac{2\pi}3" />, the gridlines on the graph.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} g\!\left(\tfrac\pi6\right)&=\sin\!\left(-\tfrac\pi2\right)+2=1\\ g\!\left(\tfrac\pi3\right)&=\sin\!\left(-\tfrac\pi6\right)+2=\tfrac32\\ g\!\left(\tfrac\pi2\right)&=\sin\!\left(\tfrac\pi6\right)+2=\tfrac52\\ g\!\left(\tfrac{2\pi}3\right)&=\sin\!\left(\tfrac\pi2\right)+2=3\end{aligned}" />,
@@ -57,8 +57,8 @@ const ROWS_A: WorkingRow[] = [
     more: <>These match the graph: the curve passes through grid intersections at heights 1, 1.5, 2.5 and 3.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}A&\approx\frac h2\left[g(x_0)+2g(x_1)+2g(x_2)+g(x_3)\right]\\ &=\frac{\pi}{12}\left[1+2\cdot\tfrac32+2\cdot\tfrac52+3\right]\end{aligned}" />,
-    reason: <>The trapezium rule from the formula sheet. Each inner height is shared by two trapezia, so it counts twice; the two end heights count once.</>,
+    working: <Katex display tex="\begin{aligned}A&\approx\frac w2\left[g(x_0)+2g(x_1)+2g(x_2)+g(x_3)\right]\\ &=\frac{\pi}{12}\left[1+2\cdot\tfrac32+2\cdot\tfrac52+3\right]\end{aligned}" />,
+    reason: <>The trapezium rule from the formula sheet, with <Katex tex="x_0,x_1,x_2,x_3" /> the four strip edges in order and <Katex tex="\tfrac w2=\tfrac\pi{12}" />. Each inner height is shared by two trapezia, so it counts twice; the two end heights count once.</>,
   },
   {
     working: <Katex display tex="=\frac{\pi}{12}(1+3+5+3)=\frac{\pi}{12}\times12" />,

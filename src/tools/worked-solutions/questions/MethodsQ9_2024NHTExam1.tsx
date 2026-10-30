@@ -47,7 +47,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x)=(2-x)e^{-x}}" />,
-    reason: <>VCAA also writes <Katex tex="-(x-2)e^{-x}" />, the form part b. uses. Check: <Katex tex="f'(3)=-e^{-3}<0" />, and the graph in part d. is falling at <Katex tex="x=3" />.</>,
+    reason: <>VCAA also writes <Katex tex="-(x-2)e^{-x}" />, the form part b. uses.</>,
+    more: <>Check: <Katex tex="f'(3)=-e^{-3}<0" />, and the graph in part d. is falling at <Katex tex="x=3" />.</>,
   },
 ]
 
@@ -104,7 +105,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered}y-2e^{-3}=-e^{-3}(x-3)\\ \implies g(x)=-e^{-3}x+5e^{-3}\end{gathered}" />,
-    reason: <>The tangent is the straight line through <Katex tex="(3,f(3))" /> with gradient <Katex tex="f'(3)" />: <Katex tex="y-y_1=m(x-x_1)" />.</>,
+    reason: <>The tangent is the straight line through <Katex tex="(3,f(3))" /> with gradient <Katex tex="f'(3)" />: <Katex tex="y-y_1=m(x-x_1)" />. Expand and add <Katex tex="2e^{-3}" /> to both sides: <Katex tex="3e^{-3}+2e^{-3}=5e^{-3}" />.</>,
     more: <>That is <Katex tex="g(x)=e^{-3}(5-x)" />, which meets the <Katex tex="x" />-axis at <Katex tex="x=5" />, as in the figure, where the tangent crosses the axis to the right of the point of contact.</>,
   },
   {

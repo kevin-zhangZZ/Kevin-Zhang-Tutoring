@@ -21,7 +21,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y-1=\sqrt3\,(x+2)\implies y=\sqrt3\,x+1+2\sqrt3" />,
-    reason: <>Point–gradient form through <Katex tex="(-2,\,1)" />.</>,
+    reason: <>The ray lies on the line through its start point <Katex tex="(-2,\,1)" /> with gradient <Katex tex="\sqrt3" />. Use point–gradient form <Katex tex="y-y_1=m(x-x_1)" />, then expand and collect the constants.</>,
     more: <>Check: at <Katex tex="x=-2" />, <Katex tex="y=-2\sqrt3+1+2\sqrt3=1" />, the start point.</>,
   },
   {

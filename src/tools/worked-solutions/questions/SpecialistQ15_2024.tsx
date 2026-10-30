@@ -44,7 +44,7 @@ const ROWS: WorkingRow[] = [
       <div className="flex flex-col gap-1">
         <span><Katex tex="t=0:\ (0,1)" /></span>
         <span><Katex tex="t=\tfrac{\pi}{2}:\ (1,-1)" /> — <Katex tex="x" /> has reached its maximum, so it must now decrease: <b>direction reverses</b>.</span>
-        <span><Katex tex="t=\pi:\ (0,1)" /> — passing back through the start, still moving left.</span>
+        <span><Katex tex="t=\pi:\ (0,1)" /> — passing back through the start, still moving left (<Katex tex="x=\sin(t)" /> is still decreasing, now towards <Katex tex="-1" />).</span>
         <span><Katex tex="t=\tfrac{3\pi}{2}:\ (-1,-1)" /> — <Katex tex="x" /> reaches its minimum: <b>direction reverses again</b>.</span>
         <span><Katex tex="t=2\pi:\ (0,1)" /> — back to the start.</span>
       </div>
@@ -55,7 +55,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} \underset{\sim}{r}(t+\pi) &= -\sin(t)\underset{\sim}{i} + \cos(2t)\underset{\sim}{j} \\ &\neq \underset{\sim}{r}(t) \text{ in general} \end{aligned}" />,
     reason: <>
-      At <Katex tex="t=\pi" /> the body is back at <Katex tex="(0,1)" /> after only one reversal. As <Katex tex="x=\sin(t)" /> has period <Katex tex="2\pi" />, both reversals and the return take <Katex tex="2\pi" /> seconds.
+      Adding <Katex tex="\pi" /> to <Katex tex="t" /> flips the sign of <Katex tex="x" />, so the motion does not repeat after <Katex tex="\pi" /> seconds, even though <Katex tex="y=\cos(2t)" /> does. At <Katex tex="t=\pi" /> the body is back at <Katex tex="(0,1)" /> after only one reversal. As <Katex tex="x=\sin(t)" /> has period <Katex tex="2\pi" />, both reversals and the return take <Katex tex="2\pi" /> seconds.
     </>,
     more: <>This is the trap behind C, chosen by 44% of students. C uses the period of <Katex tex="y=\cos(2t)" /> alone. Being at <Katex tex="(0,1)" /> again is not the same as repeating the motion: the working shows <Katex tex="\underset{\sim}{r}(t+\pi)\neq\underset{\sim}{r}(t)" />, and at <Katex tex="t=\pi" /> the body is heading left, whereas at <Katex tex="t=0" /> it headed right. It reaches <Katex tex="(-1,-1)" /> at <Katex tex="t=\tfrac{3\pi}{2}" />. The sequence in C (both reversals, then back to the start) takes <Katex tex="2\pi" /> seconds, not <Katex tex="\pi" />.</>,
   },

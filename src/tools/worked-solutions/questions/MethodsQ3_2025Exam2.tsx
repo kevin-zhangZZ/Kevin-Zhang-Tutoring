@@ -141,7 +141,7 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\mathrm{sd}(T) = \frac{10\sqrt{14}}{7} \approx 5.35 \text{ minutes}}" />,
-    reason: <>No accuracy is specified, so give the exact value; the decimal is only a sense check.</>,
+    reason: <>Multiply top and bottom by <Katex tex="\sqrt7" /> to simplify. No accuracy is specified, so give the exact value; the decimal is only a sense check.</>,
     more: <>When a VCAA question names no number of decimal places, an exact answer is expected. The report notes that students who gave the approximate answer <Katex tex="5.34\ldots" /> were not awarded full marks. Any exact form is fine: the report gives <Katex tex="\tfrac{10\sqrt{14}}{7}" />, <Katex tex="\sqrt{\tfrac{200}{7}}" /> and <Katex tex="\tfrac{10\sqrt2}{\sqrt7}" />.</>,
   },
 ]
@@ -211,7 +211,7 @@ const ROWS_BIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1-(1-p_k)^5 = 0.2" />,
-    reason: <>"Late at least once in five days", exactly as in part b.ii. but with <Katex tex="p_k" /> in place of 0.08704.</>,
+    reason: <>"Late at least once in five days", exactly as in part b.ii., but with <Katex tex="p_k" /> in place of 0.08704.</>,
     more: <>The report notes many students tried to solve <Katex tex="\int_k^{59}f(x)\,dx=0.2" />. That sets the probability of being late on <em>one</em> day to 0.2, but 0.2 is the probability of being late at least once in the whole <em>week</em>. The integral has to go through the binomial first.</>,
   },
   {
@@ -230,7 +230,7 @@ const ROWS_BIV: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}k=48&: \ 0.2811 \ (\to0.3) \\ k=50&: \ 0.1447 \ (\to0.1)\end{aligned}" />,
     reason: <>Same calculation for the neighbouring integers: neither rounds to 0.2. The probability only falls as <Katex tex="k" /> grows, so no other integer can work.</>,
-    more: <>A larger <Katex tex="k" /> allows more time, so fewer trips are late: every integer below 48 gives more than 0.2811 and every integer above 50 gives less than 0.1447. The report notes some students correctly used trial and error over integer values, and others just gave the answer without showing appropriate working, as required.</>,
+    more: <>A larger <Katex tex="k" /> allows more time, so fewer trips are late: every integer below 48 gives more than 0.2811 and every integer above 50 gives less than 0.1447. The report notes some students correctly used trial and error, and others just gave the answer without showing appropriate working, as required.</>,
   },
   {
     working: <Katex display tex="\boxed{k = 49 \text{ minutes}}" />,

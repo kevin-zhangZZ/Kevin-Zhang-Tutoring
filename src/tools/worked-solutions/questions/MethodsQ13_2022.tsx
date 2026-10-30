@@ -110,15 +110,16 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Matches option <b>C</b>: the square brackets mean <Katex tex="\pm a" /> are removed too.
+        Option D, <Katex tex="R\setminus(-a,a)" />, would keep <Katex tex="x=\pm a" />, where{' '}
+        <Katex tex="f" /> is undefined.
       </>
     ),
     more: (
       <>
         In <Katex tex="R\setminus S" />, the brackets belong to the set <Katex tex="S" /> being <em>removed</em>, not
         to the domain that is left. The endpoints <Katex tex="\pm a" /> must go, so they must be inside the removed
-        set: square brackets, <Katex tex="[-a,a]" />. Option D, <Katex tex="R\setminus(-a,a)" />, removes only the
-        numbers strictly between <Katex tex="-a" /> and <Katex tex="a" />, so it keeps <Katex tex="x=\pm a" />, where{' '}
-        <Katex tex="f" /> is undefined. It was the most popular answer (40%), ahead of C. Option B,{' '}
+        set: square brackets, <Katex tex="[-a,a]" />. Option D's round brackets remove only the numbers strictly
+        between <Katex tex="-a" /> and <Katex tex="a" />. It was the most popular answer (40%), ahead of C. Option B,{' '}
         <Katex tex="(-a,a)" />, is the interval where the fraction is negative: where <Katex tex="f" /> does{' '}
         <em>not</em> exist. Option A, <Katex tex="[-a,a]" />, is the set that has to be removed, not the domain.
         Option E, <Katex tex="R" />, ignores the restriction altogether.

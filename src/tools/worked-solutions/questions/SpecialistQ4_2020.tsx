@@ -43,17 +43,18 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="f\bigl(g(x)\bigr)" /> feeds each output of <Katex tex="g" /> into <Katex tex="f" />, so it exists only if{' '}
-        <Katex tex="\operatorname{ran} g\subseteq\operatorname{dom} f" />. It does, and the composite then has{' '}
+        <Katex tex="f" /> needs <Katex tex="x-1\ge0" /> for the square root and <Katex tex="x\ne0" /> for the denominator (already covered by <Katex tex="x\ge1" />). On <Katex tex="\big(0,\tfrac{\pi}{2}\big)" />,{' '}
+        <Katex tex="\sin^2(x)" /> is strictly between 0 and 1, so its reciprocal <Katex tex="\operatorname{cosec}^2(x)" /> is bigger
+        than 1. <Katex tex="f\bigl(g(x)\bigr)" /> feeds each output of <Katex tex="g" /> into <Katex tex="f" />, so it exists only
+        if <Katex tex="\operatorname{ran} g\subseteq\operatorname{dom} f" />. It does, so the composite has{' '}
         <Katex tex="g" />&apos;s domain, the interval the range is found over.
       </>
     ),
     more: (
       <>
-        <Katex tex="f" /> needs <Katex tex="x-1\ge0" /> for the square root (and <Katex tex="x\ne0" />, already covered). On{' '}
-        <Katex tex="\big(0,\tfrac{\pi}{2}\big)" />, <Katex tex="\sin^2(x)" /> is strictly between 0 and 1, so its reciprocal{' '}
-        <Katex tex="\operatorname{cosec}^2(x)" /> is always bigger than 1: every output of <Katex tex="g" /> is a number{' '}
-        <Katex tex="f" /> accepts.
+        Always check{' '}
+        <Katex tex="\operatorname{ran} g\subseteq\operatorname{dom} f" /> before composing: here every output of{' '}
+        <Katex tex="g" /> is a number <Katex tex="f" /> accepts, so no part of <Katex tex="g" />&apos;s domain has to be cut away.
       </>
     ),
   },

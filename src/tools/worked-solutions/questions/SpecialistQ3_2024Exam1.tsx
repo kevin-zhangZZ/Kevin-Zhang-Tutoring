@@ -118,8 +118,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x)-1 = -\frac{4}{x+1}+\frac{4}{(x+1)^2} = \frac{-4x}{(x+1)^2}" />,
-    reason: <>The sign of <Katex tex="f(x)-1" /> says which side of <Katex tex="y=1" /> the curve is on: above for <Katex tex="x<0" />, on it at <Katex tex="x=0" />, below for <Katex tex="x>0" />.</>,
-    more: <>The denominator is a square, so it is positive; the sign comes from <Katex tex="-4x" /> alone. This one fact settles both branches: the left branch (<Katex tex="x<-1" />) lies entirely above <Katex tex="y=1" />, and the right branch crosses <Katex tex="y=1" /> once, at <Katex tex="x=0" />. A curve may cross its horizontal asymptote — the asymptote only describes behaviour as <Katex tex="x\to\pm\infty" />.</>,
+    reason: <>The sign of <Katex tex="f(x)-1" /> says which side of <Katex tex="y=1" /> the curve is on. The denominator is a square, so positive, and the sign is that of <Katex tex="-4x" />: above <Katex tex="y=1" /> for <Katex tex="x<0" />, on it at <Katex tex="x=0" />, below for <Katex tex="x>0" />.</>,
+    more: <>This one fact settles both branches: the left branch (<Katex tex="x<-1" />) lies entirely above <Katex tex="y=1" />, and the right branch crosses <Katex tex="y=1" /> once, at <Katex tex="x=0" />. A curve may cross its horizontal asymptote — the asymptote only describes behaviour as <Katex tex="x\to\pm\infty" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} &\text{intercepts: } (1,0) \text{ from part b.,} \\ &\text{and } f(0) = 1 \implies (0,1) \end{aligned}" />,

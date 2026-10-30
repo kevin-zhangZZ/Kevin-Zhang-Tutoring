@@ -104,11 +104,11 @@ const ROWS_B: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\overrightarrow{AP}\times\underset{\sim}{d} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & 3 & -6\\-1 & 2 & 1\end{vmatrix} = 15\underset{\sim}{i}+5\underset{\sim}{j}+5\underset{\sim}{k}"
+        tex="\begin{aligned}\overrightarrow{AP}\times\underset{\sim}{d} &= \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & 3 & -6\\-1 & 2 & 1\end{vmatrix}\\ &= \big(3(1)-(-6)(2)\big)\underset{\sim}{i}\\ &\quad-\big(1(1)-(-6)(-1)\big)\underset{\sim}{j}\\ &\quad+\big(1(2)-3(-1)\big)\underset{\sim}{k}\\ &= 15\underset{\sim}{i}+5\underset{\sim}{j}+5\underset{\sim}{k}\end{aligned}"
       />
     ),
     reason: <><Katex tex="\left|\overrightarrow{AP}\times\underset{\sim}{d}\right| = \left|\overrightarrow{AP}\right|\left|\underset{\sim}{d}\right|\sin\theta" />, with <Katex tex="\theta" /> the angle between <Katex tex="\overrightarrow{AP}" /> and the line, and <Katex tex="\left|\overrightarrow{AP}\right|\sin\theta" /> is the perpendicular distance from <Katex tex="A" /> to the line.</>,
-    more: <>Components: <Katex tex="\underset{\sim}{i}" />: <Katex tex="3(1)-(-6)(2)=15" />; <Katex tex="\underset{\sim}{j}" />: <Katex tex="-\left[1(1)-(-6)(-1)\right]=5" />; <Katex tex="\underset{\sim}{k}" />: <Katex tex="1(2)-3(-1)=5" />. Why <Katex tex="\sin\theta" />: picture the right-angled triangle with hypotenuse <Katex tex="AP" /> and one side along the line. The side opposite <Katex tex="\theta" /> is the shortest distance, <Katex tex="\left|\overrightarrow{AP}\right|\sin\theta" />.</>,
+    more: <>On CAS, crossP([1,3,-6],[-1,2,1]) returns [15, 5, 5]. Why <Katex tex="\sin\theta" />: picture the right-angled triangle with hypotenuse <Katex tex="AP" /> and one side along the line. The side opposite <Katex tex="\theta" /> is the shortest distance, <Katex tex="\left|\overrightarrow{AP}\right|\sin\theta" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\text{distance} &= \frac{\left|\overrightarrow{AP}\times\underset{\sim}{d}\right|}{\left|\underset{\sim}{d}\right|}\\ &= \frac{\sqrt{225+25+25}}{\sqrt{1+4+1}} = \frac{\sqrt{275}}{\sqrt6}\end{aligned}" />,
@@ -135,11 +135,11 @@ const ROWS_C: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\begin{aligned}\underset{\sim}{n} &= \overrightarrow{AB}\times\overrightarrow{AC}\\ &= \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & -3 & -4\\-1 & 4 & -8\end{vmatrix}\\ &= 40\underset{\sim}{i}+12\underset{\sim}{j}+\underset{\sim}{k}\end{aligned}"
+        tex="\begin{aligned}\underset{\sim}{n} &= \overrightarrow{AB}\times\overrightarrow{AC}\\ &= \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & -3 & -4\\-1 & 4 & -8\end{vmatrix}\\ &= \big((-3)(-8)-(-4)(4)\big)\underset{\sim}{i}\\ &\quad-\big(1(-8)-(-4)(-1)\big)\underset{\sim}{j}\\ &\quad+\big(1(4)-(-3)(-1)\big)\underset{\sim}{k}\\ &= 40\underset{\sim}{i}+12\underset{\sim}{j}+\underset{\sim}{k}\end{aligned}"
       />
     ),
     reason: <>The cross product is perpendicular to both, so it is a normal to the plane.</>,
-    more: <>Components: <Katex tex="\underset{\sim}{i}" />: <Katex tex="(-3)(-8)-(-4)(4)=24+16" />; <Katex tex="\underset{\sim}{j}" />: <Katex tex="-\left[1(-8)-(-4)(-1)\right]=-(-8-4)" />; <Katex tex="\underset{\sim}{k}" />: <Katex tex="1(4)-(-3)(-1)=4-3" />. The report reminds students that CAS can find cross products accurately: on the TI-Nspire, crossP([1,-3,-4],[-1,4,-8]) returns [40, 12, 1]. A quick check on the normal: its dot product with each of <Katex tex="\overrightarrow{AB}" /> and <Katex tex="\overrightarrow{AC}" /> is 0 (<Katex tex="40-36-4=0" /> and <Katex tex="-40+48-8=0" />).</>,
+    more: <>The report reminds students that CAS can find cross products accurately: on the TI-Nspire, crossP([1,-3,-4],[-1,4,-8]) returns [40, 12, 1]. A quick check on the normal: its dot product with each of <Katex tex="\overrightarrow{AB}" /> and <Katex tex="\overrightarrow{AC}" /> is 0 (<Katex tex="40-36-4=0" /> and <Katex tex="-40+48-8=0" />).</>,
   },
   {
     working: <Katex display tex="40x+12y+z = d" />,
@@ -189,11 +189,11 @@ const ROWS_DII: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\underset{\sim}{u}\times\underset{\sim}{v} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\-6 & -4 & 0\\-6 & 0 & 3\end{vmatrix} = -12\underset{\sim}{i}+18\underset{\sim}{j}-24\underset{\sim}{k}"
+        tex="\begin{aligned}\underset{\sim}{u}\times\underset{\sim}{v} &= \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\-6 & -4 & 0\\-6 & 0 & 3\end{vmatrix}\\ &= \big((-4)(3)-0(0)\big)\underset{\sim}{i}\\ &\quad-\big((-6)(3)-0(-6)\big)\underset{\sim}{j}\\ &\quad+\big((-6)(0)-(-4)(-6)\big)\underset{\sim}{k}\\ &= -12\underset{\sim}{i}+18\underset{\sim}{j}-24\underset{\sim}{k}\end{aligned}"
       />
     ),
     reason: <><Katex tex="\left|\underset{\sim}{u}\times\underset{\sim}{v}\right| = \left|\underset{\sim}{u}\right|\left|\underset{\sim}{v}\right|\sin\theta" />, with <Katex tex="\theta" /> the angle between them, is the area of the parallelogram the two sides span: twice the triangle.</>,
-    more: <>Components: <Katex tex="\underset{\sim}{i}" />: <Katex tex="(-4)(3)-0(0)=-12" />; <Katex tex="\underset{\sim}{j}" />: <Katex tex="-\left[(-6)(3)-0(-6)\right]=18" />; <Katex tex="\underset{\sim}{k}" />: <Katex tex="(-6)(0)-(-4)(-6)=-24" />. On CAS, crossP([-6,-4,0],[-6,0,3]) gives the same.</>,
+    more: <>On CAS, crossP([-6,-4,0],[-6,0,3]) gives the same.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{u}\times\underset{\sim}{v}\right| = \sqrt{144+324+576} = \sqrt{1044} = 6\sqrt{29}" />,

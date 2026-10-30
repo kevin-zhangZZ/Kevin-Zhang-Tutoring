@@ -53,7 +53,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(C>4)\approx0.023}" />,
-    reason: <>Correct to three decimal places, as asked. Sanity check: about 2% of the time Sam takes longer than mean plus two standard deviations, which matches the &ldquo;95% within two standard deviations&rdquo; rule (5% outside, half of it on the high side).</>,
+    reason: <>Round 0.02275 to three decimal places, as the question asks.</>,
+    more: <>Sanity check: about 2% of the time Sam takes longer than mean plus two standard deviations, which matches the &ldquo;95% within two standard deviations&rdquo; rule (5% outside, half of it on the high side).</>,
   },
 ]
 

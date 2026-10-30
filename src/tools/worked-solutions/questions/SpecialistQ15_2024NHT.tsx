@@ -28,8 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex={`\\begin{aligned}&=(6-0)${I}-(3+6)${J}+(0+6)${K}\\\\ &=6${I}-9${J}+6${K}\\\\ &=3(2${I}-3${J}+2${K})\\end{aligned}`} />,
-    reason: <>Expand along the top row. The middle (<Katex tex={J} />) term carries a minus sign.</>,
-    more: <>Any non-zero multiple of a normal is also a normal, so divide out the common factor 3.</>,
+    reason: <>Expand along the top row. The middle (<Katex tex={J} />) term carries a minus sign. Any non-zero multiple of a normal is also a normal, so take out the common factor 3.</>,
   },
   {
     working: <Katex display tex={`(2${I}-3${J}+2${K})\\cdot(${I}+2${J}+2${K})=2-6+4=0`} />,

@@ -17,6 +17,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-\sqrt3\le 3x-1\le\sqrt3" />,
+    reason: <>Write <Katex tex="f(x)\in\left[-\sqrt3,\sqrt3\right]" /> as a double inequality, with <Katex tex="f(x)=3x-1" />.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}1-\sqrt3\le 3x\le 1+\sqrt3\\ \Rightarrow\ \frac{1-\sqrt3}{3}\le x\le\frac{1+\sqrt3}{3}\end{gathered}" />,

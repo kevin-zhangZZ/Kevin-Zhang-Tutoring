@@ -43,7 +43,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-\frac{t}{8} = \log_e\!\left(\frac{2}{13}\right) \implies t = 8\log_e\!\left(\frac{13}{2}\right)" />,
-    reason: <>Take <Katex tex="\log_e" /> of both sides; <Katex tex="-\log_e\!\left(\tfrac{2}{13}\right)=\log_e\!\left(\tfrac{13}{2}\right)" />.</>,
+    reason: <>Take <Katex tex="\log_e" /> of both sides, then multiply by <Katex tex="-8" />. The minus sign goes inside the log by flipping the fraction: <Katex tex="-\log_e\!\left(\tfrac{2}{13}\right)=\log_e\!\left(\tfrac{13}{2}\right)" />.</>,
     more: <>On CAS: <Cas fn="solve">solve(65e^(−t/8) = 10, t)</Cas></>,
   },
   {
@@ -52,7 +52,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="0.974\ldots \times 60 = 58.46\ldots \text{ minutes}" />,
     reason: <>Convert the decimal part of the hours to minutes, using the unrounded value.</>,
-    more: <>Rounding to 14.97 first gives 58.2 minutes, which happens to round to the same minute here, but early rounding is how answers drift a minute off. VCAA works in minutes throughout: 898 minutes.</>,
+    more: <>Rounding to 14.97 first gives 58.2 minutes, which happens to round to the same minute here, but early rounding is how answers drift a minute off. The report gives the answer as 898 minutes, which is 14 hours 58 minutes.</>,
   },
   {
     working: <Katex display tex="\boxed{14 \text{ hours } 58 \text{ minutes}}" />,
@@ -80,7 +80,7 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{1-e}{1-\sqrt e} = \frac{(1-\sqrt e)(1+\sqrt e)}{1-\sqrt e} = 1+\sqrt e" />,
-    reason: <>Both <Katex tex="1-e" /> and <Katex tex="1-\sqrt e" /> are negative, so the coefficient is positive. Writing <Katex tex="1-e" /> as a difference of two squares shows exactly what it is.</>,
+    reason: <>Both <Katex tex="1-e" /> and <Katex tex="1-\sqrt e" /> are negative, so the coefficient is positive. Writing <Katex tex="1-e=1^2-(\sqrt e)^2" /> as a difference of two squares lets the <Katex tex="1-\sqrt e" /> cancel.</>,
   },
   {
     working: <Katex display tex="C_2(t) = 65\big(1+\sqrt e\big)e^{-\frac{t}{8}}, \quad t \ge 4" />,
@@ -143,7 +143,7 @@ const ROWS_F: WorkingRow[] = [
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dt}\left(Ae^{-\frac{t}{8}}\right) = -\frac{A}{8}e^{-\frac{t}{8}}" />,
-    reason: <>Both pieces have the form <Katex tex="Ae^{-t/8}" />, so differentiate each piece separately with the same rule as part c.</>,
+    reason: <>Both pieces have the form <Katex tex="Ae^{-t/8}" />, so differentiate each piece separately with the same rule as part c. Here <Katex tex="A=65" /> for the first piece and <Katex tex="A=65\left(\tfrac{1-e}{1-\sqrt e}\right)" /> for the second.</>,
   },
   {
     working: <Katex display tex="\boxed{C_2'(t) = \begin{cases} -\dfrac{65}{8}e^{-\frac{t}{8}} & 0 < t < 4 \\[8pt] -\dfrac{65}{8}\left(\dfrac{1-e}{1-\sqrt e}\right)e^{-\frac{t}{8}} & t > 4 \end{cases}}" />,
@@ -158,12 +158,12 @@ const ROWS_H: WorkingRow[] = [
     reason: <>&ldquo;Decreasing by at least 8 mg per hour&rdquo; means the rate of change is <Katex tex="-8" /> or more negative.</>,
   },
   {
-    working: <Katex display tex="\begin{gathered}0<t<4: \ \ -\frac{65}{8}e^{-\frac{t}{8}} \le -8 \\ \iff e^{-\frac{t}{8}} \ge \frac{64}{65} \\ \iff t \le 8\log_e\!\left(\frac{65}{64}\right) = 0.124\ldots\end{gathered}" />,
-    reason: <>Multiply by <Katex tex="-\tfrac{8}{65}" />, which reverses the inequality, then take logs. The first piece only just exceeds 8 mg per hour: its steepest rate is <Katex tex="\tfrac{65}{8}=8.125" /> at <Katex tex="t=0" />.</>,
+    working: <Katex display tex="\begin{gathered}0<t<4: \ \ -\frac{65}{8}e^{-\frac{t}{8}} \le -8 \\ \iff e^{-\frac{t}{8}} \ge \frac{64}{65} \\ \iff -\frac{t}{8} \ge \log_e\!\left(\frac{64}{65}\right) \\ \iff t \le -8\log_e\!\left(\frac{64}{65}\right) \\ = 8\log_e\!\left(\frac{65}{64}\right) = 0.124\ldots\end{gathered}" />,
+    reason: <>Multiply by <Katex tex="-\tfrac{8}{65}" />, which reverses the inequality; take logs (<Katex tex="\log_e" /> is increasing, so the sign stays); then multiply by <Katex tex="-8" />, which reverses it again. The first piece only just exceeds 8 mg per hour: its steepest rate is <Katex tex="\tfrac{65}{8}=8.125" /> at <Katex tex="t=0" />.</>,
   },
   {
-    working: <Katex display tex="\begin{gathered}t>4: \ \ -\frac{65\big(1+\sqrt e\big)}{8}e^{-\frac{t}{8}} \le -8 \\ \iff t \le 8\log_e\!\left(\frac{65\big(1+\sqrt e\big)}{64}\right) \\ = 7.916\ldots\end{gathered}" />,
-    reason: <>Same steps for the second piece, with coefficient <Katex tex="65(1+\sqrt e)" />.</>,
+    working: <Katex display tex="\begin{gathered}t>4: \ \ -\frac{65\big(1+\sqrt e\big)}{8}e^{-\frac{t}{8}} \le -8 \\ \iff e^{-\frac{t}{8}} \ge \frac{64}{65\big(1+\sqrt e\big)} \\ \iff t \le 8\log_e\!\left(\frac{65\big(1+\sqrt e\big)}{64}\right) \\ = 7.916\ldots\end{gathered}" />,
+    reason: <>Same three steps for the second piece, written with <Katex tex="1+\sqrt e" /> from part d. Multiply by <Katex tex="-\tfrac{8}{65(1+\sqrt e)}" />, take logs, multiply by <Katex tex="-8" />.</>,
     more: <>On CAS, define <Katex tex="C_2'" /> as the hybrid from part g. and use <Cas fn="solve">solve(C2′(t) ≤ −8, t)</Cas></>,
   },
   {

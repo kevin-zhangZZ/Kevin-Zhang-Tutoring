@@ -70,7 +70,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} -2 &\le 2\cos(2x) \le 2 \\ \implies -1 &\le 2\cos(2x)+1 \le 3 \end{aligned}" />,
-    reason: <>Multiply through by 2, then add 1. The domain <Katex tex="[0,2\pi]" /> holds two full periods, so both extremes are actually reached.</>,
+    reason: <>Multiply through by 2, then add 1. The domain <Katex tex="[0,2\pi]" /> holds two full periods (the period is <Katex tex="\tfrac{2\pi}{2}=\pi" />), so both extremes are actually reached.</>,
     more: <>Same result read as a transformation: amplitude 2 about the centre line <Katex tex="y=1" />, so <Katex tex="1-2" /> to <Katex tex="1+2" />. The check on the domain matters in general: on a domain shorter than a period, a maximum or minimum might not be reached and the range would be smaller.</>,
   },
   {
@@ -98,7 +98,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="2x = \tfrac{2\pi}{3},\ \tfrac{4\pi}{3},\ \tfrac{8\pi}{3},\ \tfrac{10\pi}{3}" />,
     reason: <>Add <Katex tex="2\pi" /> to each for the second revolution: four values in <Katex tex="[0,4\pi]" />, not two.</>,
-    more: <>Stopping after the first revolution loses half the answers. Counting the zeros before solving (two periods in <Katex tex="[0,2\pi]" />, two zeros each), tells you to expect four.</>,
+    more: <>Stopping after the first revolution loses half the answers. Counting the zeros before solving (two periods in <Katex tex="[0,2\pi]" />, two zeros each) tells you to expect four.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \tfrac{\pi}{3},\ \tfrac{2\pi}{3},\ \tfrac{4\pi}{3},\ \tfrac{5\pi}{3}}" />,

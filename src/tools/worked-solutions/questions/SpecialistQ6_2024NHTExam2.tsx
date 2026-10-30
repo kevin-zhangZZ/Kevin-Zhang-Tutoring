@@ -100,6 +100,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="c = 0.37 + 2.3263\ldots\times\frac{0.12}{\sqrt{56}} = 0.40730\ldots" />,
+    reason: <>What the CAS gives: the cut-off sits 2.3263… standard deviations of <Katex tex="\bar X" /> above 0.37, where 2.3263… is the <Katex tex="z" /> value with 0.99 of the standard normal to its left.</>,
   },
   {
     working: <Katex display tex="\boxed{0.407 \text{ g/L}}" />,

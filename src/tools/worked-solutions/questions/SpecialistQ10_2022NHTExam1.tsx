@@ -62,7 +62,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} s &= \int_0^{3/2}\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt \\ &= \int_0^{3/2}\sqrt{\frac{t^4}{4}+9-3t^2}\,dt \end{aligned}" />,
-    reason: <>The distance travelled along a curve is the integral of the speed, <Katex tex="\left|\dot{\underset{\sim}{r}}(t)\right|" />, over the time interval. Squaring removes the root on <Katex tex="\tfrac{dy}{dt}" />.</>,
+    reason: <>The distance travelled along a curve is the integral of the speed, <Katex tex="\left|\dot{\underset{\sim}{r}}(t)\right|" />, over the time interval. Square each component: <Katex tex="\left(\tfrac{t^2}{2}\right)^2=\tfrac{t^4}{4}" />, and squaring removes the root on <Katex tex="\tfrac{dy}{dt}" />.</>,
   },
   {
     working: <Katex display tex="\frac{t^4}{4}+9-3t^2 = \frac{t^4-12t^2+36}{4} = \frac{\left(t^2-6\right)^2}{4}" />,
@@ -84,7 +84,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{s = \frac{63}{16}}" />,
-    reason: <>About 3.94. Sanity check: the particle starts at <Katex tex="(0,0)" /> and ends at <Katex tex="\left(\tfrac{9}{16},\,f\!\left(\tfrac32\right)\right)" />, where <Katex tex="f\!\left(\tfrac32\right)=\tfrac{\sqrt3}{2}\left(3\cdot\tfrac\pi3+\tfrac32\cdot\tfrac{\sqrt3}{2}\right)=\tfrac{\sqrt3\pi}{2}+\tfrac98\approx3.85" />. The straight-line distance is about 3.89, a little less than the distance along the curve, as it must be.</>,
+    reason: <>Exact, as Exam 1 expects (about 3.94).</>,
+    more: <>Sanity check: the particle starts at <Katex tex="(0,0)" /> and ends at <Katex tex="\left(\tfrac{9}{16},\,f\!\left(\tfrac32\right)\right)" />, where <Katex tex="f\!\left(\tfrac32\right)=\tfrac{\sqrt3}{2}\left(3\cdot\tfrac\pi3+\tfrac32\cdot\tfrac{\sqrt3}{2}\right)=\tfrac{\sqrt3\pi}{2}+\tfrac98\approx3.85" />. The straight-line distance is about 3.89, a little less than the distance along the curve, as it must be.</>,
   },
 ]
 

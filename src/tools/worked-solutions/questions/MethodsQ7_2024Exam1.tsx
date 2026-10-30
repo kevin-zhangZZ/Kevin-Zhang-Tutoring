@@ -238,7 +238,7 @@ const ROWS_BIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f' \text{ is continuous on } \left[\tfrac\pi2,\tfrac{2\pi}{3}\right] \text{ and changes sign}" />,
-    reason: <><Katex tex="f'" /> is built from <Katex tex="\sin" /> and <Katex tex="\cos" />, so its graph has no breaks. Going from positive to negative, it must cross zero in between.</>,
+    reason: <><Katex tex="f'" /> is built from <Katex tex="x" />, <Katex tex="\sin(x)" /> and <Katex tex="\cos(x)" />, which are all continuous, so its graph has no breaks. Going from positive to negative, it must cross zero in between.</>,
   },
   {
     working: <Katex display tex="\boxed{\begin{aligned} &\therefore f'(c) = 0 \text{ for some } c\in\left(\tfrac\pi2,\tfrac{2\pi}{3}\right), \\ &\text{so } f \text{ has a stationary point there.} \end{aligned}}" />,

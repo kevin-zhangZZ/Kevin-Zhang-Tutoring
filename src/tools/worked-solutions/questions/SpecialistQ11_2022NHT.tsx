@@ -19,9 +19,10 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{vector resolute} = \frac{-\sqrt3}{n^2+4}\left(\underset{\sim}{i}-\sqrt3\,\underset{\sim}{j}+n\underset{\sim}{k}\right)" />,
+    reason: <>Substitute the two dot products into the formula. This is the resolute with <Katex tex="n" /> still unknown.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}\underset{\sim}{j}:\ \ \frac{(-\sqrt3)(-\sqrt3)}{n^2+4} &= \frac{3}{6}\\ n^2+4 &= 6\\ n &= \sqrt2\end{aligned}" />,
+    working: <Katex display tex="\begin{aligned}\underset{\sim}{j}:\ \ \frac{(-\sqrt3)(-\sqrt3)}{n^2+4} &= \frac{3}{6}\\ n^2+4 &= 6\\ n^2 &= 2\\ n &= \sqrt2\ \ (n>0)\end{aligned}" />,
     reason: <>Compare with the given <Katex tex="\tfrac16\left(-\sqrt3\,\underset{\sim}{i}+3\underset{\sim}{j}+p\underset{\sim}{k}\right)" />. The <Katex tex="\underset{\sim}{j}" /> component holds no unknown except <Katex tex="n" />, so it fixes <Katex tex="n" />. Reject <Katex tex="n=-\sqrt2" />: the question says <Katex tex="n" /> is positive.</>,
     more: <>The <Katex tex="\underset{\sim}{i}" /> component gives the same equation, <Katex tex="\tfrac{-\sqrt3}{n^2+4}=\tfrac{-\sqrt3}{6}" />, which is a useful check that the resolute really has the given form.</>,
   },
@@ -32,7 +33,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{p=-\sqrt6}" />,
     reason: <>Matches option <b>A</b>.</>,
-    more: <>Sign check: <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}<0" />, so the resolute points <em>against</em> <Katex tex="\underset{\sim}{b}" />, and every component should have the opposite sign to <Katex tex="\underset{\sim}{b}" />&rsquo;s. <Katex tex="\underset{\sim}{b}" />&rsquo;s <Katex tex="\underset{\sim}{k}" /> component <Katex tex="\sqrt2" /> is positive, so <Katex tex="p" /> must be negative, which rules out option E straight away. Option <b>D</b>, <Katex tex="-\tfrac{\sqrt6}{6}" />, is the resolute&rsquo;s whole <Katex tex="\underset{\sim}{k}" /> component, <Katex tex="\tfrac p6" />, forgetting the factor <Katex tex="\tfrac16" /> sitting outside the bracket.</>,
+    more: <>Sign check: <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}<0" />, so the resolute points <em>against</em> <Katex tex="\underset{\sim}{b}" />, and every component should have the opposite sign to <Katex tex="\underset{\sim}{b}" />&rsquo;s. <Katex tex="\underset{\sim}{b}" />&rsquo;s <Katex tex="\underset{\sim}{k}" /> component <Katex tex="\sqrt2" /> is positive, so <Katex tex="p" /> must be negative, which rules out option E straight away. Option <b>D</b>, <Katex tex="-\tfrac{\sqrt6}{6}" />, is the resolute&rsquo;s whole <Katex tex="\underset{\sim}{k}" /> component, <Katex tex="\tfrac p6" />: it forgets that <Katex tex="p" /> is then multiplied by the <Katex tex="\tfrac16" /> outside the bracket.</>,
   },
 ]
 

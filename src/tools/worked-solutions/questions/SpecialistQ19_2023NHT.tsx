@@ -22,16 +22,17 @@ const ROWS: WorkingRow[] = [
     more: <>1.96 is the value with <Katex tex="\Pr(-1.96<Z<1.96)=0.95" />, from <Cas fn="invNorm">invNorm(0.975, 0, 1)</Cas>.</>,
   },
   {
-    working: <Katex display tex="1.96\times\frac{8}{\sqrt{50}}=2.2175\ldots" />,
+    working: <Katex display tex="1.96\times\frac{8}{\sqrt{50}}=2.2174\ldots" />,
     reason: <>The margin of error. Sample means of 50 people vary far less than individual masses do, hence dividing by <Katex tex="\sqrt{50}\approx7.07" />.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}&(73-2.2175,\ 73+2.2175)\\ &\quad=(70.78\ldots,\ 75.22\ldots)\end{aligned}" />,
+    working: <Katex display tex="\begin{aligned}&(73-2.2174,\ 73+2.2174)\\ &\quad=(70.78\ldots,\ 75.22\ldots)\end{aligned}" />,
+    reason: <>Subtract the margin of error from the sample mean for the lower end and add it for the upper end, then round to one decimal place to compare with the options.</>,
   },
   {
     working: <Katex display tex="\boxed{(70.8,\ 75.2)}" />,
-    reason: <>Matches option <b>A</b>. Sanity check: the interval is centred on <Katex tex="\bar x=73" />, as every confidence interval for <Katex tex="\mu" /> must be.</>,
-    more: <>Option D, <Katex tex="(72.7,\,73.3)" />, divides by <Katex tex="n=50" /> instead of <Katex tex="\sqrt{50}" /> (margin 0.31). Option C, <Katex tex="(72.2,\,73.8)" />, takes the square root of <Katex tex="\tfrac{8}{50}" /> (margin 0.78), treating 8 as the variance.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Sanity check: the interval is centred on <Katex tex="\bar x=73" />, as every confidence interval for <Katex tex="\mu" /> must be. Option D, <Katex tex="(72.7,\,73.3)" />, divides by <Katex tex="n=50" /> instead of <Katex tex="\sqrt{50}" /> (margin 0.31). Option C, <Katex tex="(72.2,\,73.8)" />, takes the square root of <Katex tex="\tfrac{8}{50}" /> (margin 0.78), treating 8 as the variance.</>,
   },
 ]
 

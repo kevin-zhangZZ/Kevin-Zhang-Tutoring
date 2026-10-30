@@ -146,11 +146,11 @@ const ROWS_DI: WorkingRow[] = [
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Cas fn="solve">solve(e^(−4x) = −¼·ln(x), x)</Cas>,
-    reason: <>Set the function equal to its inverse. There is no algebraic way to solve this, so use technology. Graph both first to see how many solutions to expect.</>,
-    more: <>Solving <Katex tex="e^{-4x}=x" /> is not enough here: for a decreasing function, the graph and its inverse can also meet at pairs of points off the line <Katex tex="y=x" />.</>,
+    reason: <>Set the function equal to its inverse. There is no algebraic way to solve this, so use technology. Graph both first to see how many solutions to expect. Solving <Katex tex="e^{-4x}=x" /> is not enough here: for a decreasing function, the graph and its inverse can also meet at pairs of points off the line <Katex tex="y=x" />.</>,
   },
   {
     working: <Katex display tex="x = 0.02797\ldots,\ \ 0.30054\ldots,\ \ 0.89414\ldots" />,
+    reason: <>CAS gives three solutions, matching the three crossings you see when you graph both.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 0.028,\ \ 0.301,\ \ 0.894}" />,

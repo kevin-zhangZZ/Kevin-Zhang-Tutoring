@@ -24,6 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="D\sim N\!\left(0,\ 32\right),\quad\text{sd}(D)=\sqrt{32}=4\sqrt2" />,
+    reason: <>A sum or difference of independent normal random variables is itself normal. <Cas fn="normCdf" /> needs the standard deviation, not the variance, so take the square root.</>,
   },
   {
     working: <Katex display tex="\Pr\left(|D|<5\right)=\Pr(-5<D<5)" />,

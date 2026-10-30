@@ -33,8 +33,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="C'(n)=0\ \Rightarrow\ n=38.3499\ldots" />,
-    reason: <>The only positive solution. It is a minimum: <Katex tex="C'" /> changes from negative to positive there (e.g. <Katex tex="C'(30)<0" />, <Katex tex="C'(40)>0" />).</>,
-    more: <>Multiplying by <Katex tex="n^2" /> gives the cubic <Katex tex="2n^3-75n^2-2500=0" />, which has one real root. On CAS, <Cas fn="solve">solve(n−37.5−1250/n²=0, n) | n&gt;0</Cas>, or go straight to the minimum with <Cas fn="fMin" />.</>,
+    reason: <>On CAS: <Cas fn="solve">solve(n−37.5−1250/n²=0, n) | n&gt;0</Cas>, the only positive solution. It is a minimum: <Katex tex="C'" /> changes from negative to positive there (e.g. <Katex tex="C'(30)<0" />, <Katex tex="C'(40)>0" />).</>,
+    more: <>Multiplying by <Katex tex="n^2" /> gives the cubic <Katex tex="2n^3-75n^2-2500=0" />, which has one real root. Alternatively, go straight to the minimum with <Cas fn="fMin" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}C(38)&=1229.894\ldots\\ C(39)&=1230.051\ldots\end{aligned}" />,

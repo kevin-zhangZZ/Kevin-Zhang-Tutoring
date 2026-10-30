@@ -57,7 +57,7 @@ const ROWS_B: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>The asymptote dashed and labelled <Katex tex="x=2" />, both intercepts with coordinates, and the curve drawn only for <Katex tex="x<2" />, getting steeper as it approaches the asymptote without touching it.</>,
+    reason: <>The asymptote dashed and labelled <Katex tex="x=2" />, both intercepts with coordinates, and the curve drawn only for <Katex tex="x<2" />. It is decreasing (the intercepts show it: <Katex tex="f(0)\approx2.08" /> is above <Katex tex="f(1)=0" />), so it rises to the left and falls ever more steeply towards the asymptote without touching it.</>,
     more: <>The left end keeps rising forever (<Katex tex="f(x)\to\infty" /> as <Katex tex="x\to-\infty" />), but slowly: a log curve has no horizontal asymptote, so don&apos;t flatten it out.</>,
   },
 ]

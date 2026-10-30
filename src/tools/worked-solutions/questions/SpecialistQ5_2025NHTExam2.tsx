@@ -46,8 +46,8 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-32\underset{\sim}{i} + 32\underset{\sim}{j} - 16\underset{\sim}{k}}" />,
-    reason: <>Check it is perpendicular to both: with <Katex tex="\overrightarrow{QT}" />, <Katex tex="-160+224-64=0" />; with <Katex tex="\overrightarrow{QS}" />, <Katex tex="-256+256+0=0" />.</>,
-    more: <>Reversing the order (<Katex tex="\overrightarrow{QS}\times\overrightarrow{QT}" />) gives the negative of this vector, which is a normal to the plane just as well but is not the cross product asked for.</>,
+    reason: <>Simplify each component.</>,
+    more: <>Check it is perpendicular to both: with <Katex tex="\overrightarrow{QT}" />, <Katex tex="-160+224-64=0" />; with <Katex tex="\overrightarrow{QS}" />, <Katex tex="-256+256+0=0" />. Reversing the order (<Katex tex="\overrightarrow{QS}\times\overrightarrow{QT}" />) gives the negative of this vector, which is a normal to the plane just as well but is not the cross product asked for.</>,
   },
 ]
 
@@ -90,14 +90,15 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{u = -4 \ \text{ or } \ u = 1}" />,
-    reason: <>Check <Katex tex="u=1" />: normal <Katex tex="(1,9,3)" />, and <Katex tex="-3-9+12=0" />. Check <Katex tex="u=-4" />: normal <Katex tex="(16,-36,3)" />, and <Katex tex="-48+36+12=0" />.</>,
+    reason: <>Set each factor to zero. Both values are valid, since <Katex tex="u" /> can be any real number.</>,
+    more: <>Check <Katex tex="u=1" />: normal <Katex tex="(1,9,3)" />, and <Katex tex="-3-9+12=0" />. Check <Katex tex="u=-4" />: normal <Katex tex="(16,-36,3)" />, and <Katex tex="-48+36+12=0" />.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{d} = \overrightarrow{TS} = 3\underset{\sim}{i} + \underset{\sim}{j} - 4\underset{\sim}{k}, \qquad \left|\underset{\sim}{d}\right| = \sqrt{26}" />,
-    reason: <>The line through <Katex tex="S" /> and <Katex tex="T" /> has direction <Katex tex="\overrightarrow{TS}" /> (from part c., or its negative).</>,
+    reason: <>The line through <Katex tex="S" /> and <Katex tex="T" /> has direction <Katex tex="\overrightarrow{TS}" />, the negative of <Katex tex="\overrightarrow{ST}" /> from part c. (either direction works).</>,
   },
   {
     working: <Katex display tex="\begin{gathered}\overrightarrow{QT} = 5\underset{\sim}{i} + 7\underset{\sim}{j} + 4\underset{\sim}{k} \\ \left|\overrightarrow{QT}\right|^2 = 25+49+16 = 90\end{gathered}" />,

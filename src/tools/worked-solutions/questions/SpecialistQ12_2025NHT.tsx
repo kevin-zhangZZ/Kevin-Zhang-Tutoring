@@ -29,7 +29,8 @@ const ROWS: WorkingRow[] = [
     reason: <>The initial velocity fixes the constant: <Katex tex="\log_e(4+16)=0+c" />.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}\log_e\!\left(\frac{4+v^2}{20}\right)&=t\\ 4+v^2&=20e^{t}\end{aligned}" />,
+    working: <Katex display tex="\begin{aligned}\log_e(4+v^2)-\log_e(20)&=t\\ \log_e\!\left(\frac{4+v^2}{20}\right)&=t\\ \frac{4+v^2}{20}&=e^{t}\\ 4+v^2&=20e^{t}\end{aligned}" />,
+    reason: <>Make <Katex tex="v" /> the subject: combine the logs with <Katex tex="\log_e(A)-\log_e(B)=\log_e\!\left(\tfrac AB\right)" />, then undo the log by raising <Katex tex="e" /> to the power of each side.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}t=\log_e(10):\quad 4+v^2&=20\times10=200\\ v^2&=196\end{aligned}" />,

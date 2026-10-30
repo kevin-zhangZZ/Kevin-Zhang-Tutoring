@@ -24,7 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{a-1}{a}>0\iff a<0\ \text{ or }\ a>1" />,
-    reason: <><Katex tex="x^2=k" /> has two solutions <Katex tex="x=\pm\sqrt k" /> only when <Katex tex="k>0" />. A quotient is positive when the top and bottom have the same sign: both negative (<Katex tex="a<0" />) or both positive (<Katex tex="a>1" />).</>,
+    reason: <><Katex tex="x^2=k" /> has two solutions <Katex tex="x=\pm\sqrt k" /> only when <Katex tex="k>0" /> (<Katex tex="k=0" /> gives just <Katex tex="x=0" />, so <Katex tex="a=1" /> is excluded). A quotient is positive when the top and bottom have the same sign: both negative (<Katex tex="a<0" />) or both positive (<Katex tex="a>1" />).</>,
     more: <>Check: <Katex tex="a=2" /> gives <Katex tex="x^2=\tfrac12" />, two intercepts; <Katex tex="a=-2" /> gives <Katex tex="x^2=\tfrac32" />, two intercepts; <Katex tex="a=\tfrac12" /> gives <Katex tex="x^2=-1" />, none. Graphically, <Katex tex="y=\tfrac{1}{1-x^2}" /> takes every value <Katex tex="\ge1" /> between its asymptotes <Katex tex="x=\pm1" /> (minimum 1 at <Katex tex="x=0" />) and every negative value outside them, but never a value in <Katex tex="[0,1)" />.</>,
   },
   {

@@ -40,8 +40,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Write the point of contact as <Katex tex="x=k+u" />, where <Katex tex="u=x-k>0" /> is how far right of the asymptote it is. This keeps the algebra tidy: <Katex tex="y=\log_e(u)" /> and the gradient is <Katex tex="\tfrac1u" />.</>,
   },
   {
-    working: <Katex display tex="y=0:\ \ x=k+u-u\log_e(u)" />,
-    reason: <>The horizontal-axis intercept of this tangent: set <Katex tex="y=0" /> and solve for <Katex tex="x" />.</>,
+    working: <Katex display tex="\begin{gathered}y=0:\ \ -\log_e(u)=\frac1u\big(x-(k+u)\big)\\ \Rightarrow\ -u\log_e(u)=x-(k+u)\\ \Rightarrow\ x=k+u-u\log_e(u)\end{gathered}" />,
+    reason: <>The horizontal-axis intercept of this tangent: set <Katex tex="y=0" />, multiply both sides by <Katex tex="u" />, then solve for <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\frac{d}{du}\big(u-u\log_e(u)\big)&=1-\big(\log_e(u)+1\big)\\&=-\log_e(u)=0\ \Rightarrow\ u=1\end{aligned}" />,

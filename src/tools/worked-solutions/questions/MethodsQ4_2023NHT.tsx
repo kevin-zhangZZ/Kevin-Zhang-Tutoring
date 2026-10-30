@@ -17,8 +17,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n \text{ odd}:\ \ f'(x)=nx^{n-1}+q>0 \text{ for all } x" />,
-    reason: <>When <Katex tex="n" /> is odd, <Katex tex="n-1" /> is even, so <Katex tex="x^{n-1}\geq0" /> and <Katex tex="f'(x)\geq q>0" />. The graph is strictly increasing everywhere.</>,
-    more: <>A strictly increasing polynomial of odd degree runs from <Katex tex="-\infty" /> to <Katex tex="\infty" />, so it crosses the <Katex tex="x" />-axis, and since it never turns back it crosses exactly once. This holds for every <Katex tex="p<0" />, which is what the question needs: the answer can&apos;t depend on which negative <Katex tex="p" /> is chosen.</>,
+    reason: <>When <Katex tex="n" /> is odd, <Katex tex="n-1" /> is even, so <Katex tex="x^{n-1}\geq0" /> and <Katex tex="f'(x)\geq q>0" />. The graph is strictly increasing everywhere, and an odd-degree polynomial runs from <Katex tex="-\infty" /> to <Katex tex="\infty" />, so it crosses the <Katex tex="x" />-axis exactly once, whatever the value of <Katex tex="p" />.</>,
+    more: <>Why exactly once: going from negative values on the far left to positive values on the far right, the graph must cross the <Katex tex="x" />-axis at least once, and since it never turns back it can&apos;t cross a second time. This holds for every <Katex tex="p<0" />, which is what the question needs: the answer can&apos;t depend on which negative <Katex tex="p" /> is chosen.</>,
   },
   {
     working: <Katex display tex="n=2:\ \ \Delta=q^2-4" />,

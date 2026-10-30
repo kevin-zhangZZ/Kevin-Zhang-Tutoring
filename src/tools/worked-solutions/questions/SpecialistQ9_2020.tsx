@@ -87,7 +87,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Test lines where the formula gives one value all along: the axes. Marks beside the <Katex tex="x" />-axis must be
+        Each mark in a slope field has the gradient <Katex tex="\tfrac{dy}{dx}" /> at its point, so test lines where the
+        formula gives one value all along: the axes. Marks beside the <Katex tex="x" />-axis must be
         flat; beside the <Katex tex="y" />-axis, gradient <Katex tex="-1" />.
       </>
     ),

@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{6}" />,
     reason: <>Matches option <b>C</b>.</>,
-    more: <>Option A, 3, is the <em>minimum</em> speed (<Katex tex="\sin(3t)=0" />). Option D, <Katex tex="3\sqrt5=\sqrt{9+36}" />, takes the largest value of each component at the same time, but <Katex tex="\cos(3t)" /> and <Katex tex="\sin(3t)" /> can&apos;t both be <Katex tex="\pm1" /> together. Option E, 9, adds the two component maxima, <Katex tex="3+6" />.</>,
+    more: <>Option A, 3, is the <em>minimum</em> speed (<Katex tex="\sin(3t)=0" />). Option D, <Katex tex="3\sqrt5=\sqrt{9+36}" />, takes the largest value of each component at the same time, but <Katex tex="\cos(3t)" /> and <Katex tex="\sin(3t)" /> can&apos;t both be <Katex tex="\pm1" /> together. Option B, <Katex tex="3\sqrt3=\sqrt{27}" />, drops the constant 9 from under the root. Option E, 9, adds the two component maxima, <Katex tex="3+6" />.</>,
   },
 ]
 

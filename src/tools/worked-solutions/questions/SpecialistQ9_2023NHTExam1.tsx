@@ -47,11 +47,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex={`\\begin{aligned}&${R('C')}(0)=\\underset{\\sim}{c}=2${I}\\\\ &${R('C')}=\\left(t^2+2\\right)${I}+(n-3)t${J}\\end{aligned}`} />,
-    reason: <>Use the initial position to find the constant vector.</>,
+    reason: <>At <Katex tex="t=0" /> the <Katex tex="t" /> terms are zero, so <Katex tex={`${R('C')}(0)=\\underset{\\sim}{c}`} />. The initial position is <Katex tex={`2${I}`} />, so that is the constant vector.</>,
   },
   {
     working: <Katex display tex={`\\begin{aligned}${R('A')}&=(6t+2)${I}+(7t-4)${J}\\\\ ${R('B')}&=(5t+8)${I}+(6t+2)${J}\\end{aligned}`} />,
-    reason: <>Substitute <Katex tex="a=2" /> into the given position vectors.</>,
+    reason: <>Substitute <Katex tex="a=2" /> into the given position vectors: <Katex tex="4a=8" />, <Katex tex="2-3a=-4" /> and <Katex tex="2a-2=2" />.</>,
   },
   {
     working: <Katex display tex="6t+2=5t+8\implies t=6" />,
@@ -75,8 +75,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n=\frac{28}{3}}" />,
-    reason: <>Sanity check: with <Katex tex="n=\tfrac{28}{3}" />, <Katex tex="\underset{\sim}{r}_C(6)" /> has <Katex tex="\underset{\sim}{j}" /> component <Katex tex="\tfrac{19}{3}\times6=38" /> ✓, so all three are at <Katex tex="38\underset{\sim}{i}+38\underset{\sim}{j}" /> after 6 seconds.</>,
-    more: <>The <Katex tex="\underset{\sim}{i}" /> component of <Katex tex="C" /> lands on 38 at exactly <Katex tex="t=6" /> without any help from <Katex tex="n" />. That is the question&apos;s design, not luck: only the <Katex tex="\underset{\sim}{j}" /> direction has a free constant to fit.</>,
+    reason: <>Add 3: <Katex tex="n=\tfrac{19}{3}+3=\tfrac{28}{3}" />.</>,
+    more: <>Check: with <Katex tex="n=\tfrac{28}{3}" />, <Katex tex="\underset{\sim}{r}_C(6)" /> has <Katex tex="\underset{\sim}{j}" /> component <Katex tex="\tfrac{19}{3}\times6=38" /> ✓, so all three are at <Katex tex="38\underset{\sim}{i}+38\underset{\sim}{j}" /> after 6 seconds. The <Katex tex="\underset{\sim}{i}" /> component of <Katex tex="C" /> lands on 38 at exactly <Katex tex="t=6" /> without any help from <Katex tex="n" />. That is the question&apos;s design, not luck: only the <Katex tex="\underset{\sim}{j}" /> direction has a free constant to fit.</>,
   },
 ]
 

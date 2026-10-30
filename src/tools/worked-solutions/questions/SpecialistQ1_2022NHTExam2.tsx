@@ -84,7 +84,7 @@ const ROWS_BII: WorkingRow[] = [
       />
     ),
     reason: <>At <Katex tex="x=-\sqrt3" />, <Katex tex="f'" /> goes from positive to negative: a maximum. At <Katex tex="x=0" /> it is negative on both sides: no turn, so a stationary point of inflection. At <Katex tex="x=\sqrt3" /> it goes from negative to positive: a minimum.</>,
-    more: <>The local maximum is lower than the local minimum. That is not a contradiction: they lie on different branches of the graph, with the asymptotes between them. A check: <Katex tex="f(-x)=-f(x)" />, so the graph has rotational symmetry about the origin, and the two turning points are each other&apos;s images under that symmetry.</>,
+    more: <>The local maximum is lower than the local minimum. That is not a contradiction: they lie on different branches of the graph, with the asymptotes between them. A check: because <Katex tex="f" /> is odd, the two turning points are each other&apos;s images under its rotational symmetry about the origin.</>,
   },
 ]
 
@@ -100,7 +100,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x\to1^{+}: f\to+\infty, \quad x\to1^{-}: f\to-\infty" />,
-    reason: <>Just right of <Katex tex="x=1" /> the numerator is about 1 and the denominator a small positive number; just left, a small negative number. Since <Katex tex="f" /> is odd, the behaviour at <Katex tex="x=-1" /> is the mirror image: <Katex tex="+\infty" /> just right of it, <Katex tex="-\infty" /> just left.</>,
+    reason: <>Just right of <Katex tex="x=1" /> the numerator is about 1 and the denominator a small positive number; just left, a small negative number. Since <Katex tex="f" /> is odd (<Katex tex="f(-x)=-f(x)" />), the behaviour at <Katex tex="x=-1" /> is the mirror image: <Katex tex="+\infty" /> just right of it, <Katex tex="-\infty" /> just left.</>,
   },
   {
     working: (
@@ -137,8 +137,8 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V \approx 74.1 \ \text{cubic units}}" />,
-    reason: <>Correct to one decimal place. A check: the radius grows from <Katex tex="f(2)=\tfrac83" /> to <Katex tex="f(4)=\tfrac{64}{15}\approx4.3" />, so <Katex tex="V" /> lies between the cylinders <Katex tex="\pi\left(\tfrac83\right)^2(2)\approx44.7" /> and <Katex tex="\pi(4.3)^2(2)\approx114" />.</>,
-    more: <>Leaving out the <Katex tex="\pi" /> gives <Katex tex="23.6" />, the volume divided by <Katex tex="\pi" />.</>,
+    reason: <>Correct to one decimal place.</>,
+    more: <>A check: the radius grows from <Katex tex="f(2)=\tfrac83" /> to <Katex tex="f(4)=\tfrac{64}{15}\approx4.3" />, so <Katex tex="V" /> lies between the cylinders <Katex tex="\pi\left(\tfrac83\right)^2(2)\approx44.7" /> and <Katex tex="\pi(4.3)^2(2)\approx114" />. Leaving out the <Katex tex="\pi" /> gives <Katex tex="23.6" />, the volume divided by <Katex tex="\pi" />.</>,
   },
 ]
 

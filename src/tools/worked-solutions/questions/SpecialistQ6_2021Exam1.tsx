@@ -139,7 +139,7 @@ export default function SpecialistQ6_2021Exam1() {
       </div>
 
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-        <Background>
+        <Background always>
           <p>
             Three vectors are <b>linearly dependent</b> when one of them can be written as a
             combination of the others, such as{' '}

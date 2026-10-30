@@ -31,7 +31,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g'(x)=0 \iff x=-1 \ \text{ or } \ x=\tfrac12" />,
-    reason: <>The two stationary points.</>,
+    reason: <>Stationary points are where <Katex tex="g'(x)=0" />. Null factor law: <Katex tex="(x+1)^2=0" /> or <Katex tex="2x-1=0" />. Now decide which one is the inflection.</>,
   },
   {
     working: <Katex display tex="\boxed{x=-1}" />,
@@ -63,6 +63,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered} g(2) = (4-1)(3)^2 = 27 \\ g(0) = (0-1)(1)^2 = -1 \end{gathered}" />,
+    reason: <>Substitute each <Katex tex="x" />-value into <Katex tex="g(x)=(x^2-1)(x+1)^2" />.</>,
   },
   {
     working: <Katex display tex="\frac{27-(-1)}{2} = \boxed{14}" />,
@@ -79,22 +80,23 @@ const ROWS_D: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\begin{aligned} (x^2+2x+1)(2x-1)+1 &= 0 \\ 2x^3+3x^2 &= 0 \\ x^2(2x+3) &= 0 \end{aligned}"
+        tex="\begin{aligned} (x^2+2x+1)(2x-1) &= -1 \\ 2x^3+3x^2-1 &= -1 \\ 2x^3+3x^2 &= 0 \\ x^2(2x+3) &= 0 \end{aligned}"
       />
     ),
-    reason: <>Divide by 2 and expand: the constant terms cancel, which leaves a common factor <Katex tex="x^2" />.</>,
+    reason: <>Divide both sides by 2, expand <Katex tex="(x+1)^2=x^2+2x+1" /> and multiply by <Katex tex="2x-1" />. The constant terms cancel, which leaves a common factor <Katex tex="x^2" /> to take out.</>,
     more: <>On CAS: <Cas fn="solve">solve(g′(x) = −2, x)</Cas></>,
   },
   {
     working: <Katex display tex="x = 0 \quad \text{or} \quad x = -\tfrac32" />,
+    reason: <>Null factor law: <Katex tex="x^2=0" /> or <Katex tex="2x+3=0" />. Two points have gradient <Katex tex="-2" />, so there are two tangents.</>,
   },
   {
     working: <Katex display tex="g(0) = -1, \qquad g\!\left(-\tfrac32\right) = \left(\tfrac94-1\right)\left(-\tfrac12\right)^2 = \tfrac{5}{16}" />,
     reason: <>The points of contact <Katex tex="(0,-1)" /> and <Katex tex="\left(-\tfrac32,\tfrac5{16}\right)" />.</>,
   },
   {
-    working: <Katex display tex="y-\tfrac5{16} = -2\left(x+\tfrac32\right) \implies y = -2x - 3 + \tfrac5{16}" />,
-    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" /> with <Katex tex="m=-2" />.</>,
+    working: <Katex display tex="\begin{aligned} y-(-1) &= -2(x-0) \\ y &= -2x-1 \\[4pt] y-\tfrac5{16} &= -2\left(x+\tfrac32\right) \\ y &= -2x - 3 + \tfrac5{16} \\ &= -2x-\tfrac{43}{16} \end{aligned}" />,
+    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" /> with <Katex tex="m=-2" />, once at each point of contact. For the second, <Katex tex="-3+\tfrac5{16}=-\tfrac{48}{16}+\tfrac5{16}=-\tfrac{43}{16}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y=-2x-1 \quad \text{and} \quad y=-2x-\tfrac{43}{16}}" />,

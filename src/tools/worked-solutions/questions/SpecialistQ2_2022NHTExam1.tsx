@@ -1,8 +1,8 @@
 // 2022 Specialist NHT — Exam 1, Question 2 (3 marks). The NHT report gives sample answers only,
 // with no statistics. z³/w² for z = 1 − √3i and w = −2 − 2i in cartesian form, by polar form and
 // de Moivre's theorem (the report's main route); the rectangular route the report mentions is
-// shown as the check on the final row. Question text transcribed from the original paper (read
-// from a rendered page image). Answer checked with sympy and against the report's sample answer
+// shown in full as the check in the final row's Detailed note. Question text transcribed from the
+// original paper (read from a rendered page image). Answer checked with sympy and against the report's sample answer
 // (i). Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -24,6 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} z&=2\operatorname{cis}\!\left(-\frac{\pi}{3}\right) \\ w&=2\sqrt2\operatorname{cis}\!\left(-\frac{3\pi}{4}\right) \end{aligned}" />,
+    reason: <>Write each number in polar form <Katex tex="r\operatorname{cis}\theta" />, with <Katex tex="r" /> the modulus and <Katex tex="\theta" /> the argument, so de Moivre's theorem can be used for the powers.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} z^3&=2^3\operatorname{cis}\!\left(3\times-\frac{\pi}{3}\right)=8\operatorname{cis}(-\pi) \\ w^2&=\left(2\sqrt2\right)^2\operatorname{cis}\!\left(2\times-\frac{3\pi}{4}\right)=8\operatorname{cis}\!\left(-\frac{3\pi}{2}\right) \end{aligned}" />,
@@ -36,12 +37,14 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{z^3}{w^2}=i}" />,
-    reason: <>Convert to cartesian form, as the question asks: <Katex tex="\operatorname{cis}\!\left(\tfrac\pi2\right)=\cos\tfrac\pi2+i\sin\tfrac\pi2=0+1i" />. Check, using rectangular form as the report suggests: <Katex tex="z^3=-8" /> and <Katex tex="w^2=8i" />, so <Katex tex="\tfrac{z^3}{w^2}=\tfrac{-8}{8i}=-\tfrac1i=i" /> ✓.</>,
+    reason: <>Convert to cartesian form, as the question asks: <Katex tex="\operatorname{cis}\!\left(\tfrac\pi2\right)=\cos\tfrac\pi2+i\sin\tfrac\pi2=0+1i" />, which is just <Katex tex="i" />.</>,
     more: (
       <>
-        The rectangular route in full: <Katex tex="(1-\sqrt3i)^3=1-3\sqrt3i+3(\sqrt3i)^2-(\sqrt3i)^3=1-3\sqrt3i-9+3\sqrt3i=-8" />{' '}
-        (binomial expansion, with <Katex tex="i^2=-1" /> and <Katex tex="i^3=-i" />), and{' '}
-        <Katex tex="(-2-2i)^2=4+8i+4i^2=8i" />. The last step uses <Katex tex="-\tfrac1i=-\tfrac{i}{i^2}=i" />. That{' '}
+        Check, using the rectangular form the report mentions. Expanding (binomial expansion, with{' '}
+        <Katex tex="i^2=-1" /> and <Katex tex="i^3=-i" />):{' '}
+        <Katex tex="z^3=(1-\sqrt3i)^3=1-3\sqrt3i+3(\sqrt3i)^2-(\sqrt3i)^3=1-3\sqrt3i-9+3\sqrt3i=-8" />{' '}
+        and <Katex tex="w^2=(-2-2i)^2=4+8i+4i^2=8i" />, so{' '}
+        <Katex tex="\tfrac{z^3}{w^2}=\tfrac{-8}{8i}=-\tfrac1i=-\tfrac{i}{i^2}=i" /> ✓. That{' '}
         <Katex tex="z^3" /> comes out real is no accident: <Katex tex="z" /> has argument{' '}
         <Katex tex="-\tfrac\pi3" />, and three of those make <Katex tex="-\pi" />, the negative real axis.
       </>

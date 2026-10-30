@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{[0,\,1] \text{ and } [0,\,1]}" />,
     reason: <>Matches option <b>A</b>.</>,
-    more: <>Option D takes the range of sine over <i>all</i> angles, <Katex tex="[-1,1]" />, forgetting that the angles here only come from <Katex tex="[0,\pi]" />. Options C and E give the domain as <Katex tex="R" />, which ignores the restriction on the input of <Katex tex="\cos^{-1}" />.</>,
+    more: <>Option D takes the range of sine over <i>all</i> angles, <Katex tex="[-1,1]" />, forgetting that the angles here only come from <Katex tex="[0,\pi]" />. Options C and E give the domain as <Katex tex="R" />, which ignores the restriction on the input of <Katex tex="\cos^{-1}" />. Option B&apos;s domain <Katex tex="[-1,0]" /> fails straight away: at <Katex tex="x=-1" /> the input is <Katex tex="1-2(-1)=3" />, which <Katex tex="\cos^{-1}" /> cannot accept.</>,
   },
 ]
 

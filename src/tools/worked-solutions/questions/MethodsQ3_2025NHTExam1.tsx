@@ -96,7 +96,7 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\tan\!\left(\frac{\pi}{4}\right)=1 \implies x=-\frac{\pi}{4}\ \text{is one solution}" />,
     reason: <>
       The reference angle is <Katex tex="\tfrac\pi4" />, an exact value to know by heart. <Katex tex="\tan" /> is an odd
-      function, so <Katex tex="\tan\left(-\tfrac\pi4\right)=-1" />.
+      function (<Katex tex="\tan(-\theta)=-\tan(\theta)" />), so <Katex tex="\tan\left(-\tfrac\pi4\right)=-1" />.
     </>,
   },
   {
@@ -144,8 +144,11 @@ const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{x=-\frac{\pi}{3},\ 0,\ \frac{\pi}{3}}" />,
     reason: <>
+      Collect the solutions from both factors. None of them is <Katex tex="\pm\tfrac\pi2" />, so all three are in the domain
+      of <Katex tex="f" />.
+    </>,
+    more: <>
       Check <Katex tex="x=\tfrac\pi3" />: <Katex tex="\tfrac12\sqrt3+\tfrac12" /> on the left, <Katex tex="\tfrac{\sqrt3}{2}+\tfrac12" /> on the right ✓.
-      All three are in the domain of <Katex tex="f" />.
     </>,
   },
 ]

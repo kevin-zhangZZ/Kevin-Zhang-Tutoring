@@ -47,7 +47,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_e|x| = -\cos(t)+c" />,
-    reason: <>The antiderivative of <Katex tex="\sin(t)" /> is <em>minus</em> <Katex tex="\cos(t)" />: check, <Katex tex="\tfrac{d}{dt}\big({-\cos(t)}\big)=\sin(t)" />. One constant <Katex tex="c" /> is enough.</>,
+    reason: <>The antiderivative of <Katex tex="\tfrac{1}{x}" /> is <Katex tex="\log_e|x|" />. The antiderivative of <Katex tex="\sin(t)" /> is <em>minus</em> <Katex tex="\cos(t)" />: check, <Katex tex="\tfrac{d}{dt}\big({-\cos(t)}\big)=\sin(t)" />. One constant <Katex tex="c" /> is enough.</>,
     more: <>The report notes some sign errors when the trigonometric function was integrated: this minus sign is the one to watch. A constant on each side would only combine into a single constant, so one is enough.</>,
   },
   {

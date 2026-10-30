@@ -25,8 +25,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a>0:\ \ 0\le x\le \frac{2}{a}\implies \frac{2}{a}=1\implies a=2" />,
-    reason: <>Divide <Katex tex="0\le ax\le2" /> by <Katex tex="a" />. For <Katex tex="a>0" /> the inequalities keep their direction and the domain is <Katex tex="\left[0,\tfrac2a\right]" />.</>,
-    more: <>For <Katex tex="a<0" /> dividing reverses them, giving <Katex tex="\left[\tfrac2a,0\right]" />, an interval of <i>non-positive</i> numbers, which can never be <Katex tex="[0,1]" />. So <Katex tex="a" /> must be positive.</>,
+    reason: <>Divide <Katex tex="0\le ax\le2" /> by <Katex tex="a" />. If <Katex tex="a<0" /> the inequalities reverse, giving <Katex tex="\left[\tfrac2a,0\right]" />, an interval of <i>non-positive</i> numbers that can never be <Katex tex="[0,1]" />. So <Katex tex="a>0" />: the inequalities keep their direction and the domain is <Katex tex="\left[0,\tfrac2a\right]" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}a=2:\ \ y&=\sqrt{1-(2x-1)^2}\\ &=2\sqrt{x(1-x)},\quad 0\le x\le1\end{aligned}" />,

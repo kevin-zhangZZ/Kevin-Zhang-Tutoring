@@ -226,7 +226,7 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&x^2 = 1+\sqrt{b+1} \text{ always gives} \\ &\text{two solutions } \pm\sqrt{1+\sqrt{b+1}}\end{aligned}" />,
-    reason: <>This value is at least 1, so it is always positive.</>,
+    reason: <>For <Katex tex="b>-1" /> this value is greater than 1, so it is positive and never gives the excluded <Katex tex="x=\pm1" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&x^2 = 1-\sqrt{b+1} \text{ gives two more} \\ &\text{only if } 1-\sqrt{b+1}>0 \iff b<0\end{aligned}" />,
@@ -259,7 +259,7 @@ const ROWS_DIII: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{-1<b<0}" />,
     reason: <>The five points are <Katex tex="x=0" /> and <Katex tex="x=\pm\sqrt{1\pm\sqrt{b+1}}" />.</>,
-    more: <>A check on all of part d.: reading along the <Katex tex="b" />-axis, <Katex tex="b\le-1" /> gives one stationary point, <Katex tex="-1<b<0" /> five, and <Katex tex="b\ge0" /> three. The three answers cover every real <Katex tex="b" /> with no overlap, as they must, since every <Katex tex="g" /> has some number of stationary points.</>,
+    more: <>A check on all of part d.: reading along the <Katex tex="b" />-axis, <Katex tex="b\le-1" /> gives one stationary point, <Katex tex="-1<b<0" /> five, and <Katex tex="b\ge0" /> three. The three answers cover every real <Katex tex="b" /> with no overlap. The count is always odd because, apart from <Katex tex="x=0" />, the stationary points come in pairs <Katex tex="\pm x" /> (<Katex tex="g" /> is even: <Katex tex="g(-x)=g(x)" />), so two or four is impossible.</>,
   },
 ]
 

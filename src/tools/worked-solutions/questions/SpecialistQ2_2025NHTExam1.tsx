@@ -15,14 +15,19 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\bar x=60\text{ g}}" />,
-    reason: <>Sanity check: 60 sits inside the interval, 7.35 from each end.</>,
+    reason: <>Halve 120. The masses are in grams.</>,
+    more: <>Sanity check: 60 sits inside the interval, 7.35 from each end.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="z\frac{\sigma}{\sqrt n}=67.35-60=7.35" />,
-    reason: <>The margin of error is the distance from the centre to either end (half the width of the interval).</>,
+    reason: <>
+      The margin of error is the term <Katex tex="z\tfrac{\sigma}{\sqrt n}" /> added to and subtracted from{' '}
+      <Katex tex="\bar x" />, so it is the distance from the centre (60, from part a) to either end: half the width of
+      the interval.
+    </>,
   },
   {
     working: <Katex display tex="2\times\frac{\sigma}{\sqrt{16}}=7.35" />,
@@ -34,7 +39,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\sigma=14.7\text{ g}}" />,
-    reason: <>Sanity check: <Katex tex="60\pm2\times\tfrac{14.7}{4}=60\pm7.35" /> gives back <Katex tex="(52.65,\ 67.35)" /> ✓.</>,
+    reason: <>Multiply both sides by 2. The masses are in grams.</>,
+    more: <>Sanity check: <Katex tex="60\pm2\times\tfrac{14.7}{4}=60\pm7.35" /> gives back <Katex tex="(52.65,\ 67.35)" /> ✓.</>,
   },
 ]
 

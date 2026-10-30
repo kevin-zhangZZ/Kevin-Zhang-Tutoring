@@ -75,7 +75,7 @@ const ROWS_C: WorkingRow[] = [
         fMin(√((60t−1800)²+(500−2t)²), t) | 0 ≤ t ≤ 100
       </Cas>
     ),
-    reason: <>The distance is a function of the single variable <Katex tex="t" />.</>,
+    reason: <>The distance depends on <Katex tex="t" /> alone, so CAS can find the value of <Katex tex="t" /> in the interval that makes it smallest.</>,
     more: (
       <>
         By hand, minimise <Katex tex="d^2" />, a quadratic in <Katex tex="t" />:{' '}

@@ -104,11 +104,12 @@ const ROWS_DII: WorkingRow[] = [
     reason: <><Katex tex="g" /> is an antiderivative of <Katex tex="f" />, so the fundamental theorem of calculus applies with <Katex tex="g" /> directly. That is exactly why the area comes out in the form <Katex tex="g(a)+b" />.</>,
   },
   {
-    working: <Katex display tex="g(0.5) = \tfrac1{16} - 6 = -\tfrac{95}{16}" />,
+    working: <Katex display tex="g(0.5) = (0.5)^4 - 6 = \tfrac1{16} - 6 = -\tfrac{95}{16}" />,
+    reason: <>Evaluate the lower limit using <Katex tex="g(x)=x^4-6" /> from part d.i.</>,
   },
   {
     working: <Katex display tex="A = g(a) + \tfrac{95}{16} \implies \boxed{b = \tfrac{95}{16}}" />,
-    reason: <>VCAA also accepts 5.9375.</>,
+    reason: <>Subtracting <Katex tex="-\tfrac{95}{16}" /> is adding <Katex tex="\tfrac{95}{16}" />; match this with the form <Katex tex="g(a)+b" />. VCAA also accepts 5.9375.</>,
     more: <>Check with <Katex tex="a=1" />: <Katex tex="\int_{0.5}^1 4x^3\,dx = 1-\tfrac1{16}=\tfrac{15}{16}" />, and <Katex tex="g(1)+\tfrac{95}{16}=-5+\tfrac{95}{16}=\tfrac{15}{16}" />.</>,
   },
 ]
@@ -136,15 +137,15 @@ const ROWS_EI: WorkingRow[] = [
 
 const ROWS_EII: WorkingRow[] = [
   {
-    working: <Katex display tex="\frac{d}{dx}\big(h'(x)\big) = 168x - 288 = 0 \implies x = \tfrac{12}{7}" />,
-    reason: <>The gradient of <Katex tex="h" /> is <Katex tex="h'(x)" />, an upward parabola (leading coefficient <Katex tex="84>0" />), so its minimum is at its vertex. Equivalently <Katex tex="x=\tfrac{288}{2\times84}" />.</>,
-    more: <><Katex tex="\tfrac{12}{7}\approx1.71" /> is inside the domain <Katex tex="(1.5,\infty)" />, so the vertex is a genuine minimum of the gradient.</>,
+    working: <Katex display tex="h''(x) = 168x - 288 = 0 \implies x = \tfrac{288}{168} = \tfrac{12}{7}" />,
+    reason: <>The gradient of <Katex tex="h" /> is <Katex tex="h'(x)" />, an upward parabola (leading coefficient <Katex tex="84>0" />), so its minimum is at its vertex, where its own derivative <Katex tex="h''(x)" /> is zero. <Katex tex="\tfrac{12}{7}\approx1.71" /> is inside the domain <Katex tex="(1.5,\infty)" />, so it counts.</>,
+    more: <>Equivalently, use the vertex formula <Katex tex="x=-\tfrac{b}{2a}=\tfrac{288}{2\times84}=\tfrac{12}{7}" />, or read it straight off the turning-point form from part e.i.</>,
   },
   {
     working: (
       <Katex
         display
-        tex="\begin{aligned} h\!\left(\tfrac{12}7\right) &= 4\left(\tfrac{24}7-\tfrac{21}7\right)^3-4\left(\tfrac{12}7\right)^3 \\ &= \tfrac{4(27-1728)}{343} = -\tfrac{6804}{343} = -\tfrac{972}{49} \end{aligned}"
+        tex="\begin{aligned} h\!\left(\tfrac{12}7\right) &= 4\left(\tfrac{24}7-\tfrac{21}7\right)^3-4\left(\tfrac{12}7\right)^3 \\ &= 4\left(\tfrac{3}{7}\right)^3-4\left(\tfrac{12}{7}\right)^3 \\ &= \tfrac{4(27-1728)}{343} = -\tfrac{6804}{343} = -\tfrac{972}{49} \end{aligned}"
       />
     ),
     reason: <>The question asks for the point on the graph of <Katex tex="y=h(x)" />, so substitute into <Katex tex="h" />, not into <Katex tex="h'" />.</>,

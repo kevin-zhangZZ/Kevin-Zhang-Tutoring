@@ -5,7 +5,8 @@
 // probability for on-time deliveries. Question text transcribed from the original paper (no
 // diagram). Answers checked with scipy and against the VCAA report's sample answers: a. 0.7;
 // b. √21/100; c. mean unchanged, sd decreases to √21/(100√6) ≈ 0.0187; d. 0.402; e. 6.408;
-// f. 0.957. The WrongMethods in d., e. and f. are verified slips (0.541, 2.509, 0.989), not
+// f. 0.957. Oct 30 2026 pass: added the missing b. row-2 reason, c. split step, d. count-vs-
+// proportion note, e. explicit subtraction of 69. The WrongMethods in d., e. and f. are verified slips (0.541, 2.509, 0.989), not
 // taken from the report, which has no comments. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -30,6 +31,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \sqrt{\frac{0.21}{100}} = \frac{\sqrt{0.21}}{10}" />,
+    reason: <><Katex tex="0.7\times0.3=0.21" />, and <Katex tex="\sqrt{100}=10" /> comes out of the square root on the bottom.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{sd}\big(\hat P\big) = \frac{\sqrt{21}}{100}}" />,
@@ -44,7 +46,7 @@ const ROWS_C: WorkingRow[] = [
     reason: <>The mean of <Katex tex="\hat P" /> does not depend on <Katex tex="n" /> at all.</>,
   },
   {
-    working: <Katex display tex="\mathrm{sd}\big(\hat P\big) = \sqrt{\frac{0.21}{600}} = \frac{1}{\sqrt6} \times \frac{\sqrt{21}}{100} \approx 0.0187" />,
+    working: <Katex display tex="\begin{aligned}\mathrm{sd}\big(\hat P\big) &= \sqrt{\frac{0.21}{600}} = \frac{1}{\sqrt6}\sqrt{\frac{0.21}{100}} \\ &= \frac{1}{\sqrt6} \times \frac{\sqrt{21}}{100} \approx 0.0187\end{aligned}" />,
     reason: <><Katex tex="n" /> is in the denominator under the square root. Six times the sample size divides the standard deviation by <Katex tex="\sqrt6\approx2.45" />.</>,
   },
   {
@@ -57,7 +59,7 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}(100,\ 0.7)" />,
-    reason: <>Let <Katex tex="X" /> be the number of vanilla cupcakes in the sample. Each of the 100 is vanilla or not, with probability 0.7 each, and the bakery makes thousands, so the trials are effectively independent: binomial.</>,
+    reason: <>This part asks about a <em>count</em> of cupcakes, not a proportion, so work with the count rather than <Katex tex="\hat P" />. Let <Katex tex="X" /> be the number of vanilla cupcakes in the sample. Each of the 100 is vanilla or not, with probability 0.7 each, and the bakery makes thousands, so the trials are effectively independent: binomial.</>,
   },
   {
     working: <Katex display tex="\Pr(66 < X < 72) = \Pr(67 \le X \le 71)" />,
@@ -77,7 +79,7 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{gathered}X \sim \mathrm{N}\left(69,\ 7^2\right) \\ \Pr(69 - a \le X \le 69 + a) = 0.64\end{gathered}" />,
-    reason: <>The interval is centred on the mean.</>,
+    reason: <>Here <Katex tex="\mu=69" />, so the interval runs from <Katex tex="69-a" /> to <Katex tex="69+a" />: it is centred on the mean.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \Pr(X < 69 - a) &= \Pr(X > 69 + a) \\ &= \frac{1 - 0.64}{2} = 0.18\end{aligned}" />,
@@ -98,8 +100,8 @@ const ROWS_E: WorkingRow[] = [
     more: <>Or standardise: <Katex tex="\Pr(Z\le\tfrac a7)=0.82" /> gives <Katex tex="\tfrac a7=0.91536\ldots" />, so <Katex tex="a=7\times0.91536\ldots" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{a = 6.408}" />,
-    reason: <><Katex tex="a=6.4075\ldots" />, correct to three decimal places.</>,
+    working: <Katex display tex="\begin{gathered}a = 75.4075\ldots - 69 = 6.4075\ldots \\ \boxed{a = 6.408}\end{gathered}" />,
+    reason: <>Subtract the mean, then round to three decimal places.</>,
     more: <>Plausible: within one standard deviation (7) of the mean is about 0.68, and 0.64 is a little less, so <Katex tex="a" /> should be a little under 7.</>,
   },
 ]

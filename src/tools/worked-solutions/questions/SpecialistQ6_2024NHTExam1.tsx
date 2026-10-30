@@ -23,7 +23,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="=(24.51,\ 25.49)\approx\boxed{(24.5,\ 25.5)}" />,
-    reason: <>Correct to one decimal place, as asked. Sanity check: the interval is centred on the sample mean 25 ✓, and its half-width (about 0.5 g) is small compared with the 1 g spread of single muffins, as it should be for a mean of 16.</>,
+    reason: <>Subtract and add, then round each end to one decimal place, as asked.</>,
+    more: <>Sanity check: the interval is centred on the sample mean 25 ✓, and its half-width (about 0.5 g) is small compared with the 1 g spread of single muffins, as it should be for the mean of 16 muffins.</>,
   },
 ]
 
@@ -34,7 +35,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&\left(25-1.96\times\tfrac15,\ 25+1.96\times\tfrac15\right) \\ &=(24.608,\ 25.392) \\ &\approx(24.6,\ 25.4)\end{aligned}" />,
-    reason: <><Katex tex="1.96\div5=0.392" />. Rounded to one decimal place, as the question says this interval was.</>,
+    reason: <><Katex tex="1.96\div5=0.392" />. Round each end to one decimal place, because the question says this interval was calculated that way, so its width comes from these rounded ends.</>,
   },
   {
     working: <Katex display tex="\text{widths: } 25.5-24.5=1,\qquad 25.4-24.6=0.8" />,
@@ -42,7 +43,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{1-0.8}{1}\times100\%=\boxed{20\%}" />,
-    reason: <>Percentage reduction = (decrease ÷ original) × 100%, where the original is the part a. interval.</>,
+    reason: <>Percentage reduction = (decrease ÷ original) × 100%, where the original is the width of the part a interval.</>,
     more: <>Without rounding the answer is the same: the width is <Katex tex="2\times1.96\tfrac{\sigma}{\sqrt n}" />, proportional to <Katex tex="\tfrac1{\sqrt n}" />, so the new width is <Katex tex="\tfrac{\sqrt{16}}{\sqrt{25}}=\tfrac45" /> of the old one: a 20% reduction. Note that 25 is about 56% more muffins than 16, yet the width only falls by 20%, because precision improves with <Katex tex="\sqrt n" />, not <Katex tex="n" />.</>,
   },
 ]

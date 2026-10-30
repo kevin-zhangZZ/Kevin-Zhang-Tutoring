@@ -103,15 +103,16 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\iff\sin(\pi x-c)=\sin(-\pi x-c)\ \text{for all } x\in R" />,
-    reason: <><Katex tex="\tfrac13(-x)^2=\tfrac13x^2" />, so the squared terms cancel: <Katex tex="\tfrac13x^2" /> already has the property, and by part c. <Katex tex="h" /> will have it if the sine term does.</>,
+    reason: <><Katex tex="\tfrac13(-x)^2=\tfrac13x^2" />, so the squared terms cancel: <Katex tex="\tfrac13x^2" /> already has the property, and by part c, <Katex tex="h" /> will have it if the sine term does.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}\pi x-c=-\pi x-c+2k\pi\\\text{or}\\\pi x-c=\pi-(-\pi x-c)+2k\pi,\quad k\in Z\end{gathered}" />,
-    reason: <><Katex tex="\sin(A)=\sin(B)" /> when the angles differ by a whole number of turns, or are supplementary (<Katex tex="\sin(\pi-\theta)=\sin(\theta)" />) up to whole turns.</>,
+    reason: <>General solution: sine repeats every <Katex tex="2\pi" /> and <Katex tex="\sin(\pi-\theta)=\sin(\theta)" />, so <Katex tex="\sin(A)=\sin(B)" /> exactly when <Katex tex="A=B+2k\pi" /> or <Katex tex="A=\pi-B+2k\pi" />. Here <Katex tex="A=\pi x-c" /> and <Katex tex="B=-\pi x-c" />.</>,
   },
   {
     working: <Katex display tex="\text{First: } 2\pi x=2k\pi\implies x=k" />,
     reason: <>This only holds at integer values of <Katex tex="x" />, not for <b>all</b> <Katex tex="x" />, so it gives no value of <Katex tex="c" />. Reject it.</>,
+    more: <>Why this is enough to reject it: for each <Katex tex="x" />, at least one of the two cases must hold. The first case covers only integer <Katex tex="x" />, so at every other <Katex tex="x" /> (say <Katex tex="x=\tfrac12" />) the second case must hold, and that is the case that pins down <Katex tex="c" />.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}\text{Second: } \pi x-c=\pi+\pi x+c+2k\pi\\\implies-2c=\pi+2k\pi\end{gathered}" />,
@@ -119,6 +120,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="c=-\frac{\pi}{2}-k\pi,\quad k\in Z" />,
+    reason: <>Divide both sides by <Katex tex="-2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{c=\frac{\pi}{2}+k\pi,\ k\in Z}" />,

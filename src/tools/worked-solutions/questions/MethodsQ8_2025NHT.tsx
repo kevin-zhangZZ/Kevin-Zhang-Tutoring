@@ -23,6 +23,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left[\frac{x^4}{4}-\frac{x^2}{2}\right]_0^a=\frac{a^4}{4}-\frac{a^2}{2}=0" />,
+    reason: <>Antidifferentiate term by term (add one to the power, divide by the new power), then substitute the limits: the lower limit 0 gives 0.</>,
   },
   {
     working: <Katex display tex="\frac{a^2}{4}\left(a^2-2\right)=0\ \Rightarrow\ a=0\ \text{or}\ a=\pm\sqrt2" />,

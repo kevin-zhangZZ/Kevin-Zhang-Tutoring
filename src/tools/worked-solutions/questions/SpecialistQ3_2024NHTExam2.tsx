@@ -113,18 +113,19 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} &= \left(100-\frac{75}{\pi}\sin(\pi)\right) \\ &\quad -\left(25-\frac{75}{\pi}\sin(0)\right) \\ &= 75 \end{aligned}" />,
+    reason: <>Substitute the upper limit, then subtract the lower limit. At <Katex tex="t=8" /> the angle is <Katex tex="\pi" /> and at <Katex tex="t=2" /> it is 0; both sines are 0, so only <Katex tex="12.5\times8-12.5\times2=100-25" /> remains.</>,
   },
   {
     working: <Katex display tex="\boxed{75 \ \text{m}}" />,
-    reason: <>Sanity check: the curve rises symmetrically from 0 to 25, so its average over the 6 seconds is 12.5 m/s, and <Katex tex="12.5\times6=75" />.</>,
+    reason: <>The distance travelled while accelerating, in metres.</>,
+    more: <>Sanity check: the curve rises symmetrically from 0 to 25, so its average over the 6 seconds is 12.5 m/s, and <Katex tex="12.5\times6=75" />.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="t \ge 8: \quad x_{\text{car}} = 75+25(t-8)" />,
-    reason: <>By <Katex tex="t=8" /> the car has covered 75 m (part e.); after that it adds 25 m every second.</>,
-    more: <>The car hasn&apos;t caught up before then: at <Katex tex="t=8" /> it has gone 75 m but the motorcycle has gone 160 m.</>,
+    reason: <>By <Katex tex="t=8" /> the car has covered 75 m (part e.); after that it adds 25 m every second. The car hasn&apos;t caught up before then (at <Katex tex="t=8" /> it has gone 75 m but the motorcycle has gone <Katex tex="20\times8=160" /> m), so they draw level in this constant-speed phase.</>,
   },
   {
     working: <Katex display tex="75+25(t-8) = 20t" />,
@@ -132,6 +133,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="25t-125 = 20t \implies 5t = 125" />,
+    reason: <>Expand the left side: <Katex tex="75+25t-200=25t-125" />. Then subtract <Katex tex="20t" /> from both sides and add 125.</>,
   },
   {
     working: <Katex display tex="\boxed{t = 25}" />,
@@ -147,7 +149,8 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{500 \ \text{m}}" />,
-    reason: <>Check with the car&apos;s own expression from part f.: <Katex tex="75+25(25-8)=75+425=500" />.</>,
+    reason: <>The distance the car travels to draw level, in metres.</>,
+    more: <>Check with the car&apos;s own expression from part f.: <Katex tex="75+25(25-8)=75+425=500" />.</>,
   },
 ]
 

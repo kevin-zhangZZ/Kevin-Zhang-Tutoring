@@ -23,7 +23,7 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Let } x = 2k+1, \ \text{ where } k\in Z" />,
-    reason: <>An odd integer is one more than an even number, <Katex tex="2k" />. A direct proof starts from what we are given (<Katex tex="x" /> odd), written algebraically.</>,
+    reason: <>An odd integer is one more than an even number, <Katex tex="2k" />, where <Katex tex="k\in Z" /> means <Katex tex="k" /> is an integer. A direct proof starts from what we are given (<Katex tex="x" /> odd), written algebraically.</>,
     more: <>Writing <Katex tex="x=2k-1" /> works equally well — the report also mentions it, ending at <Katex tex="2\left(4k^2-7k-1\right)" />.</>,
   },
   {
@@ -37,7 +37,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 8k^2+8k+2-6k-10 = 8k^2+2k-8" />,
-    reason: <>Collecting like terms: <Katex tex="8k-6k=2k" /> and <Katex tex="2-10=-8" />.</>,
+    reason: <>Expand <Katex tex="2\left(4k^2+4k+1\right)=8k^2+8k+2" /> and combine <Katex tex="-3-7=-10" />, then collect like terms: <Katex tex="8k-6k=2k" /> and <Katex tex="2-10=-8" />.</>,
   },
   {
     working: <Katex display tex="= 2\left(4k^2+k-4\right)" />,

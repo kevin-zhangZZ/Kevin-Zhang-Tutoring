@@ -224,7 +224,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \tfrac{16}{3}+18 = \tfrac{70}{3}" />,
-    reason: <>Evaluate each integral on CAS. <Katex tex="\tfrac{70}{3}\approx23.3" />.</>,
+    reason: <>Evaluate each integral on CAS with <Cas fn="nInt">∫</Cas>. <Katex tex="\tfrac{70}{3}\approx23.3" />.</>,
     more: <>By hand: <Katex tex="\left[\tfrac{x^3}{1500}\right]_0^{20}=\tfrac{8000}{1500}=\tfrac{16}{3}" />, and <Katex tex="\tfrac{1}{750}\left[25x^2-\tfrac{x^3}{3}\right]_{20}^{50}=\tfrac{13\,500}{750}=18" />. Note the mean, 23.3, is just above the median, 22.6: the long tail on the right pulls the mean up.</>,
   },
   {

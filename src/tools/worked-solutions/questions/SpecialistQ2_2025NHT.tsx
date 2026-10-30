@@ -33,7 +33,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{2x^3-1}{x+5}=2x^2-10x+50-\frac{251}{x+5}" />,
-    reason: <>For the behaviour as <Katex tex="x\to\pm\infty" />, divide. The fraction part tends to 0, so the graph approaches the <b>parabola</b> <Katex tex="y=2x^2-10x+50" />, which is not a straight line.</>,
+    reason: <>For the behaviour as <Katex tex="x\to\pm\infty" />, divide (long division). To check it: <Katex tex="(x+5)(2x^2-10x+50)=2x^3+250" />, which is 251 more than <Katex tex="2x^3-1" />. The fraction part tends to 0, so the graph approaches the <b>parabola</b> <Katex tex="y=2x^2-10x+50" />, which is not a straight line.</>,
     more: <>A rational function has a straight-line oblique asymptote only when the numerator&apos;s degree is exactly one more than the denominator&apos;s. Here, after cancelling, it is two more (cubic over linear), so the curved asymptote takes over and there is no horizontal or oblique line.</>,
   },
   {

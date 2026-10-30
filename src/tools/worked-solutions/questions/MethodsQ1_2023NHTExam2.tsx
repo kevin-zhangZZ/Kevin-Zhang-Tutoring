@@ -71,6 +71,10 @@ const ROWS_D: WorkingRow[] = [
     reason: <>Add 1 to both sides and take the square root, keeping both signs.</>,
   },
   {
+    working: <Katex display tex="2-d = 1 \ \text{ or } \ 2-d = -1" />,
+    reason: <>Split into the two cases, one for each sign, and solve each for <Katex tex="d" />.</>,
+  },
+  {
     working: <Katex display tex="\boxed{d=1 \ \text{ or } \ d=3}" />,
     reason: <>The question says &ldquo;using algebra&rdquo;, so the substitution and solving must be shown, not just read off.</>,
     more: <>Check with the picture: <Katex tex="g(x-d)" /> is <Katex tex="g" /> translated <Katex tex="d" /> units right. The <Katex tex="x" />-intercepts of <Katex tex="g" /> are <Katex tex="-1" /> and <Katex tex="-3" /> (part b.), and moving either one to the origin takes a shift of 1 or 3 to the right.</>,
@@ -121,11 +125,15 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="16 + 8m + m^2 - 12 - 4n = 0" />,
-    reason: <>Expand.</>,
+    reason: <>Expand <Katex tex="(4+m)^2" /> and <Katex tex="4(3+n)" />.</>,
+  },
+  {
+    working: <Katex display tex="4n = m^2 + 8m + 4" />,
+    reason: <>Collect the constants (<Katex tex="16-12=4" />) and move the <Katex tex="-4n" /> term to the other side.</>,
   },
   {
     working: <Katex display tex="\boxed{n = \frac{m^2 + 8m + 4}{4}}" />,
-    reason: <>Rearrange for <Katex tex="n" />, as asked. Equivalently <Katex tex="n=\tfrac{m^2}{4}+2m+1" />.</>,
+    reason: <>Divide by 4 to give <Katex tex="n" /> in terms of <Katex tex="m" />, as asked. Equivalently <Katex tex="n=\tfrac{m^2}{4}+2m+1" />.</>,
     more: <>Check with <Katex tex="m=0" />: <Katex tex="n=1" />, and <Katex tex="g(x)+1=(x+2)^2" /> has its vertex at <Katex tex="(-2,0)" />, on the <Katex tex="x" />-axis.</>,
   },
 ]

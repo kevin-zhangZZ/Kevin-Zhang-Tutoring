@@ -28,8 +28,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3-2x-x^2=4-(x+1)^2" />,
-    reason: <>Complete the square: the quadratic has its maximum, <Katex tex="4" />, at <Katex tex="x=-1" />. It increases up to <Katex tex="x=-1" /> and decreases after it.</>,
-    more: <>Since <Katex tex="\sqrt{\ }" /> is an increasing function, <Katex tex="\sqrt{u}" /> rises and falls exactly when <Katex tex="u" /> does. So <Katex tex="f" /> peaks at <Katex tex="f(-1)=\sqrt4=2" />. In fact <Katex tex="y=\sqrt{4-(x+1)^2}" /> is the top half of the circle with centre <Katex tex="(-1,0)" /> and radius 2.</>,
+    reason: <>Complete the square: the quadratic has its maximum, <Katex tex="4" />, at <Katex tex="x=-1" />. It increases up to <Katex tex="x=-1" /> and decreases after it. Since <Katex tex="\sqrt{\ }" /> is an increasing function, <Katex tex="f" /> rises and falls exactly when the quadratic does, so <Katex tex="f" /> also decreases after <Katex tex="x=-1" />.</>,
+    more: <>So <Katex tex="f" /> peaks at <Katex tex="f(-1)=\sqrt4=2" />. In fact <Katex tex="y=\sqrt{4-(x+1)^2}" /> is the top half of the circle with centre <Katex tex="(-1,0)" /> and radius 2.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}f'(x)&=\frac{-2-2x}{2\sqrt{3-2x-x^2}}\\&=\frac{-(x+1)}{\sqrt{3-2x-x^2}}<0\ \text{ for } -1<x<1\end{aligned}" />,

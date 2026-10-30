@@ -21,7 +21,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \frac{1}{B(500-B)}&=\frac{\alpha}{B}+\frac{\beta}{500-B} \\ 1&=\alpha(500-B)+\beta B \\ B=0&:\ \alpha=\tfrac{1}{500} \\ B=500&:\ \beta=\tfrac{1}{500} \end{aligned}" />,
-    reason: <>The denominator is a product of two distinct linear factors, so split it into partial fractions. Substituting each root kills one term. (Greek letters, so as not to clash with the population <Katex tex="B" />.)</>,
+    reason: <>The denominator is a product of two distinct linear factors, so split it into partial fractions. Then substitute <Katex tex="B=0" /> and <Katex tex="B=500" />: each makes one bracket zero, leaving one unknown at a time. (Greek letters, so as not to clash with the population <Katex tex="B" />.)</>,
   },
   {
     working: <Katex display tex="\begin{aligned} t&=\frac{50\,000}{3\times500}\int\left(\frac{1}{B}+\frac{1}{500-B}\right)dB \\ &=\frac{100}{3}\int\left(\frac{1}{B}+\frac{1}{500-B}\right)dB \end{aligned}" />,
@@ -34,7 +34,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t=\frac{100}{3}\log_e\left(\frac{B}{500-B}\right)+c,\quad 0<B<500" />,
-    reason: <>Combine with the log law <Katex tex="\log_e(a)-\log_e(b)=\log_e\left(\tfrac ab\right)" />. The population starts at 200, below the carrying capacity 500, and grows towards it, so <Katex tex="B" /> and <Katex tex="500-B" /> are both positive and the absolute value bars can go.</>,
+    reason: <>Combine with the log law <Katex tex="\log_e(a)-\log_e(b)=\log_e\left(\tfrac ab\right)" />. The population starts at 200 and grows towards 500 (the carrying capacity, where <Katex tex="\tfrac{dB}{dt}=0" /> again) without reaching it, so <Katex tex="B" /> and <Katex tex="500-B" /> are both positive and the absolute value bars can go.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} t=0,\ B=200:\quad 0&=\frac{100}{3}\log_e\left(\frac{200}{300}\right)+c \\ \implies c&=-\frac{100}{3}\log_e\left(\frac23\right) \end{aligned}" />,

@@ -33,8 +33,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\sin(2x)=\frac{3}{5}}" />,
-    reason: <>Simplify the fraction. Sanity check: <Katex tex="\tan(x)=3" /> gives <Katex tex="x\approx1.25" />, so <Katex tex="2x\approx2.5" /> is in the second quadrant, where sine is positive and less than 1 ✓.</>,
-    more: <>A route with no triangle: <Katex tex="\sin(2x)=\dfrac{2\tan(x)}{1+\tan^2(x)}=\dfrac{2\times3}{1+9}=\dfrac35" />. It comes from dividing <Katex tex="2\sin(x)\cos(x)" /> by <Katex tex="\sin^2(x)+\cos^2(x)=1" /> and then dividing top and bottom by <Katex tex="\cos^2(x)" />.</>,
+    reason: <>Simplify the fraction: <Katex tex="\tfrac{6}{10}=\tfrac35" />.</>,
+    more: <>Sanity check: <Katex tex="\tan(x)=3" /> gives <Katex tex="x\approx1.25" />, so <Katex tex="2x\approx2.5" /> is in the second quadrant, where sine is positive and less than 1 ✓. A route with no triangle: <Katex tex="\sin(2x)=\dfrac{2\tan(x)}{1+\tan^2(x)}=\dfrac{2\times3}{1+9}=\dfrac35" />. It comes from dividing <Katex tex="2\sin(x)\cos(x)" /> by <Katex tex="\sin^2(x)+\cos^2(x)=1" /> and then dividing top and bottom by <Katex tex="\cos^2(x)" />.</>,
   },
 ]
 

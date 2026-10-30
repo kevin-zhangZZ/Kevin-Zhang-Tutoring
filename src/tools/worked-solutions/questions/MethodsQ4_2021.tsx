@@ -24,7 +24,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="h(1) = (1-2)e^1 = -e" />,
     reason: <>Since <Katex tex="e^x>0" />, <Katex tex="h'(x)" /> has the sign of <Katex tex="x-1" />: negative then positive, so <Katex tex="x=1" /> is a <em>minimum</em>, not the maximum.</>,
-    more: <><Katex tex="h'(x)" /> is negative for <Katex tex="x<1" /> and positive for <Katex tex="x>1" />, so <Katex tex="h" /> decreases and then increases, and <Katex tex="x=1" /> is the bottom of the graph.</>,
+    more: <>To check the signs with numbers, test one point either side: <Katex tex="h'(0)=(0-1)e^0=-1<0" /> and <Katex tex="h'(2)=(2-1)e^2=e^2>0" />. So <Katex tex="h" /> decreases and then increases, and <Katex tex="x=1" /> is the bottom of the graph.</>,
   },
   {
     working: <Katex display tex="h(0) = (0-2)e^0 = -2, \quad h(2) = (2-2)e^2 = 0" />,

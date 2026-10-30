@@ -71,7 +71,7 @@ const ROWS_A: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="E = \hat p-0.04 = 0.16-\hat p = 0.06" />,
+    working: <Katex display tex="E = 0.1-0.04 = 0.16-0.1 = 0.06" />,
     reason: <>The margin of error <Katex tex="E" /> is the distance from the centre <Katex tex="\hat p=0.1" /> to either end — half the width of the interval.</>,
   },
   {

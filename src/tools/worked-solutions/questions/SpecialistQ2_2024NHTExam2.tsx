@@ -78,6 +78,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1-i = \sqrt2\,\text{cis}\left(-\frac{\pi}{4}\right)" />,
+    reason: <>Polar form <Katex tex="r\,\text{cis}(\theta)" />, with modulus <Katex tex="r=\sqrt2" /> and argument <Katex tex="\theta=-\tfrac{\pi}{4}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{z_n = \left(\sqrt2\right)^n\text{cis}\left(-\frac{n\pi}{4}\right)}" />,
@@ -112,7 +113,7 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\operatorname{Arg}(z_n)=0 \iff -\frac{n\pi}{4} = 2\pi k, \quad k\in Z" />,
-    reason: <>Argument 0 means <Katex tex="z_n" /> is on the positive real axis. The argument from part b., <Katex tex="-\tfrac{n\pi}{4}" />, need not be principal, so it must be a whole number of turns, a multiple of <Katex tex="2\pi" />.</>,
+    reason: <><Katex tex="\operatorname{Arg}" /> is the principal argument, the one in <Katex tex="(-\pi,\pi]" />. <Katex tex="\operatorname{Arg}(z_n)=0" /> means <Katex tex="z_n" /> is on the positive real axis. The argument from part b., <Katex tex="-\tfrac{n\pi}{4}" />, need not be principal, so it must be a whole number of turns, a multiple of <Katex tex="2\pi" />.</>,
   },
   {
     working: <Katex display tex="n = -8k" />,
@@ -120,7 +121,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 8m, \ m\in Z^+, \ \text{that is, } n = 8, 16, 24, \ldots}" />,
-    reason: <>Since <Katex tex="n\in Z^+" />, only the negative <Katex tex="k" /> give an allowed <Katex tex="n" />, so <Katex tex="n" /> is a positive multiple of 8. Check: <Katex tex="z_8=\left(\sqrt2\right)^8\text{cis}(-2\pi)=16" />, a positive real number.</>,
+    reason: <>Since <Katex tex="n\in Z^+" />, only the negative <Katex tex="k" /> give an allowed <Katex tex="n" />. Writing <Katex tex="m=-k" /> (a positive integer) gives <Katex tex="n=8m" />, a positive multiple of 8. Check: <Katex tex="z_8=\left(\sqrt2\right)^8\text{cis}(-2\pi)=16" />, a positive real number.</>,
     more: <>VCAA&apos;s sample answer writes this as <Katex tex="n=8k" /> where <Katex tex="k\in Z^+" />, or lists <Katex tex="8,16,24,\ldots" />. Notice that <Katex tex="n=4" /> does not work: <Katex tex="z_4=-4" /> is real but negative, and its argument is <Katex tex="\pi" />.</>,
   },
 ]

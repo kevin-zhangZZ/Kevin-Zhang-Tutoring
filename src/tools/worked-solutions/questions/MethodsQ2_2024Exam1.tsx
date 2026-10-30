@@ -34,9 +34,9 @@ const EXAM: SAExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\begin{aligned}\text{Line 1: } y &= \tfrac{3k}{2}x-\tfrac{k+4}{2}\\ \text{Line 2: } y &= \tfrac{4-k}{k}x-1\end{aligned}" />,
-    reason: <>No solution means the two lines are parallel but not the same line: equal gradients, different <Katex tex="y" />-intercepts. So rearrange each into <Katex tex="y=mx+c" />.</>,
-    more: <>Line 2: <Katex tex="ky=(4-k)x-k" />, then divide by <Katex tex="k" />. That needs <Katex tex="k\neq0" />, but <Katex tex="k=0" /> is not a candidate anyway: the equations become <Katex tex="-2y=4" /> and <Katex tex="-4x=0" />, which have the one solution <Katex tex="x=0,\ y=-2" />. This is the report's Method 3; its Method 1 sets the ratios of coefficients equal, <Katex tex="\tfrac{3k}{k-4}=-\tfrac2k" />, which is the same condition as equal gradients. Setting the two original equations equal to each other leaves <Katex tex="x" />, <Katex tex="y" /> and <Katex tex="k" /> all unknown, which is where many students stalled: the condition has to be on the coefficients (gradients and intercepts), not on <Katex tex="x" /> and <Katex tex="y" />.</>,
+    working: <Katex display tex="\begin{aligned}\text{Line 1: } 2y &= 3kx-(k+4)\\ y &= \tfrac{3k}{2}x-\tfrac{k+4}{2}\\[4pt] \text{Line 2: } ky &= (4-k)x-k\\ y &= \tfrac{4-k}{k}x-1\end{aligned}" />,
+    reason: <>No solution means the two lines are parallel but not the same line: equal gradients, different <Katex tex="y" />-intercepts. So rearrange each into <Katex tex="y=mx+c" /> (gradient <Katex tex="m" />, <Katex tex="y" />-intercept <Katex tex="c" />).</>,
+    more: <>Line 2 is divided by <Katex tex="k" />. That needs <Katex tex="k\neq0" />, but <Katex tex="k=0" /> is not a candidate anyway: the equations become <Katex tex="-2y=4" /> and <Katex tex="-4x=0" />, which have the one solution <Katex tex="x=0,\ y=-2" />. This is the report's Method 3; its Method 1 sets the ratios of coefficients equal, <Katex tex="\tfrac{3k}{k-4}=-\tfrac2k" />, which is the same condition as equal gradients. Setting the two original equations equal to each other leaves <Katex tex="x" />, <Katex tex="y" /> and <Katex tex="k" /> all unknown, which is where many students stalled: the condition has to be on the coefficients (gradients and intercepts), not on <Katex tex="x" /> and <Katex tex="y" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\frac{3k}{2}&=\frac{4-k}{k}\\ 3k^2&=8-2k\\ 3k^2+2k-8&=0\end{aligned}" />,
@@ -49,7 +49,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}k=-2:\quad &m_1=m_2=\tfrac{3(-2)}{2}=-3\\ &c_1=-\tfrac{-2+4}{2}=-1=c_2\end{aligned}" />,
-    reason: <>Same gradient <em>and</em> same intercept: the two equations describe the same line, so there are infinitely many solutions, not none.</>,
+    reason: <>Test each root (<Katex tex="m_1,c_1" /> are Line 1's gradient and intercept, <Katex tex="m_2,c_2" /> are Line 2's). Same gradient <em>and</em> same intercept: the two equations describe the same line, so there are infinitely many solutions, not none.</>,
     more: <>Substituting <Katex tex="k=-2" /> into the original equations makes both of them <Katex tex="-6x-2y=2" />. Line 2's intercept is <Katex tex="-1" /> for every <Katex tex="k" />, so the lines coincide only when <Katex tex="\tfrac{k+4}{2}=1" />, i.e. <Katex tex="k=-2" />.</>,
   },
   {

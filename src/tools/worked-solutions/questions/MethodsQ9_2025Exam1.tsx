@@ -2,6 +2,7 @@
 // a difference of squares turns a quartic into two quadratics, and a turning point decides
 // how many solutions survive. Question text transcribed from the original paper. Answers
 // checked with sympy and against the VCAA examination report. Solution is original.
+// Oct 2026 review: b.ii reasons now say why -w must equal the minimum and why both w > 0 (no calculator).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
@@ -140,8 +141,8 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered} \text{three solutions} \\ \iff P(x) = -w \text{ has one} \\ \iff -w = -\frac{(w-1)^2}{4} \end{gathered}" />,
-    reason: <>Two solutions come from <Katex tex="y=w" />, so we need exactly one from <Katex tex="y=-w" />: that line must touch the vertex.</>,
-    more: <>The line <Katex tex="y=-w" /> meets the parabola 0 times if it is below the vertex (2 solutions in total), twice if above (4 in total), and once only when it passes through the vertex. Equivalently (the report's discriminant method),{' '}
+    reason: <>Two solutions come from <Katex tex="y=w" />, so we need exactly one from <Katex tex="y=-w" />. A horizontal line meets an upward parabola exactly once only when it passes through the vertex, so <Katex tex="-w" /> must equal the minimum <Katex tex="y" />-value from b.i.</>,
+    more: <>The line <Katex tex="y=-w" /> meets the parabola 0 times if it is below the vertex (2 solutions in total), and twice if above (4 in total). Equivalently (the report's discriminant method),{' '}
       <Katex tex="P(x)=-w" /> rearranges to <Katex tex="x^2-(w+1)x+2w=0" />, which has one solution when{' '}
       <Katex tex="\Delta=(w+1)^2-8w=0" /> — the same equation <Katex tex="w^2-6w+1=0" />.</>,
   },
@@ -151,7 +152,7 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="w = \frac{6\pm\sqrt{36-4}}{2} = 3\pm2\sqrt2" />,
-    reason: <><Katex tex="\sqrt{32}=4\sqrt2" />. Both roots are positive (<Katex tex="\approx0.17" /> and <Katex tex="\approx5.83" />), so both qualify.</>,
+    reason: <>Quadratic formula, with <Katex tex="\sqrt{32}=\sqrt{16\times2}=4\sqrt2" />. Both roots are positive, since <Katex tex="2\sqrt2=\sqrt8<\sqrt9=3" />, so both satisfy <Katex tex="w>0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{w = 3-2\sqrt2 \ \text{ or } \ w = 3+2\sqrt2}" />,

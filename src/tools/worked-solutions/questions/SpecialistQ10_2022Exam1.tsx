@@ -126,7 +126,7 @@ const ROWS_B: WorkingRow[] = [
         tex="\begin{aligned} \tan\!\left(\frac{\pi}{12}\right) &= \tan\!\left(\frac\pi3-\frac\pi4\right) \\ &= \frac{\tan\frac\pi3-\tan\frac\pi4}{1+\tan\frac\pi3\tan\frac\pi4} \\ &= \frac{\sqrt3-1}{1+\sqrt3} \end{aligned}"
       />
     ),
-    reason: <><Katex tex="\tfrac{\pi}{12}" /> isn&apos;t an angle with a known exact value, but it is the difference of two that are: <Katex tex="\tfrac\pi3-\tfrac\pi4=\tfrac{4\pi}{12}-\tfrac{3\pi}{12}=\tfrac{\pi}{12}" />. Then use the <Katex tex="\tan(x-y)" /> formula from the formula sheet, with <Katex tex="\tan\tfrac\pi3=\sqrt3" /> and <Katex tex="\tan\tfrac\pi4=1" />.</>,
+    reason: <><Katex tex="\tfrac{\pi}{12}" /> isn&apos;t one of the angles whose exact values you know by heart, but it is the difference of two that are: <Katex tex="\tfrac\pi3-\tfrac\pi4=\tfrac{4\pi}{12}-\tfrac{3\pi}{12}=\tfrac{\pi}{12}" />. Then use the <Katex tex="\tan(x-y)" /> formula from the formula sheet, with <Katex tex="\tan\tfrac\pi3=\sqrt3" /> and <Katex tex="\tan\tfrac\pi4=1" />.</>,
   },
   {
     working: (

@@ -27,13 +27,14 @@ const ROWS: WorkingRow[] = [
     reason: <>Substitute; the <Katex tex="u" /> from <Katex tex="dx=2u\,du" /> cancels the <Katex tex="u" /> from the square root.</>,
   },
   {
-    working: <Katex display tex="\frac{2}{u^2-1}=\frac{2}{(u-1)(u+1)}=\frac{1}{u-1}-\frac{1}{u+1}" />,
-    reason: <>The options are in partial fractions. Check: <Katex tex="\tfrac{1}{u-1}-\tfrac{1}{u+1}=\tfrac{(u+1)-(u-1)}{u^2-1}=\tfrac{2}{u^2-1}" />.</>,
+    working: <Katex display tex="\begin{aligned}\frac{2}{(u-1)(u+1)}&=\frac{A}{u-1}+\frac{B}{u+1}\\ 2&=A(u+1)+B(u-1)\\ u=1:\ 2=2A&\implies A=1\\ u=-1:\ 2=-2B&\implies B=-1\end{aligned}" />,
+    reason: <>The options are in partial fractions, so split <Katex tex="\tfrac{2}{u^2-1}" />: factorise the denominator as a difference of squares, multiply through by <Katex tex="(u-1)(u+1)" />, then substitute the values of <Katex tex="u" /> that make each bracket zero.</>,
+    more: <>Check by recombining: <Katex tex="\tfrac{1}{u-1}-\tfrac{1}{u+1}=\tfrac{(u+1)-(u-1)}{u^2-1}=\tfrac{2}{u^2-1}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_2^3\left(\frac{1}{u-1}-\frac{1}{u+1}\right)du}" />,
-    reason: <>Matches option <b>B</b>.</>,
-    more: <>Option <b>A</b> is exactly half: it is what you get by writing <Katex tex="dx=u\,du" />, dropping the 2. Option <b>C</b> has the partial fractions the wrong way round (it equals <Katex tex="-\tfrac{2}{u^2-1}" />), and option <b>D</b> also keeps the old <Katex tex="x" />-terminals. Sanity check: both the original and <b>B</b> equal <Katex tex="\log_e\!\left(\tfrac32\right)\approx0.405" />; the integrand is positive on <Katex tex="[3,8]" />, so the answer must be positive, which rules out C.</>,
+    reason: <>With <Katex tex="A=1" /> and <Katex tex="B=-1" />, the integral is option <b>B</b>.</>,
+    more: <>Option <b>A</b> is exactly half: it is what you get by writing <Katex tex="dx=u\,du" />, dropping the 2. Option <b>C</b> has the partial fractions the wrong way round (it equals <Katex tex="-\tfrac{2}{u^2-1}" />), and option <b>D</b> also keeps the old <Katex tex="x" />-terminals. Option <b>E</b> is the partial-fraction form of <Katex tex="\tfrac{2}{u(u^2-1)}" />, which is what you get by writing <Katex tex="dx=2\,du" />, so the <Katex tex="u" /> never cancels. Sanity check: both the original and <b>B</b> equal <Katex tex="\log_e\!\left(\tfrac32\right)\approx0.405" />; the integrand is positive on <Katex tex="[3,8]" />, so the answer must be positive, which rules out C.</>,
   },
 ]
 

@@ -66,8 +66,8 @@ const ROWS_BI: WorkingRow[] = [
     reason: <>A probability for a continuous random variable is the area under the density.</>,
   },
   {
-    working: <Katex display tex="= \frac89\times\frac{1}{24} = \boxed{\frac{1}{27}}" />,
-    reason: <>VCAA also accepts <Katex tex="0.\overline{037}" />. Large claims are rare: under 4%.</>,
+    working: <Katex display tex="\begin{aligned} &= \frac89\left(0+\frac{1}{3\times2^3}\right) \\ &= \frac89\times\frac{1}{24} = \boxed{\frac{1}{27}} \end{aligned}" />,
+    reason: <>As <Katex tex="x\to\infty" />, <Katex tex="-\tfrac{1}{3x^3}\to0" />; subtracting the value at <Katex tex="x=2" /> gives <Katex tex="+\tfrac{1}{24}" />. VCAA also accepts <Katex tex="0.\overline{037}" />. Large claims are rare: under 4%.</>,
   },
 ]
 
@@ -77,7 +77,8 @@ const ROWS_BII: WorkingRow[] = [
     reason: <>Conditional probability. Every claim over $4000 is also over $2000, so the intersection is just <Katex tex="X>4" />.</>,
   },
   {
-    working: <Katex display tex="\Pr(X>4) = \frac89\left[-\frac{1}{3x^3}\right]_4^{\infty} = \frac89\times\frac{1}{192} = \frac{1}{216}" />,
+    working: <Katex display tex="\begin{aligned} \Pr(X>4) &= \int_4^{\infty}\frac{8}{9x^4}\,dx \\ &= \frac89\left[-\frac{1}{3x^3}\right]_4^{\infty} \\ &= \frac89\left(0+\frac{1}{3\times4^3}\right) \\ &= \frac89\times\frac{1}{192} = \frac{1}{216} \end{aligned}" />,
+    reason: <>The numerator: the area under the density to the right of 4, found the same way as part b.i.</>,
   },
   {
     working: <Katex display tex="\frac{1/216}{1/27} = \frac{27}{216} = \boxed{\frac18}" />,

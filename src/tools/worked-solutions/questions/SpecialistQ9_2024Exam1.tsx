@@ -48,7 +48,7 @@ const EXAM_B: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{threshold} = 40\times1.1 = 44 \ \text{km/h}" />,
+    working: <Katex display tex="\text{threshold} = 40\times1.1 = 44 \ \text{km h}^{-1}" />,
     reason: <>10% above 40 is <Katex tex="40\times1.1=44" />, and "or more" means the device fires when <Katex tex="v\ge44" /> — not merely when <Katex tex="v>40" />.</>,
     more: <>This is the trap the report names: many students assumed any speed above 40 km/h would activate the device. A car at 42 km/h, say, is over the limit but is not detected.</>,
   },

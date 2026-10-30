@@ -21,6 +21,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&= 1(0.3)+2(0.4)+3(0.2)+4(0.1)\\ &= 0.3+0.8+0.6+0.4\end{aligned}" />,
+    reason: <>Multiply each value of <Katex tex="n" /> by its probability from the table, then add.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(N) = 2.1}" />,
@@ -98,12 +99,12 @@ const ROWS_DII: WorkingRow[] = [
 const ROWS_DIII: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}\mathrm{E}\!\left(C^2\right) &= \frac{3}{2500}\int_0^{10}\left(c^5-20c^4+100c^3\right)dc\\ &= 20\end{aligned}" />,
-    reason: <>Variance needs <Katex tex="\mathrm{E}(C^2)=\int c^2f(c)\,dc" />.</>,
+    reason: <>Variance needs <Katex tex="\mathrm{E}(C^2)=\int c^2f(c)\,dc" />; here <Katex tex="c^2\cdot 3c(c-10)^2=3\left(c^5-20c^4+100c^3\right)" />. Evaluate it with the CAS integral template in exact mode.</>,
     more: <>By hand: <Katex tex="\tfrac{3}{2500}\left[\tfrac{c^6}{6}-4c^5+25c^4\right]_0^{10}=\tfrac{3}{2500}\cdot\tfrac{50000}{3}=20" />.</>,
   },
   {
-    working: <Katex display tex="\operatorname{Var}(C) = 20-4^2 = 4, \qquad \mathrm{sd}(C) = 2" />,
-    reason: <><Katex tex="\operatorname{Var}(C)=\mathrm{E}(C^2)-[\mathrm{E}(C)]^2" />, with the mean from part d.ii.</>,
+    working: <Katex display tex="\operatorname{Var}(C) = 20-4^2 = 4, \qquad \sigma = \mathrm{sd}(C) = \sqrt{4} = 2" />,
+    reason: <><Katex tex="\operatorname{Var}(C)=\mathrm{E}(C^2)-[\mathrm{E}(C)]^2" />, with the mean <Katex tex="\mu=\mathrm{E}(C)=4" /> from part d.ii. The standard deviation <Katex tex="\sigma" /> is the square root of the variance.</>,
   },
   {
     working: <Katex display tex="\mu\pm2\sigma = 4\pm4: \quad (0,\ 8)" />,
@@ -111,7 +112,7 @@ const ROWS_DIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(0<C<8) = \int_0^8 \frac{3c(c-10)^2}{2500}\,dc" />,
-    reason: <>The probability is the area under the density over that interval.</>,
+    reason: <>The probability is the area under the density over that interval. Evaluate it with the CAS integral template in exact mode.</>,
     more: <>By hand: <Katex tex="\tfrac{3}{2500}\left[\tfrac{c^4}{4}-\tfrac{20c^3}{3}+50c^2\right]_0^8=\tfrac{3}{2500}\cdot\tfrac{2432}{3}=\tfrac{2432}{2500}" />.</>,
   },
   {
@@ -140,6 +141,7 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&0.15 \pm 1.6448\ldots\times\sqrt{\frac{0.15\times0.85}{200}}\\ &= 0.15\pm0.04153\ldots\end{aligned}" />,
+    reason: <>Substitute <Katex tex="\hat p=0.15" /> and <Katex tex="n=200" />, then subtract and add the margin of error.</>,
   },
   {
     working: <Katex display tex="\boxed{(0.108,\ 0.192)}" />,

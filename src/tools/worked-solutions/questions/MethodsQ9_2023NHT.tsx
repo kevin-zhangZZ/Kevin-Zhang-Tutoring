@@ -28,10 +28,11 @@ const ROWS: WorkingRow[] = [
       </div>
     ),
     reason: <>Test a point in each piece: at <Katex tex="x=-\tfrac12" />, <Katex tex="y=\tfrac58>0" />; at <Katex tex="x=1" />, <Katex tex="y=-2<0" />. So the curve is above the axis on <Katex tex="[-1,0]" /> and below it on <Katex tex="[0,2]" />.</>,
-    more: <>An integral counts area below the axis as negative. Integrating straight from <Katex tex="-1" /> to <Katex tex="2" /> would let the lower region cancel part of the upper one, so the two pieces have to be integrated separately.</>,
+    more: <>Integrating straight from <Katex tex="-1" /> to <Katex tex="2" /> would let the negative lower region cancel part of the positive upper one, giving less than the true area.</>,
   },
   {
     working: <Katex display tex="\int\left(x^3-x^2-2x\right)dx=\frac{x^4}{4}-\frac{x^3}{3}-x^2" />,
+    reason: <>Area below the axis comes out negative in an integral, so integrate each piece separately. Antiderivative: raise each power by one and divide by the new power.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\int_{-1}^{0}\left(x^3-x^2-2x\right)dx&=0-\left(\frac14+\frac13-1\right)\\&=\frac{5}{12}\end{aligned}" />,

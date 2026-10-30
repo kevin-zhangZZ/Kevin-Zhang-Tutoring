@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} S&=2\pi\int_0^{\frac{\pi}{2}}x\sqrt{\left(\frac{dx}{d\theta}\right)^2+\left(\frac{dy}{d\theta}\right)^2}\,d\theta \\ &=2\pi\int_0^{\frac{\pi}{2}}4\cos^3(\theta)\cdot12\sin(\theta)\cos(\theta)\,d\theta \end{aligned}" />,
-    reason: <>Rotating about the <Katex tex="y" />-axis, each point of the curve travels round a circle of radius <Katex tex="x" />, so the radius in the surface-area formula is <Katex tex="x=4\cos^3(\theta)" /> (not <Katex tex="y" />).</>,
+    reason: <>This is the formula-sheet surface area for a parametric curve rotated about the <Katex tex="y" />-axis. Each point of the curve travels round a circle of radius <Katex tex="x" />, so the radius is <Katex tex="x=4\cos^3(\theta)" /> (not <Katex tex="y" />), and the terminals are the given interval <Katex tex="\theta\in\left[0,\tfrac{\pi}{2}\right]" />.</>,
   },
   {
     working: <Katex display tex="S=96\pi\int_0^{\frac{\pi}{2}}\cos^4(\theta)\sin(\theta)\,d\theta" />,
@@ -41,11 +41,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} S&=96\pi\int_1^0u^4\,(-du)=96\pi\int_0^1u^4\,du \\ &=96\pi\left[\frac{u^5}{5}\right]_0^1 \end{aligned}" />,
-    reason: <><Katex tex="\sin(\theta)\,d\theta=-du" />. The minus sign flips the terminals back to <Katex tex="0" /> to <Katex tex="1" />.</>,
+    reason: <><Katex tex="\sin(\theta)\,d\theta=-du" />. Swapping the terminals of an integral changes its sign, so the minus sign is absorbed by flipping <Katex tex="\int_1^0" /> to <Katex tex="\int_0^1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{S=\frac{96\pi}{5}\text{ square units}}" />,
-    reason: <><Katex tex="96\pi\left(\tfrac15-0\right)" />. Sanity check: <Katex tex="\tfrac{96\pi}{5}\approx60.3" />. The curve has length <Katex tex="\int_0^{\pi/2}12\sin(\theta)\cos(\theta)\,d\theta=6" />, and 60.3 is what a band of width 6 at an average radius of about 1.6 gives (<Katex tex="2\pi\times1.6\times6\approx60.3" />), plausible for a curve running from <Katex tex="x=0" /> to <Katex tex="x=4" /> that spends most of its length near the <Katex tex="y" />-axis.</>,
+    reason: <><Katex tex="96\pi\left(\tfrac15-0\right)" />, left exact since Exam 1 is technology-free.</>,
+    more: <>Sanity check: <Katex tex="\tfrac{96\pi}{5}\approx60.3" />. The curve has length <Katex tex="\int_0^{\pi/2}12\sin(\theta)\cos(\theta)\,d\theta=6" />, and 60.3 is what a band of width 6 at an average radius of about 1.6 gives (<Katex tex="2\pi\times1.6\times6\approx60.3" />). That is plausible for a curve running from <Katex tex="x=0" /> to <Katex tex="x=4" />: it bows in towards the origin, so half its length (<Katex tex="\theta" /> from <Katex tex="\tfrac{\pi}{4}" /> to <Katex tex="\tfrac{\pi}{2}" />) lies at <Katex tex="x\le\sqrt2" />.</>,
   },
 ]
 

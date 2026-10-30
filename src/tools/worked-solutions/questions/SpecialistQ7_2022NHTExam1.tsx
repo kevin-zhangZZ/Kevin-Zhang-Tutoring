@@ -44,8 +44,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{x^2}{16} - \frac{y^2}{4} = 1,\quad x\ge4,\ y\ge0}" />,
-    reason: <>Equivalently <Katex tex="y=\tfrac12\sqrt{x^2-16}" /> for <Katex tex="x\ge4" />. VCAA&apos;s sample answer gives the equation <Katex tex="\tfrac{x^2}{16}-\tfrac{y^2}{4}=1" /> alone; stating the restriction as well shows exactly which part of the hyperbola is the path.</>,
-    more: <>Check with <Katex tex="t=\tfrac\pi4" />: <Katex tex="x=4\sqrt2" /> and <Katex tex="y=2" />, and <Katex tex="\tfrac{32}{16}-\tfrac44=2-1=1" />.</>,
+    reason: <>The equation together with the restriction from the previous line describes exactly the part of the hyperbola the particle travels on. Equivalently <Katex tex="y=\tfrac12\sqrt{x^2-16}" /> for <Katex tex="x\ge4" />.</>,
+    more: <>VCAA&apos;s sample answer gives the equation <Katex tex="\tfrac{x^2}{16}-\tfrac{y^2}{4}=1" /> alone, without the restriction. Check with <Katex tex="t=\tfrac\pi4" />: <Katex tex="x=4\sqrt2" /> and <Katex tex="y=2" />, and <Katex tex="\tfrac{32}{16}-\tfrac44=2-1=1" />.</>,
   },
 ]
 
@@ -74,7 +74,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{speed} = \frac{8\sqrt2}{3}\text{ m/s}}" />,
-    reason: <>About <Katex tex="3.77" /> m/s. Sanity check: the two components are equal, so the speed should be <Katex tex="\sqrt2" /> times either one, and <Katex tex="\sqrt2\times\tfrac83\approx3.77" />.</>,
+    reason: <>Leave it exact (Exam 1 is technology-free), with units: the components are in metres and <Katex tex="t" /> is in seconds, so speed is in m/s.</>,
+    more: <>About <Katex tex="3.77" /> m/s. Sanity check: the two components are equal, so the speed should be <Katex tex="\sqrt2" /> times either one, and <Katex tex="\sqrt2\times\tfrac83\approx3.77" />.</>,
   },
 ]
 

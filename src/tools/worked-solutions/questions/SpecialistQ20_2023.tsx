@@ -41,15 +41,16 @@ const ROWS: WorkingRow[] = [
     reason: <>Multiply both sides by 10, then divide by <Katex tex="2.5758\ldots" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\sigma \approx 9710}" />,
-    reason: <>Matches option <b>A</b>, the closest of the five.</>,
+    working: <Katex display tex="\boxed{\sigma \approx 9706}" />,
+    reason: <>The question asks for the option closest to <Katex tex="\sigma" />: that is option <b>A</b>, <Katex tex="9710" />.</>,
     more: (
       <>
         Each wrong option is close to the <Katex tex="\sigma" /> that one slip in <Katex tex="E" /> or{' '}
-        <Katex tex="z" /> produces: <b>B</b> (<Katex tex="10\,746" />) comes from area 0.99;{' '}
-        <b>C</b> (<Katex tex="12\,755" />) uses the 95% value <Katex tex="z=1.96" />;{' '}
-        <b>D</b> (<Katex tex="15\,199" />) uses the 90% value <Katex tex="z=1.6449\ldots" />; and{' '}
-        <b>E</b> (<Katex tex="19\,411" />) uses the whole width, 5000, as <Katex tex="E" />, which doubles{' '}
+        <Katex tex="z" /> produces: <b>B</b>, <Katex tex="10\,750" />, is close to the <Katex tex="10\,746" /> from
+        area 0.99; <b>C</b>, <Katex tex="12\,750" />, to the <Katex tex="12\,755" /> from the 95% value{' '}
+        <Katex tex="z=1.96" />; <b>D</b>, <Katex tex="15\,190" />, to the <Katex tex="15\,199" /> from the 90%
+        value <Katex tex="z=1.6449\ldots" />; and <b>E</b>, <Katex tex="19\,390" />, to the{' '}
+        <Katex tex="19\,411" /> from using the whole width, 5000, as <Katex tex="E" />, which doubles{' '}
         <Katex tex="\sigma" />.
       </>
     ),

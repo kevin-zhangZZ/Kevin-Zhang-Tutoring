@@ -49,7 +49,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="9k=63\implies\boxed{k=7}" />,
-    reason: <>Sanity check: the curve rises from <Katex tex="(0,5)" /> to <Katex tex="\left(7,\,5+14\sqrt7\right)\approx(7,\,42.0)" />, a straight-line distance of <Katex tex="\sqrt{7^2+37.0^2}\approx37.7" />, just under the arc length <Katex tex="\tfrac{1022}{27}\approx37.85" />. The curve can never be shorter than the chord ✓.</>,
+    reason: <>Subtract 1 from both sides, then divide by 9.</>,
+    more: <>Sanity check: the curve rises from <Katex tex="(0,5)" /> to <Katex tex="\left(7,\,5+14\sqrt7\right)\approx(7,\,42.0)" />, a straight-line distance of <Katex tex="\sqrt{7^2+37.0^2}\approx37.7" />, just under the arc length <Katex tex="\tfrac{1022}{27}\approx37.85" />. The curve can never be shorter than the chord ✓.</>,
   },
 ]
 

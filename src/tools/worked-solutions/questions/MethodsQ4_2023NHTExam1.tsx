@@ -23,6 +23,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="=9-9\times3+20=9-27+20" />,
+    reason: <>Put the two values just found back into the first line.</>,
   },
   {
     working: <Katex display tex="\boxed{g\left(\log_2(3)\right)=2}" />,

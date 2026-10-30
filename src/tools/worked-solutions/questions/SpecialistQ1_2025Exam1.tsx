@@ -25,8 +25,8 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="xe^{-2y}+y^2e^x = 8e^4" />,
-    reason: <>Differentiate both sides with respect to <Katex tex="x" />, treating <Katex tex="y" /> as a function of <Katex tex="x" />. The point lies on the curve: <Katex tex="4e^{4}+4e^{4}=8e^{4}" /> ✓.</>,
-    more: <>This is implicit differentiation, the method to use when making <Katex tex="y" /> the subject is impractical (here it is impossible). Because <Katex tex="y" /> is a function of <Katex tex="x" />, the chain rule attaches a factor <Katex tex="\tfrac{dy}{dx}" /> every time you differentiate an expression in <Katex tex="y" />, e.g. <Katex tex="\tfrac{d}{dx}\left(y^2\right)=2y\tfrac{dy}{dx}" />. Checking the point first takes seconds and confirms you have copied the equation correctly.</>,
+    reason: <>Differentiate both sides with respect to <Katex tex="x" />, treating <Katex tex="y" /> as a function of <Katex tex="x" />, so by the chain rule, differentiating anything in <Katex tex="y" /> gives an extra factor <Katex tex="\tfrac{dy}{dx}" />. The point lies on the curve: <Katex tex="4e^{4}+4e^{4}=8e^{4}" /> ✓.</>,
+    more: <>This is implicit differentiation, the method to use when making <Katex tex="y" /> the subject is impractical (here it is impossible). For example,<Katex tex="\tfrac{d}{dx}\left(y^2\right)=2y\tfrac{dy}{dx}" />. Checking the point first takes seconds and confirms you have copied the equation correctly.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\left(xe^{-2y}\right) = e^{-2y}-2x e^{-2y}\frac{dy}{dx}" />,

@@ -7,7 +7,8 @@
 // turning only at P; part c. (interactives/meth-2023e1-q9c-past-the-peak.tsx) slides B along track 2 to see the
 // triangle's area A(k) rise past the peak P and top out at k = 8/3, not at k = 2. Oct 2026 Concise
 // review: report commentary, checks and asides moved from the reasons into each row's `more`; the
-// page-top Background split into a Background inside part b. and one inside part c.
+// page-top Background split into a Background inside part b. and one inside part c. Oct 30 2026
+// pass: b. f'(x) row shows the -1 taken out before factorising; c. final product step written out.
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
@@ -120,8 +121,13 @@ const ROWS_B: WorkingRow[] = [
     ),
   },
   {
-    working: <Katex display tex="f'(x) = -3x^2+8x-4 = -(3x-2)(x-2)" />,
-    reason: <>Differentiate term by term, then factorise to see where <Katex tex="f'(x)=0" />.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} f'(x) &= -3x^2+8x-4 \\ &= -\left(3x^2-8x+4\right) = -(3x-2)(x-2) \end{aligned}"
+      />
+    ),
+    reason: <>Differentiate term by term. Then take out <Katex tex="-1" /> and factorise the quadratic (check: <Katex tex="(3x-2)(x-2)=3x^2-8x+4" />) to see where <Katex tex="f'(x)=0" />: at <Katex tex="x=\tfrac23" /> and <Katex tex="x=2" />.</>,
   },
   {
     working: <Katex display tex="f'(2) = -3(4)+16-4 = 0" />,
@@ -183,7 +189,7 @@ const ROWS_C: WorkingRow[] = [
     more: <>The report notes many arithmetic mistakes occurred when students substituted <Katex tex="k=\tfrac83" /> (or the unsimplified <Katex tex="k=\tfrac{24}{9}" />) into their expression for <Katex tex="A(k)" />. Simplify <Katex tex="k" /> first, and keep the height as a fraction rather than a rounded decimal.</>,
   },
   {
-    working: <Katex display tex="\boxed{A_{\max} = \frac12\cdot\frac83\cdot\frac{32}{3} = \frac{128}{9} \ \mathrm{km^2}}" />,
+    working: <Katex display tex="A_{\max} = \frac12\cdot\frac83\cdot\frac{32}{3} = \frac43\cdot\frac{32}{3} = \boxed{\frac{128}{9} \ \mathrm{km^2}}" />,
     reason: <>Half base times height at <Katex tex="k=\tfrac83" />: about <Katex tex="14.2\ \mathrm{km^2}" />.</>,
     more: (
       <>

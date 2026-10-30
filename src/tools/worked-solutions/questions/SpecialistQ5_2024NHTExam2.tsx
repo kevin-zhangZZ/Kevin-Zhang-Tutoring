@@ -32,6 +32,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex={`\\begin{aligned}\\overrightarrow{BC} &= (3-0)${I}+(2-3)${J}+(-1-3)${K} \\\\ &= 3${I}-${J}-4${K}\\end{aligned}`} />,
+    reason: <>The same &ldquo;end minus start&rdquo; rule, from <Katex tex="B" /> to <Katex tex="C" />.</>,
   },
   {
     working: <Katex display tex={`\\begin{gathered}\\overrightarrow{AB} = m\\,\\overrightarrow{BC} \\implies 1 = 3m,\\ \\ 2 = -m \\\\ \\implies m = \\tfrac13 \\text{ and } m = -2\\end{gathered}`} />,
@@ -46,8 +47,8 @@ const ROWS_A: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex={`\\begin{gathered}\\overrightarrow{AB} = ${I}+2${J}+${K}, \\\\ \\overrightarrow{AC} = 4${I}+${J}-3${K}\\end{gathered}`} />,
-    reason: <>Two non-parallel vectors in the plane (part a. showed the points are not collinear, so they can&apos;t be parallel).</>,
+    working: <Katex display tex={`\\begin{aligned}\\overrightarrow{AB} &= ${I}+2${J}+${K} \\\\ \\overrightarrow{AC} &= (3+1)${I}+(2-1)${J}+(-1-2)${K} \\\\ &= 4${I}+${J}-3${K}\\end{aligned}`} />,
+    reason: <>Two vectors in the plane: <Katex tex="\overrightarrow{AB}" /> from part a., and <Katex tex="\overrightarrow{AC}=\overrightarrow{OC}-\overrightarrow{OA}" />. Part a. showed the points are not collinear, so these two are not parallel.</>,
   },
   {
     working: <Katex display tex={`${N} = \\overrightarrow{AB}\\times\\overrightarrow{AC} = \\begin{vmatrix} ${I} & ${J} & ${K} \\\\ 1 & 2 & 1 \\\\ 4 & 1 & -3 \\end{vmatrix}`} />,
@@ -116,7 +117,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex={`\\begin{aligned}\\text{distance} &= \\left|\\underset{\\sim}{v}\\cdot\\hat{${N}}\\right| \\\\ &= \\left|\\frac{(1)(2)+(-1)(-1)+(3)(3)}{\\sqrt{14}}\\right| \\\\ &= \\frac{12}{\\sqrt{14}}\\end{aligned}`} />,
-    reason: <>The shortest distance is measured along the normal, so it is the length of the part of <Katex tex="\underset{\sim}{v}" /> in the normal direction: the scalar resolute of <Katex tex="\underset{\sim}{v}" /> onto the unit normal. Take its absolute value, since a distance can&apos;t be negative.</>,
+    reason: <>The shortest distance is measured along the normal, so it is the length of the part of <Katex tex="\underset{\sim}{v}" /> in the normal direction: the scalar resolute of <Katex tex="\underset{\sim}{v}" /> onto the unit normal <Katex tex={`\\hat{${N}}=\\tfrac{1}{\\sqrt{14}}${N}`} />. Take its absolute value, since a distance can&apos;t be negative.</>,
     more: <>VCAA calls <Katex tex={`${I}-${J}+3${K}`} /> &ldquo;a vector from line to plane&rdquo;; strictly it runs from the plane to the line, but reversing it only flips the sign, which the absolute value removes.</>,
   },
   {

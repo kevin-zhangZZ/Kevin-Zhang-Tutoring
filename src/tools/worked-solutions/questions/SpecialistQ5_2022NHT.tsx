@@ -28,8 +28,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A=\tfrac{7}{289},\ \ B=-\tfrac{23}{289},\ \ C=\tfrac{3}{17},\ \ D=-\tfrac{7}{289}" />,
-    reason: <>Check that this form really works with non-zero constants, as the question requires.</>,
-    more: <><Cas fn="expand">expand((x−1)/((x²+1)(x−4)²), x)</Cas> returns the partial fractions directly. By hand: multiply through by the denominator and put <Katex tex="x=4" /> to get <Katex tex="3=17C" />, then compare coefficients for the rest.</>,
+    reason: <>Check that this form really works with non-zero constants, as the question requires: <Cas fn="expand">expand((x−1)/((x²+1)(x−4)²), x)</Cas> returns the partial fractions directly.</>,
+    more: <>By hand: multiply through by the denominator and put <Katex tex="x=4" /> to get <Katex tex="3=17C" />, then compare coefficients for the rest.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{Ax+B}{x^2+1}+\frac{C}{(x-4)^2}+\frac{D}{x-4}}" />,

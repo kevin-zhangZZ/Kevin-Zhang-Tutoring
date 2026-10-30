@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(3,0,0):\ 2(3)+2(0)-0=6\ \checkmark" />,
-    reason: <>Pick any convenient point on the first plane.</>,
+    reason: <>Pick any convenient point on the first plane: set <Katex tex={String.raw`y=z=0`} />, then <Katex tex={String.raw`2x=6`} /> gives <Katex tex={String.raw`x=3`} />.</>,
   },
   {
     working: <Katex display tex={`|${N}|=\\sqrt{2^2+2^2+(-1)^2}=3`} />,

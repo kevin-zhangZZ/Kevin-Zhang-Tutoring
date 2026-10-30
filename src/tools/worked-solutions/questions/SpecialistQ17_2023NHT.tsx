@@ -25,6 +25,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x=1:\ \frac{m}{2(2)}=1.5\implies m=6" />,
+    reason: <>Substitute <Katex tex="x=1" /> (so <Katex tex="1+x^2=2" />) and <Katex tex="F=1.5" />, then multiply both sides by 4.</>,
   },
   {
     working: <Katex display tex="\frac{6}{2(1+x^2)}=1\implies 1+x^2=3\implies x^2=2" />,
@@ -32,8 +33,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x=\sqrt2\text{ m}}" />,
-    reason: <>Matches option <b>B</b>. Reject <Katex tex="x=-\sqrt2" />: there <Katex tex="\tan^{-1}(x)<0" />, so <Katex tex="\sqrt{\tan^{-1}(x)}" /> is undefined. Sanity check: the force falls from 1.5 N to 1 N as <Katex tex="x" /> grows, so the answer must be more than 1 m ✓.</>,
-    more: <>Option C, <Katex tex="\sqrt3" />, takes <Katex tex="x^2=3" /> straight from <Katex tex="1+x^2=3" />, forgetting to subtract the 1.</>,
+    reason: <>Matches option <b>B</b>. Reject <Katex tex="x=-\sqrt2" />: there <Katex tex="\tan^{-1}(x)<0" />, so <Katex tex="\sqrt{\tan^{-1}(x)}" /> is undefined.</>,
+    more: <>Sanity check: the force falls from 1.5 N to 1 N as <Katex tex="x" /> grows, so the answer must be more than 1 m ✓. Option C, <Katex tex="\sqrt3" />, takes <Katex tex="x^2=3" /> straight from <Katex tex="1+x^2=3" />, forgetting to subtract the 1.</>,
   },
 ]
 

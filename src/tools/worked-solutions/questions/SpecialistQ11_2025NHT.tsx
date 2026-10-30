@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{t=\frac{u}{g}+\frac{\sqrt{u^2+2gh}}{g}}" />,
     reason: <>Matches option <b>D</b>. Check: with <Katex tex="u=0" /> it becomes <Katex tex="\sqrt{2gh}/g=\sqrt{2h/g}" />, the familiar time to drop from rest.</>,
-    more: <>Option <b>C</b>, <Katex tex="-\tfrac ug+\tfrac{\sqrt{u^2+2gh}}{g}" />, is what you get if the drone is taken to be moving <b>down</b> at <Katex tex="u" /> when it stops: <Katex tex="h=ut+\tfrac12gt^2" />. That is shorter than the true time, because it skips the extra rise. Option <b>A</b> ignores <Katex tex="u" /> altogether.</>,
+    more: <>Option <b>C</b>, <Katex tex="-\tfrac ug+\tfrac{\sqrt{u^2+2gh}}{g}" />, is what you get if the drone is taken to be moving <b>down</b> at <Katex tex="u" /> when it stops: <Katex tex="h=ut+\tfrac12gt^2" />. That is shorter than the true time, because it skips the extra rise. Option <b>A</b> ignores <Katex tex="u" /> altogether. Option <b>B</b> adds <Katex tex="\tfrac{2u}{g}" />, the time to rise and come back down to height <Katex tex="h" />, to <Katex tex="\tfrac{\sqrt{2h}}{g}" />, but from height <Katex tex="h" /> the drone is then falling at <Katex tex="u" />, not starting from rest (and <Katex tex="\tfrac{\sqrt{2h}}{g}" /> is not even the time from rest, which is <Katex tex="\sqrt{2h/g}" />).</>,
   },
 ]
 

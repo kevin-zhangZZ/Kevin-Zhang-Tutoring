@@ -273,8 +273,8 @@ const ROWS_E: WorkingRow[] = [
     more: <>A check without the formula: the sector is <Katex tex="\tfrac16" /> of the circle, <Katex tex="\tfrac16\pi(3)^2=\tfrac{3\pi}{2}" />, and triangle <Katex tex="OPQ" /> is equilateral with side 3 (see part d.), so its area is <Katex tex="\tfrac{\sqrt3}{4}(3)^2=\tfrac{9\sqrt3}{4}" />. Sector minus triangle: <Katex tex="A=\tfrac{3\pi}{2}-\tfrac{9\sqrt3}{4}" /> again.</>,
   },
   {
-    working: <Katex display tex="\boxed{A = \frac{3\pi}{2}-\frac{9\sqrt3}{4}}" />,
-    reason: <>In the form <Katex tex="c\pi+d" /> with <Katex tex="c=\tfrac32" /> and <Katex tex="d=-\tfrac{9\sqrt3}{4}" />, about 0.815 square units.</>,
+    working: <Katex display tex="\begin{aligned} A &= \frac{9}{2}\times\frac{\pi}{3}-\frac{9}{2}\times\frac{\sqrt3}{2} \\ &= \boxed{\frac{3\pi}{2}-\frac{9\sqrt3}{4}} \end{aligned}" />,
+    reason: <>Multiply the <Katex tex="\tfrac92" /> into the bracket to reach the form <Katex tex="c\pi+d" />, with <Katex tex="c=\tfrac32" /> and <Katex tex="d=-\tfrac{9\sqrt3}{4}" />, about 0.815 square units.</>,
     more: <>The report notes some answers were not in the required form. Leaving it as <Katex tex="\tfrac92\left(\tfrac{\pi}{3}-\tfrac{\sqrt3}{2}\right)" />, or giving only the decimal 0.815, does not answer &lsquo;in the form <Katex tex="c\pi+d" />&rsquo; — expand the bracket.</>,
   },
 ]

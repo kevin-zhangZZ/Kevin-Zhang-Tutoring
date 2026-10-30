@@ -53,8 +53,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Point–gradient form through <Katex tex="(260,0)" />, the moment the train stops. Check the other end: <Katex tex="\tfrac13(260-230)=10" /> ✓.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{option A}}" />,
-    reason: <>Matches option <b>A</b>.</>,
+    working: <Katex display tex="\boxed{v(t)=\begin{cases}\tfrac13t, & 0\le t\le30\\ 10, & 30<t\le230\\ \tfrac13(260-t), & 230<t\le260\end{cases}}" />,
+    reason: <>Put the three pieces together, each with its time interval. Matches option <b>A</b>.</>,
     more: <>Option <b>B</b> has the braking piece <Katex tex="\tfrac13(230-t)" />: the right gradient through the wrong point (the Common Mistake box below). Options <b>C</b>, <b>D</b> and <b>E</b> are the slips noted under the second and third lines. Check the joins: <Katex tex="\tfrac{30}{3}=10" /> ✓ and <Katex tex="\tfrac{260-230}{3}=10" /> ✓, so the velocity never jumps, as a real train&apos;s can&apos;t. The area under the graph, <Katex tex="\tfrac12(30)(10)+200(10)+\tfrac12(30)(10)=2300" /> m, is a sensible distance between two stations.</>,
   },
 ]

@@ -81,17 +81,19 @@ const ROWS: WorkingRow[] = [
       </>
     ),
     reason: <>Multiply back by 4 (<Katex tex="4\times\tfrac12=2" />), then split so each piece is a standard integral. Keep the 2 with the <Katex tex="x" />: <Katex tex="2x" /> is the derivative of <Katex tex="x^2+1" />.</>,
-    more: <>The three pieces are a log, an <Katex tex="\tfrac{f'}{f}" /> log and an arctan. The report writes the same integral with <Katex tex="2\pi" /> taken out first: <Katex tex="2\pi\int_0^{\sqrt3}\left(\tfrac{1}{x+1}+\tfrac{x}{x^2+1}+\tfrac{1}{x^2+1}\right)dx" />.</>,
+    more: <>The three pieces are a log, an <Katex tex="\tfrac{f'}{f}" /> log and a <Katex tex="\tan^{-1}" />. The report writes the same integral with <Katex tex="2\pi" /> taken out first: <Katex tex="2\pi\int_0^{\sqrt3}\left(\tfrac{1}{x+1}+\tfrac{x}{x^2+1}+\tfrac{1}{x^2+1}\right)dx" />.</>,
   },
   {
     working: (
       <>
-        <Katex display tex="V = \pi\Big[2\log_e(x+1)+\log_e\left(x^2+1\right)" />
-        <Katex display tex="\qquad+\,2\arctan(x)\Big]_0^{\sqrt3}" />
+        <Katex display tex="V = \pi\int_0^{\sqrt3}\Big(\frac{2}{x+1}+\frac{2x}{x^2+1}" />
+        <Katex display tex="\qquad+\,\frac{2}{x^2+1}\Big)\,dx" />
+        <Katex display tex="= \pi\Big[2\log_e(x+1)+\log_e\left(x^2+1\right)" />
+        <Katex display tex="\qquad+\,2\tan^{-1}(x)\Big]_0^{\sqrt3}" />
       </>
     ),
-    reason: <><Katex tex="\int\tfrac{2}{x+1}\,dx=2\log_e(x+1)" /> (no modulus: <Katex tex="x+1>0" /> here). <Katex tex="\tfrac{2x}{x^2+1}" /> is <Katex tex="\tfrac{f'}{f}" />, giving <Katex tex="\log_e\left(x^2+1\right)" />. And <Katex tex="\int\tfrac{2}{x^2+1}\,dx=2\arctan(x)" />.</>,
-    more: <>The arctan comes from the formula sheet&apos;s <Katex tex="\int\tfrac{a}{a^2+x^2}\,dx=\tan^{-1}\left(\tfrac xa\right)" /> with <Katex tex="a=1" />. In the <Katex tex="\tfrac{f'}{f}" /> form the top is the derivative of the bottom, so it integrates straight to <Katex tex="\log_e" /> of the bottom with no substitution needed (the report notes a number of students used one). The third diagram below shows each piece as a layer of area.</>,
+    reason: <>Put the split <Katex tex="y^2" /> into the volume integral and antidifferentiate term by term. <Katex tex="\int\tfrac{2}{x+1}\,dx=2\log_e(x+1)" /> (no modulus: <Katex tex="x+1>0" /> here). <Katex tex="\tfrac{2x}{x^2+1}" /> is <Katex tex="\tfrac{f'}{f}" />, giving <Katex tex="\log_e\left(x^2+1\right)" />. And <Katex tex="\int\tfrac{2}{x^2+1}\,dx=2\tan^{-1}(x)" />.</>,
+    more: <>The <Katex tex="\tan^{-1}" /> comes from the formula sheet&apos;s <Katex tex="\int\tfrac{a}{a^2+x^2}\,dx=\tan^{-1}\left(\tfrac xa\right)" /> with <Katex tex="a=1" />. In the <Katex tex="\tfrac{f'}{f}" /> form the top is the derivative of the bottom, so it integrates straight to <Katex tex="\log_e" /> of the bottom with no substitution needed (the report notes a number of students used one). The third diagram below shows each piece as a layer of area.</>,
   },
   {
     working: (
@@ -100,7 +102,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="-\,\pi\left[0+0+0\right]" />
       </>
     ),
-    reason: <>Upper terminal: <Katex tex="\left(\sqrt3\right)^2+1=4" /> and <Katex tex="\arctan\sqrt3=\tfrac\pi3" /> (as <Katex tex="\tan\tfrac\pi3=\sqrt3" />). Lower terminal: <Katex tex="\log_e(1)=0" /> and <Katex tex="\arctan(0)=0" />, so every term vanishes.</>,
+    reason: <>Upper terminal: <Katex tex="\left(\sqrt3\right)^2+1=4" /> and <Katex tex="\tan^{-1}\left(\sqrt3\right)=\tfrac\pi3" /> (as <Katex tex="\tan\tfrac\pi3=\sqrt3" />). Lower terminal: <Katex tex="\log_e(1)=0" /> and <Katex tex="\tan^{-1}(0)=0" />, so every term vanishes.</>,
   },
   {
     working: <Katex display tex="= \pi\left[2\log_e\left(\sqrt3+1\right)+2\log_e(2)+\tfrac{2\pi}{3}\right]" />,
@@ -136,8 +138,8 @@ export default function SpecialistQ8_2020Exam1() {
           </p>
           <p>
             The given answer form is a strong hint: a single logarithm plus something, all
-            times <Katex tex="2\pi" />. The non-log part <Katex tex="b" /> can only come from an
-            arctan, which tells you a <Katex tex="\tfrac{1}{x^2+1}" /> piece must survive the
+            times <Katex tex="2\pi" />. The non-log part <Katex tex="b" /> can only come from a
+            <Katex tex="\tan^{-1}" />, which tells you a <Katex tex="\tfrac{1}{x^2+1}" /> piece must survive the
             decomposition (it turns out <Katex tex="b=\tfrac\pi3" />).
           </p>
         </Background>

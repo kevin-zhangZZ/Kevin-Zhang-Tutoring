@@ -51,20 +51,20 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="z^3+az^2+bz-52 = \left(z^2-4z+13\right)(z-k)" />,
     reason: <>The cubic has leading coefficient 1, so the other factor is <Katex tex="z-k" /> for the third root <Katex tex="k" />, which is real, since the non-real roots are already paired.</>,
-    more: <>A fourth non-real root would need its own conjugate, but a cubic has only three roots. You could also solve without the conjugate: substitute <Katex tex="z=2-3i" />, expand to <Katex tex="(-5a+2b-98)+(-12a-3b-9)i=0" />, and set the real and imaginary parts to 0 (two simultaneous equations — <Cas fn="solve">solve</Cas> on CAS), as the report shows.</>,
+    more: <>Why <Katex tex="k" /> is real: if the third root were non-real, its conjugate would have to be a root too, making four roots, but a cubic has only three. You could also solve without the conjugate: substitute <Katex tex="z=2-3i" />, expand to <Katex tex="(-5a+2b-98)+(-12a-3b-9)i=0" />, and set the real and imaginary parts to 0 (two simultaneous equations — <Cas fn="solve">solve</Cas> on CAS), as the report shows.</>,
   },
   {
     working: <Katex display tex="13\times(-k) = -52 \implies k = 4" />,
     reason: <>Equate the constant terms on each side — the only coefficient that does not involve <Katex tex="a" /> or <Katex tex="b" />.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} \left(z^2-4z+13\right)(z-4) &= z^3-8z^2+29z-52 \\ \implies a=-8,\ b&=29 \end{aligned}" />,
-    reason: <>Expand (by hand or with CAS) and equate the <Katex tex="z^2" /> and <Katex tex="z" /> coefficients.</>,
+    working: <Katex display tex="\begin{aligned} &\left(z^2-4z+13\right)(z-4) \\ &\quad= z^3-4z^2-4z^2+16z+13z-52 \\ &\quad= z^3-8z^2+29z-52 \\ &\implies a=-8,\ b=29 \end{aligned}" />,
+    reason: <>Expand (by hand or with <Cas fn="expand">expand</Cas>) and equate the <Katex tex="z^2" /> and <Katex tex="z" /> coefficients with those of <Katex tex="z^3+az^2+bz-52" />.</>,
   },
   {
     working: <Katex display tex="\boxed{ab = -8\times29 = -232}" />,
     reason: <>Matches option <b>A</b>.</>,
-    more: <>The question asks for the product <Katex tex="ab" />, not the pair. Option <b>C</b> (<Katex tex="-8" />) is <Katex tex="a" /> on its own — stopping one step early. Option <b>D</b> (<Katex tex="0" />) comes from a sign slip on the third root: using <Katex tex="z+4" /> gives <Katex tex="(z^2-4z+13)(z+4)=z^3-3z+52" />, so <Katex tex="a=0" />. The constant comes out <Katex tex="+52" />, not <Katex tex="-52" />, which exposes the slip.</>,
+    more: <>The question asks for the product <Katex tex="ab" />, not the pair. Option <b>C</b> (<Katex tex="-8" />) is <Katex tex="a" /> on its own — stopping one step early. Option <b>D</b> (<Katex tex="0" />) comes from a sign slip on the third root: using <Katex tex="z+4" /> gives <Katex tex="(z^2-4z+13)(z+4)=z^3-3z+52" />, so <Katex tex="a=0" />. The constant comes out <Katex tex="+52" />, not <Katex tex="-52" />, which exposes the slip. Option <b>B</b> (<Katex tex="-64" />, the most common wrong answer) comes from a slip in the working, and the report does not say which; if you reached it, recheck the expansion, where the <Katex tex="z" /> coefficient is <Katex tex="13\times1+(-4)\times(-4)=29" />.</>,
   },
 ]
 

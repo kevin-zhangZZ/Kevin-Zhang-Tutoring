@@ -222,7 +222,7 @@ const ROWS_EI: WorkingRow[] = [
     reason: <>The line through <Katex tex="(-1,0)" /> and <Katex tex="(3,2)" />.</>,
   },
   {
-    working: <Katex display tex="\begin{gathered} y=-2x:\quad -2x=\frac12(x+1) \\ \implies x=-\frac15,\quad y=\frac25 \end{gathered}" />,
+    working: <Katex display tex="\begin{gathered} y=-2x:\quad -2x=\frac12(x+1) \\ -4x=x+1 \\ \implies x=-\frac15,\quad y=\frac25 \end{gathered}" />,
     reason: <>The segment from <Katex tex="O" /> to <Katex tex="w" /> is perpendicular to the line (gradient <Katex tex="-2" />, the negative reciprocal of <Katex tex="\tfrac12" />), and its midpoint lies on the line. Solving finds that midpoint.</>,
   },
   {
@@ -238,8 +238,8 @@ const ROWS_EI: WorkingRow[] = [
 
 const ROWS_EII: WorkingRow[] = [
   {
-    working: <Katex display tex="\begin{aligned} \frac{x+1}{2}&=\frac{x^2+3}{6} \\ x^2-3x&=0 \\ x=0 &\text{ or } x=3 \end{aligned}" />,
-    reason: <>The region is bounded by the line <Katex tex="y=\tfrac12(x+1)" /> from part e.i. and the parabola <Katex tex="6y=x^2+3" />. First find where they cross: multiply through by 6, <Katex tex="3x+3=x^2+3" />.</>,
+    working: <Katex display tex="\begin{aligned} \frac{x+1}{2}&=\frac{x^2+3}{6} \\ 3x+3&=x^2+3 \\ x^2-3x&=0 \\ x(x-3)&=0 \\ x=0 &\text{ or } x=3 \end{aligned}" />,
+    reason: <>The region is bounded by the line <Katex tex="y=\tfrac12(x+1)" /> from part e.i. and the parabola <Katex tex="6y=x^2+3" />. First find where they cross: equate the two <Katex tex="y" />-values, multiply through by 6, and factorise.</>,
     more: <>So the line cuts the parabola at <Katex tex="\tfrac12 i" /> and at <Katex tex="3+2i" />, one of the two points it was defined through.</>,
   },
   {

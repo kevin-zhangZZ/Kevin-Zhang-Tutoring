@@ -45,12 +45,12 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}\mathrm{E}(T) &= \int_0^1 t\,f(t)\,dt \\ &= \frac{3}{2\log_e(2)}\int_0^1\frac{t}{(t+1)(2-t)}\,dt\end{aligned}" />,
-    reason: <>The mean of a continuous random variable is <Katex tex="\int t\,f(t)\,dt" /> over where <Katex tex="f" /> is non-zero; the constant comes out front.</>,
+    reason: <>The mean of a continuous random variable is <Katex tex="\int t\,f(t)\,dt" /> over the interval where <Katex tex="f" /> is non-zero (here <Katex tex="0" /> to <Katex tex="1" />); the constant comes out front.</>,
     more: <>Don't drop the <Katex tex="t" /> on the numerator: without it you are integrating <Katex tex="f(t)" /> itself, which just gives <Katex tex="1" /> (total probability). The report lists missing the <Katex tex="t" /> as one reason responses were not awarded full marks.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\frac{t}{(t+1)(2-t)} &= \frac{A}{t+1}+\frac{B}{2-t} \\ \implies t &= A(2-t)+B(t+1)\end{aligned}" />,
-    reason: <>The numerator <Katex tex="t" /> isn't a multiple of the denominator's derivative <Katex tex="1-2t" />, so split into partial fractions over the two linear factors.</>,
+    reason: <>The denominator expands to <Katex tex="2+t-t^2" />, whose derivative <Katex tex="1-2t" /> is not a multiple of the numerator <Katex tex="t" />, so the reverse chain rule fails. Split into partial fractions over the two linear factors instead.</>,
     more: <>Multiplying both sides by <Katex tex="(t+1)(2-t)" /> clears the fractions, giving an identity true for every <Katex tex="t" />. The report notes a small number of students did not realise partial fractions were needed and could not progress. Whenever the reverse chain rule fails and the denominator factorises into distinct linear factors, reach for partial fractions.</>,
   },
   {
@@ -60,7 +60,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&\int_0^1\left(\frac{-\tfrac13}{t+1}+\frac{\tfrac23}{2-t}\right)dt \\ &= \left[-\tfrac13\log_e(t+1)-\tfrac23\log_e(2-t)\right]_0^1\end{aligned}" />,
-    reason: <>Use <Katex tex="\int\frac{1}{2-t}\,dt = -\log_e(2-t)" />: the inner derivative is <Katex tex="-1" />, so a minus sign appears.</>,
+    reason: <>Integrate each piece to a logarithm: <Katex tex="\int\frac{1}{t+1}\,dt = \log_e(t+1)" />, and <Katex tex="\int\frac{1}{2-t}\,dt = -\log_e(2-t)" /> because the inner derivative is <Katex tex="-1" />, so a minus sign appears.</>,
     more: <>No absolute-value signs are needed: on <Katex tex="0\le t\le1" /> both <Katex tex="t+1" /> and <Katex tex="2-t" /> are positive. A quick check: differentiating <Katex tex="-\tfrac23\log_e(2-t)" /> gives <Katex tex="-\tfrac23\cdot\tfrac{-1}{2-t} = \tfrac{2/3}{2-t}" /> ✓.</>,
   },
   {
@@ -134,7 +134,7 @@ export default function SpecialistQ4_2025Exam1() {
               integrand by partial fractions, and integrate each piece to a logarithm.
             </p>
             <p>
-              The constant <Katex tex="\tfrac{3}{2\log_e 2}" /> looks forbidding but is chosen
+              The constant <Katex tex="\tfrac{3}{2\log_e(2)}" /> looks forbidding but is chosen
               so <Katex tex="f" /> integrates to <Katex tex="1" /> (total probability); in the mean it
               simply multiplies the final integral.
             </p>

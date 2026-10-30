@@ -124,13 +124,13 @@ const ROWS_D: WorkingRow[] = [
     reason: <><Katex tex="Q" /> has the same gradient as <Katex tex="P" />, so set <Katex tex="g'(x)" /> equal to the gradient at <Katex tex="P" /> (part b.) and solve for <Katex tex="x" />.</>,
   },
   {
-    working: <Katex display tex="(x-k)^{-\frac23} = (-k)^{-\frac23} \implies (x-k)^2 = (-k)^2" />,
-    reason: <>Take reciprocals of both sides, then cube both sides: <Katex tex="\left(a^{\frac23}\right)^3=a^2" />.</>,
+    working: <Katex display tex="\begin{aligned} (x-k)^{-\frac23} &= (-k)^{-\frac23} \\ (x-k)^{\frac23} &= (-k)^{\frac23} \\ (x-k)^2 &= (-k)^2 = k^2 \end{aligned}" />,
+    reason: <>Cancel the <Katex tex="\tfrac13" /> and take reciprocals of both sides (a negative index means reciprocal), then cube both sides to clear the fractional index: <Katex tex="\left(a^{\frac23}\right)^3=a^2" />.</>,
     more: <>Keep the square — it is what gives two answers. If you instead raise both sides to the power <Katex tex="-\tfrac32" /> and write <Katex tex="x-k=-k" />, you lose a solution and only find <Katex tex="x=0" />, which is <Katex tex="P" /> itself.</>,
   },
   {
     working: <Katex display tex="x-k = \pm k \implies x = 0 \ \text{ or } \ x = 2k" />,
-    reason: <>Square root both sides, taking <Katex tex="\pm" />. <Katex tex="x=0" /> is <Katex tex="P" />, and <Katex tex="Q" /> is a different point, so <Katex tex="Q" /> has <Katex tex="x=2k" />.</>,
+    reason: <>Square root both sides, taking <Katex tex="\pm" />, then add <Katex tex="k" />. <Katex tex="x=0" /> is <Katex tex="P" />, and <Katex tex="Q" /> is a different point, so <Katex tex="Q" /> has <Katex tex="x=2k" />.</>,
     more: <>Notice <Katex tex="x=0" /> and <Katex tex="x=2k" /> are each a distance <Katex tex="|k|" /> from <Katex tex="x=k" />, on opposite sides — the symmetry of the gradient function described in the Background.</>,
   },
   {

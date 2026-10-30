@@ -64,6 +64,7 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d}{dt}\!\left(20(1+t)^{-1}\right) = -\frac{20}{(1+t)^2}" />,
+    reason: <>Chain rule on the power: bring down the <Katex tex="-1" />, lower the power to <Katex tex="-2" />, and multiply by the derivative of <Katex tex="1+t" />, which is 1.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dx}{dt} = \frac{100-120\log_e(1+t)}{(1+t)^2}}" />,
@@ -107,9 +108,9 @@ const ROWS_D: WorkingRow[] = [
     reason: <>Quotient rule with <Katex tex="u=120\log_e(1+t)+20" />, <Katex tex="u'=\tfrac{120}{1+t}" />, <Katex tex="v=(1+t)^2" />, <Katex tex="v'=2(1+t)" />: <Katex tex="R'=\tfrac{u'v-uv'}{v^2}" />, then cancel a factor of <Katex tex="1+t" /> from top and bottom.</>,
   },
   {
-    working: <Katex display tex="\begin{gathered}R'(t)=0 \implies \log_e(1+t) = \tfrac13 \\ t = e^{1/3}-1 = 0.3956\ldots\end{gathered}" />,
-    reason: <>A maximum is at a stationary point. On CAS, <Cas fn="fMax" /> of <Katex tex="R(t)" /> for <Katex tex="t\ge0" /> gives the same <Katex tex="t" />.</>,
-    more: <>Is it a maximum? <Katex tex="R'(t)" /> is positive while <Katex tex="\log_e(1+t)<\tfrac13" /> and negative after, so <Katex tex="R" /> rises then falls. At the endpoint, <Katex tex="R(0)=20" /> (the 20 g in 15 L leaving at 15 L/min), and <Katex tex="R\to0" /> as <Katex tex="t\to\infty" />, so the stationary value is the greatest.</>,
+    working: <Katex display tex="\begin{gathered}R'(t)=0 \implies 80-240\log_e(1+t)=0 \\ \log_e(1+t) = \tfrac13 \\ t = e^{1/3}-1 = 0.3956\ldots\end{gathered}" />,
+    reason: <>A maximum is at a stationary point, so set the numerator of <Katex tex="R'(t)" /> to zero (the denominator is never zero for <Katex tex="t\ge0" />). <Katex tex="R'" /> changes from positive to negative here, so it is a maximum. On CAS, <Cas fn="fMax" /> of <Katex tex="R(t)" /> for <Katex tex="t\ge0" /> gives the same <Katex tex="t" />.</>,
+    more: <>Why the sign changes: the denominator <Katex tex="(1+t)^3" /> is positive, and the numerator <Katex tex="80-240\log_e(1+t)" /> is positive while <Katex tex="\log_e(1+t)<\tfrac13" /> and negative after, so <Katex tex="R" /> rises then falls. At the endpoint, <Katex tex="R(0)=20" /> (the 20 g in 15 L leaving at 15 L/min), and <Katex tex="R\to0" /> as <Katex tex="t\to\infty" />, so the stationary value is the greatest.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}R\!\left(e^{1/3}-1\right) &= \frac{120\times\frac13+20}{e^{2/3}} \\ &= 60e^{-2/3} = 30.805\ldots\end{aligned}" />,

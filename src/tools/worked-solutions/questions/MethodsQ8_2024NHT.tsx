@@ -16,6 +16,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(N\geq2)=0.25+0.15+0.05=0.45" />,
+    reason: <>Add the table's probabilities for <Katex tex="n=2" />, <Katex tex="3" /> and <Katex tex="4" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\Pr(N\geq1)&=1-\Pr(N=0)\\&=1-0.25=0.75\end{aligned}" />,

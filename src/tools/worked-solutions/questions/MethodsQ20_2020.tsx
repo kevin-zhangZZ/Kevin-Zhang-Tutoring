@@ -56,7 +56,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a = 2\pi n,\quad n\in Z\setminus\{0\}" />,
-    reason: <>Put <Katex tex="x=0" />: <Katex tex="\cos a=1" />, so <Katex tex="a" /> is a whole number of full turns, <Katex tex="2\pi n" />. Half a turn (<Katex tex="a=\pi" />) fails: it flips the graph.</>,
+    reason: <>Put <Katex tex="x=0" />: <Katex tex="\cos a=1" />, so <Katex tex="a" /> is a whole number of full turns, <Katex tex="2\pi n" /> (<Katex tex="n\neq0" />, since the question says <Katex tex="a\neq0" />). Half a turn (<Katex tex="a=\pi" />) fails: it flips the graph.</>,
     more: <>Conversely, any <Katex tex="a=2\pi n" /> works, because adding a whole number of full turns to the angle never changes the cosine. In graph terms (see the Background), one unit must hold a whole number of periods <Katex tex="\tfrac{2\pi}{|a|}" />. The <Katex tex="a=\pi" /> trap is the Common Mistake below; the first diagram below lets you try different values of <Katex tex="a" />.</>,
   },
   {

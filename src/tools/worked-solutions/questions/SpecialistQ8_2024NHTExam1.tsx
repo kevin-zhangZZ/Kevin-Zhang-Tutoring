@@ -35,11 +35,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="=\tfrac16(k+1)\left[k(16k+5)+6(8k+7)\right]" />,
-    reason: <>Take out the common factors <Katex tex="\tfrac16" /> and <Katex tex="(k+1)" /> straight away, rather than expanding everything. The target also has a factor <Katex tex="(k+1)" />.</>,
+    reason: <>Take out the common factor <Katex tex="\tfrac16(k+1)" /> straight away rather than expanding everything, since the target also has a factor <Katex tex="(k+1)" />. To take <Katex tex="\tfrac16" /> out of the second term, write it as <Katex tex="(k+1)(8k+7)=\tfrac16(k+1)\times6(8k+7)" />.</>,
   },
   {
     working: <Katex display tex="=\tfrac16(k+1)\left(16k^2+53k+42\right)" />,
-    reason: <><Katex tex="16k^2+5k+48k+42" />.</>,
+    reason: <>Expand inside the bracket and collect like terms: <Katex tex="k(16k+5)+6(8k+7)=16k^2+5k+48k+42=16k^2+53k+42" />.</>,
   },
   {
     working: <Katex display tex="=\tfrac16(k+1)(k+2)(16k+21)" />,

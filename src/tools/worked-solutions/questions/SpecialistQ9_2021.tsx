@@ -55,7 +55,7 @@ const ROWS: WorkingRow[] = [
         tex="\begin{aligned}\text{E: } f'(x)&=(x-3)^3-12x\\f''(x)&=3(x-3)^2-12\\&=3\big[(x-3)^2-4\big]\\&=3(x-1)(x-5)\end{aligned}"
       />
     ),
-    reason: <>Difference of two squares. This upright parabola is positive, negative between <Katex tex="x=1" /> and <Katex tex="x=5" />, then positive: two sign changes, so two points of inflection. Ruled out.</>,
+    reason: <>Difference of two squares. This upright parabola is positive for <Katex tex="x<1" />, negative for <Katex tex="1<x<5" /> and positive for <Katex tex="x>5" />: two sign changes, so two points of inflection. Ruled out.</>,
     more: <>The factorisation is <Katex tex="(x-3)^2-2^2=(x-3-2)(x-3+2)=(x-5)(x-1)" />. Option E was the most common wrong answer (22%); expanding <Katex tex="f''(x)=3x^2-18x+15" /> and checking its discriminant, <Katex tex="18^2-4(3)(15)=144>0" />, also shows two distinct roots, so <Katex tex="f''" /> does cross zero.</>,
   },
   {

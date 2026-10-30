@@ -38,7 +38,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}\text{B: } 8-2x=0 &\iff x=4\\ \text{E: } 8-4x=0 &\iff x=2\end{aligned}" />,
     reason: <>Option B is flat along <Katex tex="x=4" />, not <Katex tex="x=2" />; option E is flat along <Katex tex="x=2" />.</>,
-    more: <>Both B and E have <Katex tex="y-2" /> in the denominator, so both have vertical segments along <Katex tex="y=2" />, which the field shows. That is why the horizontal line of segments is the feature that separates them.</>,
+    more: <>Both B and E have <Katex tex="y-2" /> in the denominator, so both have vertical segments along <Katex tex="y=2" />, which the field shows. That is why the column of horizontal segments along <Katex tex="x=2" /> is the feature that separates them.</>,
   },
   {
     working: <Katex display tex="\text{E at }(3,3):\ \frac{dy}{dx}=\frac{8-12}{3-2}=-4" />,

@@ -25,12 +25,12 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}&a+b>0 \implies z+i\bar z=(a+b)(1+i)\\ &\text{is in the first quadrant}\end{aligned}" />,
     reason: <>Both <Katex tex="a" /> and <Katex tex="b" /> are positive, so the point is <Katex tex="(a+b,\,a+b)" />, on the line <Katex tex="y=x" /> with both coordinates positive. Always check the quadrant before writing down an argument.</>,
-    more: <>Only <Katex tex="a+b>0" /> is actually needed. The extra condition <Katex tex="a>b" /> doesn&apos;t affect this answer; it only fixes the sign of <Katex tex="a-b" />, which matters for the wrong expression in the last row.</>,
+    more: <>Only <Katex tex="a+b>0" /> is actually needed. The extra condition <Katex tex="a>b" /> doesn&apos;t affect this answer; it only fixes the sign of <Katex tex="a-b" />, which matters only for the sign-slip expression behind option B (see the note on option B below).</>,
   },
   {
     working: <Katex display tex="\boxed{\operatorname{Arg}(z+i\bar z)=\tfrac{\pi}{4}}" />,
     reason: <>Matches option <b>D</b>. A first-quadrant point with equal parts makes an angle of <Katex tex="45^\circ" /> with the positive real axis.</>,
-    more: <>Option B, <Katex tex="-\tfrac{\pi}{4}" />, is what <Katex tex="z-i\bar z=(a-b)-(a-b)i" /> gives when <Katex tex="a>b" />, so it comes from a sign slip in the expansion. Option E, <Katex tex="\tfrac{5\pi}{4}" />, is outside the principal range <Katex tex="(-\pi,\pi]" />, so it can never be an <Katex tex="\operatorname{Arg}" />. Option C gives two values, but <Katex tex="\operatorname{Arg}" /> (capital A) is a single value.</>,
+    more: <>Option B, <Katex tex="-\tfrac{\pi}{4}" />, is what <Katex tex="z-i\bar z=(a-b)-(a-b)i" /> gives when <Katex tex="a>b" />, so it comes from a sign slip in the expansion. Option E, <Katex tex="\tfrac{5\pi}{4}" />, is outside the principal range <Katex tex="(-\pi,\pi]" />, so it can never be an <Katex tex="\operatorname{Arg}" />. Option A, <Katex tex="-\tfrac{3\pi}{4}" />, is the angle of a point on <Katex tex="y=x" /> in the third quadrant, which would need <Katex tex="a+b<0" />. Option C gives two values, but <Katex tex="\operatorname{Arg}" /> (capital A) is a single value.</>,
   },
 ]
 

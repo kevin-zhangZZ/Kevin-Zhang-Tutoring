@@ -153,7 +153,7 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         The derivative of <Katex tex="\arcsin(t)" /> is on the formula sheet. Squaring leaves{' '}
-        <Katex tex="1-t^2" />, the same factor as part a&apos;s middle term: a hint they will combine.
+        <Katex tex="1-t^2" /> (not <Katex tex="(1-t)^2" />), the same factor as part a&apos;s middle term: a hint they will combine.
       </>
     ),
   },

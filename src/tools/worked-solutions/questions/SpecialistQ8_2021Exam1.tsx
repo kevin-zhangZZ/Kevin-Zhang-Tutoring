@@ -138,7 +138,7 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\begin{gathered} y = 0 \text{ in } (1){:}\ x^2+2x+2 = 0 \\ \Delta = 2^2-4(1)(2) = -4 < 0 \end{gathered}" />,
     reason: (
       <>
-        Substitute <Katex tex="y=0" /> into (1). Here <Katex tex="x" /> must be real, and <Katex tex="\Delta<0" /> means
+        Substitute <Katex tex="y=0" /> into (1). Here <Katex tex="x" /> must be real, and a negative discriminant, <Katex tex="\Delta<0" />, means
         there is no real <Katex tex="x" />, so this case gives no solutions.
       </>
     ),

@@ -40,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="b=\frac{12\,000}{(1+a)^{10}}=\frac{12\,000}{1.25}=9600" />,
-    reason: <>Substitute <Katex tex="(1+a)^{10}=1.25" /> back into the first equation. No rounded <Katex tex="a" /> is needed: use the exact power.</>,
+    reason: <>Substitute <Katex tex="(1+a)^{10}=1.25" /> back into the first equation. No rounded <Katex tex="a" /> is needed: use the exact power. This is less than the $10&#8202;000 handed over because the fee came off first, so <Katex tex="b" /> is not 10&#8202;000.</>,
   },
   {
     working: <Katex display tex="\boxed{a\approx0.0226,\ \ b=9600}" />,

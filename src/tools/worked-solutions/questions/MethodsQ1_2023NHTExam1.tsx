@@ -19,10 +19,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="u'=1,\quad v'=\cos(x)" />,
+    reason: <>Differentiate each factor on its own: <Katex tex="\tfrac{d}{dx}(x)=1" /> and <Katex tex="\tfrac{d}{dx}\sin(x)=\cos(x)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx}=\sin(x)+x\cos(x)}" />,
-    reason: <><Katex tex="u'v+uv'=1\cdot\sin(x)+x\cos(x)" />.</>,
+    reason: <>Substitute into the product rule: <Katex tex="u'v+uv'=1\cdot\sin(x)+x\cos(x)" />.</>,
     more: <>Check at <Katex tex="x=0" />: the gradient is <Katex tex="0+0=0" />. That fits: near 0, <Katex tex="\sin(x)\approx x" />, so <Katex tex="x\sin(x)\approx x^2" />, a parabola with a flat bottom at the origin.</>,
   },
 ]
@@ -44,7 +45,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{=\frac{\pi^2}{8}+1}" />,
     reason: <>Exact, as the paper&apos;s instructions require. VCAA writes it as <Katex tex="1+\tfrac{\pi^2}{8}" />.</>,
-    more: <>Sanity check: <Katex tex="\tfrac{\pi^2}{8}+1\approx2.23" />. On <Katex tex="\left[0,\tfrac{\pi}{2}\right]" /> the integrand runs from <Katex tex="0+1=1" /> up to <Katex tex="\tfrac{\pi}{2}+0\approx1.57" />, so the area is between <Katex tex="1\times1.57" /> and <Katex tex="1.57\times1.57\approx2.47" /> ✓.</>,
+    more: <>Sanity check: <Katex tex="\tfrac{\pi^2}{8}+1\approx2.23" />. On <Katex tex="\left[0,\tfrac{\pi}{2}\right]" /> the integrand only increases (its derivative <Katex tex="1-\sin(x)" /> is never negative), from <Katex tex="0+1=1" /> up to <Katex tex="\tfrac{\pi}{2}+0\approx1.57" />, so the area is between <Katex tex="1\times1.57" /> and <Katex tex="1.57\times1.57\approx2.47" /> ✓.</>,
   },
 ]
 

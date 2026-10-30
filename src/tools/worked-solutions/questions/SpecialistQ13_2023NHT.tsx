@@ -20,6 +20,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{u}=|\underset{\sim}{u}|^2=9" />,
+    reason: <>Multiply both sides by <Katex tex="|\underset{\sim}{u}|^2" />: the dot product must equal <Katex tex="|\underset{\sim}{u}|^2=3^2=9" />. This is the one equation we need for <Katex tex="d" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\underset{\sim}{a}\cdot\underset{\sim}{u}&=4(2)+3d(-1)+(-d)(-2)\\ &=8-3d+2d=8-d\end{aligned}" />,

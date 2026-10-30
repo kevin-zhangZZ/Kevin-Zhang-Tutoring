@@ -85,8 +85,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{solve the } 3\times3 \text{ system}" />,
-    reason: <>By <Cas fn="solve" /> with the three equations and the three unknowns.</>,
-    more: <>Enter the three equations joined by &ldquo;and&rdquo;, with <Katex tex="\{x,y,z\}" /> as the variables. One answer comes back, so the planes meet in a single point (rather than in a line, or not at all).</>,
+    reason: <>By <Cas fn="solve" />: enter the three equations joined by &ldquo;and&rdquo;, with <Katex tex="\{x,y,z\}" /> as the unknowns.</>,
+    more: <>One answer comes back, so the planes meet in a single point (rather than in a line, or not at all).</>,
   },
   {
     working: <Katex display tex="\boxed{(-5,\,2,\,2)}" />,
@@ -130,8 +130,8 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\begin{aligned} x &= -5-9\lambda \\ y &= 2+2\lambda \\ z &= 2+3\lambda, \quad \lambda\in R \end{aligned}}" />,
-    reason: <>One equation per coordinate: this is what &ldquo;parametric equations&rdquo; asks for.</>,
-    more: <>Check: in <Katex tex="\Pi_2" />, <Katex tex="3(-5-9\lambda)+6(2+2\lambda)+5(2+3\lambda) = 7" /> for every <Katex tex="\lambda" /> ✓, and in <Katex tex="\Pi_3" />, <Katex tex="(-5-9\lambda)+9(2+2\lambda)-3(2+3\lambda) = 7" /> ✓. The report&rsquo;s answer, <Katex tex="x=-5-63\lambda,\ y=2+14\lambda,\ z=2+21\lambda" />, uses the unsimplified direction; any point on the line and any multiple of the direction gives a correct set. The Cartesian form <Katex tex="\frac{x+5}{-9}=\frac{y-2}{2}=\frac{z-2}{3}" /> describes the same line but is not parametric, and the report says it was not awarded the mark.</>,
+    reason: <>One equation per coordinate, each in terms of the parameter <Katex tex="\lambda" />: this is what &ldquo;parametric equations&rdquo; asks for. A Cartesian equation of the line is not parametric and does not earn the mark.</>,
+    more: <>Check: in <Katex tex="\Pi_2" />, <Katex tex="3(-5-9\lambda)+6(2+2\lambda)+5(2+3\lambda) = 7" /> for every <Katex tex="\lambda" /> ✓, and in <Katex tex="\Pi_3" />, <Katex tex="(-5-9\lambda)+9(2+2\lambda)-3(2+3\lambda) = 7" /> ✓. The report&rsquo;s answer, <Katex tex="x=-5-63\lambda,\ y=2+14\lambda,\ z=2+21\lambda" />, uses the unsimplified direction; any point on the line and any multiple of the direction gives a correct set. The Cartesian form <Katex tex="\frac{x+5}{-9}=\frac{y-2}{2}=\frac{z-2}{3}" /> describes the same line, but the report says responses that gave this Cartesian form instead of parametric equations were not awarded the mark.</>,
   },
 ]
 

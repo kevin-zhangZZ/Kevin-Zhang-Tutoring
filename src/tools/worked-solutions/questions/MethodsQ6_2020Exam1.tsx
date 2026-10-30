@@ -191,15 +191,15 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \int\frac{x^{1/2}}{\sqrt2}\,dx &= \frac{2x^{3/2}}{3\sqrt2} = \frac{\sqrt2\,x^{3/2}}{3} \\ \int2x^2\,dx &= \frac{2x^3}{3} \end{aligned}" />,
-    reason: <>The two antiderivatives, each used twice: raise the power by 1 and divide by the new power, then <Katex tex="\tfrac{2}{3\sqrt2}=\tfrac{\sqrt2}{3}" />.</>,
+    reason: <>The two antiderivatives, each used twice: raise the power by 1 and divide by the new power, then rationalise: <Katex tex="\tfrac{2}{3\sqrt2}=\tfrac{2\sqrt2}{3\cdot2}=\tfrac{\sqrt2}{3}" />.</>,
   },
   {
     working: <Katex display tex="A_1 = \left[\frac{\sqrt2\,x^{3/2}}{3}-\frac{2x^3}{3}\right]_0^{1/2} = \frac{\sqrt2}{3}\cdot\frac{1}{2\sqrt2}-\frac{2}{3}\cdot\frac18" />,
-    reason: <><Katex tex="\left(\tfrac12\right)^{3/2}=\tfrac1{2\sqrt2}" />.</>,
+    reason: <>Substitute the upper limit <Katex tex="x=\tfrac12" />; the bracket at <Katex tex="x=0" /> is <Katex tex="0" />. Use <Katex tex="\left(\tfrac12\right)^{3/2}=\tfrac1{2\sqrt2}" /> and <Katex tex="\left(\tfrac12\right)^3=\tfrac18" />.</>,
   },
   {
     working: <Katex display tex="A_1 = \tfrac16-\tfrac1{12} = \tfrac1{12}" />,
-    reason: <>Evaluating.</>,
+    reason: <>The <Katex tex="\sqrt2" /> cancels in the first product, <Katex tex="\tfrac{\sqrt2}{3}\cdot\tfrac1{2\sqrt2}=\tfrac16" />, and <Katex tex="\tfrac23\cdot\tfrac18=\tfrac1{12}" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} A_2 &= \left[\frac{2x^3}{3}-\frac{\sqrt2\,x^{3/2}}{3}\right]_{1/2}^{1} \\ &= \left(\tfrac23-\tfrac{\sqrt2}3\right)-\left(\tfrac1{12}-\tfrac16\right) \end{aligned}" />,

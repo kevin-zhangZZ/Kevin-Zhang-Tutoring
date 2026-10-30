@@ -5,6 +5,7 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
@@ -28,7 +29,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{x^2+a}{bx+c} = \frac{x}{b}-\frac{c}{b^2}+\frac{a+\frac{c^2}{b^2}}{bx+c}" />,
-    reason: <>Divide (by hand or CAS expand) to split off a linear part. The last term tends to 0 as <Katex tex="x\to\pm\infty" />, so the linear part is the oblique asymptote.</>,
+    reason: <>Split off a linear part by dividing (by hand, or with <Cas fn="expand">expand((x²+a)/(b·x+c), x)</Cas>). The last term tends to 0 as <Katex tex="x\to\pm\infty" />, so the linear part is the oblique asymptote.</>,
     more: <>Check by multiplying back: <Katex tex="(bx+c)\left(\frac{x}{b}-\frac{c}{b^2}\right)=x^2-\frac{c^2}{b^2}" />, and adding the remainder <Katex tex="a+\frac{c^2}{b^2}" /> gives <Katex tex="x^2+a" />. The report writes the same remainder term as <Katex tex="\frac{ab^2+c^2}{b^2(bx+c)}" />.</>,
   },
   {

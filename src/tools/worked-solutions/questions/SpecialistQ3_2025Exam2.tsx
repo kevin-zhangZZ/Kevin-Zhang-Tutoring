@@ -204,7 +204,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t = \int\frac{150}{300-Q}\,dQ = -150\log_e|300-Q|+c" />,
-    reason: <>The <Katex tex="-150" /> comes from the derivative of the inside being <Katex tex="-1" />.</>,
+    reason: <>Use <Katex tex="\int\frac{1}{ax+b}\,dx=\tfrac{1}{a}\log_e|ax+b|" />. Here the inside is <Katex tex="300-Q" />, so <Katex tex="a=-1" /> and the 150 becomes <Katex tex="-150" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&t = 0, \ Q = 5: \quad 0 = -150\log_e(295)+c \\ &\implies c = 150\log_e(295)\end{aligned}" />,
@@ -218,12 +218,12 @@ const ROWS_D: WorkingRow[] = [
     ),
   },
   {
-    working: <Katex display tex="t = 150\log_e\left(\frac{295}{300-Q}\right)" />,
-    reason: <>Combining the logarithms. <Katex tex="Q" /> starts at 5, and <Katex tex="\tfrac{dQ}{dt}=0" /> at <Katex tex="Q=300" />, so <Katex tex="Q" /> never passes 300: <Katex tex="300-Q>0" />, so drop the modulus.</>,
+    working: <Katex display tex="\begin{aligned}t &= 150\log_e(295)-150\log_e(300-Q) \\ &= 150\log_e\left(\frac{295}{300-Q}\right)\end{aligned}" />,
+    reason: <>Substitute <Katex tex="c" />, then combine with <Katex tex="\log_e a-\log_e b=\log_e\tfrac{a}{b}" />. <Katex tex="Q" /> starts at 5, and <Katex tex="\tfrac{dQ}{dt}=0" /> at <Katex tex="Q=300" />, so <Katex tex="Q" /> never passes 300: <Katex tex="300-Q>0" />, so drop the modulus.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}&\frac{t}{150} = \log_e\left(\frac{295}{300-Q}\right) \\ &\implies 300-Q = 295e^{-\frac{t}{150}}\end{aligned}" />,
-    reason: <>Divide by 150, then exponentiate: <Katex tex="e^{t/150}=\tfrac{295}{300-Q}" />. Flip both sides and multiply by 295.</>,
+    working: <Katex display tex="\begin{aligned}&\frac{t}{150} = \log_e\left(\frac{295}{300-Q}\right) \\ &\implies e^{\frac{t}{150}} = \frac{295}{300-Q} \\ &\implies 300-Q = 295e^{-\frac{t}{150}}\end{aligned}" />,
+    reason: <>Divide by 150, then raise <Katex tex="e" /> to the power of both sides to undo the logarithm. Then flip both sides (so <Katex tex="e^{\frac{t}{150}}" /> becomes <Katex tex="e^{-\frac{t}{150}}" />) and multiply by 295.</>,
     more: (
       <>
         The steps that must appear: separating, integrating, finding <Katex tex="c" />, and

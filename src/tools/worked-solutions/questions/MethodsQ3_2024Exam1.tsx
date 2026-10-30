@@ -57,8 +57,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Far from <Katex tex="x=-3" /> the fraction vanishes, leaving <Katex tex="-2" />. Approached from <em>above</em> on both sides, since <Katex tex="\tfrac{1}{(x+3)^2}>0" /> always.</>,
   },
   {
-    working: <Katex display tex="g(x) = 0 \implies (x+3)^2 = \frac12 \implies x+3 = \pm\frac{1}{\sqrt2}" />,
-    reason: <>Add 2 and take reciprocals to get <Katex tex="(x+3)^2=\tfrac12" />; the square root needs <Katex tex="\pm" />, giving two <Katex tex="x" />-intercepts.</>,
+    working: <Katex display tex="\begin{aligned}g(x) = 0 \implies \frac{1}{(x+3)^2} &= 2 \\ (x+3)^2 &= \frac12 \\ x+3 &= \pm\frac{1}{\sqrt2}\end{aligned}" />,
+    reason: <>The <Katex tex="x" />-intercepts are where <Katex tex="g(x)=0" />. Add 2, then take reciprocals of both sides to get <Katex tex="(x+3)^2=\tfrac12" />; the square root needs <Katex tex="\pm" />, giving two <Katex tex="x" />-intercepts.</>,
     more: <>Incorrect <Katex tex="x" />-intercepts were a common error in the report — usually from dropping the <Katex tex="\pm" /> (losing the left intercept) or slipping when simplifying <Katex tex="\tfrac{1}{\sqrt2}" />. The two intercepts sit the same distance either side of <Katex tex="x=-3" />: the symmetry made visible.</>,
   },
   {
@@ -101,7 +101,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \left[2x+\frac{1}{x+3}\right]_{-2}^{0}" />,
-    reason: <><Katex tex="\int(x+3)^{-2}dx=-(x+3)^{-1}" />, so subtracting it gives <Katex tex="+\tfrac{1}{x+3}" />.</>,
+    reason: <><Katex tex="\int 2\,dx=2x" />. Write <Katex tex="\tfrac{1}{(x+3)^2}=(x+3)^{-2}" />: raising the power by one and dividing by it gives <Katex tex="\int(x+3)^{-2}dx=-(x+3)^{-1}" />, so subtracting it gives <Katex tex="+\tfrac{1}{x+3}" />.</>,
     more: <>Check by differentiating: <Katex tex="\tfrac{d}{dx}\left(2x+(x+3)^{-1}\right)=2-(x+3)^{-2}" />, the integrand. The report lists incorrect integration as a common error.</>,
   },
   {

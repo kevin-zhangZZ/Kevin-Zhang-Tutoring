@@ -14,7 +14,7 @@ const REPORT: SAExaminerStats = {}
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}&u=4\arcsin\!\left(\tfrac x3\right),\ \ \frac{du}{dx}=\frac{4}{\sqrt{9-x^2}} \\ &\frac{dv}{dx}=1,\ \ v=x\end{aligned}" />,
-    reason: <>There is only one factor, so treat it as <Katex tex="4\arcsin\!\left(\tfrac x3\right)\times1" />. We can differentiate arcsin (<Katex tex="\tfrac{d}{dx}\sin^{-1}\!\left(\tfrac xa\right)=\tfrac1{\sqrt{a^2-x^2}}" />, here with <Katex tex="a=3" />, then times 4) but have no standard antiderivative for it, so let it be <Katex tex="u" /> and let <Katex tex="1" /> be <Katex tex="\tfrac{dv}{dx}" />.</>,
+    reason: <>There is only one factor, so treat it as <Katex tex="4\arcsin\!\left(\tfrac x3\right)\times1" />. We can differentiate arcsin (<Katex tex="\tfrac{d}{dx}\arcsin\!\left(\tfrac xa\right)=\tfrac1{\sqrt{a^2-x^2}}" /> for <Katex tex="a>0" />, here with <Katex tex="a=3" />, then times 4) but have no standard antiderivative for it, so let it be <Katex tex="u" /> and let <Katex tex="1" /> be <Katex tex="\tfrac{dv}{dx}" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&\int_{3/2}^{3\sqrt3/2}4\arcsin\!\left(\tfrac x3\right)dx \\ &=\Big[4x\arcsin\!\left(\tfrac x3\right)\Big]_{3/2}^{3\sqrt3/2} \\ &\quad-\int_{3/2}^{3\sqrt3/2}\frac{4x}{\sqrt{9-x^2}}\,dx\end{aligned}" />,
@@ -30,11 +30,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&\int_{3/2}^{3\sqrt3/2}\frac{4x}{\sqrt{9-x^2}}\,dx \\ &=\int_{27/4}^{9/4}\frac{-2}{\sqrt w}\,dw \\ &=2\int_{9/4}^{27/4}w^{-1/2}\,dw\end{aligned}" />,
-    reason: <><Katex tex="4x\,dx=-2\,dw" />. Swapping the terminals into increasing order changes the sign.</>,
+    reason: <>From <Katex tex="\tfrac{dw}{dx}=-2x" />, <Katex tex="x\,dx=-\tfrac12\,dw" />, so <Katex tex="4x\,dx=-2\,dw" />; and <Katex tex="\sqrt{9-x^2}=\sqrt w" />. The new lower terminal is <Katex tex="\tfrac{27}4" /> and the upper is <Katex tex="\tfrac94" />; swapping them into increasing order changes the sign.</>,
   },
   {
     working: <Katex display tex="=2\Big[2\sqrt w\Big]_{9/4}^{27/4}=4\left(\frac{3\sqrt3}{2}-\frac32\right)=6\sqrt3-6" />,
-    reason: <><Katex tex="\sqrt{\tfrac{27}4}=\tfrac{3\sqrt3}2" /> and <Katex tex="\sqrt{\tfrac94}=\tfrac32" />.</>,
+    reason: <>An antiderivative of <Katex tex="w^{-1/2}" /> is <Katex tex="\frac{w^{1/2}}{1/2}=2\sqrt w" />. Then <Katex tex="\sqrt{\tfrac{27}4}=\tfrac{3\sqrt3}2" /> and <Katex tex="\sqrt{\tfrac94}=\tfrac32" />.</>,
     more: <>Without the substitution: <Katex tex="\tfrac{d}{dx}\sqrt{9-x^2}=\tfrac{-x}{\sqrt{9-x^2}}" />, so an antiderivative of <Katex tex="\tfrac{4x}{\sqrt{9-x^2}}" /> is <Katex tex="-4\sqrt{9-x^2}" />, and <Katex tex="-4\left(\tfrac32\right)+4\left(\tfrac{3\sqrt3}2\right)=6\sqrt3-6" /> ✓.</>,
   },
   {
@@ -43,7 +43,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(2\sqrt3-1\right)\pi+6-6\sqrt3}" />,
-    reason: <>In the form <Katex tex="a\pi+b" /> with <Katex tex="a=2\sqrt3-1" /> and <Katex tex="b=6-6\sqrt3" />. VCAA writes <Katex tex="b" /> as <Katex tex="6\left(1-\sqrt3\right)" />. Sanity check: the integrand rises from <Katex tex="4\cdot\tfrac\pi6\approx2.09" /> to <Katex tex="4\cdot\tfrac\pi3\approx4.19" /> over an interval of length <Katex tex="\tfrac{3\sqrt3-3}2\approx1.10" />, so the integral lies between about 2.3 and 4.6. Our answer is <Katex tex="\approx3.35" /> ✓.</>,
+    reason: <>In the form <Katex tex="a\pi+b" /> with <Katex tex="a=2\sqrt3-1" /> and <Katex tex="b=6-6\sqrt3" />. VCAA writes <Katex tex="b" /> as <Katex tex="6\left(1-\sqrt3\right)" />.</>,
+    more: <>Sanity check: the integrand rises from <Katex tex="4\cdot\tfrac\pi6\approx2.09" /> to <Katex tex="4\cdot\tfrac\pi3\approx4.19" /> over an interval of length <Katex tex="\tfrac{3\sqrt3-3}2\approx1.10" />, so the integral lies between about 2.3 and 4.6. Our answer is <Katex tex="\approx3.35" /> ✓.</>,
   },
 ]
 

@@ -21,7 +21,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}\text{B: }\ &90\%\ \text{uses}\ z\approx1.645;\\ &1.96\ \text{is for}\ 95\%\quad\times\end{aligned}" />,
-    reason: <>A 90% interval leaves 5% in each tail, so <Katex tex="z" /> = <Cas fn="invNorm" />(0.95) ≈ 1.645.</>,
+    reason: <>A 90% interval leaves 5% in each tail, so <Katex tex="z" /> = <Cas fn="invNorm">invNorm(0.95)</Cas> ≈ 1.645.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\text{C: }\ &\bar{x}=6\ \text{is the sample mean,}\\ &\text{not}\ \mu\quad\times\end{aligned}" />,

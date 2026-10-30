@@ -137,7 +137,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V = \pi\int_0^{y}\frac{4u}{1-u}\,du \implies \frac{dV}{dy} = \frac{4\pi y}{1-y}" />,
-    reason: <>The water to depth <Katex tex="y" /> is the part b.i solid cut off at height <Katex tex="y" />. Differentiating an integral with respect to its upper terminal gives back the integrand.</>,
+    reason: <>The water to depth <Katex tex="y" /> is the part b.i solid cut off at height <Katex tex="y" /> (the integration variable is renamed <Katex tex="u" /> so that <Katex tex="y" /> can be the upper terminal). Differentiating an integral with respect to its upper terminal gives back the integrand.</>,
     more: <>Or use part b.ii&apos;s antiderivative: <Katex tex="V=\pi\left(-4\log_e(1-y)-4y\right)" />, so <Katex tex="\tfrac{dV}{dy}=\pi\left(\tfrac{4}{1-y}-4\right)=\tfrac{4\pi y}{1-y}" />. Either way, <Katex tex="\tfrac{dV}{dy}=\pi x^2" /> is the area of the water surface: a little extra depth adds a thin disc of that area.</>,
   },
   {

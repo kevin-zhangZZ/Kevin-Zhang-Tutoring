@@ -76,7 +76,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(0) = \frac{-6}{-1} = 6 \implies (0,\,6)" />,
-    reason: <>The <Katex tex="y" />-intercept, on the left branch.</>,
+    reason: <>Substitute <Katex tex="x=0" /> into the original rule for the <Katex tex="y" />-intercept. It is on the left branch, since <Katex tex="0" /> is left of the asymptote <Katex tex="x=1" />.</>,
   },
   {
     working: <Katex display tex="f'(x) = 1+\frac{4}{(x-1)^2} > 0 \ \text{ for all } x\ne1" />,

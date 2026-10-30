@@ -56,8 +56,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V=\frac{2\pi}{15}\ \text{units}^3}" />,
-    reason: <><Katex tex="\tfrac13-\tfrac15=\tfrac{5-3}{15}" />. Check: <Katex tex="\tfrac\pi3" /> is the volume of the cone the line makes (radius 1, height 1, <Katex tex="\tfrac13\pi r^2h" />) and <Katex tex="\tfrac\pi5" /> is the solid the parabola makes, so the answer is cone minus inner solid ✓.</>,
-    more: <>As a size check, <Katex tex="\tfrac{2\pi}{15}\approx0.42" />, a bit under half the cone's <Katex tex="\tfrac\pi3\approx1.05" />. That fits: the shaded region is a thin crescent, much narrower than the triangle under the line.</>,
+    reason: <><Katex tex="\tfrac13-\tfrac15=\tfrac{5-3}{15}" />, so the volume is <Katex tex="\tfrac{2\pi}{15}" /> cubic units.</>,
+    more: <>Check: <Katex tex="\tfrac\pi3" /> is the volume of the cone the line makes (radius 1, height 1, <Katex tex="\tfrac13\pi r^2h" />) and <Katex tex="\tfrac\pi5" /> is the solid the parabola makes, so the answer is cone minus inner solid ✓. As a size check, <Katex tex="\tfrac{2\pi}{15}\approx0.42" />, a bit under half the cone's <Katex tex="\tfrac\pi3\approx1.05" />. That fits: the shaded region is a thin crescent, much narrower than the triangle under the line.</>,
   },
 ]
 

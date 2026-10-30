@@ -31,19 +31,19 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Unique solution: two lines meeting at one point } P" />,
+    working: <Katex display tex="\begin{gathered}\text{Unique solution:}\\ \text{two lines meeting at one point } P\end{gathered}" />,
     reason: <>Each linear equation in <Katex tex="x" /> and <Katex tex="y" /> is a line. Two lines with a unique solution cross at exactly one point.</>,
   },
   {
-    working: <Katex display tex="\text{Infinitely many: the same line } M \text{ written twice}" />,
+    working: <Katex display tex="\begin{gathered}\text{Infinitely many:}\\ \text{the same line } M \text{ written twice}\end{gathered}" />,
     reason: <>Two equations with infinitely many solutions describe one line (one is a multiple of the other).</>,
   },
   {
-    working: <Katex display tex="\text{All four hold} \iff \text{the point is } P \text{ and lies on } M" />,
+    working: <Katex display tex="\begin{gathered}\text{All four hold} \iff\\ \text{the point is } P \text{ and } P \text{ lies on } M\end{gathered}" />,
     reason: <>A solution of the combined system must satisfy the first pair, so it can only be <Katex tex="P" />, and it must also be on <Katex tex="M" />.</>,
   },
   {
-    working: <Katex display tex="P\in M:\ 1 \text{ solution};\qquad P\notin M:\ 0 \text{ solutions}" />,
+    working: <Katex display tex="\begin{gathered}P\in M:\ 1 \text{ solution}\\ P\notin M:\ 0 \text{ solutions}\end{gathered}" />,
     reason: <>The combined system can never have more solutions than the first pair, which has only one.</>,
   },
   {

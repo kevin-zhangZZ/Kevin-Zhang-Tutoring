@@ -263,7 +263,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t = \frac{\log_e(2)}{6} = 0.115524\ldots" />,
-    reason: <>Here <Katex tex="f-g" /> turns from decreasing to increasing (second derivative <Katex tex="360e^{-6t}>0" />), a minimum. Its value, <Katex tex="-1.534" />, is negative, so the gap peaks here.</>,
+    reason: <>Here <Katex tex="f-g" /> turns from decreasing to increasing (second derivative <Katex tex="360e^{-6t}>0" />), a minimum. Its value, <Katex tex="5\log_e(2)-5\approx-1.534" />, is negative, so this is the biggest gap while the exponential model is ahead.</>,
     more: (
       <>
         Substituting: <Katex tex="30\left(\tfrac{\log_e 2}{6}\right)-10+10\left(\tfrac12\right) = 5\log_e 2-5 \approx -1.534" />.
@@ -304,7 +304,7 @@ const ROWS_FI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="Ae^{-4} = 1.2" />,
-    reason: <>Subtracting 0.3. Each of these lines earns its place in a "show that".</>,
+    reason: <>Simplifying <Katex tex="-10(0.4)=-4" /> and subtracting 0.3 from both sides. Each of these lines earns its place in a "show that".</>,
     more: (
       <>
         The report's working has four lines — substitute 0.4, simplify the power to{' '}

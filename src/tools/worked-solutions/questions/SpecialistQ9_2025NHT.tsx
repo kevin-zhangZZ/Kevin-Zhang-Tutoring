@@ -21,7 +21,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Each coordinate is a product of <Katex tex="e^t" /> and a trig function, so use the product rule.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}&\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2\\&\quad=e^{2t}\Big[(\sin t+\cos t)^2+(\cos t-\sin t)^2\Big]\\&\quad=e^{2t}\big[2\sin^2 t+2\cos^2 t\big]=2e^{2t}\end{aligned}" />,
+    working: <Katex display tex="\begin{aligned}&\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2\\&\quad=e^{2t}\Big[\big(\sin(t)+\cos(t)\big)^2\\&\qquad\quad+\big(\cos(t)-\sin(t)\big)^2\Big]\\&\quad=e^{2t}\big[2\sin^2(t)+2\cos^2(t)\big]=2e^{2t}\end{aligned}" />,
     reason: <>Expanding the two squares, the <Katex tex="2\sin(t)\cos(t)" /> cross terms appear with opposite signs and cancel. Then <Katex tex="\sin^2(t)+\cos^2(t)=1" />.</>,
   },
   {

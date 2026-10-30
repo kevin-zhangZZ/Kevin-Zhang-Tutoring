@@ -153,11 +153,12 @@ const ROWS_BII: WorkingRow[] = [
     working: <Katex display tex="\boxed{f^{-1}(x)=-\frac b2-\sqrt{x+\frac{b^2+24}{4}}}" />,
     reason: <>
       Equivalently <Katex tex="f^{-1}(x)=-\tfrac12\left(b+\sqrt{b^2+4x+24}\right)" />, the quadratic-formula form the report also
-      gives. Its domain is the range of <Katex tex="f" /> on <Katex tex="(-\infty,0)" />, which is <Katex tex="(-6,\infty)" />.
+      gives. Its domain is the range of <Katex tex="f" /> on <Katex tex="(-\infty,0)" />, which is <Katex tex="(-6,\infty)" />:
+      as <Katex tex="x" /> runs from <Katex tex="-\infty" /> up to 0, <Katex tex="f(x)" /> falls from <Katex tex="\infty" /> towards{' '}
+      <Katex tex="f(0)=-6" />, which is not reached since 0 is excluded.
     </>,
     more: <>
-      Where <Katex tex="(-6,\infty)" /> comes from: <Katex tex="f(0)=-6" /> (not reached, since 0 is excluded) and{' '}
-      <Katex tex="f(x)\to\infty" /> as <Katex tex="x\to-\infty" />. Check the branch with <Katex tex="b=-3" />:{' '}
+      Check the branch with <Katex tex="b=-3" />:{' '}
       <Katex tex="f^{-1}(0)=\tfrac32-\tfrac{\sqrt{33}}{2}\approx-1.37" />, negative as it must be, and{' '}
       <Katex tex="f(-1.37)\approx1.88+4.11-6\approx0" /> ✓.
     </>,

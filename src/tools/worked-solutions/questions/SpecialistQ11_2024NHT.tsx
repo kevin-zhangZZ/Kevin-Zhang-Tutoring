@@ -14,7 +14,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="u=(\log_e(x))^n,\quad \frac{dv}{dx}=x^2" />,
     reason: <>The integrand is a product. Choose the power of the log as <Katex tex="u" />: differentiating it lowers the power to <Katex tex="n-1" />, which is how <Katex tex="I_{n-1}" /> appears. <Katex tex="x^2" /> is easy to integrate.</>,
-    more: <>Integration by parts rearranges the product rule: <Katex tex="\int u\,\tfrac{dv}{dx}\,dx = uv-\int v\,\tfrac{du}{dx}\,dx" />. Choosing <Katex tex="u=x^2" /> instead would need an antiderivative of <Katex tex="(\log_e(x))^n" />, which is harder than the original.</>,
+    more: <>Integration by parts is the product rule rearranged. Choosing <Katex tex="u=x^2" /> instead would need an antiderivative of <Katex tex="(\log_e(x))^n" />, which is harder than the original.</>,
   },
   {
     working: <Katex display tex="\frac{du}{dx}=n(\log_e(x))^{n-1}\cdot\frac{1}{x},\quad v=\frac{x^3}{3}" />,
@@ -22,7 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}I_n&=\left[\frac{x^3}{3}(\log_e(x))^n\right]_1^e\\ &\quad-\int_1^e\frac{x^3}{3}\cdot\frac{n(\log_e(x))^{n-1}}{x}\,dx\end{aligned}" />,
-    reason: <>Substitute into the parts formula, keeping the terminals on both pieces.</>,
+    reason: <>Substitute into the integration by parts formula, <Katex tex="\int_a^b u\,\tfrac{dv}{dx}\,dx = \big[uv\big]_a^b-\int_a^b v\,\tfrac{du}{dx}\,dx" />, keeping the terminals on both pieces.</>,
   },
   {
     working: <Katex display tex="\left[\frac{x^3}{3}(\log_e(x))^n\right]_1^e=\frac{e^3}{3}(1)^n-\frac{1}{3}(0)^n=\frac{e^3}{3}" />,

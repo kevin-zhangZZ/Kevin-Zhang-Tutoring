@@ -23,8 +23,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve(80 − 2t³ − t²/2 = 0, t) | t ≥ 0  ⇒  t = 3.3386…</Cas>,
-    reason: <>The car stops when <Katex tex="v=0" />. The cubic has no tidy root, so use CAS and keep the full value.</>,
-    more: <>Call the stopping time <Katex tex="T" />. Since <Katex tex="v" /> decreases from 80 to 0 on <Katex tex="[0,T]" />, it never goes negative, so the car never reverses: distance equals displacement here.</>,
+    reason: <>The car stops when <Katex tex="v=0" />. The cubic has no tidy root, so use CAS. Call this stopping time <Katex tex="T" /> and keep its full value.</>,
+    more: <>Since <Katex tex="v" /> decreases from 80 to 0 on <Katex tex="[0,T]" />, it never goes negative, so the car never reverses: distance equals displacement here.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}d&=\int_0^{T}\left(80-2t^3-\frac{t^2}{2}\right)dt\\ &=\left[80t-\frac{t^4}{2}-\frac{t^3}{6}\right]_0^{T}\end{aligned}" />,

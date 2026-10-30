@@ -50,7 +50,7 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="z_1 = 1+2i \to (1,2), \qquad \overline{z_1} = 1-2i \to (1,-2)" />,
-    reason: <>Conjugation reflects in the real axis, so the two points sit one above the other at <Katex tex="\text{Re}(z)=1" />.</>,
+    reason: <>The conjugate flips the sign of the imaginary part (a reflection in the real axis), so the two points sit one above the other at <Katex tex="\text{Re}(z)=1" />.</>,
   },
   {
     working: (
@@ -108,7 +108,11 @@ const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{check } z^2: \ c-2b+5 = 5-4+5 = 6 \ \checkmark" />,
     reason: <>The <Katex tex="z^2" /> terms come from <Katex tex="z^2\cdot c" />, <Katex tex="-2z\cdot bz" /> and <Katex tex="5\cdot z^2" />; they match the quartic's 6, confirming the factorisation.</>,
-    more: <>The <Katex tex="z" /> coefficient checks too: <Katex tex="-2c+5b = -10+10 = 0" />, and the quartic has no <Katex tex="z" /> term. So the second factor is <Katex tex="z^2+2z+5" />.</>,
+    more: <>The <Katex tex="z" /> coefficient checks too: <Katex tex="-2c+5b = -10+10 = 0" />, and the quartic has no <Katex tex="z" /> term.</>,
+  },
+  {
+    working: <Katex display tex="f(z) = \left(z^2-2z+5\right)\left(z^2+2z+5\right)" />,
+    reason: <>Substituting <Katex tex="b=2" /> and <Katex tex="c=5" />. The remaining solutions are the roots of the second factor.</>,
   },
   {
     working: <Katex display tex="z^2+2z+5 = 0 \implies (z+1)^2 = -4" />,

@@ -37,8 +37,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{da}{dt} = 4-2t = 0 \implies t=2" />,
-    reason: <>To find where <Katex tex="a" /> is largest, find where <em>its</em> derivative is zero: the stationary point of the acceleration, not of the velocity.</>,
-    more: <><Katex tex="a=4t-t^2" /> is a parabola opening downwards, so its one stationary point is its maximum. The endpoints confirm it: <Katex tex="a(0)=0" /> and <Katex tex="a(4)=0" />, both less than <Katex tex="a(2)" />.</>,
+    reason: <>To find where <Katex tex="a" /> is largest, find where <em>its</em> derivative is zero: the stationary point of the acceleration, not of the velocity. <Katex tex="a=4t-t^2" /> is a parabola opening downwards, so this stationary point is its maximum.</>,
+    more: <>The endpoints confirm it: <Katex tex="a(0)=0" /> and <Katex tex="a(4)=0" />, both less than <Katex tex="a(2)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a(2) = 4(2)-2^2 = 4 \ \text{m s}^{-2}}" />,
@@ -62,10 +62,12 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered} (T-8)\times\frac{32}{3} = 96-\frac{128}{3} = \frac{160}{3} \\ \implies T-8 = 5 \end{gathered}" />,
+    reason: <>Take the two curved sections away from the total, then divide by the constant velocity: <Katex tex="\tfrac{160}{3}\div\tfrac{32}{3}=5" />.</>,
   },
   {
     working: <Katex display tex="\boxed{T=13}" />,
-    reason: <>A check: 4 s speeding up, 5 s at constant velocity, 4 s slowing down. The middle section is <Katex tex="5\times\tfrac{32}{3}=\tfrac{160}{3}" /> m, and <Katex tex="\tfrac{64}{3}+\tfrac{160}{3}+\tfrac{64}{3}=\tfrac{288}{3}=96" /> m.</>,
+    reason: <>Add 8 to both sides.</>,
+    more: <>A check: 4 s speeding up, 5 s at constant velocity, 4 s slowing down. The middle section is <Katex tex="5\times\tfrac{32}{3}=\tfrac{160}{3}" /> m, and <Katex tex="\tfrac{64}{3}+\tfrac{160}{3}+\tfrac{64}{3}=\tfrac{288}{3}=96" /> m.</>,
   },
 ]
 
@@ -110,8 +112,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{N_{\min} = 348 \ \text{N}, \quad N_{\max} = 828 \ \text{N}}" />,
-    reason: <>In newtons, as asked. Sanity check: standing still, the floor pushes with <Katex tex="60\times9.8=588" /> N. Speeding up on the way up the floor must push harder; slowing down near the top, less. 348 and 828 sit either side of 588.</>,
-    more: <>VCAA also accepts the answers in terms of <Katex tex="g" />: <Katex tex="60g-240" /> and <Katex tex="60g+240" />.</>,
+    reason: <>The minimum is while slowing down near the top, the maximum while speeding up near the bottom. In newtons, as asked.</>,
+    more: <>Sanity check: standing still, the floor pushes with <Katex tex="60\times9.8=588" /> N. Speeding up on the way up the floor must push harder; slowing down near the top, less. 348 and 828 sit either side of 588. VCAA also accepts the answers in terms of <Katex tex="g" />: <Katex tex="60g-240" /> and <Katex tex="60g+240" />.</>,
   },
 ]
 

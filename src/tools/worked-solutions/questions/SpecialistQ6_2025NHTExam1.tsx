@@ -16,7 +16,7 @@ const ROWS_A: WorkingRow[] = [
     reason: <>If the lines met, some point would be on both, so for some <Katex tex="t" /> and <Katex tex="s" /> the <Katex tex="\underset{\sim}{i}" />, <Katex tex="\underset{\sim}{j}" /> and <Katex tex="\underset{\sim}{k}" /> components would all agree. Write <Katex tex="\underset{\sim}{r}_1(t)=(1+t)\underset{\sim}{i}+(-2+3t)\underset{\sim}{j}+(4-t)\underset{\sim}{k}" /> and <Katex tex="\underset{\sim}{r}_2(s)=2s\underset{\sim}{i}+(3+s)\underset{\sim}{j}+(-3+4s)\underset{\sim}{k}" /> and equate.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} t&=2s-1 \\ -2+3(2s-1)&=3+s \\ 5s&=8\implies s=\tfrac85,\ t=\tfrac{11}{5} \end{aligned}" />,
+    working: <Katex display tex="\begin{aligned} t&=2s-1 \\ -2+3(2s-1)&=3+s \\ 6s-5&=3+s \\ 5s&=8\implies s=\tfrac85,\ t=\tfrac{11}{5} \end{aligned}" />,
     reason: <>Two unknowns, three equations: solve the first two, then test the third.</>,
   },
   {
@@ -46,6 +46,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} |\underset{\sim}{n}|&=\sqrt{13^2+(-6)^2+(-5)^2} \\ &=\sqrt{169+36+25}=\sqrt{230} \end{aligned}" />,
+    reason: <>The magnitude of <Katex tex="\underset{\sim}{n}" /> is needed to turn it into the unit vector <Katex tex="\hat{\underset{\sim}{n}}=\tfrac{1}{\sqrt{230}}\underset{\sim}{n}" /> in the distance step.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} &A(1,-2,4)\text{ on }L_1,\quad B(0,3,-3)\text{ on }L_2 \\ &\overrightarrow{AB}=-\underset{\sim}{i}+5\underset{\sim}{j}-7\underset{\sim}{k} \end{aligned}" />,
@@ -53,7 +54,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="d=\frac{\left|\overrightarrow{AB}\cdot\underset{\sim}{n}\right|}{|\underset{\sim}{n}|}=\frac{|-13-30+35|}{\sqrt{230}}=\frac{8}{\sqrt{230}}" />,
-    reason: <>The shortest distance is the length of the component of <Katex tex="\overrightarrow{AB}" /> along the common normal: the scalar resolute <Katex tex="\overrightarrow{AB}\cdot\hat{\underset{\sim}{n}}" />, taken as a positive length.</>,
+    reason: <>The shortest distance is the length of the component of <Katex tex="\overrightarrow{AB}" /> along <Katex tex="\underset{\sim}{n}" /> (the direction perpendicular to both lines): the scalar resolute <Katex tex="\overrightarrow{AB}\cdot\hat{\underset{\sim}{n}}=\tfrac{\overrightarrow{AB}\cdot\underset{\sim}{n}}{|\underset{\sim}{n}|}" />, taken as a positive length.</>,
     more: <>The dot product is <Katex tex="(-1)(13)+(5)(-6)+(-7)(-5)=-13-30+35=-8" />. The sign only says which way <Katex tex="\underset{\sim}{n}" /> points relative to <Katex tex="\overrightarrow{AB}" />; a distance takes its absolute value.</>,
   },
   {

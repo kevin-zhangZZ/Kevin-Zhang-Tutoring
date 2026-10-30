@@ -33,6 +33,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g'(x)=2x+2\ \Rightarrow\ g'\big(f(x)\big)=2f(x)+2" />,
+    reason: <>Differentiate <Katex tex="g" />, then replace every <Katex tex="x" /> with <Katex tex="f(x)" /> to evaluate <Katex tex="g'" /> at the inner function.</>,
   },
   {
     working: <Katex display tex="f'(x)=2e^{2x+3}=2f(x)" />,
@@ -41,6 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}h'(x)&=\big(2f(x)+2\big)\cdot2f(x)\\&=4f(x)\big(f(x)+1\big)\end{aligned}" />,
+    reason: <>Substitute both pieces into the chain rule, then take the common factor 2 out of the first bracket: <Katex tex="2f(x)+2=2\big(f(x)+1\big)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{h'(x)=4f(x)\big(f(x)+1\big)}" />,

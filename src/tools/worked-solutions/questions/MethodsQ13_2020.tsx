@@ -40,8 +40,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(x) \xrightarrow{\ x\,\to\,2x\ } \cos(2x) \xrightarrow{\ x\,\to\,x+2\ } \cos\bigl(2(x+2)\bigr)" />,
-    reason: <>Replacing <Katex tex="x" /> by <Katex tex="2x" /> is a dilation by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis. Then replacing <Katex tex="x" /> by <Katex tex="x+2" /> moves the graph 2 units left.</>,
-    more: <>Build the new rule from <Katex tex="\cos(x)" /> one step at a time, in this order. Replacing <Katex tex="x" /> by <Katex tex="2x" /> halves every <Katex tex="x" />-coordinate.</>,
+    reason: <>Replacing <Katex tex="x" /> by <Katex tex="2x" /> is a dilation by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis: it halves every <Katex tex="x" />-coordinate. Then replacing <Katex tex="x" /> by <Katex tex="x+2" /> moves the graph 2 units left.</>,
+    more: <>Build the new rule from <Katex tex="\cos(x)" /> one step at a time, in this order.</>,
   },
   {
     working: <Katex display tex="x' = \tfrac12x-2, \qquad y' = y" />,

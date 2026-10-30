@@ -19,10 +19,12 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="400=0\times10+\tfrac12a(10)^2=50a" />,
+    reason: <>Substitute the known values. The <Katex tex="ut" /> term is zero because the car starts from rest, and <Katex tex="\tfrac12\times10^2=50" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a=8\ \text{m s}^{-2}}" />,
-    reason: <>Divide by 50. Sanity check: a fast electric car reaches about 100 km/h in a few seconds, around <Katex tex="8" /> to <Katex tex="10\ \text{m s}^{-2}" />, so 8 is realistic.</>,
+    reason: <>Divide both sides by 50.</>,
+    more: <>Sanity check: a fast electric car reaches about 100 km/h in a few seconds, around <Katex tex="8" /> to <Katex tex="10\ \text{m s}^{-2}" />, so 8 is realistic.</>,
   },
 ]
 
@@ -33,8 +35,8 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{v=80\ \text{m s}^{-1}}" />,
-    reason: <>Check with a formula that doesn&apos;t use <Katex tex="t" />: <Katex tex="v^2=u^2+2as=0+2(8)(400)=6400" />, so <Katex tex="v=80" /> ✓.</>,
-    more: <>Another check: with constant acceleration from rest, the average speed is half the final speed, <Katex tex="\tfrac{80}{2}=40" />, and <Katex tex="40\times10=400" /> m ✓. Part b. uses exactly this idea.</>,
+    reason: <>The car only ever moves forward, so its speed is just this velocity, 80.</>,
+    more: <>Check with a formula that doesn&apos;t use <Katex tex="t" />: <Katex tex="v^2=u^2+2as=0+2(8)(400)=6400" />, so <Katex tex="v=80" /> ✓. Another check: with constant acceleration from rest, the average speed is half the final speed, <Katex tex="\tfrac{80}{2}=40" />, and <Katex tex="40\times10=400" /> m ✓. Part b. uses exactly this idea.</>,
   },
 ]
 
@@ -54,7 +56,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{V}{4}\ \text{m s}^{-1}}" />,
-    reason: <>VCAA&apos;s route: the average over all 12 seconds is <Katex tex="\tfrac V2" />, and the first 6 seconds average half of that, <Katex tex="\tfrac12\times\tfrac V2=\tfrac V4" />.</>,
+    reason: <>Simplify: half of <Katex tex="\tfrac V2" /> is <Katex tex="\tfrac V4" />. Not <Katex tex="\tfrac V2" />: that is the speed reached at <Katex tex="t=6" />, not the average over the first 6 seconds.</>,
+    more: <>VCAA&apos;s route: the average over all 12 seconds is <Katex tex="\tfrac V2" />, and the first 6 seconds average half of that, <Katex tex="\tfrac12\times\tfrac V2=\tfrac V4" />.</>,
   },
 ]
 

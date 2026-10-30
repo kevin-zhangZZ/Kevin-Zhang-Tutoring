@@ -16,6 +16,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(1)=-1+1+50" />,
+    reason: <>Substitute <Katex tex="t=1" /> into the derivative <Katex tex="f'(t)" />, not into <Katex tex="f(t)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(1)=50.0}" />,

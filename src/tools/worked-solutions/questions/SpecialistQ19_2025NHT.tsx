@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{6b^2-4b-5=0}" />,
     reason: <>Matches option <b>D</b>.</>,
-    more: <>Option <b>C</b>, <Katex tex="8b^2-4b-5=0" />, uses <Katex tex="b^2\times4" /> instead of <Katex tex="b^2\times2" />, treating <Katex tex="\operatorname{Var}(Y)=2" /> as the standard deviation and squaring it. Option <b>A</b>, multiplied by 4, is <Katex tex="8b^2-4b-35=0" />: that treats both 2 and 6 as standard deviations, <Katex tex="(1-2b)^2+4b^2=36" />.</>,
+    more: <>Option <b>C</b>, <Katex tex="8b^2-4b-5=0" />, uses <Katex tex="b^2\times4" /> instead of <Katex tex="b^2\times2" />, treating <Katex tex="\operatorname{Var}(Y)=2" /> as the standard deviation and squaring it. Option <b>A</b>, multiplied by 4, is <Katex tex="8b^2-4b-35=0" />: that treats both 2 and 6 as standard deviations, <Katex tex="(1-2b)^2+4b^2=36" />. Option <b>B</b>, <Katex tex="18b^2-8b-5=0" />, comes from <Katex tex="a=1-4b" />, wrongly squaring the 2 in the mean equation: <Katex tex="(1-4b)^2+2b^2=6" />.</>,
   },
 ]
 

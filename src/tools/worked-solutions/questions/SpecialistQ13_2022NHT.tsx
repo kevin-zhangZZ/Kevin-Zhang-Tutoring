@@ -22,6 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(\theta) = \frac{126}{9\times15} = \frac{126}{135} = \frac{14}{15}" />,
+    reason: <>Substitute the three values, then cancel the common factor of 9 (<Katex tex="126=9\times14" /> and <Katex tex="135=9\times15" />).</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\cos(2\theta) &= 2\cos^2(\theta)-1\\ &= 2\left(\frac{14}{15}\right)^2-1\\ &= \frac{392}{225}-\frac{225}{225}\end{aligned}" />,

@@ -154,7 +154,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(1) = 2(1-2)e^{0}" />,
-    reason: <><Katex tex="e^{1-1}=e^0=1" />, so this is clean by hand. On CAS, <Cas fn="define" /> <Katex tex="f(x)" /> first, then <Cas fn="derivative">d/dx(f(x)) | x = 1</Cas>.</>,
+    reason: <><Katex tex="e^{1-1}=e^0=1" />, so this is clean by hand. On CAS, <Cas fn="define">Define f(x) = 2x·e^(1 − x²)</Cas> first, then <Cas fn="derivative">d/dx(f(x)) | x = 1</Cas>.</>,
     more: <>Defining <Katex tex="f" /> now means every later part can use it without retyping the rule.</>,
   },
   {
@@ -313,7 +313,7 @@ const ROWS_EIII: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve(∫(f(x) − y1, x, 0, n) = ∫(y2 − f(x), x, n, 3), n) | 1 &lt; n &lt; 3</Cas>,
-    reason: <><Cas fn="define" /> <Katex tex="y_1" /> and <Katex tex="y_2" /> from parts e.i. and e.ii. rather than retyping them. <Katex tex="n" /> is inside and outside exponentials, so solve on CAS with <Katex tex="1<n<3" />.</>,
+    reason: <>With <Katex tex="f" /> already defined (part a.), <Cas fn="define">Define</Cas> <Katex tex="y_1" /> and <Katex tex="y_2" /> as parts e.i. and e.ii.'s rules rather than retyping them. <Katex tex="n" /> is inside and outside exponentials, so solve on CAS with <Katex tex="1<n<3" />.</>,
     more: <>The report notes that writing out entire expressions often led to transcription errors and misuse of brackets. Keep the restriction: without it CAS also returns <Katex tex="n\approx0.387" />.</>,
   },
   {

@@ -77,8 +77,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a=3}" />,
-    reason: <>The question asks for <b>a</b> value. VCAA also accepts <Katex tex="a=0" />.</>,
-    more: <>At <Katex tex="a=0" /> the gradient formula fails, but the equations are <Katex tex="2y=3" /> (horizontal) and <Katex tex="x=\tfrac12" /> (vertical), which are perpendicular. Check <Katex tex="a=3" />: the lines are <Katex tex="3x-y=3" /> (gradient 3) and <Katex tex="x+3y=\tfrac72" /> (gradient <Katex tex="-\tfrac13" />), and <Katex tex="3\times\left(-\tfrac13\right)=-1" />.</>,
+    reason: <>The question asks for <b>a</b> value. VCAA also accepts <Katex tex="a=0" />: there the gradient formula fails, but the equations become <Katex tex="2y=3" /> (horizontal) and <Katex tex="x=\tfrac12" /> (vertical), which are perpendicular.</>,
+    more: <>Check <Katex tex="a=3" />: the lines are <Katex tex="3x-y=3" /> (gradient 3) and <Katex tex="x+3y=\tfrac72" /> (gradient <Katex tex="-\tfrac13" />), and <Katex tex="3\times\left(-\tfrac13\right)=-1" />.</>,
   },
 ]
 

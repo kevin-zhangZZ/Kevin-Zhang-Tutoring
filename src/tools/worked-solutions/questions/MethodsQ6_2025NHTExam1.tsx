@@ -105,11 +105,8 @@ const ROWS_B: WorkingRow[] = [
     reason: <>
       Given the first attempt failed (the <Katex tex="A'" /> branch of the tree in part a.i), &ldquo;successful on either the
       second or third attempt&rdquo; is two paths: succeed on the second, or fail the second and then succeed on the third.
-      Add the two paths.
-    </>,
-    more: <>
-      Here <Katex tex="\Pr(C\mid B')" /> is the probability on the last branch of the tree: the third jump succeeds, given that
-      the first two failed. Call it <Katex tex="p" />.
+      Add the two paths. <Katex tex="\Pr(C\mid B')" /> is the last branch of the tree (labelled <Katex tex="p" />): the third
+      jump succeeds, given that the first two failed.
     </>,
   },
   {
@@ -118,11 +115,12 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="0.5\Pr(C\mid B')=0.2" />,
+    reason: <>Subtract 0.5 from both sides.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(C\mid B')=0.4}" />,
     reason: <>
-      Check through the complement: given <Katex tex="A'" />, failing both remaining jumps has probability{' '}
+      Divide both sides by 0.5. Check through the complement: given <Katex tex="A'" />, failing both remaining jumps has probability{' '}
       <Katex tex="0.5\times(1-0.4)=0.3=1-0.7" /> ✓.
     </>,
   },

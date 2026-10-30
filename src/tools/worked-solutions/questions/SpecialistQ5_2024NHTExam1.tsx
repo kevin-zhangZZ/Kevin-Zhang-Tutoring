@@ -16,9 +16,12 @@ const ROWS: WorkingRow[] = [
     reason: <>An <Katex tex="x" />-intercept of 1 means the point <Katex tex="(1,0)" />. Checking it satisfies the equation confirms the point, and recalls <Katex tex="\arctan\!\left(\tfrac1{\sqrt3}\right)=\tfrac\pi6" />, which we need again below.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}&\frac{d}{dx}\left(6e^y\arctan\!\left(\tfrac{x}{\sqrt3}\right)\right) \\ &=6e^y\frac{dy}{dx}\arctan\!\left(\tfrac{x}{\sqrt3}\right) \\ &\quad+\frac{6\sqrt3\,e^y}{x^2+3}\end{aligned}" />,
-    reason: <>A product of <Katex tex="6e^y" /> and <Katex tex="\arctan\!\left(\tfrac x{\sqrt3}\right)" />, so use the product rule. Differentiating <Katex tex="e^y" /> with respect to <Katex tex="x" /> needs the chain rule, giving <Katex tex="e^y\tfrac{dy}{dx}" />.</>,
-    more: <>For the arctan: the formula sheet gives <Katex tex="\tfrac{d}{dx}\tan^{-1}(ax)=\tfrac{a}{1+(ax)^2}" />. With <Katex tex="a=\tfrac1{\sqrt3}" />: <Katex tex="\dfrac{1/\sqrt3}{1+x^2/3}=\dfrac{3/\sqrt3}{3+x^2}=\dfrac{\sqrt3}{x^2+3}" />.</>,
+    working: <Katex display tex="\begin{aligned}\frac{d}{dx}\arctan\!\left(\tfrac{x}{\sqrt3}\right)&=\frac{1/\sqrt3}{1+x^2/3} \\ &=\frac{3/\sqrt3}{3+x^2} \\ &=\frac{\sqrt3}{x^2+3}\end{aligned}" />,
+    reason: <>The relation can&apos;t be rearranged into <Katex tex="y=\ldots" />, so differentiate every term with respect to <Katex tex="x" /> as it stands. First find the derivative of the arctan factor, which the product rule needs next. The formula sheet gives <Katex tex="\tfrac{d}{dx}\tan^{-1}(ax)=\tfrac{a}{1+(ax)^2}" />; here <Katex tex="a=\tfrac1{\sqrt3}" />. Multiply top and bottom by 3 to clear the fractions, and <Katex tex="\tfrac{3}{\sqrt3}=\sqrt3" />.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned}&\frac{d}{dx}\left(6e^y\arctan\!\left(\tfrac{x}{\sqrt3}\right)\right) \\ &=6e^y\frac{dy}{dx}\arctan\!\left(\tfrac{x}{\sqrt3}\right) \\ &\quad+6e^y\cdot\frac{\sqrt3}{x^2+3} \\ &=6e^y\arctan\!\left(\tfrac{x}{\sqrt3}\right)\frac{dy}{dx} \\ &\quad+\frac{6\sqrt3\,e^y}{x^2+3}\end{aligned}" />,
+    reason: <>A product of <Katex tex="6e^y" /> and <Katex tex="\arctan\!\left(\tfrac x{\sqrt3}\right)" />, so use the product rule. <Katex tex="y" /> is a function of <Katex tex="x" />, so differentiating <Katex tex="e^y" /> with respect to <Katex tex="x" /> needs the chain rule, giving <Katex tex="e^y\tfrac{dy}{dx}" />.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\left(-\pi\cos(y)\right)=\pi\sin(y)\frac{dy}{dx}" />,
@@ -34,7 +37,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\pi\frac{dy}{dx}=-\frac{3\sqrt3}{2}\implies\frac{dy}{dx}=-\frac{3\sqrt3}{2\pi}" />,
-    reason: <>This is the gradient of the <b>tangent</b> at <Katex tex="(1,0)" />. The question wants the line perpendicular to the curve.</>,
+    reason: <>This is the gradient of the <b>tangent</b> at <Katex tex="(1,0)" />. The line perpendicular to the curve is perpendicular to this tangent (the normal).</>,
   },
   {
     working: <Katex display tex="m_N=-\frac{1}{dy/dx}=\frac{2\pi}{3\sqrt3}=\frac{2\sqrt3\,\pi}{9}" />,

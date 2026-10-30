@@ -39,11 +39,12 @@ const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{sd}(S+D) = \sqrt{2500} = 50" />,
     reason: <>The standard deviation is the square root of the variance.</>,
-    more: <>A 3–4–5 triangle in disguise: <Katex tex="\sqrt{30^2+40^2}=50" />. Standard deviations of independent variables combine like the two shorter sides of a right-angled triangle, which the widget in part b. shows.</>,
+    more: <>A 3–4–5 triangle in disguise: <Katex tex="\sqrt{30^2+40^2}=50" />. Standard deviations of independent variables combine like the two shorter sides of a right-angled triangle, which the widget in part b shows.</>,
   },
   {
     working: <Katex display tex="\boxed{\begin{aligned} \text{E}(S+D) &= 4500\text{ pages} \\ \text{sd}(S+D) &= 50\text{ pages} \end{aligned}}" />,
-    reason: <>Sanity check: 50 is more than either sd alone (two uncertain print runs are more uncertain than one) but less than <Katex tex="40+30=70" />, because some of the variation in one cartridge cancels against the other.</>,
+    reason: <>Both quantities the question asks for, in pages.</>,
+    more: <>Sanity check: 50 is more than either sd alone (two uncertain print runs are more uncertain than one) but less than <Katex tex="40+30=70" />, because some of the variation in one cartridge cancels against the other.</>,
   },
 ]
 
@@ -86,7 +87,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sqrt n = 4 \implies \boxed{n = 16}" />,
-    reason: <>Sanity check: a sample of 16 has <Katex tex="\tfrac{\sigma}{\sqrt n}=\tfrac{40}{4}=10" />, and <Katex tex="1980\pm1.96\times10=1980\pm19.6" /> gives back <Katex tex="(1960.4,\ 1999.6)" />.</>,
+    reason: <>Rearrange <Katex tex="\frac{40}{\sqrt n}=10" /> to <Katex tex="\sqrt n=\frac{40}{10}=4" />, then square both sides. <Katex tex="n" /> is a sample size, so it must be a positive whole number, and 16 is.</>,
+    more: <>Sanity check: a sample of 16 has <Katex tex="\tfrac{\sigma}{\sqrt n}=\tfrac{40}{4}=10" />, and <Katex tex="1980\pm1.96\times10=1980\pm19.6" /> gives back <Katex tex="(1960.4,\ 1999.6)" />.</>,
   },
 ]
 

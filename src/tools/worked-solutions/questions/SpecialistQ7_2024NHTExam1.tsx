@@ -21,8 +21,8 @@ const ROWS: WorkingRow[] = [
     more: <>Here <Katex tex="x=8t>0" /> for every <Katex tex="t\in[1,3]" />, so <Katex tex="x" /> is a genuine (positive) radius. Notice <Katex tex="y=t^2-8\log_e(t)" /> is negative for much of the interval (<Katex tex="y(3)=9-8\log_e3\approx0.2" />, <Katex tex="y(2)\approx-1.5" />), which is why using <Katex tex="y" /> as the radius would go badly wrong.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}&64+\left(2t-\frac8t\right)^2 \\ &=64+4t^2-32+\frac{64}{t^2} \\ &=4t^2+32+\frac{64}{t^2}\end{aligned}" />,
-    reason: <>Expand: <Katex tex="\left(2t-\tfrac8t\right)^2=4t^2-2(2t)\left(\tfrac8t\right)+\tfrac{64}{t^2}" />, and the middle term is <Katex tex="-32" />.</>,
+    working: <Katex display tex="\begin{aligned}&\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2 \\ &=64+\left(2t-\frac8t\right)^2 \\ &=64+4t^2-32+\frac{64}{t^2} \\ &=4t^2+32+\frac{64}{t^2}\end{aligned}" />,
+    reason: <>Simplify what is under the square root first. Expand: <Katex tex="\left(2t-\tfrac8t\right)^2=4t^2-2(2t)\left(\tfrac8t\right)+\tfrac{64}{t^2}" />, and the middle term is <Katex tex="-32" />.</>,
   },
   {
     working: <Katex display tex="4t^2+32+\frac{64}{t^2}=\left(2t+\frac8t\right)^2" />,
@@ -34,10 +34,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}S&=2\pi\int_1^3 8t\left(2t+\frac8t\right)dt \\ &=16\pi\int_1^3\left(2t^2+8\right)dt\end{aligned}" />,
-    reason: <>Take the constant <Katex tex="2\pi\times8=16\pi" /> outside. Multiplying in the <Katex tex="t" /> cancels the <Katex tex="\tfrac1t" />, leaving a polynomial.</>,
+    reason: <>Substitute <Katex tex="x=8t" /> and the simplified root, then take the constant <Katex tex="2\pi\times8=16\pi" /> outside. Expanding, <Katex tex="t\left(2t+\tfrac8t\right)=2t^2+8" />: the <Katex tex="t" /> cancels the <Katex tex="\tfrac1t" />, leaving a polynomial.</>,
   },
   {
     working: <Katex display tex="=16\pi\left[\frac{2t^3}{3}+8t\right]_1^3" />,
+    reason: <>Antidifferentiate term by term: <Katex tex="2t^2" /> becomes <Katex tex="\tfrac{2t^3}{3}" /> and <Katex tex="8" /> becomes <Katex tex="8t" />.</>,
   },
   {
     working: <Katex display tex="=16\pi\left[(18+24)-\left(\frac23+8\right)\right]=16\pi\times\frac{100}{3}" />,
@@ -45,7 +46,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{S=\frac{1600\pi}{3}}" />,
-    reason: <>In the form <Katex tex="\tfrac{a\pi}{b}" /> with <Katex tex="a=1600" />, <Katex tex="b=3" />. Magnitude check: the radius runs from 8 to 24 (average about 16), and the curve is about <Katex tex="\int_1^3\left(2t+\tfrac8t\right)dt=8+8\log_e3\approx16.8" /> long, so <Katex tex="S\approx2\pi\times16\times16.8\approx1700" />, close to <Katex tex="\tfrac{1600\pi}3\approx1676" /> ✓.</>,
+    reason: <>In the form <Katex tex="\tfrac{a\pi}{b}" /> with <Katex tex="a=1600" />, <Katex tex="b=3" />.</>,
+    more: <>Magnitude check: the radius runs from 8 to 24 (average about 16), and the curve is about <Katex tex="\int_1^3\left(2t+\tfrac8t\right)dt=8+8\log_e3\approx16.8" /> long, so <Katex tex="S\approx2\pi\times16\times16.8\approx1700" />, close to <Katex tex="\tfrac{1600\pi}3\approx1676" /> ✓.</>,
   },
 ]
 

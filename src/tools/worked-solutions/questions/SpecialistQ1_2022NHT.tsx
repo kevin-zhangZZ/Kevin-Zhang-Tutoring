@@ -18,11 +18,10 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="x^2+bx+4=0" />,
     reason: <>The vertical asymptotes are where the denominator is zero. The numerator <Katex tex="x^2+1" /> is never zero, so nothing cancels: every real zero of the denominator gives a vertical asymptote.</>,
-    more: <>The other asymptote count must come from here: exactly <b>one</b> vertical asymptote, so the quadratic must have exactly one real solution.</>,
   },
   {
     working: <Katex display tex="\Delta=b^2-4(1)(4)=b^2-16=0" />,
-    reason: <>A quadratic has exactly one (repeated) solution when its discriminant is zero.</>,
+    reason: <>For two asymptotes in total we need exactly <b>one</b> vertical asymptote, so this quadratic must have exactly one (repeated) real solution: its discriminant is zero.</>,
   },
   {
     working: <Katex display tex="b^2=16\implies b=\pm4" />,

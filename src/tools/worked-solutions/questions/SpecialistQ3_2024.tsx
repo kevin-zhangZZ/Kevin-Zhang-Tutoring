@@ -42,7 +42,7 @@ const ROWS: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\begin{aligned}&-x^2+2hx-3h-4 = 0\\ \iff\ &x^2-2hx+(3h+4) = 0\end{aligned}"
+        tex="\begin{aligned}&\left(x^2-3x-4\right)-\left(2x^2-3x-2hx+3h\right)\\ =\ &-x^2+2hx-3h-4 = 0\\ \iff\ &x^2-2hx+(3h+4) = 0\end{aligned}"
       />
     ),
     reason: <>Expand and collect the numerator of <Katex tex="f'(x)" />, set it to 0, then multiply through by −1 to get a monic quadratic in <Katex tex="x" />.</>,

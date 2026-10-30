@@ -46,14 +46,15 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{h=0,\ k=-2}" />,
-    reason: <>Sanity check: <Katex tex="(0,-2)" /> is on the circle from part a. (<Katex tex="0^2+(-2)^2=4" />), as it must be, since the particle gets as close to it as we like.</>,
+    reason: <>So the particle approaches the point <Katex tex="(0,-2)" />.</>,
+    more: <>Sanity check: <Katex tex="(0,-2)" /> is on the circle from part a (<Katex tex="0^2+(-2)^2=4" />), as it must be, since the particle gets as close to it as we like.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="t=0:\ \ x=0,\ \ y=2" />,
-    reason: <>Find where the particle starts.</>,
+    reason: <>Substitute <Katex tex="t=0" /> to find where the particle starts. Since <Katex tex="t=0" /> is allowed, this end of the path is a closed (filled) point.</>,
   },
   {
     working: <Katex display tex="t\ge0\implies x=\frac{4t}{t^2+1}\ge0" />,
@@ -78,7 +79,8 @@ const ROWS_C: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>The right-hand semicircle of radius 2, from the closed point <Katex tex="(0,2)" /> clockwise to the open point <Katex tex="(0,-2)" />, with an arrow for the direction of motion. VCAA&apos;s sample answer draws exactly this.</>,
+    reason: <>The right-hand semicircle of radius 2, from the closed point <Katex tex="(0,2)" /> clockwise to the open point <Katex tex="(0,-2)" />, with an arrow for the direction of motion.</>,
+    more: <>VCAA&apos;s sample answer draws exactly this: a filled dot at <Katex tex="(0,2)" />, a clockwise arrow, and an open dot at <Katex tex="(0,-2)" />.</>,
   },
 ]
 

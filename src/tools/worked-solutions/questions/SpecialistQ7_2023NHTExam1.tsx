@@ -4,7 +4,7 @@
 // get v = (g/2)(1 − e^(−2t)), then the terminal velocity g/2. A kinematics differential equation
 // (no force analysis), so on the current study design. Question text transcribed from the original
 // paper. Answers checked with sympy (dsolve with v(0) = 0) and against the report's sample answers.
-// Solution is original; it inverts dt/dv = 1/(g − 2v) as the report does.
+// Solution is original; it inverts to dt/dv = 1/(g − 2v) (the report separates variables, which is equivalent).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -40,8 +40,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Combine the logs with <Katex tex="\log_e(A)-\log_e(B)=\log_e\!\left(\tfrac AB\right)" />.</>,
   },
   {
-    working: <Katex display tex="e^{2t}=\frac{g}{g-2v}\implies g-2v=ge^{-2t}" />,
-    reason: <>Multiply by 2 and exponentiate both sides, then take reciprocals.</>,
+    working: <Katex display tex="\begin{aligned}2t&=\log_e\!\left(\frac{g}{g-2v}\right)\\ e^{2t}&=\frac{g}{g-2v}\\ e^{-2t}&=\frac{g-2v}{g}\\ g-2v&=ge^{-2t}\end{aligned}" />,
+    reason: <>Multiply by 2, then undo the <Katex tex="\log_e" /> by raising <Katex tex="e" /> to the power of each side. Take reciprocals of both sides (<Katex tex="\tfrac{1}{e^{2t}}=e^{-2t}" />) to bring <Katex tex="v" /> to the top, then multiply by <Katex tex="g" />.</>,
   },
   {
     working: <Katex display tex="2v=g-ge^{-2t}\implies v=\frac{g}{2}\left(1-e^{-2t}\right)" />,
@@ -57,7 +57,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{v=\frac{g}{2}=4.9\ \text{ms}^{-1}}" />,
-    reason: <>VCAA gives the answer as <Katex tex="\tfrac g2" />; with <Katex tex="g=9.8" /> from the paper&apos;s instructions it is 4.9. It agrees with part a.: as <Katex tex="t\to\infty" />, <Katex tex="e^{-2t}\to0" /> and <Katex tex="v\to\tfrac g2" />, but <Katex tex="v" /> never actually reaches it.</>,
+    reason: <>VCAA gives the answer as <Katex tex="\tfrac g2" />; with <Katex tex="g=9.8" /> from the paper&apos;s instructions it is 4.9. It agrees with part a: as <Katex tex="t\to\infty" />, <Katex tex="e^{-2t}\to0" /> and <Katex tex="v\to\tfrac g2" />, but <Katex tex="v" /> never actually reaches it.</>,
   },
 ]
 

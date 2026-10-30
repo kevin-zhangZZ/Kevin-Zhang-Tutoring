@@ -16,7 +16,7 @@ const REPORT: SAExaminerStats = {}
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}u&=\log_e\!\left(\log_e(x)\right)\\ \frac{du}{dx}&=\frac{1}{\log_e(x)}\times\frac1x\\ &=\frac{1}{x\log_e(x)}\end{aligned}" />,
-    reason: <>Look for a function whose derivative is also in the integrand. By the chain rule, the derivative of the inner-log expression is <Katex tex="\tfrac{1}{x\log_e(x)}" />, which is exactly the rest of the integrand.</>,
+    reason: <>Look for a function whose derivative is also in the integrand. Let <Katex tex="u" /> be the nested log in the numerator. By the chain rule (the derivative of <Katex tex="\log_e(g(x))" /> is <Katex tex="\tfrac{g'(x)}{g(x)}" />, here with <Katex tex="g(x)=\log_e(x)" /> and <Katex tex="g'(x)=\tfrac1x" />), its derivative is <Katex tex="\tfrac{1}{x\log_e(x)}" />, which is exactly the rest of the integrand.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}x=e&:\ u=\log_e(1)=0\\ x=e^2&:\ u=\log_e(2)\end{aligned}" />,
@@ -25,7 +25,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_e^{e^2}\frac{\log_e\!\left(\log_e(x)\right)}{x\log_e(x)}\,dx=\int_0^{\log_e(2)}u\,du" />,
-    reason: <>The numerator becomes <Katex tex="u" /> and <Katex tex="\tfrac{1}{x\log_e(x)}\,dx" /> becomes <Katex tex="du" />.</>,
+    reason: <>From row 1, <Katex tex="du=\tfrac{1}{x\log_e(x)}\,dx" />. So the numerator becomes <Katex tex="u" />, the factor <Katex tex="\tfrac{1}{x\log_e(x)}\,dx" /> becomes <Katex tex="du" />, and the terminals become the <Katex tex="u" />-values from row 2.</>,
   },
   {
     working: <Katex display tex="=\left[\frac{u^2}{2}\right]_0^{\log_e(2)}=\frac{\left(\log_e(2)\right)^2}{2}-0" />,
@@ -33,8 +33,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac12\left(\log_e(2)\right)^2}" />,
-    reason: <>Sanity check: on <Katex tex="[e,e^2]" /> the integrand rises from 0 to a peak of about 0.06 and is still about 0.05 at the far end (<Katex tex="\tfrac{\log_e(2)}{2e^2}\approx0.047" />); over an interval about 4.7 wide, an area near 0.24 is the right size. (<Katex tex="\tfrac12(0.693)^2\approx0.240" />.)</>,
-    more: <>The report&apos;s other route takes two smaller steps. First <Katex tex="u=\log_e(x)" /> turns the integral into <Katex tex="\displaystyle\int_1^2\frac{\log_e(u)}{u}\,du" />; then <Katex tex="v=\log_e(u)" /> turns that into <Katex tex="\displaystyle\int_0^{\log_e(2)}v\,dv" />, the same integral as above.</>,
+    reason: <>Write the final answer as an exact value, since Exam 1 is technology-free.</>,
+    more: <>Sanity check: on <Katex tex="[e,e^2]" /> the integrand rises from 0 to a peak of about 0.06 and is still about 0.05 at the far end (<Katex tex="\tfrac{\log_e(2)}{2e^2}\approx0.047" />); over an interval about 4.7 wide, an area near 0.24 is the right size. (<Katex tex="\tfrac12(0.693)^2\approx0.240" />.) The report&apos;s other route takes two smaller steps. First <Katex tex="u=\log_e(x)" /> turns the integral into <Katex tex="\displaystyle\int_1^2\frac{\log_e(u)}{u}\,du" />; then <Katex tex="v=\log_e(u)" /> turns that into <Katex tex="\displaystyle\int_0^{\log_e(2)}v\,dv" />, the same integral as above.</>,
   },
 ]
 

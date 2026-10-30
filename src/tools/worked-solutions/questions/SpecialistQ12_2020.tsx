@@ -9,6 +9,7 @@
 // a time as rise-over-run triangles against the exact solution, with each wrong option's method
 // (D, E, B) rebuilt the same way; a zoomed graph of the gradient e^{cos x} underneath shows each
 // step's gradient as a flat bar (C's start on the curve, D's end on it, E's fourth passes x₃ = 0.3).
+// Oct 2026: y₃ row now writes out y₂ + 0.1e^{cos 0.2} before collecting the 0.1s.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -38,12 +39,12 @@ const ROWS: WorkingRow[] = [
     reason: <>The second step starts at <Katex tex="x_1=0.1" />, so it uses the gradient there. Leave it unevaluated and collect the 0.1s, as every option does.</>,
   },
   {
-    working: <Katex display tex="y_3 = y_2+0.1\,f(0.2)" />,
-    reason: <>The third step starts at <Katex tex="x_2=0.2" />. The gradient at 0.3 is never used: it would only start a fourth step.</>,
+    working: <Katex display tex="\begin{aligned} y_3 &= y_2+0.1\,f(0.2) \\ &= e+0.1\left(e+e^{\cos(0.1)}\right)+0.1\,e^{\cos(0.2)} \end{aligned}" />,
+    reason: <>The third step starts at <Katex tex="x_2=0.2" />, so it adds 0.1 times the gradient there to <Katex tex="y_2" />. The gradient at 0.3 is never used: it would only start a fourth step.</>,
   },
   {
     working: <Katex display tex="\boxed{y_3 = e+0.1\left(e+e^{\cos(0.1)}+e^{\cos(0.2)}\right)}" />,
-    reason: <>Matches option <b>C</b>: three gradients, read at <Katex tex="x=0" />, 0.1 and 0.2.</>,
+    reason: <>Take the common factor 0.1 out of the three gradient terms. Matches option <b>C</b>: three gradients, read at <Katex tex="x=0" />, 0.1 and 0.2.</>,
     more: <>Option D (17%) reads each gradient at the <em>end</em> of its step (0.1, 0.2, 0.3); it and option B (12%) are worked through in the common mistakes below. Option E adds a fourth step, so it is <Katex tex="y_4" />. As a check, C <Katex tex="\approx3.527" />, close to the exact <Katex tex="y(0.3)\approx3.522" />; Euler is a little high because the gradient <Katex tex="e^{\cos(x)}" /> is falling, so each tangent overshoots.</>,
   },
 ]
