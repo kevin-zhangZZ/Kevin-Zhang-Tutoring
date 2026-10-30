@@ -1,6 +1,7 @@
 import type { Deck, Face } from '../data'
 
 // Table 9 of the VCE Chemistry Data Book (2026): formulas and charges for selected ions.
+// Names carry "ion" on the card: "calcium" alone is the metal, not Ca²⁺.
 
 const CATIONS = 'Cations'
 const ANIONS = 'Anions'
@@ -95,16 +96,17 @@ export const ionDeck: Deck = {
   blurb: 'Names, formulas and charges of the cations and anions in Table 9 of the Data Book.',
   groups: [CATIONS, ANIONS],
   cards: rows.map(([name, formula, q, family]) => ({
+    // The id stays the bare name, so progress saved before "ion" was added still applies.
     id: `${name}-${q}`,
     group: q > 0 ? CATIONS : ANIONS,
     section: chargeLabel(q),
-    front: { text: name, plain: name },
+    front: { text: `${name} ion`, plain: `${name} ion` },
     back: { tex: ionTex(formula, q), plain: formula + plainCharge(q) },
     traps: wrongCharges(q).map((w): Face => ({ tex: ionTex(formula, w) })),
     family,
     tip: /\([IV]+\)/.test(name) ? 'The Roman numeral in the name is the charge.' : undefined,
     // Fill the gap: the charge.
-    gap: { tex: `\\text{${name}}\\quad ${bodyTex(formula)}^{\\gap}`, answers: [plainCharge(q)] },
+    gap: { tex: `\\text{${name} ion}\\quad ${bodyTex(formula)}^{\\gap}`, answers: [plainCharge(q)] },
   })),
   directionLabel: { fwd: 'Name → Formula', rev: 'Formula → Name' },
   promptLabel: { fwd: 'Formula of', rev: 'Name of' },

@@ -219,7 +219,9 @@ export function typedMatches(input: string, answers: string[], caseSensitive: bo
   return answers.some(t => {
     const want = norm(t)
     if (isCharged(t)) return same(normCharge(want), normCharge(typed))
-    return same(want.replace(/[\s^]/g, ''), typed.replace(/[\s^]/g, ''))
+    // A trailing "ion" is optional when naming one: "calcium" counts for "calcium ion".
+    const word = (x: string) => x.replace(/\s+ion$/i, '').replace(/[\s^]/g, '')
+    return same(word(want), word(typed))
   })
 }
 
