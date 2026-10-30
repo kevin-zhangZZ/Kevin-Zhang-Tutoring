@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { angles, shiftedAngleTex, shiftedAngleDegTex, RANGE_LABEL, type AngleUnit } from './data'
 import Katex from '../../components/Katex'
-import { useSession, type SessionMode } from './session'
-import { SessionBar, Choice, WeakSpotCircle, RoundResults, RoundTrack, StreakBadge } from './SessionParts'
+import { useSession, TEST_SECONDS, type SessionMode } from './session'
+import { SessionBar, Choice, WeakSpotCircle, RoundResults, RoundTrack, TimeBar, StreakBadge } from './SessionParts'
 import { useStoredState, readBest, saveBest, type Best } from './storage'
 import WrongExplanation from './WrongExplanation'
 
@@ -124,6 +124,9 @@ const angleOf = (q: Question) => q.angleIdx
 
 type FlashState = 'correct' | 'wrong' | null
 
+/** How long a sprint shows a wrong answer before moving on. */
+const WRONG_MS = 1200
+
 interface Settings {
   fnMode: FnMode
   unit: Unit
@@ -147,7 +150,8 @@ export default function TestMode() {
     [range, fnMode, unit],
   )
   const resetKey = `${fnMode}|${unit}|${range}`
-  const bestId = `values|${resetKey}`
+  // Sprint bests are kept apart from the old 20-question rounds'.
+  const bestId = `values-sprint|${resetKey}`
   const session = useSession<Question>({ mode, generate, angleOf, resetKey })
   const { question } = session
 
@@ -190,6 +194,8 @@ export default function TestMode() {
     } else {
       session.record(false, tex)
       setFlash('wrong')
+      // In a sprint the right answer shows for a moment, then it's on to the next one.
+      if (session.timed) advanceTimer.current = setTimeout(next, WRONG_MS)
     }
   }
 
@@ -201,10 +207,12 @@ export default function TestMode() {
         <SessionBar
           correct={session.correct}
           wrong={session.wrong}
-          elapsed={session.elapsed}
+          elapsed={session.timed ? TEST_SECONDS - session.elapsed : session.elapsed}
           mode={mode}
           onMode={m => set({ mode: m })}
-          progress={mode === 'test' && !session.finished ? `Question ${session.answered + 1} of ${session.total}` : undefined}
+          progress={mode !== 'test' || session.finished ? undefined
+            : !session.timed ? `Question ${session.answered + 1} of ${session.total}`
+            : session.started ? `Question ${session.answered + 1}` : undefined}
           summary={summary}
           onRestart={() => restart()}
         >
@@ -229,13 +237,14 @@ export default function TestMode() {
 
       {mode === 'test' && !session.finished && (
         <div className="lg:col-start-1">
-          <RoundTrack history={session.history} total={session.total} />
+          {session.timed ? <TimeBar elapsed={session.elapsed} /> : <RoundTrack history={session.history} total={session.total} />}
         </div>
       )}
 
       {session.finished ? (
         <div className="lg:col-span-2">
           <RoundResults
+            timed={session.timed}
             correct={session.correct}
             total={session.total}
             elapsed={session.elapsed}
@@ -280,21 +289,21 @@ export default function TestMode() {
                     <span className="text-gray-400"> · </span>
                     <span className="text-emerald-600 dark:text-emerald-400">Answer <Katex tex={question.correctTex} className="font-semibold" /></span>
                   </p>
-                  <button
+                  {!session.timed && <button
                     onClick={next}
                     autoFocus
                     className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg active:scale-[0.97] transition-[background-color,transform]"
                   >
                     Next →
-                  </button>
+                  </button>}
                 </div>
-                <WrongExplanation
+                {!session.timed && <WrongExplanation
                   key={`${session.answered}-${question.angleIdx}-${question.fn}`}
                   angle={angles[question.angleIdx]}
                   fn={question.fn}
                   angleTex={question.angleTex}
                   unit={unit}
-                />
+                />}
               </div>
             )}
           </div>

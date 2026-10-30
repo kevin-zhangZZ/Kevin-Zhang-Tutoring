@@ -412,9 +412,11 @@ function SettingsScreen({
             </span>
           </div>
         ))}
-        <p className={`px-5 py-2.5 border-t border-gray-100 dark:border-gray-800 text-xs ${blocked ? 'text-amber-600 dark:text-amber-400' : 'text-gray-500 dark:text-gray-400'}`}>
-          {blocked ? 'Keep at least one operation switched on.' : 'Tap a symbol to switch it off. Tap a number to change it.'}
-        </p>
+        {blocked && (
+          <p className="px-5 py-2.5 border-t border-gray-100 dark:border-gray-800 text-xs text-amber-600 dark:text-amber-400">
+            Keep at least one operation switched on.
+          </p>
+        )}
       </div>
       </div>
 

@@ -119,8 +119,7 @@ export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
   return (
     <div>
       <p className="text-[12px] text-gray-500 dark:text-gray-400 mb-2">
-        One dot per question ({n} in view), placed by its VCAA average: an MCQ’s % correct, a short answer’s average mark as a share of its marks. Click a dot to
-        open its solution, or a column to list its questions below.
+        One dot per question ({n} in view), placed by its VCAA average: an MCQ’s % correct, a short answer’s average mark as a share of its marks.
       </p>
       <div ref={tip.wrapRef} className="relative">
         <div ref={ref}>

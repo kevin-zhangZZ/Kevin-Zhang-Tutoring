@@ -298,7 +298,6 @@ function FocusBar({ ctx, onClear }: { ctx: ChartCtx; onClear: (patch: Partial<Fo
       )}
       {f.year && chip(String(f.year), () => onClear({ year: null }))}
       {f.bin !== null && chip(`Average ${binLabel(f.bin)}`, () => onClear({ bin: null }))}
-      {!any && <span className="text-[12.5px] text-gray-500 dark:text-gray-400">Click any topic, or a column of questions, to narrow the view.</span>}
     </div>
   )
 }

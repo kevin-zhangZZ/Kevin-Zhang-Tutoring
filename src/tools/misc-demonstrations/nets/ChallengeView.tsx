@@ -40,7 +40,7 @@ function hexRgb(h: string): RGB {
 }
 
 const ChallengeView = forwardRef<ChallengeHandle, Props>(function ChallengeView(props, ref) {
-  const { ch, t, fine } = props
+  const { ch, t } = props
   const boxRef = useRef<HTMLDivElement>(null)
   const hostRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<Stage | null>(null)
@@ -48,7 +48,6 @@ const ChallengeView = forwardRef<ChallengeHandle, Props>(function ChallengeView(
   propsRef.current = props
   const cacheRef = useRef<{ ch: Challenge | null; t: number; fs: FoldState | null }>({ ch: null, t: -1, fs: null })
   const lastChRef = useRef<Challenge | null>(null)
-  const [dragged, setDragged] = useState(false)
   const [wheelHint, setWheelHint] = useState(0)
   const draggingRef = useRef(false)
 
@@ -184,7 +183,6 @@ const ChallengeView = forwardRef<ChallengeHandle, Props>(function ChallengeView(
     lastChRef.current = propsRef.current.ch
     st.render(scene)
     const offs = [
-      st.on('camera', () => { if (draggingRef.current) setDragged(true) }),
       st.on('wheelIgnored', () => setWheelHint(n => n + 1)),
     ]
     const down = () => { draggingRef.current = true }
@@ -261,14 +259,13 @@ const ChallengeView = forwardRef<ChallengeHandle, Props>(function ChallengeView(
     },
   }))
 
-  const hintText = wheelHint ? 'Ctrl + scroll to zoom' : fine ? 'Drag to turn · Ctrl + scroll to zoom' : 'Drag to turn'
   return (
     <div ref={boxRef} className="nets-stage relative rounded-lg overflow-hidden" style={{ touchAction: 'none' }}>
       <div ref={hostRef} className="absolute inset-0" />
-      {(wheelHint > 0 || !dragged) && (
+      {wheelHint > 0 && (
         <div className="absolute bottom-2 right-2 flex items-center gap-1 text-[11px] text-gray-500 dark:text-gray-400 bg-white/85 dark:bg-gray-900/85 rounded-full px-2 py-0.5 pointer-events-none">
           <svg viewBox="0 0 16 16" className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2.5 8a5.5 5.5 0 1 0 1.8-4.1" /><path d="M2.3 1.8v2.6h2.6" /></svg>
-          {hintText}
+          Ctrl + scroll to zoom
         </div>
       )}
     </div>

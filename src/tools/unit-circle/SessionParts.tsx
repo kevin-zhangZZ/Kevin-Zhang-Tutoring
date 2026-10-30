@@ -1,6 +1,6 @@
 import { Fragment, useState, type ReactNode } from 'react'
 import { angles, type AngleUnit } from './data'
-import { formatTime, type SessionMode, type Tally } from './session'
+import { formatTime, TEST_SECONDS, type SessionMode, type Tally } from './session'
 import { useStoredState, type Best } from './storage'
 import SegmentedControl from '../../components/ui/SegmentedControl'
 
@@ -17,7 +17,7 @@ interface SessionBarProps {
   elapsed: number
   mode: SessionMode
   onMode: (m: SessionMode) => void
-  /** Test mode: "Question 7 of 20". */
+  /** Test mode: "Question 7 of 20", or how the sprint is going. */
   progress?: string
   /** The settings in short, one part each ("Methods", "rad", "[0, 2π]"). */
   summary: string[]
@@ -125,7 +125,6 @@ interface WeakSpotProps {
 
 export function WeakSpotCircle({ perAngle, unit, onPick, drill = null }: WeakSpotProps) {
   const S = 220, c = S / 2, R = 66, LR = 92
-  const asked = Object.values(perAngle).some(t => t.right + t.wrong > 0)
   // Angle labels can be hidden, to test yourself on where the points are. Remembered on this device.
   const [{ labels }, setPrefs] = useStoredState('uc-weakspot', { labels: true })
   return (
@@ -194,9 +193,9 @@ export function WeakSpotCircle({ perAngle, unit, onPick, drill = null }: WeakSpo
         <span><span className="inline-block w-2 h-2 rounded-full mr-1" style={{ background: TALLY_COLOR.mixed }} />mixed</span>
         <span><span className="inline-block w-2 h-2 rounded-full mr-1" style={{ background: TALLY_COLOR.bad }} />mostly wrong</span>
       </div>
-      {onPick && (
+      {onPick && drill !== null && (
         <p className="text-[11px] text-center mt-1.5 text-gray-500 dark:text-gray-400">
-          {drill !== null ? `Practising ${unit === 'rad' ? angles[drill].radLabel : angles[drill].degLabel} only` : asked ? 'Tap a point to practise just that angle' : 'Answer a few questions to fill this in'}
+          Practising {unit === 'rad' ? angles[drill].radLabel : angles[drill].degLabel} only
         </p>
       )}
     </div>
@@ -212,6 +211,8 @@ export interface MissRow {
 }
 
 interface RoundResultsProps {
+  /** A sprint against the clock: the score is how many were right in the time. */
+  timed: boolean
   correct: number
   total: number
   elapsed: number
@@ -224,19 +225,20 @@ interface RoundResultsProps {
   onNew: () => void
 }
 
-export function RoundResults({ correct, total, elapsed, summary, best, newBest, retry, misses, onRetry, onNew }: RoundResultsProps) {
+export function RoundResults({ timed, correct, total, elapsed, summary, best, newBest, retry, misses, onRetry, onNew }: RoundResultsProps) {
   const pct = total ? Math.round((correct / total) * 100) : 0
-  const stats: Array<[string, ReactNode]> = [
-    ['Time', formatTime(elapsed)],
-    ['Score', `${pct}%`],
-  ]
-  if (!retry && best) stats.push(['Best', newBest ? <span className="text-emerald-700 dark:text-emerald-400">New best!</span> : `${best.score} / ${best.total}`])
+  const stats: Array<[string, ReactNode]> = timed
+    ? [['Answered', total], ['Accuracy', `${pct}%`]]
+    : [['Time', formatTime(elapsed)], ['Score', `${pct}%`]]
+  if (!retry && best) stats.push(['Best', newBest ? <span className="text-emerald-700 dark:text-emerald-400">New best!</span> : timed ? `${best.score} right` : `${best.score} / ${best.total}`])
   return (
     <div className="card px-5 py-6 sm:px-7">
       <div className="text-center">
-        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">{retry ? 'Practice Round Complete' : 'Round Complete'}: {summary.join(', ')}</p>
+        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">{retry ? 'Practice Round Complete' : timed ? 'Time’s Up' : 'Round Complete'}: {summary.join(', ')}</p>
         <p className="font-display text-5xl font-bold text-gray-900 dark:text-white mt-3 leading-none tabular-nums">
-          {correct}<span className="text-2xl text-gray-500 dark:text-gray-400 font-semibold"> / {total}</span>
+          {timed
+            ? <>{correct}<span className="text-2xl text-gray-500 dark:text-gray-400 font-semibold"> right in {TEST_SECONDS}s</span></>
+            : <>{correct}<span className="text-2xl text-gray-500 dark:text-gray-400 font-semibold"> / {total}</span></>}
         </p>
         <dl className="mt-4 flex justify-center gap-8 text-sm">
           {stats.map(([k, v]) => (
@@ -296,6 +298,20 @@ export function RoundTrack({ history, total }: { history: boolean[]; total: numb
           />
         )
       })}
+    </div>
+  )
+}
+
+// ── Sprint clock: a bar that drains over the TEST_SECONDS, full until the first answer ──
+
+export function TimeBar({ elapsed }: { elapsed: number }) {
+  const left = Math.max(0, TEST_SECONDS - elapsed)
+  return (
+    <div className="h-1.5 rounded-full bg-gray-200 dark:bg-gray-800 overflow-hidden" role="img" aria-label={`${left} seconds left`}>
+      <div
+        className={`h-full rounded-full transition-[width,background-color] duration-1000 ease-linear ${left <= 5 ? 'bg-rose-500' : 'bg-blue-500'}`}
+        style={{ width: `${(left / TEST_SECONDS) * 100}%` }}
+      />
     </div>
   )
 }

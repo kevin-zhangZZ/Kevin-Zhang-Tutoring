@@ -77,7 +77,6 @@ export default function Sheet({ deck, pool, dir, onExit, open = false }: {
           )
         })
       )}
-      <p className="text-xs text-gray-500 dark:text-gray-400">Tap a blurred answer to peek. Star the ones you’re unsure of, then turn on “Starred only” on the decks page.</p>
     </div>
   )
 }

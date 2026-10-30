@@ -75,8 +75,7 @@ export function DotStrip({ ctx }: { ctx: ChartCtx }) {
   return (
     <div>
       <p className="text-[12px] text-gray-500 dark:text-gray-400 mb-2">
-        Each crest shows how a topic’s MCQs and short-answer parts spread out, by their VCAA averages; the dot is the topic’s average. Hardest first. Click a
-        topic to {ctx.level === 'sub' ? 'list its questions' : 'see its subtopics'}.
+        Each crest shows how a topic’s MCQs and short-answer parts spread out, by their VCAA averages; the dot is the topic’s average. Hardest first.
       </p>
       <div ref={tip.wrapRef} className="relative">
         <div ref={ref}>

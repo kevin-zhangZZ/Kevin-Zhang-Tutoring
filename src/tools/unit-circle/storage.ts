@@ -37,11 +37,12 @@ export function readBest(id: string): Best | undefined {
   return read<Record<string, Best>>(BEST_KEY, {})[id]
 }
 
-/** Saves the round if it beats the best for `id` (higher score, then faster). Returns true if it did. */
+/** Saves the round if it beats the best for `id` (higher score, then faster, then fewer answers
+ *  for the same score — i.e. more accurate). Returns true if it did. */
 export function saveBest(id: string, round: Best): boolean {
   const all = read<Record<string, Best>>(BEST_KEY, {})
   const old = all[id]
-  const better = !old || round.score > old.score || (round.score === old.score && round.seconds < old.seconds)
+  const better = !old || round.score > old.score || (round.score === old.score && (round.seconds < old.seconds || (round.seconds === old.seconds && round.total < old.total)))
   if (!better) return false
   try {
     localStorage.setItem(BEST_KEY, JSON.stringify({ ...all, [id]: round }))

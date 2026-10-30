@@ -68,7 +68,6 @@ export function PPStage({ scene, canGoHeavy = false, label, onStage, topLeft, to
   onStageRef.current = onStage
   const reserveRef = useRef(reserve)
   reserveRef.current = reserve
-  const fine = useMedia('(pointer: fine)')
   const [keyHint, setKeyHint] = useState(false)
   const [flash, setFlash] = useState(false)
 
@@ -166,7 +165,7 @@ export function PPStage({ scene, canGoHeavy = false, label, onStage, topLeft, to
     stageRef.current?.svg.setAttribute('aria-label', label)
   }, [label])
 
-  const hint = keyHint ? KEY_HINT : fine ? 'Drag to rotate · Ctrl + scroll to zoom' : 'Drag to rotate · Pinch to zoom'
+  const hint = keyHint ? KEY_HINT : flash ? 'Ctrl + scroll to zoom' : null
 
   return (
     <div className="relative @container">
@@ -178,13 +177,13 @@ export function PPStage({ scene, canGoHeavy = false, label, onStage, topLeft, to
         </div>
       )}
       <div className="pointer-events-none absolute inset-x-3 bottom-2 flex flex-wrap items-end justify-between gap-x-3 gap-y-1">
-        <span
+        {hint ? <span
           className={`pp-hint-flash text-[12px] rounded px-1 -mx-1 ${
             flash ? 'bg-blue-50 text-blue-800 dark:bg-blue-950/70 dark:text-blue-200' : 'text-gray-500 dark:text-gray-400'
           }`}
         >
           {hint}
-        </span>
+        </span> : <span />}
         {bottomRight && <span className="hidden @[300px]:flex flex-wrap justify-end gap-x-2.5 gap-y-0.5 text-[12px] text-gray-600 dark:text-gray-300">{bottomRight}</span>}
       </div>
     </div>

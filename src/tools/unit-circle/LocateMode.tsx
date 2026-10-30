@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { angles, shiftedAngleTex, shiftedAngleDegTex, RANGE_LABEL, type AngleUnit, type AngleData } from './data'
 import Katex from '../../components/Katex'
-import { useSession, type SessionMode } from './session'
-import { SessionBar, Choice, WeakSpotCircle, RoundResults, RoundTrack, StreakBadge } from './SessionParts'
+import { useSession, TEST_SECONDS, type SessionMode } from './session'
+import { SessionBar, Choice, WeakSpotCircle, RoundResults, RoundTrack, TimeBar, StreakBadge } from './SessionParts'
 import { useStoredState, readBest, saveBest, useCoarsePointer, type Best } from './storage'
 
 type Domain = 'pos' | 'neg' | 'both'
 type Unit = AngleUnit
 type FlashState = 'correct' | 'wrong' | null
+
+/** How long a sprint shows a wrong answer before moving on. */
+const WRONG_MS = 1200
 
 const CX = 280, CY = 280, R = 210, VB = 560
 const DOT_R       = 10   // visible dot radius
@@ -76,7 +79,8 @@ export default function LocateMode() {
   // Locate Test has no one-angle drill: the answer would always be the same point.
   const generate = useCallback((_only: number | null, prev: LocateQuestion | null) => genQuestion(domain, unit, prev), [domain, unit])
   const resetKey = `${unit}|${domain}`
-  const bestId = `locate|${resetKey}`
+  // Sprint bests are kept apart from the old 20-question rounds'.
+  const bestId = `locate-sprint|${resetKey}`
   const session = useSession<LocateQuestion>({ mode, generate, angleOf, resetKey })
   const { question } = session
   const summary = [unit === 'rad' ? 'Radians' : 'Degrees', RANGE_LABEL[unit][domain]]
@@ -114,6 +118,8 @@ export default function LocateMode() {
     } else {
       session.record(false, plainLabel(angles[idx], unit, question.negative))
       setFlash('wrong')
+      // In a sprint the right answer shows for a moment, then it's on to the next one.
+      if (session.timed) advanceTimer.current = setTimeout(next, WRONG_MS)
     }
   }
 
@@ -126,10 +132,12 @@ export default function LocateMode() {
         <SessionBar
           correct={session.correct}
           wrong={session.wrong}
-          elapsed={session.elapsed}
+          elapsed={session.timed ? TEST_SECONDS - session.elapsed : session.elapsed}
           mode={mode}
           onMode={m => set({ mode: m })}
-          progress={mode === 'test' && !session.finished ? `Question ${session.answered + 1} of ${session.total}` : undefined}
+          progress={mode !== 'test' || session.finished ? undefined
+            : !session.timed ? `Question ${session.answered + 1} of ${session.total}`
+            : session.started ? `Question ${session.answered + 1}` : undefined}
           summary={summary}
           onRestart={() => restart()}
         >
@@ -145,13 +153,14 @@ export default function LocateMode() {
 
       {mode === 'test' && !session.finished && (
         <div className="lg:col-start-1">
-          <RoundTrack history={session.history} total={session.total} />
+          {session.timed ? <TimeBar elapsed={session.elapsed} /> : <RoundTrack history={session.history} total={session.total} />}
         </div>
       )}
 
       {session.finished ? (
         <div className="lg:col-span-2">
           <RoundResults
+            timed={session.timed}
             correct={session.correct}
             total={session.total}
             elapsed={session.elapsed}
@@ -187,7 +196,7 @@ export default function LocateMode() {
               </p>
               <div className={`col-start-1 row-start-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 ${flash === 'wrong' ? '' : 'invisible'}`}>
                 <p className="text-sm text-rose-600 dark:text-rose-400">Not quite: the answer is shown in green.</p>
-                {flash === 'wrong' && (
+                {flash === 'wrong' && !session.timed && (
                   <button
                     onClick={next}
                     autoFocus
@@ -294,9 +303,6 @@ export default function LocateMode() {
               <text x={CX + 8}  y={24}      fontSize="12" textAnchor="start"
                 fill="currentColor" fillOpacity="0.3" fontFamily="Inter, sans-serif">y</text>
             </svg>
-            <p className="text-xs text-center text-gray-500 dark:text-gray-400 pb-2">
-              {verb} the point for this angle{coarse ? '' : ', or use Tab and Enter'}
-            </p>
           </div>
         </>
       )}

@@ -216,7 +216,7 @@ export function ShiftSankey({ ctx }: { ctx: ChartCtx }) {
         {movers.grew && <> <span className="font-semibold text-amber-700 dark:text-amber-400">Amber</span> is the topic that grew most</>}
         {movers.grew && movers.shrank && ';'}
         {movers.shrank && <> <span className="font-semibold text-gray-500 dark:text-gray-400">{movers.grew ? 'grey' : 'Grey'}</span> the one that shrank most</>}
-        {(movers.grew || movers.shrank) && '.'} Hover to follow one; click to {action}.
+        {(movers.grew || movers.shrank) && '.'}
       </p>
       <div ref={tip.wrapRef} className="relative">
         <div ref={ref}>

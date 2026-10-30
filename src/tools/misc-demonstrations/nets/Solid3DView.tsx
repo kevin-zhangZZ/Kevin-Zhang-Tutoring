@@ -65,7 +65,7 @@ function badgeSVG(T: Tokens, x: number, y: number, n: number): string {
 }
 
 const Solid3DView = forwardRef<Solid3DHandle, Props>(function Solid3DView(props, ref) {
-  const { ns, ni, foldT, fine } = props
+  const { ns, ni, foldT } = props
   const boxRef = useRef<HTMLDivElement>(null)
   const hostRef = useRef<HTMLDivElement>(null)
   const overlayRef = useRef<SVGSVGElement>(null)
@@ -82,7 +82,6 @@ const Solid3DView = forwardRef<Solid3DHandle, Props>(function Solid3DView(props,
   const lastRef = useRef<{ key: string; t: number }>({ key: '', t: 1 })
   const ptrRef = useRef<[number, number]>([0, 0])
   // The hint shows until the first drag; a plain wheel over the stage flashes the Ctrl + scroll tip.
-  const [dragged, setDragged] = useState(false)
   const [wheelHint, setWheelHint] = useState(0)
 
   function foldAt(t: number): FoldState {
@@ -408,7 +407,6 @@ const Solid3DView = forwardRef<Solid3DHandle, Props>(function Solid3DView(props,
       }),
       st.on('camera', () => {
         if (!draggingRef.current) return
-        setDragged(true)
         if (foldCamRef.current) foldCamRef.current.dragged = true
       }),
       st.on('wheelIgnored', () => setWheelHint(n => n + 1)),
@@ -548,7 +546,6 @@ const Solid3DView = forwardRef<Solid3DHandle, Props>(function Solid3DView(props,
     },
   }))
 
-  const hintText = wheelHint ? 'Ctrl + scroll to zoom' : fine ? 'Drag to turn · Ctrl + scroll to zoom' : 'Drag to turn'
   return (
     <div ref={boxRef} className="nets-stage relative rounded-lg overflow-hidden" style={{ touchAction: 'none' }}>
       <div ref={hostRef} className="absolute inset-0" />
@@ -556,10 +553,10 @@ const Solid3DView = forwardRef<Solid3DHandle, Props>(function Solid3DView(props,
         <g ref={mainRef} />
         <g ref={pingRef} />
       </svg>
-      {(wheelHint > 0 || !dragged) && (
+      {wheelHint > 0 && (
         <div className="absolute bottom-2 right-2 flex items-center gap-1 text-[11px] text-gray-500 dark:text-gray-400 bg-white/85 dark:bg-gray-900/85 rounded-full px-2 py-0.5 pointer-events-none">
           <svg viewBox="0 0 16 16" className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2.5 8a5.5 5.5 0 1 0 1.8-4.1" /><path d="M2.3 1.8v2.6h2.6" /></svg>
-          {hintText}
+          Ctrl + scroll to zoom
         </div>
       )}
       <div ref={tipRef} className="hidden absolute z-[5] pointer-events-none whitespace-nowrap text-[11.5px] font-semibold text-white bg-gray-900/90 dark:bg-gray-100 dark:text-gray-900 rounded-full px-2 py-0.5" />

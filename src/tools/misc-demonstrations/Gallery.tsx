@@ -10,17 +10,15 @@ import { stagger } from '../../components/motion/Reveal'
 // The Misc Demonstrations landing page: one wide row per demonstration, each with a live 3D
 // thumbnail that turns slowly and reacts when the row is hovered or focused, and what's inside.
 
-const THUMBS: Record<DemoId, { Thumb: (p: { active: boolean }) => JSX.Element; badge: React.ReactNode; hint: string; inside: string[] }> = {
+const THUMBS: Record<DemoId, { Thumb: (p: { active: boolean }) => JSX.Element; badge: React.ReactNode; inside: string[] }> = {
   'pyramids-prisms': {
     Thumb: PyramidThumb,
     badge: <Katex tex="V = \tfrac{1}{3}Ah" />,
-    hint: 'Hover to slide the slice up',
     inside: ['Six short steps', 'Predict, then check', 'Explore every control'],
   },
   nets: {
     Thumb: NetThumb,
     badge: 'SA = sum of the face areas',
-    hint: 'Hover to fold it shut',
     inside: ['Nine solids', 'All 11 nets of a cube', 'Is It a Net? challenge'],
   },
 }
@@ -48,7 +46,7 @@ export default function Gallery() {
 function GalleryCard({ demo: d, index }: { demo: Demo; index: number }) {
   const [hover, setHover] = useState(false)
   const [focus, setFocus] = useState(false)
-  const { Thumb, badge, hint, inside } = THUMBS[d.id]
+  const { Thumb, badge, inside } = THUMBS[d.id]
   const flip = index % 2 === 1
   return (
     <Link
@@ -69,9 +67,6 @@ function GalleryCard({ demo: d, index }: { demo: Demo; index: number }) {
         <Thumb active={hover || focus} />
         <span className="absolute left-4 top-4 text-[13px] font-medium px-2.5 py-1 rounded-lg bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200">
           {badge}
-        </span>
-        <span className="hidden md:block absolute right-4 bottom-3 text-[12px] text-gray-500 dark:text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity motion-reduce:transition-none">
-          {hint}
         </span>
       </div>
       <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-center">

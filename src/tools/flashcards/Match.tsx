@@ -83,7 +83,7 @@ export default function Match({ pool, subjectId, onExit }: { pool: Card[]; subje
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <BackButton onClick={onExit} label="Quit" />
-        <span className="text-sm text-gray-500 dark:text-gray-400">Tap a card, then its partner. A wrong pair adds 1 s.</span>
+        <span className="text-sm text-gray-500 dark:text-gray-400">A wrong pair adds 1 s.</span>
         <b className="font-mono text-lg text-gray-900 dark:text-white tabular-nums" aria-label="Time">{((now - game.start + penalty) / 1000).toFixed(1)}</b>
       </div>
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5">

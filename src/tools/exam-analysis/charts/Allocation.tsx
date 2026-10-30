@@ -98,7 +98,6 @@ export function AllocationBars({ ctx }: { ctx: ChartCtx }) {
           <span className="w-[3px] h-3 rounded-full" style={{ background: 'var(--ea-lost)' }} aria-hidden />
           Dropped
         </span>
-        <span>Click a {ctx.level === 'sub' ? 'subtopic to list its questions' : 'topic to see its subtopics'}.</span>
       </div>
       <div ref={ref}>
         <div className="flex items-end px-1.5 pb-1 text-[11px] font-semibold text-gray-500 dark:text-gray-400">

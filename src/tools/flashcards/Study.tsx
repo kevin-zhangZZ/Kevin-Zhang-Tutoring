@@ -120,7 +120,6 @@ export default function Study({ deck, pool, dir, onExit, onTest }: {
               <span className="text-sm text-gray-500 dark:text-gray-400">{deck.promptLabel[current.dir]}</span>
               <FaceView face={current.show} className={`mt-1 ${bigSize(current.show)} text-gray-900 dark:text-white`} />
               {current.dir === 'fwd' && current.card.ask && <span className="mt-2 text-sm text-gray-500 dark:text-gray-400">{current.card.ask}</span>}
-              <span className="absolute bottom-3.5 text-xs text-gray-400 dark:text-gray-500">Tap to flip<Kbd>Space</Kbd></span>
             </CardFace>
             <CardFace back label={current.dir === 'fwd' ? 'Answer' : 'It’s'}>
               <FaceView face={current.show} className="text-lg leading-snug text-gray-500 dark:text-gray-400" />

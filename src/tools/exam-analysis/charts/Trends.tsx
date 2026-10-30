@@ -133,8 +133,7 @@ export function Dumbbells({ ctx, measure }: { ctx: ChartCtx; measure: TrendMeasu
           {p.design ? `, ${STUDY_DESIGN_YEAR} study design` : ''}
         </span>
         <span>
-          {marks ? 'Average marks a year; one bead is one mark a year of change.' : 'Average score; one bead is one percentage point of change.'} Click a topic
-          to {action}.
+          {marks ? 'Average marks a year; one bead is one mark a year of change.' : 'Average score; one bead is one percentage point of change.'}
         </span>
       </p>
       <div ref={tip.wrapRef} className="relative">
