@@ -50,6 +50,18 @@
   }
 }
 
+/* The light/dark switch is one circular reveal from the toggle (App.tsx toggleDark): no
+   per-element colour fades inside it, and no default cross-fade of the whole page. */
+.theme-switching,
+.theme-switching * {
+  transition: none !important;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 /* KaTeX override for dark mode */
 .dark .katex {
   color: inherit;

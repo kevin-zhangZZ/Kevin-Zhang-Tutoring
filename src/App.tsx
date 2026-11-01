@@ -1,5 +1,6 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState, type MouseEvent } from 'react'
+import { flushSync } from 'react-dom'
 import Layout from './components/Layout'
 import RouteErrorBoundary from './components/RouteErrorBoundary'
 import Home from './pages/Home'
@@ -37,7 +38,7 @@ export default function App() {
   }, [])
 
   // Only a press of the toggle is saved as the visitor's choice.
-  const toggleDark = () => {
+  const toggleDark = (e?: MouseEvent<HTMLElement>) => {
     const next = !dark
     picked.current = true
     try {
@@ -45,7 +46,34 @@ export default function App() {
     } catch {
       // Blocked storage: the choice lasts for this visit.
     }
-    setDark(next)
+    const apply = () => {
+      flushSync(() => setDark(next))
+      document.documentElement.classList.toggle('dark', next)
+      document.documentElement.style.colorScheme = next ? 'dark' : 'light'
+    }
+    // The new theme spreads out as a circle from the toggle in one go, instead of each block
+    // fading on its own 150ms colour transition (those are switched off for the swap).
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!document.startViewTransition || reduce || !e) {
+      setDark(next)
+      return
+    }
+    const r = e.currentTarget.getBoundingClientRect()
+    const x = r.left + r.width / 2
+    const y = r.top + r.height / 2
+    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
+    const root = document.documentElement
+    root.classList.add('theme-switching')
+    const vt = document.startViewTransition(apply)
+    vt.ready
+      .then(() => {
+        root.animate(
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+          { duration: 450, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', pseudoElement: '::view-transition-new(root)' },
+        )
+      })
+      .catch(() => {})
+    vt.finished.finally(() => root.classList.remove('theme-switching'))
   }
 
   return (

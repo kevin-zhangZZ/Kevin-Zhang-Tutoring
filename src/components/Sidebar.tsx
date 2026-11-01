@@ -118,7 +118,7 @@ export function ContactPrompt({ collapsed, onNavigate }: { collapsed?: boolean; 
 
 interface SidebarProps {
   dark: boolean
-  onToggleDark: () => void
+  onToggleDark: (e?: React.MouseEvent<HTMLElement>) => void
   collapsed: boolean
   onToggleCollapse: () => void
 }

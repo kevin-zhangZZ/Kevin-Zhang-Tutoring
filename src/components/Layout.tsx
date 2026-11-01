@@ -24,7 +24,7 @@ export function useBackToTop({ hideAtLg = false, liftBelowLg = false }: BackToTo
 
 interface LayoutProps {
   dark: boolean
-  onToggleDark: () => void
+  onToggleDark: (e?: React.MouseEvent<HTMLElement>) => void
   children: React.ReactNode
 }
 
