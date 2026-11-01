@@ -1543,7 +1543,7 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q6-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q6(a–b)', topic: 'Probability — a binomial variance and an upper tail as a power of two', type: 'sa', hasDetail: true },
   { id: 'meth-q7-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q7(a–d)', topic: 'Functions — a cubic with a repeated root, and the quartic its product makes', type: 'sa', hasDetail: true },
   { id: 'meth-q8-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Probability — a triangular density, then integrating a transformation of it', type: 'sa', hasDetail: true },
-  { id: 'meth-q9-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q9(a–b)', topic: 'Functions — a truncus meeting a parabola, and when three solutions survive', type: 'sa', hasDetail: true },
+  { id: 'meth-q9-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q9(a–b)', topic: 'Functions — a truncus meeting a parabola, and when three solutions survive', type: 'sa', hasDetail: true, hasVideo: true },
 
   // The remaining 2025 Mathematical Methods Exam 2 multiple-choice questions.
   { id: 'meth-q1-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 1', topic: 'Functions — matching a range to a cosine by centre and amplitude', type: 'mc', hasDetail: true, percentCorrect: 91 },

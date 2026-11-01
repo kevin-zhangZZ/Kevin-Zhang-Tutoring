@@ -7,6 +7,15 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
+// Dropbox share links for the tutor's video walkthrough of each part, converted to
+// `raw=1` so the browser can stream them directly. The recordings were HEVC, which
+// desktop Chrome can't decode, so each was re-encoded to H.264/AAC with fast-start.
+const VIDEO = {
+  a: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/ACYUR_XUDfq9F1JOYJXElec/MM%202025/Converted/SAQ9/SAQ9a-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  bi: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AI9hty9N7oQSKuANLBQCu3g/MM%202025/Converted/SAQ9/SAQ9bi-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  bii: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AA4eTVqtFjcMIShEMaEK1d4/MM%202025/Converted/SAQ9/SAQ9bii-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+}
+
 const EXAM_A: SAExaminerStats = {
   marks: [47, 25, 10, 19],
   average: 1.0,
@@ -206,6 +215,7 @@ export default function MethodsQ9_2025Exam1() {
           </>
         }
         examinerReport={EXAM_A}
+        videoSrc={VIDEO.a}
       >
         <WorkingTable rows={ROWS_A} />
       </PartCard>
@@ -228,6 +238,7 @@ export default function MethodsQ9_2025Exam1() {
           </>
         }
         examinerReport={EXAM_BI}
+        videoSrc={VIDEO.bi}
       >
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
@@ -243,6 +254,7 @@ export default function MethodsQ9_2025Exam1() {
           </>
         }
         examinerReport={EXAM_BII}
+        videoSrc={VIDEO.bii}
       >
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
